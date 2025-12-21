@@ -1,0 +1,3 @@
+module.exports=[439898,a=>{"use strict";var b=a.i(664755),c=a.i(326938),d=a.i(603864);function e(){let a=(0,d.useRouter)();return(0,c.useEffect)(()=>{a.push("/login")},[a]),(0,b.jsx)("div",{className:"flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8",children:(0,b.jsx)("div",{className:"text-center",children:(0,b.jsx)("p",{className:"text-gray-500",children:"Redirecting to login..."})})})}a.s(["default",()=>e])}];
+
+//# sourceMappingURL=4478b_NUEVOS%20PROYECTOS%20ANTIGRAVITY_IVAN%20CODIGO_app_%28auth%29_register_page_tsx_1cdcc056._.js.map

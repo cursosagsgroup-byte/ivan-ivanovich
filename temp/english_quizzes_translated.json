@@ -1,0 +1,3009 @@
+{
+    "Team Leader": [
+        {
+            "moduleOrder": 2,
+            "quizTitle": "TRADITIONAL EXECUTIVE PROTECTION",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Select the main risk of traditional executive protection:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Aggressors achieve their goal in almost all occasions as they base their operation on the hope of repelling an aggression, being a convoy waiting to be ambushed.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Being easily identifiable by criminals.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Requires a very high number of protection elements.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Aggressors achieve their goal in almost all occasions as they base their operation on the hope of repelling an aggression, being a convoy waiting to be ambushed.",
+                    "order": 1
+                },
+                {
+                    "question": "Reason why traditional executive protection is vulnerable:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Lacks a preventive operational plan.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "It is possible to anticipate the security team's movements.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Has a medieval operational scheme that does not match current potential risks.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Lacks a preventive operational plan.",
+                    "order": 2
+                },
+                {
+                    "question": "What is the main strategy of traditional executive protection?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Armored vehicle with armed personnel on board.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Military-type convoy waiting to be ambushed.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Use of patrol cars to clear the way for the main vehicle.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Military-type convoy waiting to be ambushed.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 2,
+            "quizTitle": "SELF-THREAT",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "Mention one example of direct threat and one of indirect threat.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Going to gyms and restaurants.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Driving at excessive speed and opening the car window to smoke.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Talking on the phone inside the unit and attending meetings.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Driving at excessive speed and opening the car window to smoke.",
+                    "order": 1
+                },
+                {
+                    "question": "Who is directly responsible for the principal's security?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Bodyguard",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Corporate security director.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "The Protected (Principal).",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "The Protected (Principal).",
+                    "order": 2
+                },
+                {
+                    "question": "What can result from not knowing how the security team functions?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Delays in transfers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Exposure to any harm.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Getting lost on the route.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Exposure to any harm.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 3,
+            "quizTitle": "SCOPE OF REACTIVE MEASURES IN EXECUTIVE PROTECTION",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Employing them could represent a danger to both the integrity and image of the principal.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Preventive measures.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Reactive Measures.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Advance work.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Reactive Measures.",
+                    "order": 1
+                },
+                {
+                    "question": "In a situation where reactive measures are applied, the Protector is subjected to physiological reactions that condition their behavior, such as:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Nervousness.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Tranquility.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Super-stress.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Super-stress.",
+                    "order": 2
+                },
+                {
+                    "question": "What is the estimated effectiveness of firearm use in real reactive circumstances?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "65.18%",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "5.36%",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "80.03%",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "5.36%",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 4,
+            "quizTitle": "MODERN EXECUTIVE PROTECTION",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Mention two strategies of modern executive protection.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Prevention, Planning, Counter-surveillance, and Early Warning.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Convoy with two patrol cars and a motorcyclist.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Armed elements and level VI armored cars.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Prevention, Planning, Counter-surveillance, and Early Warning.",
+                    "order": 1
+                },
+                {
+                    "question": "Mention three pillars of modern executive protection.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "The CSO or Team Leader, The Protector, and The Protected.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Checklist, Advances, and Intelligence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Armed bodyguard, armored car, and patrol.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "The CSO or Team Leader, The Protector, and The Protected.",
+                    "order": 2
+                }
+            ]
+        },
+        {
+            "moduleOrder": 5,
+            "quizTitle": "Quiz 1: OBJECTIVES OF EXECUTIVE PROTECTION",
+            "quizOrder": 4,
+            "questions": [
+                {
+                    "question": "Example of intentional harm the protected may suffer.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Kidnapping.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Loss of a valuable object.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "An injury.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Kidnapping.",
+                    "order": 1
+                },
+                {
+                    "question": "Impacting the principal's car with the escort car is an example of:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Awkward situation.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Unintentional harm.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Image protection.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Unintentional harm.",
+                    "order": 2
+                },
+                {
+                    "question": "Being stopped by traffic police for violating regulations while transporting the principal is an example of:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Handling comfort related to protection.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Achieving the objective without causing legal issues.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Protecting sensitive information.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Achieving the objective without causing legal issues.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 6,
+            "quizTitle": "Quiz 1: Surveillance",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Cautious and constant observation of the environment with the object of recognizing actions and situations that could signify a threat.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Counter-intelligence.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Surveillance.",
+                    "order": 1
+                }
+            ]
+        },
+        {
+            "moduleOrder": 7,
+            "quizTitle": "FUNDAMENTALS OF COUNTER-SURVEILLANCE",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "Process that allows detecting hostile surveillance.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Intelligence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Counter-intelligence.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Counter-surveillance.",
+                    "order": 1
+                },
+                {
+                    "question": "Detection, identification, and deactivation are stages of:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Intelligence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Hostile surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-surveillance.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Counter-surveillance.",
+                    "order": 2
+                },
+                {
+                    "question": "Allows us to neutralize a possible aggression before it happens:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-intelligence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Surveillance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Counter-surveillance.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 8,
+            "quizTitle": "INTELLIGENCE",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Process of data collection and analysis that allows us to obtain knowledge for the early detection of possible harm.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Intelligence.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Strategy.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Intelligence.",
+                    "order": 1
+                },
+                {
+                    "question": "Social networks, web pages, chat groups, and public databases are an example of:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Open sources (OSINT).",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Closed sources.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Immediate sources.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Open sources (OSINT).",
+                    "order": 2
+                },
+                {
+                    "question": "Personal contacts, direct field collection, concrete investigations, are an example of:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Immediate sources.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Closed sources.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Open sources.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Closed sources.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 9,
+            "quizTitle": "Quiz. Counter-intelligence in executive protection",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Set of strategies and actions that allow us to neutralize intelligence efforts.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Intelligence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-intelligence.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Counter-surveillance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Counter-intelligence.",
+                    "order": 1
+                },
+                {
+                    "question": "Computer and digital counter-intelligence allows us to:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Find information on malicious people.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Protect information of clients who spend a lot of time browsing.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Know the search history of people.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Protect information of clients who spend a lot of time browsing.",
+                    "order": 2
+                },
+                {
+                    "question": "It is a central rule of human counter-intelligence.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Electronic sweep.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Use of Need-to-Know (CEN).",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Protecting systems from viruses.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Use of Need-to-Know (CEN).",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 10,
+            "quizTitle": "Physical and Electronic Security within the Executive Protection Scheme",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Good coordination between security guards and protection agents allows us to minimize:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Transfer time.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Security seams (gaps).",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Arrival time.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Security seams (gaps).",
+                    "order": 1
+                },
+                {
+                    "question": "Use of Quadrant and Sector Police.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Quadrant and Sector Police.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Security guards.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Citizen police.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Security guards.",
+                    "order": 2
+                },
+                {
+                    "question": "The client's home must be thoroughly reviewed by:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Security guards.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Specialized police.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Physical security expert.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Physical security expert.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 11,
+            "quizTitle": "Main objective of early warning.",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "Main objective of early warning.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Arrive before the principal.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Deactivate an attack before it happens.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Confront potential criminals.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Deactivate an attack before it happens.",
+                    "order": 1
+                },
+                {
+                    "question": "Main activity of early warning.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Travel the principal's route.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Deactivate the attack in the final preparation phase.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Establishes an escape route.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Deactivate the attack in the final preparation phase.",
+                    "order": 2
+                },
+                {
+                    "question": "With how much anticipation can early warning deactivate an imminent attack?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Minutes before",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Days before.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Weeks before.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Minutes before",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 12,
+            "quizTitle": "ROUTE PLANNING",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Three aspects to take into account in a security route.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Escort car, escort bike, and principal.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Speed, safety, and comfort.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Criminal incidence, support points, and terrain conditions.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Criminal incidence, support points, and terrain conditions.",
+                    "order": 1
+                },
+                {
+                    "question": "Mention 2 risk factors that can be identified when planning a route.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Choke points and traffic congestion.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Fuel consumption and fastest route.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Shortest route and backup vehicle.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Choke points and traffic congestion.",
+                    "order": 2
+                },
+                {
+                    "question": "Characteristic that an alternate route must have.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Serves to make an emergency escape.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Access can be at any point on the main road.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "It is just as fast as the main one.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Access can be at any point on the main road.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 13,
+            "quizTitle": "Quiz: Tuning (Puesta a punto)",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "It is performed to assess the response of both the victim and their protectors.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Hostile surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Tuning (Puesta a punto).",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Security seam.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Tuning (Puesta a punto).",
+                    "order": 1
+                },
+                {
+                    "question": "Why is it vitally important for the executive security specialist to detect a 'tuning' attempt?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Denotes an imminent danger situation.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Can react differently next time.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Allows them not to panic.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Denotes an imminent danger situation.",
+                    "order": 2
+                },
+                {
+                    "question": "To perform a 'tuning', it is necessary to know:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "The area where it will be performed.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Date and time.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Habits and routines.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Habits and routines.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 16,
+            "quizTitle": "ADVANCE WORK (ANTICIPATION TO DESTINATIONS)",
+            "quizOrder": 5,
+            "questions": [
+                {
+                    "question": "Anticipation to destination places allows us to identify:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Seams (Gaps).",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Location.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Zone.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Seams (Gaps).",
+                    "order": 1
+                },
+                {
+                    "question": "For advance work, it is indispensable to have a:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Address.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Vehicle.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Checklist.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Checklist.",
+                    "order": 2
+                },
+                {
+                    "question": "Advantage provided by anticipation to destinations.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Identify possible intentional and unintentional harm.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Secure a parking spot.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Identify emergency exits.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Identify possible intentional and unintentional harm.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 18,
+            "quizTitle": "Unconventional protection agents (Shadow Agents)",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "The shadow agent is defined as:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Agent of the principal's far circle.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Agent of the principal's middle circle.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Agent who cannot be identified by the naked eye.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Agent who cannot be identified by the naked eye.",
+                    "order": 1
+                },
+                {
+                    "question": "The shadow agent can identify:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Emergency exits.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Hostile surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Risk zones.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Hostile surveillance.",
+                    "order": 2
+                },
+                {
+                    "question": "Main advantage of the shadow agent:",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Criminals cannot identify them.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "They are not the focus of attention.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "They can operate without uniform.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Criminals cannot identify them.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 21,
+            "quizTitle": "Quiz: The Operational Structure",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Operate in the first circle.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Residential guards.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Protection agents.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Shadow agents.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Protection agents.",
+                    "order": 1
+                },
+                {
+                    "question": "Operate in the second circle.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Protection agents.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Shadow agents.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Residential guards.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Shadow agents.",
+                    "order": 2
+                },
+                {
+                    "question": "Fundamental part of the operational structure.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Intelligence and counter-surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Main and alternate route.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Tuning and security seam.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Intelligence and counter-surveillance.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 22,
+            "quizTitle": "QUIZ: Formations",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "Main disadvantage of conventional formations.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Ignores protection circles.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Needs various agents.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Formation waiting to be surprised.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Formation waiting to be surprised.",
+                    "order": 1
+                },
+                {
+                    "question": "One of the reasons why clients avoid using conventional formations.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Unfavorable for their image.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Require three or more elements.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Result unnecessary.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Unfavorable for their image.",
+                    "order": 2
+                }
+            ]
+        },
+        {
+            "moduleOrder": 25,
+            "quizTitle": "Dynamic use of the security vehicle.",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "Advantage of the dynamic use of the security vehicle.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Anticipate seams.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Full discretion.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Clear the way.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Anticipate seams.",
+                    "order": 1
+                },
+                {
+                    "question": "Critical factor that can be identified with the dynamic use of the security vehicle.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Deterrence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Early warning.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Prudent arrival.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Early warning.",
+                    "order": 2
+                },
+                {
+                    "question": "Critical factor that can be identified with the dynamic use of the security vehicle.",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Closed streets.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Alternate route.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Counter-surveillance.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 26,
+            "quizTitle": "Operational principles in Post-Covid times",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "What type of threat does the virus that causes COVID-19 represent?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Unintentional threat.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Intentional threat.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Awkward situations.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Unintentional threat.",
+                    "order": 1
+                }
+            ]
+        }
+    ],
+    "Counter Surveillance": [
+        {
+            "moduleOrder": 2,
+            "quizTitle": "Why do criminals fear Counter-surveillance more than guns?",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Why do high-profile criminals fear counter-surveillance more than guns according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because counter-surveillance exposes them to detection and capture during critical phases of their operations.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Because guns are only effective against common criminals, not expert robbery.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because counter-surveillance prevents them from using disguises to protect against recognition.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because counter-surveillance is based on prolonged observation of the victim, which generates insecurity.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Because counter-surveillance exposes them to detection and capture during critical phases of their operations.",
+                    "order": 1
+                },
+                {
+                    "question": "What technique did Olivera Circovic and her team use to attack their victims according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Using firearms to intimidate victims.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Observing the victim in detail and attacking at moments of vulnerability and distraction.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Disguising in flashy outfits to draw attention.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Stealing cars to move quickly during attacks.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Observing the victim in detail and attacking at moments of vulnerability and distraction.",
+                    "order": 2
+                },
+                {
+                    "question": "What terrified Olivera Circovic during the victim's surveillance according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Being arrested by police at critical moments of the operation.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Not being able to use firearms in their attacks.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Ceasing to be identifiable and drawing attention during surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "The presence of security guards or bystanders during the surveillance process.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Ceasing to be identifiable and drawing attention during surveillance.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 3,
+            "quizTitle": "Quiz: Development of Counter-surveillance during the Cold War",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Why was physical surveillance considered an essential tool in the Cold War?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because it allowed agents to communicate securely.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because it facilitated the detection of suspicious activities.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because it helped identify spy activity.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Because it was the only way to evade enemy counter-surveillance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Because it helped identify spy activity.",
+                    "order": 1
+                },
+                {
+                    "question": "What was one of the main purposes of counter-surveillance during the Cold War?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Maintaining secure communication between agents.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Detecting and evading enemy surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Following persons of interest using disguises.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Being in fixed positions to observe key locations.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Detecting and evading enemy surveillance.",
+                    "order": 2
+                },
+                {
+                    "question": "Why is the importance of behavioral analysis emphasized in surveillance during the Cold War?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To study suspicious behavior patterns.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To employ pre-established signals and codes.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To maintain acute situational awareness.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To follow persons of interest discreetly.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To study suspicious behavior patterns.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 4,
+            "quizTitle": "Quiz: Types of Hostile Surveillance: Full Measures vs. Puzzle",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "What is the main difference between full surveillance measures and the puzzle method according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Full measures focus on blackmail threats, while the puzzle is associated with assassination or kidnapping threats.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Full measures involve constantly following the target, while the puzzle relies on identifying vulnerable points at selective times.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Full measures are more expensive and sophisticated, while the puzzle requires fewer resources but greater coordination.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Full measures were used in the Cold War, while the puzzle is a more contemporary approach.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Full measures involve constantly following the target, while the puzzle relies on identifying vulnerable points at selective times.",
+                    "order": 1
+                },
+                {
+                    "question": "Why can criminals afford to follow the target during selective stretches in the puzzle method?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because they are more interested in specific activities of the target than following constantly.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Because they do not have sufficient resources to perform exhaustive surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because they prefer to build the target's routine bit by bit to detect vulnerabilities.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because the puzzle method requires greater coordination among criminals.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Because they are more interested in specific activities of the target than following constantly.",
+                    "order": 2
+                },
+                {
+                    "question": "What type of compromising activity can be identified through full surveillance measures, according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Meetings with other key persons in the target's environment.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Daily routine activities of the target.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Travel movements of the target to specific places.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Sensitive activities of the target, such as love affairs.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Travel movements of the target to specific places.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 6,
+            "quizTitle": "Quiz: Hostile Surveillance Management Principle",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "According to the text, why is it recommended to avoid showing that surveillance has been detected?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To minimize the threat and prevent the hostile observer from changing tactics.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To increase intelligence gathered on the observer and better understand their intentions.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To implement more effective counter-intelligence strategies and manipulate collected information.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To show the observer that one is aware of their presence and deter any hostile action.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To minimize the threat and prevent the hostile observer from changing tactics.",
+                    "order": 1
+                },
+                {
+                    "question": "What is the TEDD model based on for evaluating surveillance situations according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Counter-surveillance techniques.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Time, Environment, Distance, Demeanor.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Evasion strategies.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Passive, active, and evasive measures.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Time, Environment, Distance, Demeanor.",
+                    "order": 2
+                },
+                {
+                    "question": "What does observing demeanor imply in the TEDD model?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "If the person or vehicle moves in different environments.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "If the person or vehicle gets closer or moves away from the previous location.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "If the person or vehicle repeats certain patterns of behavior.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "If the person or vehicle shows signs of nervousness or avoids direct looks.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "If the person or vehicle repeats certain patterns of behavior.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 7,
+            "quizTitle": "Passive measures of hostile surveillance self-detection in the fixed phase",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Why is it important to detect a 'Tower Vehicle' according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because its presence indicates it could be involved in hostile surveillance activities.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Because it usually transports people in and out of a residence or office.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because it is fundamental to isolate any occupied vehicle with a view of the target's house.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because detecting it implies establishing a 'cage' around the residence.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Because its presence indicates it could be involved in hostile surveillance activities.",
+                    "order": 1
+                },
+                {
+                    "question": "What is an example of the 'cage' according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A barricade surrounding the entire residence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A strategic position for surveillance in a specific place.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "A strategy to establish a fixed phase of surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A vehicle following the main vehicle in motion.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "A strategic position for surveillance in a specific place.",
+                    "order": 2
+                },
+                {
+                    "question": "Why is it important to observe vehicles incorporating from small streets onto large avenues according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because they indicate the transition from fixed to mobile phase in a surveillance operation.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because they are ideal places for surveillance without drawing attention.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because they are usually strategically positioned on main streets.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Because they can be used by hostile vehicles to follow or monitor a target.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Because they can be used by hostile vehicles to follow or monitor a target.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 8,
+            "quizTitle": "Quiz: Passive detection in the mobile phase.",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "What does detecting the same vehicle in two unrelated places during the passive mobile phase indicate?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Probability of a casual coincidence.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Possible presence of hostile surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Need to maintain line of sight with discretion.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Importance of turning on the signal in advance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Possible presence of hostile surveillance.",
+                    "order": 1
+                },
+                {
+                    "question": "Why is it crucial to maintain line of sight discreetly during tracking of the surveillance vehicle in the passive mobile phase?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To prevent the surveillance vehicle from getting too close to the main vehicle.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "So the surveillance vehicle can react subtly to the main vehicle's maneuvers.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Because watchers will expose only one vehicle to line of sight.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To facilitate observation of multiple views of the environment.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "So the surveillance vehicle can react subtly to the main vehicle's maneuvers.",
+                    "order": 2
+                },
+                {
+                    "question": "What type of behavior at traffic lights and mandatory stops can be indicative of hostile surveillance according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Braking prematurely.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Accelerating abruptly.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Changing lanes constantly.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Maintaining a safe distance with the main vehicle.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Braking prematurely.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 9,
+            "quizTitle": "Quiz: Transitional Fixed Phase",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "What does the unexpected stop of a vehicle indicate during observation in the transitional fixed phase according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Suspicious behaviors that must be monitored carefully.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "A sign that the vehicle might be following the surveillance target.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A strategy to avoid direct exposure to the main target.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "The need to inform the command vehicle about the stop.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Suspicious behaviors that must be monitored carefully.",
+                    "order": 1
+                },
+                {
+                    "question": "What does a vehicle stopping in a position to observe the executive indicate according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Presence of a command vehicle.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Probable tracking of the executive.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Need to change phase quickly.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Lack of resources to install a tower.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Probable tracking of the executive.",
+                    "order": 2
+                },
+                {
+                    "question": "What do criminals do in situations where a tower cannot be installed during the transitional fixed phase?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Leave the target",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Park in a logical pickup position.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Call for backup.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Drive around to ensure the vehicle remains parked.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Drive around to ensure the vehicle remains parked.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 10,
+            "quizTitle": "Quiz: Transitional Pase on Foot",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "What must operators do when changing from vehicle phase to foot phase according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Place the agent on foot immediately.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Coordinate their movements regardless of the number of agents.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Deliberately draw attention to alert the target.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Change vehicle quickly without observing the target.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Place the agent on foot immediately.",
+                    "order": 1
+                },
+                {
+                    "question": "What can the rush to get into the vehicle to follow the executive indicate according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A sign that the executive will leave the place quickly.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A natural behavior during a phase transition.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "A possible continuation of tracking in vehicle.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "An indication that the target has been alerted about surveillance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "A possible continuation of tracking in vehicle.",
+                    "order": 2
+                },
+                {
+                    "question": "Why is it important to pay attention to people entering vehicles in a hurried or unnatural way, according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To determine if surveillance agents are present.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To assess the operators' ability to adapt to the environment.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To identify suspicious behaviors that could reveal the presence of agents.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To avoid coordination of movements between surveillance agents.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To identify suspicious behaviors that could reveal the presence of agents.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 11,
+            "quizTitle": "Quiz: Passive measures on foot",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Why is the utility of simulated audio messages mentioned in passive detection on foot according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To observe what happens behind the operators.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To record sounds and video to obtain information about the environment behind.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To imitate the presence of multiple people in a place.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To alert the target about ongoing surveillance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To record sounds and video to obtain information about the environment behind.",
+                    "order": 1
+                },
+                {
+                    "question": "What is highlighted about the plausibility of a person on foot standing still during the fixed phase compared to vehicle detection?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "It is more credible for two people to be in a parked vehicle than a single person standing on foot.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Passive detection is easier in a vehicle than on foot.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "People in motion are less suspicious than people who remain static.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Effective observations cannot be made in the fixed phase in foot detection.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "It is more credible for two people to be in a parked vehicle than a single person standing on foot.",
+                    "order": 2
+                },
+                {
+                    "question": "What is mentioned as a sign of suspicious behavior during the waiting phase in passive detection on foot?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "The presence of people walking and moving continuously.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Prolonged duration of standing still without apparent reason.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Observation of activities incongruent with the environment.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Discreet exit of operators to draw attention.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Prolonged duration of standing still without apparent reason.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 12,
+            "quizTitle": "Quiz: Hostile Surveillance Detection Phase on Foot in Motion",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Why is it stated that detecting body movements is easier than observing facial expressions during the hostile surveillance detection phase on foot in motion according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Facial expressions are usually covered during movement.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Gestures and postures can provide more information than simply looking at the face.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Looking at the face directly can be an alert signal for the target.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Body movements are harder to detect than facial expressions.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Gestures and postures can provide more information than simply looking at the face.",
+                    "order": 1
+                },
+                {
+                    "question": "Why does stopping to cross the street or at a crosswalk provide opportunities to observe someone following directly behind at a distance without drawing attention, according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To record a simulated audio message.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To avoid being seen by the person following directly behind.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To observe with peripheral vision and detect suspicious tracking and movement",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To cross the street quickly and avoid detection.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To observe with peripheral vision and detect suspicious tracking and movement",
+                    "order": 2
+                },
+                {
+                    "question": "What is recommended to observe when turning around and noticing who else turns or changes direction during the two-person tracking technique, according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "People with bad cover trying to buy something in a store.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "People who avoid crossing paths with the target.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "People who change direction suddenly.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "People who seem to be following the target.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "People who avoid crossing paths with the target.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 13,
+            "quizTitle": "Quiz: Active self-detection techniques",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "Why is it important to apply active techniques gradually and expand them as necessary, according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To avoid unexpected reactions from watchers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To confuse watchers and make them abandon surveillance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To adapt to the target's movement patterns.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To generate reactions in people and vehicles.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To adapt to the target's movement patterns.",
+                    "order": 1
+                },
+                {
+                    "question": "What is mentioned about surveillance detection routes (SDR) in the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Must be illogical to confuse watchers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Are fundamental for detecting hostile surveillance.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Must match the target's movement patterns.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Are used to perform maneuvers in vehicle.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Are fundamental for detecting hostile surveillance.",
+                    "order": 2
+                },
+                {
+                    "question": "Why is the importance of establishing surveillance detection routes (SDR) mentioned in the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To provoke reactions in people and vehicles.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To avoid the 'indigo effect' during active detection techniques.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To identify the base tower during the fixed phase.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To implement active detection measures according to movement patterns.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "To implement active detection measures according to movement patterns.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 15,
+            "quizTitle": "Advanced Active Detection and Evasion Techniques",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "What is suggested to do when exiting to the side road and reducing speed on expressways according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Increase speed to lose those following you.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Maintain constant speed to avoid detection.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Find pretexts to exit to the side road and then reincorporate to main lanes.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Stay on the side road to avoid surveillance.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Find pretexts to exit to the side road and then reincorporate to main lanes.",
+                    "order": 1
+                },
+                {
+                    "question": "What is a disadvantage of using alternate streets to main avenues according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Greater variety of routes.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Less predictability.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Greater efficiency in terms of time and distance.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Possibly less efficiency in terms of time and distance but useful for detecting surveillance.",
+                            "isCorrect": true
+                        }
+                    ],
+                    "correctAnswer": "Possibly less efficiency in terms of time and distance but useful for detecting surveillance.",
+                    "order": 2
+                },
+                {
+                    "question": "What is recommended to do when using roundabouts and crossings to confuse followers according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Observe who follows the same logical turns.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Completely avoid roundabouts to not expose oneself.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Accelerate abruptly to lose followers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Do not use these structures to avoid risk.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Observe who follows the same logical turns.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 16,
+            "quizTitle": "Active Detection on Foot: Strategies in Public Places",
+            "quizOrder": 1,
+            "questions": [
+                {
+                    "question": "What is recommended to avoid when carrying out active detection on foot in public places according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Making direct eye contact with possible watchers.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Observing people's reactions when using the blind turn technique.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Using bridges and pedestrian crossings to observe followers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Entering shops or public places to perform natural activities.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Making direct eye contact with possible watchers.",
+                    "order": 1
+                },
+                {
+                    "question": "What is the purpose of using techniques like the blind turn during active detection on foot in public places according to the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Identify experienced watchers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Observe people maneuvering unusually.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Confuse followers and observe their reactions.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Using bridges and parks to confuse watchers.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Confuse followers and observe their reactions.",
+                    "order": 2
+                },
+                {
+                    "question": "Why is it mentioned that it is important to pay attention to unusual behavior or people who seem out of place when choosing places for active detection on foot in public places?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To avoid conflict with other people in those places.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To identify possible watchers or people who might be following you.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "To properly select places where people dress in a certain way.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "To guarantee that people around you are dressed according to context.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "To identify possible watchers or people who might be following you.",
+                    "order": 3
+                }
+            ]
+        },
+        {
+            "moduleOrder": 18,
+            "quizTitle": "Counter-surveillance",
+            "quizOrder": 2,
+            "questions": [
+                {
+                    "question": "What main difference is mentioned between self-detection techniques and counter-surveillance in the text?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Self-detection techniques imply a wider field of observation.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "In counter-surveillance, specific detection routes are used and a wider field of observation is leveraged.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Counter-surveillance is based on following the principal to detect followers.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Self-detection techniques are more effective against sophisticated criminals.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "In counter-surveillance, specific detection routes are used and a wider field of observation is leveraged.",
+                    "order": 1
+                },
+                {
+                    "question": "What is one of the principles mentioned as essential for the counter-surveillance team?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Having a detectable vulnerability.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Having numerous resources for greater effectiveness.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Applying the chameleon principle and justifying their presence at detection points.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Following the principal closely to identify criminals.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Applying the chameleon principle and justifying their presence at detection points.",
+                    "order": 2
+                },
+                {
+                    "question": "What is established as key to avoiding detection of criminals in counter-surveillance?",
+                    "type": "MULTIPLE_CHOICE",
+                    "options": [
+                        {
+                            "text": "True",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "False",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Perform a prior advance on the detection route.",
+                            "isCorrect": true
+                        },
+                        {
+                            "text": "Use at least three vehicles for greater coverage.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Compare information with other counter-surveillance teams.",
+                            "isCorrect": false
+                        },
+                        {
+                            "text": "Establish a logical reason for transiting specific routes.",
+                            "isCorrect": false
+                        }
+                    ],
+                    "correctAnswer": "Perform a prior advance on the detection route.",
+                    "order": 3
+                }
+            ]
+        }
+    ]
+}

@@ -1,26 +1,201 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  /* Slate 50 */
+  --foreground: #0f172a;
+  /* Slate 900 */
+  --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Brand Colors - Keting Media (Blue/White) */
+  --color-primary: #B70126;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ffffff;
+  --color-secondary-foreground: #0f172a;
+  --color-secondary-hover: #f1f5f9;
+  /* Slate 100 */
+
+  --color-muted: #64748b;
+  /* Slate 500 */
+  --color-muted-foreground: #f8fafc;
+
+  --color-border: #e2e8f0;
+  /* Slate 200 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    /* Slate 900 */
+    --foreground: #f8fafc;
+    /* Slate 50 */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-bebas), sans-serif;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-scroll-right {
+  animation: scroll-right 20s linear infinite;
+}
+
+/* Blog Content Styles - Professional Typography */
+.blog-content {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+  color: #111827;
+}
+
+.blog-content h2 {
+  font-size: 32px !important;
+  margin-top: 48px !important;
+  margin-bottom: 24px !important;
+  line-height: 1.3 !important;
+}
+
+.blog-content h3 {
+  font-size: 26px !important;
+  margin-top: 36px !important;
+  margin-bottom: 18px !important;
+  line-height: 1.4 !important;
+}
+
+.blog-content h4 {
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.blog-content p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 24px !important;
+}
+
+.blog-content p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-content ul,
+.blog-content ol {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.blog-content li {
+  margin-bottom: 12px;
+}
+
+.blog-content strong,
+.blog-content b {
+  font-weight: 700;
+  color: #111827;
+}
+
+.blog-content em,
+.blog-content i {
+  font-style: italic;
+}
+
+.blog-content a {
+  color: #4f46e5;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.blog-content a:hover {
+  color: #6366f1;
+}
+
+.blog-content img {
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  margin-top: 32px;
+  margin-bottom: 32px;
+  width: 100%;
+  height: auto;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 20px;
+  margin: 24px 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .blog-content h2 {
+    font-size: 26px !important;
+    margin-top: 32px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .blog-content h3 {
+    font-size: 22px !important;
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .blog-content h4 {
+    font-size: 20px !important;
+  }
+
+  .blog-content p,
+  .blog-content ul,
+  .blog-content ol {
+    font-size: 16px;
+    line-height: 1.6;
+  }
 }

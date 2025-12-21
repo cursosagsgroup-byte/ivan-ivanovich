@@ -1,0 +1,2 @@
+Entry at 2025-12-20T02:47:21.375Z. Session: {"user":{"name":"Carlos Beuvrin","email":"c.beuvrin@ketingmedia.com","image":null,"id":"cmiq7es3n0000kvegioig6ao3","role":"ADMIN"}}
+Entry at 2025-12-20T02:53:02.857Z. Session: {"user":{"name":"Carlos Beuvrin","email":"c.beuvrin@ketingmedia.com","image":null,"id":"cmiq7es3n0000kvegioig6ao3","role":"ADMIN"}}

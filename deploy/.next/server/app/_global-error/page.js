@@ -1,0 +1,11 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_global-error/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__ea8a4818._.js")
+R.c("server/chunks/ssr/Documents_KETING MEDIA_NUEVOS PROYECTOS ANTIGRAVITY_IVAN CODIGO_1548312e._.js")
+R.c("server/chunks/ssr/891d4_next_dist_5ced4d1a._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__700e2217._.js")
+R.c("server/chunks/ssr/891d4_next_dist_5ada42fe._.js")
+R.c("server/chunks/ssr/891d4_next_dist_dba0abba._.js")
+R.c("server/chunks/ssr/Documents_KETING MEDIA_NUEVOS PROYECTOS ANTIGRAVITY_IVAN CODIGO_app_de4ada2d._.js")
+R.c("server/chunks/ssr/8f848_IVAN CODIGO__next-internal_server_app__global-error_page_actions_098a1787.js")
+R.m(35300)
+module.exports=R.m(35300).exports

@@ -1,0 +1,11 @@
+var R=require("../../../chunks/[turbopack]_runtime.js")("server/app/api/orders/route.js")
+R.c("server/chunks/[root-of-the-server]__94b0c455._.js")
+R.c("server/chunks/891d4_next_89c4b06e._.js")
+R.c("server/chunks/891d4_bcryptjs_index_f87c0242.js")
+R.c("server/chunks/891d4_b566c7a6._.js")
+R.c("server/chunks/Documents_KETING MEDIA_NUEVOS PROYECTOS ANTIGRAVITY_IVAN CODIGO_879d9e22._.js")
+R.c("server/chunks/[root-of-the-server]__5a382095._.js")
+R.c("server/chunks/891d4_0957f339._.js")
+R.c("server/chunks/8f848_IVAN CODIGO__next-internal_server_app_api_orders_route_actions_81d1c657.js")
+R.m(977828)
+module.exports=R.m(977828).exports

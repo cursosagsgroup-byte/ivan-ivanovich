@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40b20abe658ee805c325c0e85dbf3824f4d752790e": {
+      "workers": {
+        "app/(public)/sobre-la-proteccion/page": {
+          "moduleId": 102221,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        }
+      },
+      "layer": {
+        "app/(public)/sobre-la-proteccion/page": "action-browser"
+      },
+      "exportedName": "setLanguage",
+      "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+    }
+  },
+  "edge": {}
+}

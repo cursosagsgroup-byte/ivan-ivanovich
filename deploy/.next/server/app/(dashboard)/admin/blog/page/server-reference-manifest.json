@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40b20abe658ee805c325c0e85dbf3824f4d752790e": {
+      "workers": {
+        "app/(dashboard)/admin/blog/page": {
+          "moduleId": 817712,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        }
+      },
+      "layer": {
+        "app/(dashboard)/admin/blog/page": "action-browser"
+      },
+      "exportedName": "setLanguage",
+      "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+    }
+  },
+  "edge": {}
+}

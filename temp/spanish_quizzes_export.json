@@ -1,0 +1,888 @@
+{
+  "Team Leader": [
+    {
+      "moduleOrder": 2,
+      "quizTitle": "PROTECCIÓN EJECUTIVA TRADICIONAL",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Selecciona el principal riesgo de la protección ejecutiva tradicional:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Los agresores logran su objetivo en casi todas las ocasiones ya que basa su operación en la esperanza de poder repeler una agresión al ser que un convoy que transita en espera de ser emboscado.\",\"isCorrect\":true},{\"text\":\"Ser fácilmente identificables por los delincuentes.\",\"isCorrect\":false},{\"text\":\"Requiere de un numero muy elevado de elementos de protección.\",\"isCorrect\":false}]",
+          "correctAnswer": "Los agresores logran su objetivo en casi todas las ocasiones ya que basa su operación en la esperanza de poder repeler una agresión al ser que un convoy que transita en espera de ser emboscado.",
+          "order": 1
+        },
+        {
+          "question": "Motivo por el cual es vulnerable la protección ejecutiva tradicional:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Carece de un plan operativo de prevención.\",\"isCorrect\":true},{\"text\":\"Resulta posible anticipar los movimientos del equipo de seguridad.\",\"isCorrect\":false},{\"text\":\"Tiene un esquema operativo medieval que no coincide con los potenciales riesgos actuales.\",\"isCorrect\":false}]",
+          "correctAnswer": "Carece de un plan operativo de prevención.",
+          "order": 2
+        },
+        {
+          "question": "¿Cuál es la principal estrategia de la protección ejecutiva tradicional?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Vehículo blindado con personal armado a bordo.\",\"isCorrect\":false},{\"text\":\"Convoy tipo militar en espera de ser emboscado.\",\"isCorrect\":true},{\"text\":\"Uso de patrullas que puedan abrir paso al vehículo principal.\",\"isCorrect\":false}]",
+          "correctAnswer": "Convoy tipo militar en espera de ser emboscado.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 2,
+      "quizTitle": "LA AUTOAMENAZA",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Menciona un ejemplo de amenaza directa y uno de amenaza indirecta.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Acudir a Gimnasios y restaurantes.\",\"isCorrect\":false},{\"text\":\"Conducir a exceso de velocidad y abrir la ventanilla del auto para fumar.\",\"isCorrect\":true},{\"text\":\"Hablar por teléfono dentro de la unidad y acudir a reuniones.\",\"isCorrect\":false}]",
+          "correctAnswer": "Conducir a exceso de velocidad y abrir la ventanilla del auto para fumar.",
+          "order": 1
+        },
+        {
+          "question": "¿Quién es responsable directo de la seguridad del principal?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Escolta\",\"isCorrect\":false},{\"text\":\"Director corporativo de seguridad.\",\"isCorrect\":false},{\"text\":\"Protegido.\",\"isCorrect\":true}]",
+          "correctAnswer": "Protegido.",
+          "order": 2
+        },
+        {
+          "question": "¿En qué puede derivar el desconocimiento del funcionamiento del equipo de seguridad?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Retraso en los traslados.\",\"isCorrect\":false},{\"text\":\"Exposición a cualquier daño.\",\"isCorrect\":true},{\"text\":\"Extravío en la ruta.\",\"isCorrect\":false}]",
+          "correctAnswer": "Exposición a cualquier daño.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 3,
+      "quizTitle": "ALCANCES DE LAS MEDIDAS REACTIVAS EN LA PROTECCION EJECUTIVA",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Emplearlas podría representar un peligro para la integridad como para la imagen del principal.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Medidas preventivas.\",\"isCorrect\":false},{\"text\":\"Medidas Reactivas.\",\"isCorrect\":true},{\"text\":\"Avanzadas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Medidas Reactivas.",
+          "order": 1
+        },
+        {
+          "question": "En una situación donde se aplican medidas reactivas el Protector se ve sometido a reacciones fisiológicas que condicionan su conducta como:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Nerviosismo.\",\"isCorrect\":false},{\"text\":\"Tranquilidad.\",\"isCorrect\":false},{\"text\":\"Superestres.\",\"isCorrect\":true}]",
+          "correctAnswer": "Superestres.",
+          "order": 2
+        },
+        {
+          "question": "¿Cuál es la eficacia estimada en el uso de armas de fuego en circunstancias reactivas reales?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"65.18%\",\"isCorrect\":false},{\"text\":\"5.36%\",\"isCorrect\":true},{\"text\":\"80.03%\",\"isCorrect\":false}]",
+          "correctAnswer": "5.36%",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 4,
+      "quizTitle": "PROTECCION EJECUTIVA MODERNA",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Menciona dos estrategias de la protección ejecutiva moderna.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Prevención, Planeación, Contra vigilancia y Alerta Temprana.\",\"isCorrect\":true},{\"text\":\"Convoy con dos patrullas y un motociclista.\",\"isCorrect\":false},{\"text\":\"Elementos armados y autos blindados nivel VI.\",\"isCorrect\":false}]",
+          "correctAnswer": "Prevención, Planeación, Contra vigilancia y Alerta Temprana.",
+          "order": 1
+        },
+        {
+          "question": "Menciona tres pilares de la protección ejecutiva moderna.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"El CSO o Team leader, El protector y Protegido.\",\"isCorrect\":true},{\"text\":\"Lista de chequeo, Avanzadas e inteligencia.\",\"isCorrect\":false},{\"text\":\"Escolta armado, auto blindado y patrulla.\",\"isCorrect\":false}]",
+          "correctAnswer": "El CSO o Team leader, El protector y Protegido.",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "moduleOrder": 5,
+      "quizTitle": "Cuestionario 1: OBJETIVOS DE LA PROTECCIÓN EJECUTIVA",
+      "quizOrder": 4,
+      "questions": [
+        {
+          "question": "Ejemplo de daños intencionales que puede sufrir el protegido.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Secuestro.\",\"isCorrect\":true},{\"text\":\"Perdida de algún objeto de valor.\",\"isCorrect\":false},{\"text\":\"Alguna lesión.\",\"isCorrect\":false}]",
+          "correctAnswer": "Secuestro.",
+          "order": 1
+        },
+        {
+          "question": "Impactar el auto del principal con el auto escolta, es un ejemplo de:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Situación incómoda.\",\"isCorrect\":false},{\"text\":\"Daño no intencional.\",\"isCorrect\":true},{\"text\":\"Protección de la imagen.\",\"isCorrect\":false}]",
+          "correctAnswer": "Daño no intencional.",
+          "order": 2
+        },
+        {
+          "question": "Ser detenido por la policía de tránsito por infligir el reglamento mientras se traslada al principal es un ejemplo de:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Encargarse de la comodidad relacionada con la protección.\",\"isCorrect\":false},{\"text\":\"Cumplir con objetivo sin causar asuntos legales.\",\"isCorrect\":true},{\"text\":\"Proteger información sensible.\",\"isCorrect\":false}]",
+          "correctAnswer": "Cumplir con objetivo sin causar asuntos legales.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 6,
+      "quizTitle": "Cuestionario 1: Vigilancia",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Observación cautelosa y constante del entorno con el objeto de reconocer acciones y situaciones que podrían significar una amenaza.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Contra vigilancia.\",\"isCorrect\":false},{\"text\":\"Vigilancia.\",\"isCorrect\":true},{\"text\":\"Contra inteligencia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Vigilancia.",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "moduleOrder": 7,
+      "quizTitle": "FUNDAMENTOS DE LA CONTRA VIGILANCIA",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Proceso que permite detectar una vigilancia hostil.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Inteligencia.\",\"isCorrect\":false},{\"text\":\"Contra vigilancia.\",\"isCorrect\":true},{\"text\":\"Contra inteligencia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Contra vigilancia.",
+          "order": 1
+        },
+        {
+          "question": "Detección, identificación, y desactivación, son etapas de:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Inteligencia.\",\"isCorrect\":false},{\"text\":\"Vigilancia hostil.\",\"isCorrect\":false},{\"text\":\"Contra vigilancia.\",\"isCorrect\":true}]",
+          "correctAnswer": "Contra vigilancia.",
+          "order": 2
+        },
+        {
+          "question": "Nos permite neutralizar una posible agresión antes de que ocurra:Nos permite neutralizar una posible agresión antes de que ocurra:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Contra inteligencia.\",\"isCorrect\":false},{\"text\":\"Contra vigilancia.\",\"isCorrect\":true},{\"text\":\"Vigilancia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Contra vigilancia.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 8,
+      "quizTitle": "INTELIGENCIA",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Proceso de recopilación y análisis de datos que nos permite obtener conocimientos para la detección anticipada de posibles daños.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Vigilancia.\",\"isCorrect\":false},{\"text\":\"Inteligencia.\",\"isCorrect\":true},{\"text\":\"Estrategia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Inteligencia.",
+          "order": 1
+        },
+        {
+          "question": "Redes sociales, páginas web, grupos de chat y bases de datos públicas son un ejemplo de:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Fuentes abiertas.\",\"isCorrect\":true},{\"text\":\"Fuentes cerradas.\",\"isCorrect\":false},{\"text\":\"Fuentes inmediatas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Fuentes abiertas.",
+          "order": 2
+        },
+        {
+          "question": "Contactos personales, recolección directa en el campo, investigaciones concretas, son un ejemplo de:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Fuentes inmediatas.\",\"isCorrect\":false},{\"text\":\"Fuentes cerradas.\",\"isCorrect\":true},{\"text\":\"Fuentes abiertas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Fuentes cerradas.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 9,
+      "quizTitle": "Cuestionario. Contrainteligencia en la protección ejecutiva",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Conjunto de estrategias y acciones que nos permiten neutralizar las labores de inteligencia.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Inteligencia.\",\"isCorrect\":false},{\"text\":\"Contra inteligencia.\",\"isCorrect\":true},{\"text\":\"Contra vigilancia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Contra inteligencia.",
+          "order": 1
+        },
+        {
+          "question": "La contra inteligencia informática y digital nos permite:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Encontrar información de personas mal intencionadas.\",\"isCorrect\":false},{\"text\":\"Proteger información de clientes que pasan mucho tiempo navegando.\",\"isCorrect\":true},{\"text\":\"Conocer el historial de búsqueda de las personas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Proteger información de clientes que pasan mucho tiempo navegando.",
+          "order": 2
+        },
+        {
+          "question": "Es una regla central de la contra inteligencia humana.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Barrido electrónico.\",\"isCorrect\":false},{\"text\":\"Uso del CEN.\",\"isCorrect\":true},{\"text\":\"Proteger los sistemas de virus.\",\"isCorrect\":false}]",
+          "correctAnswer": "Uso del CEN.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 10,
+      "quizTitle": "Seguridad física y electrónica dentro del esquema de protección ejecutiva",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Una buena coordinación entre guardias de seguridad y agentes de protección nos permite minimizar:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Tiempo de traslado.\",\"isCorrect\":false},{\"text\":\"Costuras de seguridad.\",\"isCorrect\":true},{\"text\":\"Tiempo de arribo.\",\"isCorrect\":false}]",
+          "correctAnswer": "Costuras de seguridad.",
+          "order": 1
+        },
+        {
+          "question": "Pueden ser capaces de detectar con anticipación un posible ataque o agresores.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Policía de Cuadrante y Sector.\",\"isCorrect\":false},{\"text\":\"Guardias de seguridad.\",\"isCorrect\":true},{\"text\":\"Policía ciudadana.\",\"isCorrect\":false}]",
+          "correctAnswer": "Guardias de seguridad.",
+          "order": 2
+        },
+        {
+          "question": "El domicilio del cliente debe ser revisado de manera minuciosa por parte de:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Guardias de seguridad.\",\"isCorrect\":false},{\"text\":\"Policía especializada.\",\"isCorrect\":false},{\"text\":\"Experto en seguridad física.\",\"isCorrect\":true}]",
+          "correctAnswer": "Experto en seguridad física.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 11,
+      "quizTitle": "Objetivo principal de la alerta temprana.",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Objetivo principal de la alerta temprana.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Llegar antes que el principal.\",\"isCorrect\":false},{\"text\":\"Desactivar un ataque antes de que ocurra.\",\"isCorrect\":true},{\"text\":\"Confrontar a delincuentes potenciales.\",\"isCorrect\":false}]",
+          "correctAnswer": "Desactivar un ataque antes de que ocurra.",
+          "order": 1
+        },
+        {
+          "question": "Actividad principal de la alerta temprana.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Recorre la ruta del principal.\",\"isCorrect\":false},{\"text\":\"Desactivar el ataque en la última fase de preparación.\",\"isCorrect\":true},{\"text\":\"Establece una ruta de huida.\",\"isCorrect\":false}]",
+          "correctAnswer": "Desactivar el ataque en la última fase de preparación.",
+          "order": 2
+        },
+        {
+          "question": "Con cuanto tiempo de anticipación puede la alerta temprana desactivar un ataque inminente?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Minutos antes\",\"isCorrect\":true},{\"text\":\"Días antes.\",\"isCorrect\":false},{\"text\":\"Semanas antes.\",\"isCorrect\":false}]",
+          "correctAnswer": "Minutos antes",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 12,
+      "quizTitle": "PLANEACION DE RUTAS",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Tres aspectos a tomar en cuenta en una ruta de seguridad.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Auto escolta, moto escolta y principal.\",\"isCorrect\":false},{\"text\":\"Rapidez, seguridad y comodidad.\",\"isCorrect\":false},{\"text\":\"Incidencia delictiva, puntos de apoyo y condiciones del terreno.\",\"isCorrect\":true}]",
+          "correctAnswer": "Incidencia delictiva, puntos de apoyo y condiciones del terreno.",
+          "order": 1
+        },
+        {
+          "question": "Menciona 2 factores de riesgo que se pueden identificar al planear una ruta.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Puntos de ahogo y afluencia vial.\",\"isCorrect\":true},{\"text\":\"Consumo de combustible y ruta más rápida.\",\"isCorrect\":false},{\"text\":\"Ruta más corta y vehículo backup.\",\"isCorrect\":false}]",
+          "correctAnswer": "Puntos de ahogo y afluencia vial.",
+          "order": 2
+        },
+        {
+          "question": "Característica que debe tener una ruta alterna.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Sirve para realizar un escape de emergencia.\",\"isCorrect\":false},{\"text\":\"El acceso puede estar en cualquier punto del camino principal.\",\"isCorrect\":true},{\"text\":\"Es igual de rápida que la principal.\",\"isCorrect\":false}]",
+          "correctAnswer": "El acceso puede estar en cualquier punto del camino principal.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 13,
+      "quizTitle": "Cuestionario: Puesto a punto",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Es realizada para valorar tanto la respuesta de la víctima como la de sus protectores.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Vigilancia hostil.\",\"isCorrect\":false},{\"text\":\"Puesta a punto.\",\"isCorrect\":true},{\"text\":\"Costura de seguridad.\",\"isCorrect\":false}]",
+          "correctAnswer": "Puesta a punto.",
+          "order": 1
+        },
+        {
+          "question": "¿Por qué es de vital importancia que el especialista en seguridad ejecutiva pueda detectar una puesta a punto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Denota una situación de peligro inminente.\",\"isCorrect\":true},{\"text\":\"Puede reaccionar de manera distinta la próxima vez.\",\"isCorrect\":false},{\"text\":\"Le permite no entrar en pánico.\",\"isCorrect\":false}]",
+          "correctAnswer": "Denota una situación de peligro inminente.",
+          "order": 2
+        },
+        {
+          "question": "Para poder realizar una puesta a punto es necesario conocer:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"La zona donde se realizará.\",\"isCorrect\":false},{\"text\":\"Fecha y hora.\",\"isCorrect\":false},{\"text\":\"Hábitos y rutinas.\",\"isCorrect\":true}]",
+          "correctAnswer": "Hábitos y rutinas.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 16,
+      "quizTitle": "ANTICIPACION A LOS LUGARES DE DESTINO (AVANZADAS)",
+      "quizOrder": 5,
+      "questions": [
+        {
+          "question": "La anticipación a los lugares de destino nos permite identificar:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Costuras.\",\"isCorrect\":true},{\"text\":\"Ubicación.\",\"isCorrect\":false},{\"text\":\"Zona.\",\"isCorrect\":false}]",
+          "correctAnswer": "Costuras.",
+          "order": 1
+        },
+        {
+          "question": "Para la anticipación a los lugares de destino es indispensable:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Domicilio.\",\"isCorrect\":false},{\"text\":\"Vehículo.\",\"isCorrect\":false},{\"text\":\"Lista de chequeo.\",\"isCorrect\":true}]",
+          "correctAnswer": "Lista de chequeo.",
+          "order": 2
+        },
+        {
+          "question": "Ventaja que nos brinda la anticipación a los lugares de destino.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Identificar posibles daños intencionales y no intencionales.\",\"isCorrect\":true},{\"text\":\"Asegurar un lugar de estacionamiento.\",\"isCorrect\":false},{\"text\":\"Identificar las salidas de emergencia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Identificar posibles daños intencionales y no intencionales.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 18,
+      "quizTitle": "Los agentes de protección no convencionales (agentes de sombras)",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "El agente sombra se define como:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Agente del circulo lejano del principal.\",\"isCorrect\":false},{\"text\":\"Agente del circulo medio del principal.\",\"isCorrect\":false},{\"text\":\"Agente que no puede ser identificado a simple vista.\",\"isCorrect\":true}]",
+          "correctAnswer": "Agente que no puede ser identificado a simple vista.",
+          "order": 1
+        },
+        {
+          "question": "El agente sombra puede llegar a identificar:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Salidas de emergencia.\",\"isCorrect\":false},{\"text\":\"Vigilancia hostil.\",\"isCorrect\":true},{\"text\":\"Zonas de riego.\",\"isCorrect\":false}]",
+          "correctAnswer": "Vigilancia hostil.",
+          "order": 2
+        },
+        {
+          "question": "Principal ventaja del agente sombra:",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Los criminales no pueden identificarlo.\",\"isCorrect\":true},{\"text\":\"No son el foco de atención.\",\"isCorrect\":false},{\"text\":\"Pueden operar sin uniforme.\",\"isCorrect\":false}]",
+          "correctAnswer": "Los criminales no pueden identificarlo.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 21,
+      "quizTitle": "Cuestionario: La estructura operativa",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "Operan en el primer círculo.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Guardias residenciales.\",\"isCorrect\":false},{\"text\":\"Agentes de protección.\",\"isCorrect\":true},{\"text\":\"Agentes sombra.\",\"isCorrect\":false}]",
+          "correctAnswer": "Agentes de protección.",
+          "order": 1
+        },
+        {
+          "question": "Operan en el segundo Circulo.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Agentes de protección.\",\"isCorrect\":false},{\"text\":\"Agentes sombra.\",\"isCorrect\":true},{\"text\":\"Guardias residenciales.\",\"isCorrect\":false}]",
+          "correctAnswer": "Agentes sombra.",
+          "order": 2
+        },
+        {
+          "question": "Parte fundamental de la estructura operativa.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Inteligencia y contra vigilancia.\",\"isCorrect\":true},{\"text\":\"Ruta principal y alterna.\",\"isCorrect\":false},{\"text\":\"Puesta a punto y costura de seguridad.\",\"isCorrect\":false}]",
+          "correctAnswer": "Inteligencia y contra vigilancia.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 22,
+      "quizTitle": "CUESTIONARIO: Formaciones",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Principal desventaja de formaciones convencionales.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Ignora los círculos de protección.\",\"isCorrect\":false},{\"text\":\"Necesita de varios agentes.\",\"isCorrect\":false},{\"text\":\"Formación en espera de ser sorprendida.\",\"isCorrect\":true}]",
+          "correctAnswer": "Formación en espera de ser sorprendida.",
+          "order": 1
+        },
+        {
+          "question": "Uno de los motivos por el cual clientes evitan utilizar formaciones convencionales.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Desfavorable para su imagen.\",\"isCorrect\":true},{\"text\":\"Requieren de tres o más elementos.\",\"isCorrect\":false},{\"text\":\"Resulta innecesaria.\",\"isCorrect\":false}]",
+          "correctAnswer": "Desfavorable para su imagen.",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "moduleOrder": 25,
+      "quizTitle": "Uso dinámico del vehículo de seguridad.",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Ventaja del uso dinámico del vehículo de seguridad.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Anticiparse a las costuras.\",\"isCorrect\":true},{\"text\":\"Plena discreción.\",\"isCorrect\":false},{\"text\":\"Abrir paso.\",\"isCorrect\":false}]",
+          "correctAnswer": "Anticiparse a las costuras.",
+          "order": 1
+        },
+        {
+          "question": "Factor crítico que se puede identificar con el uso dinámico del vehículo de seguridad.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Disuasión.\",\"isCorrect\":false},{\"text\":\"Alerta temprana.\",\"isCorrect\":true},{\"text\":\"Llegada prudente.\",\"isCorrect\":false}]",
+          "correctAnswer": "Alerta temprana.",
+          "order": 2
+        },
+        {
+          "question": "Factor crítico que se puede identificar con el uso dinámico del vehículo de seguridad.",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Calles cerradas.\",\"isCorrect\":false},{\"text\":\"Contra vigilancia.\",\"isCorrect\":true},{\"text\":\"Ruta alterna.\",\"isCorrect\":false}]",
+          "correctAnswer": "Contra vigilancia.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 26,
+      "quizTitle": "Principios operativos en los tiempos Post Covid",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Qué tipo de amenaza representa el virus que causa el COVID-19?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Amenaza no intencional.\",\"isCorrect\":true},{\"text\":\"Amenaza intencional.\",\"isCorrect\":false},{\"text\":\"Situaciones incomodas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Amenaza no intencional.",
+          "order": 1
+        }
+      ]
+    }
+  ],
+  "Counter Surveillance": [
+    {
+      "moduleOrder": 2,
+      "quizTitle": "¿Porqué los criminales le temen más a la Contravigilancia que a las armas?",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Por qué los criminales de alto perfil temen más a la contravigilancia que a las armas según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Porque la contravigilancia los expone a ser detectados y capturados durante fases críticas de sus operaciones.\",\"isCorrect\":true},{\"text\":\"Porque las armas solo son efectivas contra criminales comunes, no contra expertos en robo.\",\"isCorrect\":false},{\"text\":\"Porque la contravigilancia les impide usar disfraces que los protejan de ser reconocidos.\",\"isCorrect\":false},{\"text\":\"Porque la contravigilancia se basa en la observación prolongada de la víctima, lo que les genera inseguridad.\",\"isCorrect\":false}]",
+          "correctAnswer": "Porque la contravigilancia los expone a ser detectados y capturados durante fases críticas de sus operaciones.",
+          "order": 1
+        },
+        {
+          "question": "¿Qué técnica utilizaba Olivera Circovic y su equipo para atacar a sus víctimas según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Utilizar armas de fuego para intimidar a las víctimas.\",\"isCorrect\":false},{\"text\":\"Observar detalladamente a la víctima y atacar en momentos de vulnerabilidad y distracción.\",\"isCorrect\":true},{\"text\":\"Disfrazarse con atuendos llamativos para llamar la atención.\",\"isCorrect\":false},{\"text\":\"Robar autos para moverse rápidamente durante los ataques.\",\"isCorrect\":false}]",
+          "correctAnswer": "Observar detalladamente a la víctima y atacar en momentos de vulnerabilidad y distracción.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué era lo que aterraba a Olivera Circovic durante la vigilancia de la víctima según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Ser detenida por la policía en momentos críticos de la operación.\",\"isCorrect\":false},{\"text\":\"No poder usar armas de fuego en sus ataques.\",\"isCorrect\":false},{\"text\":\"Dejar de ser identificable y llamar la atención durante la vigilancia.\",\"isCorrect\":true},{\"text\":\"La presencia de guardias de seguridad o transeúntes durante el proceso de vigilancia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Dejar de ser identificable y llamar la atención durante la vigilancia.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 3,
+      "quizTitle": "Cuestionario: Desarrollo de contravigilancia durante la Guerra Fría",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Por qué la vigilancia física era considerada una herramienta esencial en la Guerra Fría?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Porque permitía a los agentes comunicarse de manera segura.\",\"isCorrect\":false},{\"text\":\"Porque facilitaba la detección de actividades sospechosas.\",\"isCorrect\":false},{\"text\":\"Porque ayudaba a identificar la actividad de los espías.\",\"isCorrect\":true},{\"text\":\"Porque era la única forma de eludir la contra vigilancia enemiga.\",\"isCorrect\":false}]",
+          "correctAnswer": "Porque ayudaba a identificar la actividad de los espías.",
+          "order": 1
+        },
+        {
+          "question": "¿Cuál era uno de los propósitos principales de la contra vigilancia durante la Guerra Fría según ?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Mantener una comunicación segura entre agentes.\",\"isCorrect\":false},{\"text\":\"Detectar y eludir la vigilancia enemiga.\",\"isCorrect\":true},{\"text\":\"Seguir a personas de interés utilizando disfraces.\",\"isCorrect\":false},{\"text\":\"Estar en posiciones fijas para observar lugares clave.\",\"isCorrect\":false}]",
+          "correctAnswer": "Detectar y eludir la vigilancia enemiga.",
+          "order": 2
+        },
+        {
+          "question": "¿Por qué se enfatiza la importancia del análisis conductual en la vigilancia durante la Guerra Fría?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para estudiar patrones de comportamiento sospechosos.\",\"isCorrect\":true},{\"text\":\"Para emplear señales y códigos preestablecidos.\",\"isCorrect\":false},{\"text\":\"Para mantener una conciencia situacional aguda.\",\"isCorrect\":false},{\"text\":\"Para seguir a personas de interés de manera discreta.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para estudiar patrones de comportamiento sospechosos.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 4,
+      "quizTitle": "Cuestionario: Tipos de Vigilancia Hostil: Medidas Completas vs. Rompecabezas",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Cuál es la principal diferencia entre las medidas completas de vigilancia y el método del rompecabezas según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Las medidas completas se enfocan en amenazas de chantaje, mientras que el rompecabezas se asocia con amenazas de atentados o secuestros.\",\"isCorrect\":false},{\"text\":\"Las medidas completas implican seguir constantemente al objetivo, mientras que el rompecabezas se basa en identificar puntos vulnerables en momentos selectivos.\",\"isCorrect\":true},{\"text\":\"Las medidas completas son más costosas y sofisticadas, mientras que el rompecabezas requiere menos recursos pero mayor coordinación.\",\"isCorrect\":false},{\"text\":\"Las medidas completas se utilizaban en la Guerra Fría, mientras que el rompecabezas es un enfoque más contemporáneo.\",\"isCorrect\":false}]",
+          "correctAnswer": "Las medidas completas implican seguir constantemente al objetivo, mientras que el rompecabezas se basa en identificar puntos vulnerables en momentos selectivos.",
+          "order": 1
+        },
+        {
+          "question": "¿Por qué los criminales pueden permitirse seguir al objetivo durante tramos selectivos en el método del rompecabezas?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Porque están más interesados en actividades específicas del objetivo que en seguirlo constantemente.\",\"isCorrect\":true},{\"text\":\"Porque no cuentan con suficientes recursos para realizar una vigilancia exhaustiva.\",\"isCorrect\":false},{\"text\":\"Porque prefieren construir la rutina del objetivo poco a poco para detectar sus vulnerabilidades.\",\"isCorrect\":false},{\"text\":\"Porque el método del rompecabezas requiere mayor coordinación entre los criminales.\",\"isCorrect\":false}]",
+          "correctAnswer": "Porque están más interesados en actividades específicas del objetivo que en seguirlo constantemente.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué tipo de actividades comprometedoras puede ser identificada a través de las medidas completas de vigilancia, según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Reuniones con otras personas clave del entorno del objetivo.\",\"isCorrect\":false},{\"text\":\"Actividades rutinarias diarias del objetivo.\",\"isCorrect\":false},{\"text\":\"Movimientos de viaje del objetivo a lugares específicos.\",\"isCorrect\":true},{\"text\":\"Actividades sensibles del objetivo, como aventuras amorosas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Movimientos de viaje del objetivo a lugares específicos.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 6,
+      "quizTitle": "Cuestionario: Principio de Gestión de Vigilancia Hostil",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "Según el texto, ¿por qué se recomienda evitar mostrar que se ha detectado la vigilancia?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para minimizar la amenaza y evitar que el observador hostil cambie sus tácticas.\",\"isCorrect\":true},{\"text\":\"Para aumentar la inteligencia recopilada sobre el observador y comprender mejor sus intenciones.\",\"isCorrect\":false},{\"text\":\"Para implementar estrategias de contrainteligencia más efectivas y manipular la información recolectada.\",\"isCorrect\":false},{\"text\":\"Para mostrar al observador que se está al tanto de su presencia y disuadir cualquier acción hostil.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para minimizar la amenaza y evitar que el observador hostil cambie sus tácticas.",
+          "order": 1
+        },
+        {
+          "question": "¿En qué se basa el modelo TEDD para evaluar situaciones de vigilancia según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Técnicas de contravigilancia.\",\"isCorrect\":false},{\"text\":\"Tiempo, Entorno, Distancia, Comportamiento.\",\"isCorrect\":true},{\"text\":\"Estrategias de evasión.\",\"isCorrect\":false},{\"text\":\"Medidas pasivas, activas y evasivas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Tiempo, Entorno, Distancia, Comportamiento.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué implica observar el comportamiento en el modelo TEDD?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Si la persona o vehículo se mueve en diferentes entornos.\",\"isCorrect\":false},{\"text\":\"Si la persona o vehículo se acerca o se aleja de la ubicación previa.\",\"isCorrect\":false},{\"text\":\"Si la persona o vehículo repite ciertos patrones de comportamiento.\",\"isCorrect\":true},{\"text\":\"Si la persona o vehículo muestra señales de nerviosismo o evita miradas directas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Si la persona o vehículo repite ciertos patrones de comportamiento.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 7,
+      "quizTitle": "Medidas de pasivas de auto detección de vigilancia hostil en la fase fija",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Por qué es importante detectar un \"Vehículo Torre\" según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Porque su presencia indica que podría estar involucrado en actividades de vigilancia hostil.\",\"isCorrect\":true},{\"text\":\"Porque suele transportar a personas dentro y fuera de una residencia u oficina.\",\"isCorrect\":false},{\"text\":\"Porque es fundamental aislar todo vehículo ocupado con vista a la casa del objetivo.\",\"isCorrect\":false},{\"text\":\"Porque detectarlo implica establecer una \\\"jaula\\\" alrededor de la residencia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Porque su presencia indica que podría estar involucrado en actividades de vigilancia hostil.",
+          "order": 1
+        },
+        {
+          "question": "¿Cuál es un ejemplo de la \"jaula\" según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Una barricada que rodea toda la residencia.\",\"isCorrect\":false},{\"text\":\"Una posición estratégica para la vigilancia en un lugar específico.\",\"isCorrect\":true},{\"text\":\"Una estrategia para establecer una fase fija de vigilancia.\",\"isCorrect\":false},{\"text\":\"Un vehículo que sigue al vehículo principal en movimiento.\",\"isCorrect\":false}]",
+          "correctAnswer": "Una posición estratégica para la vigilancia en un lugar específico.",
+          "order": 2
+        },
+        {
+          "question": "¿Por qué es importante observar vehículos que se incorporan desde calles pequeñas hacia grandes avenidas según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Porque indican la transición de la fase fija a la móvil en una operación de vigilancia.\",\"isCorrect\":false},{\"text\":\"Porque son lugares ideales para la vigilancia sin llamar la atención.\",\"isCorrect\":false},{\"text\":\"Porque suelen estar estratégicamente posicionados en calles principales.\",\"isCorrect\":false},{\"text\":\"Porque pueden ser utilizados por vehículos hostiles para seguir o monitorear a un objetivo.\",\"isCorrect\":true}]",
+          "correctAnswer": "Porque pueden ser utilizados por vehículos hostiles para seguir o monitorear a un objetivo.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 8,
+      "quizTitle": "Cuestionario: Detección pasiva en la fase movil.",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "¿Qué indica la detección del mismo vehículo en dos lugares no relacionados durante la fase pasiva móvil?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Probabilidad de una coincidencia casual.\",\"isCorrect\":false},{\"text\":\"Posible presencia de vigilancia hostil.\",\"isCorrect\":true},{\"text\":\"Necesidad de mantener la línea de vista con discreción.\",\"isCorrect\":false},{\"text\":\"Importancia de prender la direccional con anticipación.\",\"isCorrect\":false}]",
+          "correctAnswer": "Posible presencia de vigilancia hostil.",
+          "order": 1
+        },
+        {
+          "question": "¿Por qué es crucial mantener la línea de vista de manera discreta durante el seguimiento del vehículo de vigilancia en la fase pasiva móvil?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para evitar que el vehículo de vigilancia se acerque demasiado al vehículo principal.\",\"isCorrect\":false},{\"text\":\"Para que el vehículo de vigilancia pueda reaccionar sutilmente a las maniobras del vehículo principal.\",\"isCorrect\":true},{\"text\":\"Porque los vigilantes expondrán solo un vehículo a la línea de vista.\",\"isCorrect\":false},{\"text\":\"Para facilitar la observación de múltiples vistas del entorno.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para que el vehículo de vigilancia pueda reaccionar sutilmente a las maniobras del vehículo principal.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué tipo de comportamiento en los semáforos y altos obligados puede ser indicativo de vigilancia hostil según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Frenar prematuramente.\",\"isCorrect\":true},{\"text\":\"Acelerar bruscamente.\",\"isCorrect\":false},{\"text\":\"Cambiar de carril constantemente.\",\"isCorrect\":false},{\"text\":\"Mantener una distancia segura con el vehículo principal.\",\"isCorrect\":false}]",
+          "correctAnswer": "Frenar prematuramente.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 9,
+      "quizTitle": "Cuestionario: Fase Fija transitoria",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Qué indica la detención inesperada de un vehículo durante la observación en la fase fija transitoria según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Comportamientos sospechosos que deben ser monitoreados con atención.\",\"isCorrect\":true},{\"text\":\"Una señal de que el vehículo puede estar siguiendo al objetivo de vigilancia.\",\"isCorrect\":false},{\"text\":\"Una estrategia para evitar la exposición directa al objetivo principal\",\"isCorrect\":false},{\"text\":\"La necesidad de informar al vehículo de mando sobre la detención.\",\"isCorrect\":false}]",
+          "correctAnswer": "Comportamientos sospechosos que deben ser monitoreados con atención.",
+          "order": 1
+        },
+        {
+          "question": "¿Qué indica un vehículo que se detiene en una posición para observar al ejecutivo según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Presencia de un vehículo de mando.\",\"isCorrect\":false},{\"text\":\"Probable seguimiento al ejecutivo.\",\"isCorrect\":true},{\"text\":\"Necesidad de cambiar de fase rápidamente.\",\"isCorrect\":false},{\"text\":\"Falta de recursos para instalar una torre.\",\"isCorrect\":false}]",
+          "correctAnswer": "Probable seguimiento al ejecutivo.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué hacen los delincuentes en situaciones donde no se puede instalar una torre durante la fase fija transitoria?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Dejar el objetivo\",\"isCorrect\":false},{\"text\":\"Estacionarse en una posición lógica de pickup.\",\"isCorrect\":false},{\"text\":\"Llamar refuerzo.\",\"isCorrect\":false},{\"text\":\"Dar una vuelta para asegurarse de que el vehículo siga estacionado.\",\"isCorrect\":true}]",
+          "correctAnswer": "Dar una vuelta para asegurarse de que el vehículo siga estacionado.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 10,
+      "quizTitle": "Cuestionario: Fase transitoria a Pie",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Qué deben hacer los operadores al cambiar de la fase vehículo a la fase a pie según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Colocar al agente a pie de manera inmediata.\",\"isCorrect\":true},{\"text\":\"Coordinar sus movimientos sin importar el número de agentes.\",\"isCorrect\":false},{\"text\":\"Llamar la atención deliberadamente para alertar al objetivo.\",\"isCorrect\":false},{\"text\":\"Cambiar rápidamente de vehículo sin observar al objetivo.\",\"isCorrect\":false}]",
+          "correctAnswer": "Colocar al agente a pie de manera inmediata.",
+          "order": 1
+        },
+        {
+          "question": "¿Qué puede indicar la prisa por subirse al vehículo para seguir al ejecutivo según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Una señal de que el ejecutivo se retirará rápidamente del lugar.\",\"isCorrect\":false},{\"text\":\"Un comportamiento natural durante una transición de fase.\",\"isCorrect\":false},{\"text\":\"Una posible continuación del seguimiento en vehículo.\",\"isCorrect\":true},{\"text\":\"Una indicación de que el objetivo ha sido alertado sobre la vigilancia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Una posible continuación del seguimiento en vehículo.",
+          "order": 2
+        },
+        {
+          "question": "¿Por qué es importante prestar atención a las personas que entran a los vehículos de manera apresurada o poco natural, según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para determinar si los agentes de vigilancia están presentes.\",\"isCorrect\":false},{\"text\":\"Para evaluar la capacidad de los operadores de adaptarse al entorno.\",\"isCorrect\":false},{\"text\":\"Para identificar comportamientos sospechosos que podrían revelar la presencia de agentes.\",\"isCorrect\":true},{\"text\":\"Para evitar la coordinación de movimientos entre los agentes de vigilancia.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para identificar comportamientos sospechosos que podrían revelar la presencia de agentes.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 11,
+      "quizTitle": "Cuestionario: Medidas pasivas a pie",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Por qué se menciona la utilidad de los mensajes simulados de audio en la detección pasiva a pie según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para observar lo que ocurre detrás de los operadores.\",\"isCorrect\":false},{\"text\":\"Para grabar sonidos y video y obtener información sobre el entorno atrás\",\"isCorrect\":true},{\"text\":\"Para imitar la presencia de múltiples personas en un lugar.\",\"isCorrect\":false},{\"text\":\"Para alertar al objetivo sobre la vigilancia en curso.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para grabar sonidos y video y obtener información sobre el entorno atrás",
+          "order": 1
+        },
+        {
+          "question": "¿Qué se destaca sobre la plausibilidad de una persona a pie parada durante la fase fija en comparación con la detección en vehículo?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Es más creíble que dos personas estén en un vehículo estacionado que una sola persona a pie.\",\"isCorrect\":true},{\"text\":\"La detección pasiva es más fácil en vehículo que a pie.\",\"isCorrect\":false},{\"text\":\"Las personas en movimiento son menos sospechosas que las personas que permanecen estáticas.\",\"isCorrect\":false},{\"text\":\"No se pueden realizar observaciones efectivas en la fase fija en la detección a pie.\",\"isCorrect\":false}]",
+          "correctAnswer": "Es más creíble que dos personas estén en un vehículo estacionado que una sola persona a pie.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué se menciona como una señal de comportamiento sospechoso durante la fase de espera en la detección pasiva a pie?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"La presencia de personas caminando y moviéndose continuamente.\",\"isCorrect\":false},{\"text\":\"La duración prolongada de estar parado sin motivo aparente.\",\"isCorrect\":true},{\"text\":\"La observación de actividades incongruentes con el entorno.\",\"isCorrect\":false},{\"text\":\"La salida discreta de los operadores para llamar la atención.\",\"isCorrect\":false}]",
+          "correctAnswer": "La duración prolongada de estar parado sin motivo aparente.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 12,
+      "quizTitle": "Cuestionario: Fase de Detección de Vigilancia Hostil a Pie en Movimiento",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Por qué se afirma que detectar movimientos corporales es más fácil que observar expresiones faciales durante la fase de detección de vigilancia hostil a pie en movimiento según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Las expresiones faciales suelen estar cubiertas durante el movimiento.\",\"isCorrect\":false},{\"text\":\"Los gestos y posturas pueden proporcionar más información que simplemente mirar la cara.\",\"isCorrect\":true},{\"text\":\"Observar la cara directamente puede ser una señal de alerta para el objetivo.\",\"isCorrect\":false},{\"text\":\"Los movimientos corporales son más difíciles de detectar que las expresiones faciales.\",\"isCorrect\":false}]",
+          "correctAnswer": "Los gestos y posturas pueden proporcionar más información que simplemente mirar la cara.",
+          "order": 1
+        },
+        {
+          "question": "¿Por qué detenerse para cruzar la calle o en un cruce peatonal brinda oportunidades para observar a alguien que te sigue directamente detrás a distancia sin llamar la atención, según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para grabar un mensaje de audio simulado.\",\"isCorrect\":false},{\"text\":\"Para evitar ser visto por la persona que sigue directamente detrás.\",\"isCorrect\":false},{\"text\":\"Para observar con la vista periférica y detectar el seguimiento y movimiento sospechoso\",\"isCorrect\":true},{\"text\":\"Para cruzar la calle de manera rápida y evitar la detección.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para observar con la vista periférica y detectar el seguimiento y movimiento sospechoso",
+          "order": 2
+        },
+        {
+          "question": "¿Qué se recomienda observar al dar la vuelta y fijarse en quiénes también giran o cambian de dirección durante la técnica de seguimiento de dos personas, según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Personas con mala cobertura al intentar comprar algo en una tienda.\",\"isCorrect\":false},{\"text\":\"Las personas que evitan cruzarse con el objetivo.\",\"isCorrect\":true},{\"text\":\"Las personas que cambian de dirección de manera repentina.\",\"isCorrect\":false},{\"text\":\"Las personas que parecen estar siguiendo al objetivo.\",\"isCorrect\":false}]",
+          "correctAnswer": "Las personas que evitan cruzarse con el objetivo.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 13,
+      "quizTitle": "Cuestionario: Técnicas de autodetección activa",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Por qué es importante aplicar las técnicas activas gradualmente y expandirlas según sea necesario, según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para evitar reacciones inesperadas de los vigilantes.\",\"isCorrect\":false},{\"text\":\"Para confundir a los vigilantes y hacer que abandonen la vigilancia.\",\"isCorrect\":false},{\"text\":\"Para adaptarse a los patrones de movimiento del objetivo.\",\"isCorrect\":true},{\"text\":\"Para generar reacciones en personas y vehículos.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para adaptarse a los patrones de movimiento del objetivo.",
+          "order": 1
+        },
+        {
+          "question": "¿Qué se menciona sobre las rutas de detección de vigilancia (RDV) en el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Deben ser ilógicas para confundir a los vigilantes.\",\"isCorrect\":false},{\"text\":\"Son fundamentales para detectar la vigilancia hostil.\",\"isCorrect\":true},{\"text\":\"Deben coincidir con los patrones de movimiento del objetivo.\",\"isCorrect\":false},{\"text\":\"Se utilizan para realizar maniobras en vehículo.\",\"isCorrect\":false}]",
+          "correctAnswer": "Son fundamentales para detectar la vigilancia hostil.",
+          "order": 2
+        },
+        {
+          "question": "¿Por qué se menciona la importancia de establecer rutas de detección de vigilancia (RDV) en el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para provocar reacciones en personas y vehículos.\",\"isCorrect\":false},{\"text\":\"Para evitar el \\\"efecto índigo\\\" durante las técnicas de detección activa.\",\"isCorrect\":false},{\"text\":\"Para identificar la torre base durante la fase fija.\",\"isCorrect\":false},{\"text\":\"Para implementar las medidas de detección activa según los patrones de movimiento.\",\"isCorrect\":true}]",
+          "correctAnswer": "Para implementar las medidas de detección activa según los patrones de movimiento.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 15,
+      "quizTitle": "Técnicas Avanzadas de Detección Activa y Evasión",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "¿Qué se sugiere hacer al salir a la lateral y reducir la velocidad en vías rápidas según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Aumentar la velocidad para perder a quienes te siguen.\",\"isCorrect\":false},{\"text\":\"Mantener la velocidad constante para evitar ser detectado\",\"isCorrect\":false},{\"text\":\"Buscar pretextos para salir a la lateral y luego reincorporarte a los carriles principales\",\"isCorrect\":true},{\"text\":\"Permanecer en la lateral para evitar la vigilancia\",\"isCorrect\":false}]",
+          "correctAnswer": "Buscar pretextos para salir a la lateral y luego reincorporarte a los carriles principales",
+          "order": 1
+        },
+        {
+          "question": "¿Cuál es una desventaja de utilizar calles alternas a las avenidas principales según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Mayor variedad de rutas.\",\"isCorrect\":false},{\"text\":\"Menos previsibilidad\",\"isCorrect\":false},{\"text\":\"Mayor eficiencia en términos de tiempo y distancia.\",\"isCorrect\":false},{\"text\":\"Posiblemente menos eficiencia en términos de tiempo y distancia pero útiles para detectar la vigilancia.\",\"isCorrect\":true}]",
+          "correctAnswer": "Posiblemente menos eficiencia en términos de tiempo y distancia pero útiles para detectar la vigilancia.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué se recomienda hacer al utilizar glorietas y cruces para confundir a los seguidores según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Observar quiénes siguen las mismas vueltas lógicas.\",\"isCorrect\":true},{\"text\":\"Evitar completamente las glorietas para no exponerse.\",\"isCorrect\":false},{\"text\":\"Acelerar bruscamente para perder a los seguidores.\",\"isCorrect\":false},{\"text\":\"No utilizar estas estructuras para no arriesgarse.\",\"isCorrect\":false}]",
+          "correctAnswer": "Observar quiénes siguen las mismas vueltas lógicas.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 16,
+      "quizTitle": "Detección Activa a Pie: Estrategias en Lugares Públicos",
+      "quizOrder": 1,
+      "questions": [
+        {
+          "question": "¿Qué se recomienda evitar al llevar a cabo la detección activa a pie en lugares públicos según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Hacer contacto visual directo con posibles vigilantes.\",\"isCorrect\":true},{\"text\":\"Observar las reacciones de las personas al utilizar la técnica de vuelta ciega.\",\"isCorrect\":false},{\"text\":\"Utilizar puentes y pasos peatonales para observar a los seguidores.\",\"isCorrect\":false},{\"text\":\"Entrar en tiendas o lugares públicos para realizar actividades naturales.\",\"isCorrect\":false}]",
+          "correctAnswer": "Hacer contacto visual directo con posibles vigilantes.",
+          "order": 1
+        },
+        {
+          "question": "¿Cuál es la finalidad de utilizar técnicas como la vuelta ciega durante la detección activa a pie en lugares públicos según el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Identificar a los vigilantes experimentados.\",\"isCorrect\":false},{\"text\":\"Observar a personas que maniobran de manera inusual.\",\"isCorrect\":false},{\"text\":\"Confundir a los seguidores y observar sus reacciones.\",\"isCorrect\":true},{\"text\":\"Utilizar puentes y parques para confundir a los vigilantes.\",\"isCorrect\":false}]",
+          "correctAnswer": "Confundir a los seguidores y observar sus reacciones.",
+          "order": 2
+        },
+        {
+          "question": "¿Por qué se menciona que es importante prestar atención a comportamientos inusuales o personas que parecen fuera de lugar al elegir lugares para la detección activa a pie en lugares públicos?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Para evitar conflictos con otras personas en esos lugares.\",\"isCorrect\":false},{\"text\":\"Para identificar posibles vigilantes o personas que podrían estar siguiéndote.\",\"isCorrect\":true},{\"text\":\"Para seleccionar adecuadamente los lugares donde las personas se visten de determinada forma.\",\"isCorrect\":false},{\"text\":\"Para garantizar que las personas a tu alrededor estén vestidas de acuerdo al contexto.\",\"isCorrect\":false}]",
+          "correctAnswer": "Para identificar posibles vigilantes o personas que podrían estar siguiéndote.",
+          "order": 3
+        }
+      ]
+    },
+    {
+      "moduleOrder": 18,
+      "quizTitle": "Contravigilancia",
+      "quizOrder": 2,
+      "questions": [
+        {
+          "question": "¿Qué diferencia principal se menciona entre las técnicas de autodetección y la contravigilancia en el texto?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Las técnicas de autodetección implican un campo de observación más amplio.\",\"isCorrect\":false},{\"text\":\"En la contravigilancia, se utilizan rutas de detección específicas y se aprovecha un campo más amplio en la observación\",\"isCorrect\":true},{\"text\":\"La contravigilancia se basa en seguir al principal para detectar a los seguidores.\",\"isCorrect\":false},{\"text\":\"Las técnicas de autodetección son más efectivas contra delincuentes sofisticados.\",\"isCorrect\":false}]",
+          "correctAnswer": "En la contravigilancia, se utilizan rutas de detección específicas y se aprovecha un campo más amplio en la observación",
+          "order": 1
+        },
+        {
+          "question": "¿Cuál es uno de los principios que se menciona como esencial para el equipo de contravigilancia?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Contar con una vulnerabilidad detectable.\",\"isCorrect\":false},{\"text\":\"Tener recursos numerosos para una mayor efectividad.\",\"isCorrect\":false},{\"text\":\"Aplicar el principio de camaleón y justificar su presencia en los puntos de detección.\",\"isCorrect\":true},{\"text\":\"Seguir al principal de forma estrecha para identificar a los delincuentes.\",\"isCorrect\":false}]",
+          "correctAnswer": "Aplicar el principio de camaleón y justificar su presencia en los puntos de detección.",
+          "order": 2
+        },
+        {
+          "question": "¿Qué se establece como clave para evitar la detección de los delincuentes en la contravigilancia ?",
+          "type": "MULTIPLE_CHOICE",
+          "options": "[{\"text\":\"Verdadero\",\"isCorrect\":false},{\"text\":\"Falso\",\"isCorrect\":false},{\"text\":\"Realizar una avanzada previa sobre la ruta de detección.\",\"isCorrect\":true},{\"text\":\"Utilizar al menos tres vehículos para una mayor cobertura.\",\"isCorrect\":false},{\"text\":\"Comparar información con otros equipos de contravigilancia.\",\"isCorrect\":false},{\"text\":\"Establecer una razón lógica para transitar por rutas específicas.\",\"isCorrect\":false}]",
+          "correctAnswer": "Realizar una avanzada previa sobre la ruta de detección.",
+          "order": 3
+        }
+      ]
+    }
+  ]
+}

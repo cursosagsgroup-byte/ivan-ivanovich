@@ -1,0 +1,280 @@
+{
+  "node": {
+    "40b20abe658ee805c325c0e85dbf3824f4d752790e": {
+      "workers": {
+        "app/(admin)/admin/coupons/page": {
+          "moduleId": 219699,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(admin)/dashboard/payments/page": {
+          "moduleId": 98014,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(auth)/forgot-password/page": {
+          "moduleId": 264613,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(auth)/login/page": {
+          "moduleId": 238213,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(auth)/register/page": {
+          "moduleId": 26177,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(auth)/reset-password/page": {
+          "moduleId": 77322,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/admin/blog/[id]/page": {
+          "moduleId": 145948,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/admin/blog/page": {
+          "moduleId": 817712,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/admin/database/page": {
+          "moduleId": 725792,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/courses/[courseId]/edit/page": {
+          "moduleId": 494239,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/courses/create/page": {
+          "moduleId": 767118,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/courses/new/page": {
+          "moduleId": 922984,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/courses/page": {
+          "moduleId": 808238,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/dashboard/page": {
+          "moduleId": 730407,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/marketing/page": {
+          "moduleId": 38348,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/quizzes/[quizId]/edit/page": {
+          "moduleId": 540984,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/students/[id]/page": {
+          "moduleId": 381311,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/students/page": {
+          "moduleId": 883766,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(dashboard)/whatsapp_bot/page": {
+          "moduleId": 300750,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(learn)/courses/[courseId]/learn/page": {
+          "moduleId": 201960,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/blog/[slug]/page": {
+          "moduleId": 890127,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/blog/page": {
+          "moduleId": 108264,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/cart/page": {
+          "moduleId": 370897,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/checkout/page": {
+          "moduleId": 365749,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/checkout/success/page": {
+          "moduleId": 972723,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/contacto/page": {
+          "moduleId": 179475,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/certificado-deta/page": {
+          "moduleId": 796277,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/contravigilancia/page": {
+          "moduleId": 497993,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/cursos-online/[id]/page": {
+          "moduleId": 75245,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/cursos-online/page": {
+          "moduleId": 958420,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/cursos-presenciales/page": {
+          "moduleId": 936842,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/libro/page": {
+          "moduleId": 920934,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/educacion/team-leader/page": {
+          "moduleId": 678349,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/nuestro-equipo/page": {
+          "moduleId": 324706,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/page": {
+          "moduleId": 723472,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(public)/sobre-la-proteccion/page": {
+          "moduleId": 102221,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/(student)/mi-cuenta/page": {
+          "moduleId": 513717,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        },
+        "app/_not-found/page": {
+          "moduleId": 706457,
+          "async": false,
+          "exportedName": "setLanguage",
+          "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts"
+        }
+      },
+      "layer": {
+        "app/(admin)/admin/coupons/page": "action-browser",
+        "app/(admin)/dashboard/payments/page": "action-browser",
+        "app/(auth)/forgot-password/page": "action-browser",
+        "app/(auth)/login/page": "action-browser",
+        "app/(auth)/register/page": "action-browser",
+        "app/(auth)/reset-password/page": "action-browser",
+        "app/(dashboard)/admin/blog/[id]/page": "action-browser",
+        "app/(dashboard)/admin/blog/page": "action-browser",
+        "app/(dashboard)/admin/database/page": "action-browser",
+        "app/(dashboard)/courses/[courseId]/edit/page": "action-browser",
+        "app/(dashboard)/courses/create/page": "action-browser",
+        "app/(dashboard)/courses/new/page": "action-browser",
+        "app/(dashboard)/courses/page": "action-browser",
+        "app/(dashboard)/dashboard/page": "action-browser",
+        "app/(dashboard)/marketing/page": "action-browser",
+        "app/(dashboard)/quizzes/[quizId]/edit/page": "action-browser",
+        "app/(dashboard)/students/[id]/page": "action-browser",
+        "app/(dashboard)/students/page": "action-browser",
+        "app/(dashboard)/whatsapp_bot/page": "action-browser",
+        "app/(learn)/courses/[courseId]/learn/page": "action-browser",
+        "app/(public)/blog/[slug]/page": "action-browser",
+        "app/(public)/blog/page": "action-browser",
+        "app/(public)/cart/page": "action-browser",
+        "app/(public)/checkout/page": "action-browser",
+        "app/(public)/checkout/success/page": "action-browser",
+        "app/(public)/contacto/page": "action-browser",
+        "app/(public)/educacion/certificado-deta/page": "action-browser",
+        "app/(public)/educacion/contravigilancia/page": "action-browser",
+        "app/(public)/educacion/cursos-online/[id]/page": "action-browser",
+        "app/(public)/educacion/cursos-online/page": "action-browser",
+        "app/(public)/educacion/cursos-presenciales/page": "action-browser",
+        "app/(public)/educacion/libro/page": "action-browser",
+        "app/(public)/educacion/team-leader/page": "action-browser",
+        "app/(public)/nuestro-equipo/page": "action-browser",
+        "app/(public)/page": "action-browser",
+        "app/(public)/sobre-la-proteccion/page": "action-browser",
+        "app/(student)/mi-cuenta/page": "action-browser",
+        "app/_not-found/page": "action-browser"
+      },
+      "filename": "Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/actions/language.ts",
+      "exportedName": "setLanguage"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "xDXRprrFv7j1GhVtatwFCZnMx1x6ZNWtgLqGUgpqxl0="
+}

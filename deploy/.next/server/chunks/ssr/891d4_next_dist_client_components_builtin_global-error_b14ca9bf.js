@@ -1,0 +1,3 @@
+module.exports=[965347,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(598198);a.n(d("[project]/Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},157335,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(598198);a.n(d("[project]/Documents/KETING MEDIA/NUEVOS PROYECTOS ANTIGRAVITY/IVAN CODIGO/node_modules/next/dist/client/components/builtin/global-error.js"))},547032,a=>{"use strict";a.i(965347);var b=a.i(157335);a.n(b)}];
+
+//# sourceMappingURL=891d4_next_dist_client_components_builtin_global-error_b14ca9bf.js.map

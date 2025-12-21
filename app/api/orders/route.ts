@@ -1,0 +1,217 @@
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth'; // Assuming authOptions is exported from here
+import { randomBytes } from 'crypto';
+import { hash } from 'bcryptjs';
+
+export async function POST(req: Request) {
+    try {
+        const session = await getServerSession(authOptions);
+        const body = await req.json();
+        const { items, billingDetails, couponCode } = body;
+
+        if (!items || items.length === 0) {
+            return NextResponse.json({ error: 'No items in order' }, { status: 400 });
+        }
+
+        let userId = session?.user?.id;
+        const secret = process.env.NEXTAUTH_SECRET || 'fallback-secret-do-not-use-in-prod';
+        const { verificationToken, password } = body;
+
+        // If no user logged in, create one or find existing
+        if (!userId) {
+            const { email, firstName, lastName } = billingDetails;
+            const { country, phone, age } = body;
+            const name = `${firstName} ${lastName}`.trim();
+
+            // Check if user exists
+            let user = await prisma.user.findUnique({
+                where: { email },
+            });
+
+            if (!user) {
+                // VERIFY TOKEN BEFORE CREATING USER
+                if (!verificationToken) {
+                    return NextResponse.json({ error: 'Email verification required' }, { status: 400 });
+                }
+
+                try {
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires
+                    const jwt = require('jsonwebtoken');
+                    const decoded = jwt.verify(verificationToken, secret) as any;
+
+                    if (decoded.email !== email || !decoded.verified) {
+                        return NextResponse.json({ error: 'Invalid verification token' }, { status: 400 });
+                    }
+                } catch (err) {
+                    return NextResponse.json({ error: 'Invalid or expired verification token' }, { status: 400 });
+                }
+
+                // Create new user with PROVIDED password
+                if (!password) {
+                    return NextResponse.json({ error: 'Password is required' }, { status: 400 });
+                }
+
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
+                const { hash } = require('bcryptjs');
+                const hashedPassword = await hash(password, 10);
+
+                user = await prisma.user.create({
+                    data: {
+                        email,
+                        name,
+                        password: hashedPassword,
+                        role: 'STUDENT',
+                        emailVerified: new Date(), // Mark as verified since they used OTP
+                        country,
+                        phone,
+                        age
+                    },
+                });
+            }
+
+            userId = user.id;
+        }
+
+        // Calculate total and validate items
+        let total = 0;
+        const orderItemsData = [];
+
+        for (const item of items) {
+            const course = await prisma.course.findUnique({
+                where: { id: item.courseId },
+            });
+
+            if (!course) {
+                return NextResponse.json({ error: `Course not found: ${item.courseId}` }, { status: 400 });
+            }
+
+            total += course.price;
+            orderItemsData.push({
+                courseId: course.id,
+                price: course.price,
+            });
+        }
+
+        // Validate and apply coupon if provided
+        let discount = 0;
+        let couponId: string | null = null;
+
+        if (couponCode) {
+            const coupon = await prisma.coupon.findUnique({
+                where: { code: couponCode },
+                include: { course: true }
+            });
+
+            if (coupon && coupon.isActive &&
+                (!coupon.expiresAt || new Date() < coupon.expiresAt) &&
+                (!coupon.maxUses || coupon.usedCount < coupon.maxUses)) {
+
+                // 1. Check Max Uses Per User
+                let userLimitReached = false;
+                if (coupon.maxUsesPerUser) {
+                    let usageCount = 0;
+                    if (userId) {
+                        usageCount = await prisma.order.count({ where: { userId, couponId: coupon.id } });
+                    } else {
+                        usageCount = await prisma.order.count({ where: { billingEmail: billingDetails.email, couponId: coupon.id } });
+                    }
+
+                    if (usageCount >= coupon.maxUsesPerUser) {
+                        userLimitReached = true;
+                    }
+                }
+
+                if (!userLimitReached) {
+                    // 2. Calculate Discount
+                    if (coupon.courseId) {
+                        // Course-specific coupon
+                        const courseInOrder = orderItemsData.find(item => item.courseId === coupon.courseId);
+                        if (courseInOrder) {
+                            couponId = coupon.id;
+                            if (coupon.discountType === 'PERCENTAGE') {
+                                discount = (courseInOrder.price * coupon.discountValue) / 100;
+                            } else {
+                                discount = coupon.discountValue;
+                                if (discount > courseInOrder.price) discount = courseInOrder.price;
+                            }
+                        }
+                    } else {
+                        // Global coupon
+                        couponId = coupon.id;
+                        if (coupon.discountType === 'PERCENTAGE') {
+                            discount = (total * coupon.discountValue) / 100;
+                        } else {
+                            discount = coupon.discountValue;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (discount > total) discount = total;
+
+        const finalTotal = total - discount;
+
+        // Create Order
+        const orderNumber = `ORD-${Date.now()}-${randomBytes(4).toString('hex').toUpperCase()}`;
+
+        const order = await prisma.order.create({
+            data: {
+                userId,
+                orderNumber,
+                total: finalTotal,
+                status: 'completed', // Mark as completed for now (will be 'pending' when payment gateway is integrated)
+                billingName: `${billingDetails.firstName} ${billingDetails.lastName}`,
+                billingEmail: billingDetails.email,
+                couponId,
+                discountTotal: discount,
+                items: {
+                    create: orderItemsData,
+                },
+            },
+        });
+
+        // Automatically enroll user in purchased courses
+        for (const item of orderItemsData) {
+            // Check if already enrolled (in case of duplicate order)
+            const existingEnrollment = await prisma.enrollment.findUnique({
+                where: {
+                    userId_courseId: {
+                        userId,
+                        courseId: item.courseId,
+                    },
+                },
+            });
+
+            // Only create enrollment if not already enrolled
+            if (!existingEnrollment) {
+                await prisma.enrollment.create({
+                    data: {
+                        userId,
+                        courseId: item.courseId,
+                        progress: 0,
+                    },
+                });
+            }
+        }
+
+        // Clear cart if user was logged in
+        if (session?.user?.id) {
+            await prisma.cartItem.deleteMany({
+                where: {
+                    cart: {
+                        userId: session.user.id,
+                    },
+                },
+            }).catch(() => { }); // Ignore if cart doesn't exist
+        }
+
+        return NextResponse.json({ orderId: order.id, orderNumber: order.orderNumber });
+
+    } catch (error) {
+        console.error('Order creation error:', error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+}

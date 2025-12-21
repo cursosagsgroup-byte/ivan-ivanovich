@@ -1,0 +1,3 @@
+{
+  "/(public)/educacion/cursos-online/[id]/page": "app/(public)/educacion/cursos-online/[id]/page.js"
+}

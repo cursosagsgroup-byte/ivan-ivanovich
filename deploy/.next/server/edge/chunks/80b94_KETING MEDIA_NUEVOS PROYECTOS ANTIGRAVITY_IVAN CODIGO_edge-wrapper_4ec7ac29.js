@@ -1,0 +1,3 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["chunks/80b94_KETING MEDIA_NUEVOS PROYECTOS ANTIGRAVITY_IVAN CODIGO_edge-wrapper_4ec7ac29.js",198376,(e,t,h)=>{self._ENTRIES||={};let l=Promise.resolve().then(()=>e.i(308799));l.catch(()=>{}),self._ENTRIES.middleware_middleware=new Proxy(l,{get(e,t){if("then"===t)return(t,h)=>e.then(t,h);let h=(...h)=>e.then(e=>(0,e[t])(...h));return h.then=(h,l)=>e.then(e=>e[t]).then(h,l),h}})}]);
+
+//# sourceMappingURL=80b94_KETING%20MEDIA_NUEVOS%20PROYECTOS%20ANTIGRAVITY_IVAN%20CODIGO_edge-wrapper_4ec7ac29.js.map

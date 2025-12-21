@@ -1,0 +1,354 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.0.x", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  country       String?
+  phone         String?
+  age           Int?
+  password      String?
+  role          String    @default("STUDENT")
+  language      String    @default("es")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  enrollments   Enrollment[]
+  quizAttempts  QuizAttempt[]
+  certificates  Certificate[]
+  blogPosts     BlogPost[]
+  lessonProgress LessonProgress[]
+  cart          Cart?
+  orders        Order[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+
+
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  description String  
+  price       Float
+  image       String?
+  language    String   @default("es")
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  modules     Module[]
+  enrollments Enrollment[]
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+  coupons     Coupon[]
+}
+
+model Module {
+  id          String   @id @default(cuid())
+  courseId    String
+  title       String
+  description String? 
+  order       Int
+  createdAt   DateTime @default(now())
+
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons     Lesson[]
+  quizzes     Quiz[]
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  moduleId    String
+  title       String
+  content     String? 
+  videoUrl    String?
+  order       Int
+  duration    Int?
+  createdAt   DateTime @default(now())
+
+  module      Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress    LessonProgress[]
+}
+
+model Quiz {
+  id          String   @id @default(cuid())
+  moduleId    String
+  title       String
+  description String? 
+  passingScore Int     @default(70)
+  timeLimit   Int?
+  order       Int
+  createdAt   DateTime @default(now())
+
+  module      Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  questions   Question[]
+  attempts    QuizAttempt[]
+}
+
+model Question {
+  id            String       @id @default(cuid())
+  quizId        String
+  question      String      
+  type          String
+  options       String?
+  correctAnswer String      
+  points        Int          @default(1)
+  order         Int
+
+  quiz          Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+
+
+model Enrollment {
+  id          String    @id @default(cuid())
+  userId      String
+  courseId    String
+  enrolledAt  DateTime  @default(now())
+  completedAt DateTime?
+  progress    Int       @default(0)
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course      Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model LessonProgress {
+  id          String    @id @default(cuid())
+  userId      String
+  lessonId    String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}
+
+model QuizAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  quizId      String
+  score       Float
+  passed      Boolean
+  answers     String
+  attemptedAt DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+model Certificate {
+  id             String   @id @default(cuid())
+  userId         String
+  courseId       String
+  issuedAt       DateTime @default(now())
+  certificateUrl String
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BlogPost {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  excerpt   String? 
+  content   String  
+  image     String?
+  published Boolean  @default(false)
+  pinned    Boolean  @default(false)
+  language  String   @default("es")
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author    User     @relation(fields: [authorId], references: [id])
+}
+
+// Shopping Cart Models
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  courseId  String
+  addedAt   DateTime @default(now())
+
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([cartId, courseId])
+}
+
+// Order Models
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  orderNumber     String      @unique
+  status          String      @default("pending") // pending, completed, failed, refunded
+  total           Float
+  currency        String      @default("USD")
+  paymentMethod   String?     // paypal, stripe, mercadopago
+  billingName     String
+  billingEmail    String
+  billingPhone    String?
+  billingAddress  String?
+  couponId        String?
+  discountTotal   Float       @default(0)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  coupon          Coupon?     @relation(fields: [couponId], references: [id])
+  items           OrderItem[]
+  payment         Payment?
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  courseId  String
+  price     Float
+  createdAt DateTime @default(now())
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  course    Course   @relation(fields: [courseId], references: [id])
+
+  @@unique([orderId, courseId])
+}
+
+// Payment Models
+model Payment {
+  id                String   @id @default(cuid())
+  orderId           String   @unique
+  gateway           String   // paypal, stripe, mercadopago
+  transactionId     String?
+  amount            Float
+  currency          String   @default("USD")
+  status            String   @default("pending") // pending, completed, failed, refunded
+  gatewayResponse   String?  // JSON response from gateway
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  order             Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+// Payment Gateway Configuration (Admin)
+model PaymentConfig {
+  id            String   @id @default(cuid())
+  gateway       String   @unique // paypal, stripe, mercadopago
+  enabled       Boolean  @default(false)
+  testMode      Boolean  @default(true)
+  publicKey     String?  // For Stripe and Mercado Pago
+  secretKey     String?  // Encrypted
+  clientId      String?  // For PayPal
+  clientSecret  String?  // For PayPal, encrypted
+  webhookSecret String?  // For webhook verification
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Coupon {
+  id            String    @id @default(cuid())
+  code          String    @unique
+  discountType  String    @default("PERCENTAGE") // PERCENTAGE, FIXED
+  discountValue Float
+  maxUses       Int?      // Null = unlimited
+  maxUsesPerUser Int?     // Null = unlimited per user
+  usedCount     Int       @default(0)
+  expiresAt     DateTime?
+  courseId      String?   // Restriction to specific course
+  isActive      Boolean   @default(true)
+
+  course        Course?   @relation(fields: [courseId], references: [id])
+  orders        Order[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String?
+  source    String   @default("Website Form")
+  status    String   @default("NEW") // NEW, CONTACTED, QUALIFIED, LOST
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WhatsAppContact {
+  id            String   @id @default(cuid())
+  phoneNumber   String   @unique
+  name          String?
+  lastMessage   String?
+  lastMessageAt DateTime @default(now())
+  source        String   @default("WhatsApp")
+  status        String   @default("ACTIVE")
+  geminiHistory String?  // Store conversation history/context for AI
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
