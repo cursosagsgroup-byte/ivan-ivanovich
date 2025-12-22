@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -68,10 +69,12 @@ export default function BlogCarousel() {
                             <article className="flex flex-col h-full">
                                 <div className="relative w-full overflow-hidden rounded-2xl aspect-video mb-6 group/card">
                                     {post.image ? (
-                                        <img
+                                        <Image
                                             src={post.image}
                                             alt={post.title}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-110"
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover/card:scale-110"
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">

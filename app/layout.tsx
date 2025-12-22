@@ -11,6 +11,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/prisma';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const montserrat = Montserrat({
     subsets: ["latin"],
@@ -60,6 +61,7 @@ export default async function RootLayout({
                             {children}
                             <CartSlidePanel />
                             <WhatsAppButton />
+                            <SpeedInsights />
                             <Toaster position="bottom-right" />
                         </CartProvider>
                     </LanguageProvider>

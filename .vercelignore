@@ -1,0 +1,10 @@
+# Vercel Ignore
+node_modules
+.next
+.git
+.vercel
+deploy
+scripts
+*.zip
+*.sql
+*.log

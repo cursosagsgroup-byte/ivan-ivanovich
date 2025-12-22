@@ -213,7 +213,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     {/* Main Content Column (2/3 width on large screens) */}
                     <div className="lg:col-span-2">
                         <div className="mx-auto max-w-2xl lg:mx-0">
-                            <h1 className="mt-2 font-bold tracking-tight text-gray-900" style={{ fontFamily: 'var(--font-montserrat), sans-serif', fontSize: '42px', lineHeight: '1.2' }}>
+                            <h1 className="mt-2 font-bold tracking-tight text-gray-900 text-3xl md:text-[42px] leading-tight" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
                                 {post.title}
                             </h1>
                             <div className="mt-6 flex items-center gap-x-4 text-xs text-gray-500">

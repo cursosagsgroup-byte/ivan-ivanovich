@@ -144,43 +144,87 @@ export default function PublicNavbar() {
                 {mobileMenuOpen && (
                     <div className="lg:hidden mt-4 pt-4 border-t border-gray-200 max-h-[70vh] overflow-y-auto">
                         <div className="space-y-2">
-                            <Link href="/mi-cuenta" className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <Link
+                                href="/mi-cuenta"
+                                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
                                 {t('nav.myAccount')}
                             </Link>
-                            <Link href="/" className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <Link
+                                href="/"
+                                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
                                 {t('nav.home')}
                             </Link>
                             <div className="space-y-2">
                                 <div className="px-3 py-2 text-sm font-semibold text-gray-500">{t('nav.leadership')}</div>
-                                <Link href="/nuestro-equipo" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/nuestro-equipo"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.ourTeam')}
                                 </Link>
-                                <Link href="/medios" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/medios"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.media')}
                                 </Link>
-                                <Link href="/sobre-la-proteccion" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/sobre-la-proteccion"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.aboutProtection')}
                                 </Link>
                             </div>
                             <div className="space-y-2">
                                 <div className="px-3 py-2 text-sm font-semibold text-gray-500">{t('nav.education')}</div>
-                                <Link href="/educacion/cursos-online" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/educacion/cursos-online"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.onlineCourses')}
                                 </Link>
-                                <Link href="/educacion/cursos-presenciales" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/educacion/cursos-presenciales"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.inPersonCourses')}
                                 </Link>
-                                <Link href="/educacion/libro" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/educacion/libro"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.book')}
                                 </Link>
-                                <Link href="/educacion/certificado-deta" className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50">
+                                <Link
+                                    href="/educacion/certificado-deta"
+                                    className="block rounded-lg px-6 py-2 text-sm leading-7 text-gray-900 hover:bg-gray-50"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     {t('nav.detaCertificate')}
                                 </Link>
                             </div>
-                            <Link href="/blog" className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <Link
+                                href="/blog"
+                                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
                                 {t('nav.blog')}
                             </Link>
-                            <Link href="/contacto" className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <Link
+                                href="/contacto"
+                                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
                                 {t('nav.contact')}
                             </Link>
                         </div>
