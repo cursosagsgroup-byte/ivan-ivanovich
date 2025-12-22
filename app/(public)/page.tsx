@@ -2,6 +2,7 @@
 
 import HeroSection from '@/components/public/HeroSection';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import dynamic from 'next/dynamic';
 
@@ -29,7 +30,13 @@ export default function LandingPage() {
                             {/* Left Column - Image */}
                             <div className="lg:pr-4">
                                 <div className="relative overflow-hidden rounded-2xl aspect-square">
-                                    <img src="/ivan-photo.jpg" alt="Ivan Ivanovich" className="w-full h-full object-cover" />
+                                    <Image
+                                        src="/ivan-photo.jpg"
+                                        alt="Ivan Ivanovich"
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
                                 </div>
                             </div>
 
@@ -78,13 +85,19 @@ export default function LandingPage() {
                                     {t('home.armadaDescription')}
                                 </p>
                                 <div className="flex gap-6 justify-center lg:justify-start">
-                                    <img src="/escudo-armada-1.png" alt="Escudo Armada 1" className="h-24 w-auto" />
-                                    <img src="/escudo-armada-2.png" alt="Escudo Armada 2" className="h-24 w-auto" />
+                                    <Image src="/escudo-armada-1.png" alt="Escudo Armada 1" width={96} height={96} className="h-24 w-auto" />
+                                    <Image src="/escudo-armada-2.png" alt="Escudo Armada 2" width={96} height={96} className="h-24 w-auto" />
                                 </div>
                             </div>
                             {/* Right: Image */}
                             <div className="relative aspect-square w-full max-w-md mx-auto lg:w-[80%] overflow-hidden rounded-2xl">
-                                <img src="/photo-armada-square.jpg" alt="Armada Española Training" className="w-full h-full object-cover" />
+                                <Image
+                                    src="/photo-armada-square.jpg"
+                                    alt="Armada Española Training"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                />
                             </div>
                         </div>
                     </div>
@@ -107,7 +120,7 @@ export default function LandingPage() {
                                                 {t('home.costaRicaTitle')}
                                             </h2>
                                         </div>
-                                        <img src="/escudo-costarica.png" alt="Escudo Costa Rica" className="h-20 w-auto flex-shrink-0" />
+                                        <Image src="/escudo-costarica.png" alt="Escudo Costa Rica" width={80} height={80} className="h-20 w-auto flex-shrink-0" />
                                     </div>
                                     <p className="text-gray-600 text-base">
                                         {t('home.costaRicaDescription')}
@@ -123,7 +136,7 @@ export default function LandingPage() {
                                         {t('home.costaRicaTitle')}
                                     </h2>
                                     <div className="flex items-start gap-6 mb-6">
-                                        <img src="/escudo-costarica.png" alt="Escudo Costa Rica" className="h-24 w-auto flex-shrink-0" />
+                                        <Image src="/escudo-costarica.png" alt="Escudo Costa Rica" width={96} height={96} className="h-24 w-auto flex-shrink-0" />
                                         <p className="text-gray-600 text-base">
                                             {t('home.costaRicaDescription')}
                                         </p>
@@ -132,7 +145,13 @@ export default function LandingPage() {
                             </div>
                             {/* Right: Image */}
                             <div className="relative aspect-square w-full max-w-md mx-auto lg:w-[80%] overflow-hidden rounded-2xl">
-                                <img src="/photo-costarica-square.jpg" alt="Costa Rica Training" className="w-full h-full object-cover" />
+                                <Image
+                                    src="/photo-costarica-square.jpg"
+                                    alt="Costa Rica Training"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                />
                             </div>
                         </div>
                     </div>
@@ -156,7 +175,13 @@ export default function LandingPage() {
                             </div>
                             {/* Right: Image */}
                             <div className="relative aspect-square w-full max-w-md mx-auto lg:w-[80%] overflow-hidden rounded-2xl">
-                                <img src="/photo-top9-square.png" alt="TOP 9 Mundial" className="w-full h-full object-cover" />
+                                <Image
+                                    src="/photo-top9-square.png"
+                                    alt="TOP 9 Mundial"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                />
                             </div>
                         </div>
                     </div>
@@ -180,7 +205,13 @@ export default function LandingPage() {
                             </div>
                             {/* Right: Image */}
                             <div className="relative aspect-square w-full max-w-md mx-auto lg:w-[80%] overflow-hidden rounded-2xl">
-                                <img src="/images/isj-influencer-2025.jpg" alt="ISJ Influencer 2025" className="w-full h-full object-cover" />
+                                <Image
+                                    src="/images/isj-influencer-2025.jpg"
+                                    alt="ISJ Influencer 2025"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                />
                             </div>
                         </div>
                     </div>
