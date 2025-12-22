@@ -21,7 +21,6 @@ export default function HeroSection() {
                         priority
                         quality={100}
                         sizes="100vw"
-                        sizes="100vw"
                     />
                 </div>
 

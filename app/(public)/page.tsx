@@ -2,9 +2,13 @@
 
 import HeroSection from '@/components/public/HeroSection';
 import Link from 'next/link';
-import BlogCarousel from '@/components/BlogCarousel';
-import ContactSection from '@/components/public/ContactSection';
 import { useTranslation } from '@/hooks/useTranslation';
+import dynamic from 'next/dynamic';
+
+const BlogCarousel = dynamic(() => import('@/components/BlogCarousel'), {
+    loading: () => <div className="h-96 w-full animate-pulse bg-gray-100 rounded-xl" />
+});
+const ContactSection = dynamic(() => import('@/components/public/ContactSection'));
 
 export default function LandingPage() {
     const { t } = useTranslation();
