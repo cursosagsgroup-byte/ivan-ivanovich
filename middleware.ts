@@ -131,6 +131,7 @@ export const config = {
         "/register",
         // Add legacy language paths to matcher so middleware runs for them
         "/es/:path*",
-        "/en/:path*"
+        "/en/:path*",
+        "/admin/:path*"
     ]
 }

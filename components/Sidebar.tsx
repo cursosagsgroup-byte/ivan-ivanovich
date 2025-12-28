@@ -2,16 +2,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, UserCircle, Ticket, CreditCard, Smartphone } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, UserCircle, Ticket, CreditCard, Smartphone, ShoppingBag } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 
 const adminNavigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-  { name: 'Courses', href: '/courses', icon: BookOpen },
+  { name: 'Courses', href: '/admin/courses', icon: BookOpen },
   { name: 'Students', href: '/students', icon: Users },
   { name: 'Coupons', href: '/admin/coupons', icon: Ticket },
   { name: 'Blog', href: '/admin/blog', icon: BookOpen }, // Using BookOpen for now, or maybe FileText if available
   { name: 'Base de Datos', href: '/admin/database', icon: Users },
+  { name: 'Pedidos', href: '/dashboard/orders', icon: ShoppingBag },
   { name: 'Pagos', href: '/dashboard/payments', icon: CreditCard },
   { name: 'Marketing', href: '/marketing', icon: Users },
   { name: 'Bot WhatsApp', href: '/whatsapp_bot', icon: Smartphone },
