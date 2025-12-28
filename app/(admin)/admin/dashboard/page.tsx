@@ -91,7 +91,7 @@ export default async function Home() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">Dashboard General</h1>
         <Link
-          href="/courses/create"
+          href="/admin/courses/create"
           className="rounded-md bg-[#B70126] px-4 py-2 text-sm font-medium text-white hover:bg-red-800 transition-colors"
         >
           Crear Nuevo Curso

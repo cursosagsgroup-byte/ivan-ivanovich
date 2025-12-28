@@ -24,7 +24,7 @@ export default function StudentSearch() {
             params.delete('search');
         }
 
-        router.push(`/students?${params.toString()}`);
+        router.push(`/admin/students?${params.toString()}`);
     };
 
     const handleClear = () => {
@@ -32,7 +32,7 @@ export default function StudentSearch() {
         const params = new URLSearchParams(searchParams.toString());
         params.delete('search');
         params.delete('page');
-        router.push(`/students?${params.toString()}`);
+        router.push(`/admin/students?${params.toString()}`);
     };
 
     return (

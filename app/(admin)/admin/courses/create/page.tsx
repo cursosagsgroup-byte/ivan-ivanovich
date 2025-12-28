@@ -10,7 +10,7 @@ export default function CreateCoursePage() {
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                     <Link
-                        href="/courses"
+                        href="/admin/courses"
                         className="flex items-center text-slate-500 hover:text-slate-900"
                     >
                         <ArrowLeft className="h-5 w-5" />

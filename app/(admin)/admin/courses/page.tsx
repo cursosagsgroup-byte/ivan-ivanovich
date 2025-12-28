@@ -18,7 +18,7 @@ export default async function CoursesPage() {
             <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold text-slate-900">Courses</h1>
                 <Link
-                    href="/courses/create"
+                    href="/admin/courses/create"
                     className="flex items-center rounded-md bg-[#B70126] px-4 py-2 text-sm font-medium text-white hover:bg-red-800 transition-colors"
                 >
                     <Plus className="mr-2 h-4 w-4" />
@@ -33,7 +33,7 @@ export default async function CoursesPage() {
                     <p className="mt-1 text-sm text-slate-500">Get started by creating a new course.</p>
                     <div className="mt-6">
                         <Link
-                            href="/courses/create"
+                            href="/admin/courses/create"
                             className="inline-flex items-center rounded-md bg-[#B70126] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             <Plus className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
@@ -76,7 +76,7 @@ export default async function CoursesPage() {
                                     <div className="flex items-center justify-between border-t border-border pt-4">
                                         <span className="text-sm text-slate-500">{course._count.enrollments} Students</span>
                                         <div className="flex space-x-2">
-                                            <Link href={`/courses/${course.id}/edit`} className="flex items-center gap-1 p-1 text-slate-500 hover:text-[#B70126] transition-colors">
+                                            <Link href={`/admin/courses/${course.id}/edit`} className="flex items-center gap-1 p-1 text-slate-500 hover:text-[#B70126] transition-colors">
                                                 <Edit className="h-4 w-4" />
                                                 <span className="text-xs font-medium">Editar</span>
                                             </Link>
