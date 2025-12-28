@@ -156,13 +156,13 @@ export default async function CursosOnlinePage() {
                         </h3>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
-                                href="/dashboard"
+                                href="/mi-cuenta"
                                 className="w-full sm:w-auto rounded-md bg-[#B70126] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#D9012D] transition-colors"
                             >
                                 {t.auth.login}
                             </Link>
                             <Link
-                                href="/dashboard"
+                                href="/mi-cuenta"
                                 className="w-full sm:w-auto rounded-md border border-gray-300 px-6 py-2.5 text-sm font-semibold text-black hover:bg-gray-100 transition-colors"
                             >
                                 {t.auth.register}

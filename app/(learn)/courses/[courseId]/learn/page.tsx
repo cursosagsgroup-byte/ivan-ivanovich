@@ -39,7 +39,7 @@ export default async function LearnPage({ params }: LearnPageProps) {
     });
 
     if (!enrollment) {
-        redirect('/dashboard');
+        redirect('/mi-cuenta');
     }
 
     // Fetch course data with modules, lessons and quizzes
@@ -75,7 +75,7 @@ export default async function LearnPage({ params }: LearnPageProps) {
     });
 
     if (!course) {
-        redirect('/dashboard');
+        redirect('/mi-cuenta');
     }
 
     // Transform and merge data for the player

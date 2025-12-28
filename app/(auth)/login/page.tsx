@@ -31,7 +31,15 @@ export default function LoginPage() {
             if (result?.error) {
                 setError(t('auth.invalidCredentials'));
             } else {
-                router.push('/dashboard');
+                // Fetch the session to check the user role using a fetch call to avoid hooks issues
+                const sessionRes = await fetch('/api/auth/session');
+                const session = await sessionRes.json();
+
+                if (session?.user?.role === 'ADMIN' || session?.user?.role === 'SUPER_ADMIN') {
+                    router.push('/admin/dashboard');
+                } else {
+                    router.push('/mi-cuenta');
+                }
             }
         } catch (error) {
             setError(t('auth.errorLogin'));

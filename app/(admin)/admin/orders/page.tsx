@@ -37,7 +37,7 @@ export default async function OrdersPage() {
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-4">
-                    <Link href="/dashboard" className="p-2 -ml-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-all">
+                    <Link href="/admin/dashboard" className="p-2 -ml-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-all">
                         <ArrowLeft className="w-5 h-5" />
                     </Link>
                     <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">

@@ -122,7 +122,7 @@ export default async function StudentDetailPage({ params }: { params: Promise<{ 
     const session = await getServerSession(authOptions);
 
     if (!session || session.user.role !== 'ADMIN') {
-        redirect('/dashboard');
+        redirect('/admin/dashboard');
     }
 
     const { id } = await params;
@@ -133,7 +133,7 @@ export default async function StudentDetailPage({ params }: { params: Promise<{ 
             <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                     <Link
-                        href="/students"
+                        href="/admin/students"
                         className="flex items-center text-slate-500 hover:text-slate-900"
                     >
                         <ArrowLeft className="h-5 w-5" />
@@ -151,7 +151,7 @@ export default async function StudentDetailPage({ params }: { params: Promise<{ 
         <div className="space-y-6">
             <div className="flex items-center space-x-4">
                 <Link
-                    href="/students"
+                    href="/admin/students"
                     className="flex items-center text-slate-500 hover:text-slate-900"
                 >
                     <ArrowLeft className="h-5 w-5" />

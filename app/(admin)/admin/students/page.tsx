@@ -88,7 +88,7 @@ export default async function StudentsPage({
     const session = await getServerSession(authOptions);
 
     if (!session || session.user.role !== 'ADMIN') {
-        redirect('/dashboard');
+        redirect('/admin/dashboard');
     }
 
     // Await searchParams in Next.js 15+
@@ -187,7 +187,7 @@ export default async function StudentsPage({
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <Link
-                                            href={`/students/${student.id}`}
+                                            href={`/admin/students/${student.id}`}
                                             className="text-primary hover:text-primary/80 transition-colors"
                                         >
                                             Ver
@@ -205,7 +205,7 @@ export default async function StudentsPage({
                 <div className="flex items-center justify-between border-t border-border bg-white px-4 py-3 sm:px-6 rounded-xl">
                     <div className="flex flex-1 justify-between sm:hidden">
                         <Link
-                            href={`/students?page=${currentPage - 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
+                            href={`/admin/students?page=${currentPage - 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
                             className={`relative inline-flex items-center rounded-md px-4 py-2 text-sm font-medium ${currentPage === 1
                                 ? 'pointer-events-none bg-slate-100 text-slate-400'
                                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-300'
@@ -214,7 +214,7 @@ export default async function StudentsPage({
                             Anterior
                         </Link>
                         <Link
-                            href={`/students?page=${currentPage + 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
+                            href={`/admin/students?page=${currentPage + 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
                             className={`relative ml-3 inline-flex items-center rounded-md px-4 py-2 text-sm font-medium ${currentPage === totalPages
                                 ? 'pointer-events-none bg-slate-100 text-slate-400'
                                 : 'bg-white text-slate-700 hover:bg-slate-50 border border-slate-300'
@@ -234,7 +234,7 @@ export default async function StudentsPage({
                         <div>
                             <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                                 <Link
-                                    href={`/students?page=${currentPage - 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
+                                    href={`/admin/students?page=${currentPage - 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
                                     className={`relative inline-flex items-center rounded-l-md px-2 py-2 text-slate-400 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0 ${currentPage === 1 ? 'pointer-events-none opacity-50' : ''
                                         }`}
                                 >
@@ -258,7 +258,7 @@ export default async function StudentsPage({
                                     return (
                                         <Link
                                             key={pageNum}
-                                            href={`/students?page=${pageNum}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
+                                            href={`/admin/students?page=${pageNum}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
                                             className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${currentPage === pageNum
                                                 ? 'z-10 bg-primary text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
                                                 : 'text-slate-900 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0'
@@ -270,7 +270,7 @@ export default async function StudentsPage({
                                 })}
 
                                 <Link
-                                    href={`/students?page=${currentPage + 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
+                                    href={`/admin/students?page=${currentPage + 1}${searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : ''}`}
                                     className={`relative inline-flex items-center rounded-r-md px-2 py-2 text-slate-400 ring-1 ring-inset ring-slate-300 hover:bg-slate-50 focus:z-20 focus:outline-offset-0 ${currentPage === totalPages ? 'pointer-events-none opacity-50' : ''
                                         }`}
                                 >
