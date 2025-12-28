@@ -6,21 +6,21 @@ import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, User
 import { useSession, signOut } from 'next-auth/react';
 
 const adminNavigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Courses', href: '/admin/courses', icon: BookOpen },
-  { name: 'Students', href: '/students', icon: Users },
+  { name: 'Students', href: '/admin/students', icon: Users },
   { name: 'Coupons', href: '/admin/coupons', icon: Ticket },
   { name: 'Blog', href: '/admin/blog', icon: BookOpen }, // Using BookOpen for now, or maybe FileText if available
   { name: 'Base de Datos', href: '/admin/database', icon: Users },
-  { name: 'Pedidos', href: '/dashboard/orders', icon: ShoppingBag },
-  { name: 'Pagos', href: '/dashboard/payments', icon: CreditCard },
-  { name: 'Marketing', href: '/marketing', icon: Users },
-  { name: 'Bot WhatsApp', href: '/whatsapp_bot', icon: Smartphone },
-  { name: 'Settings', href: '/settings', icon: Settings },
+  { name: 'Pedidos', href: '/admin/orders', icon: ShoppingBag },
+  { name: 'Pagos', href: '/admin/payments', icon: CreditCard },
+  { name: 'Marketing', href: '/admin/marketing', icon: Users },
+  { name: 'Bot WhatsApp', href: '/admin/whatsapp_bot', icon: Smartphone },
+  { name: 'Settings', href: '/admin/settings', icon: Settings },
 ];
 
 const studentNavigation = [
-  { name: 'Mi Cuenta', href: '/dashboard', icon: UserCircle },
+  { name: 'Mi Cuenta', href: '/mi-cuenta', icon: UserCircle },
 ];
 
 export default function Sidebar() {

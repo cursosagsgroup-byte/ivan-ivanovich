@@ -67,74 +67,85 @@ export default async function CursosOnlinePage() {
 
                 {/* Courses Grid */}
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                    {courses.map((course) => (
-                        <div
-                            key={course.id}
-                            className="group relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200 hover:ring-[#B70126]/50 transition-all shadow-lg"
-                        >
-                            {/* Course Image */}
-                            <div className="aspect-video w-full overflow-hidden bg-gray-100">
-                                {course.image ? (
-                                    <img
-                                        src={course.image}
-                                        alt={course.title}
-                                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                ) : (
-                                    <div className="h-full w-full flex items-center justify-center text-gray-400">
-                                        <Award className="w-16 h-16" />
-                                    </div>
-                                )}
-                            </div>
+                    {courses.map((course) => {
+                        const getCourseLink = (title: string, id: string) => {
+                            const lowerTitle = title.toLowerCase();
+                            if (lowerTitle.includes('team leader')) return '/educacion/team-leader';
+                            if (lowerTitle.includes('contravigilancia')) return '/educacion/contravigilancia';
+                            if (lowerTitle.includes('counter surveillance')) return '/educacion/counter-surveillance';
+                            if (lowerTitle.includes('libro')) return '/educacion/libro';
+                            return `/educacion/cursos-online/${id}`;
+                        };
 
-                            {/* Course Content */}
-                            <div className="p-6">
-                                {/* Title */}
-                                <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#B70126] transition-colors">
-                                    <Link href={
-                                        course.title.toLowerCase().includes('team leader') ? '/educacion/team-leader' :
-                                            course.title.toLowerCase().includes('contravigilancia') ? '/educacion/contravigilancia' :
-                                                `/educacion/cursos-online/${course.id}`
-                                    }>
-                                        {course.title}
+                        const courseLink = getCourseLink(course.title, course.id);
+
+                        return (
+                            <div
+                                key={course.id}
+                                className="group relative overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200 hover:ring-[#B70126]/50 transition-all shadow-lg"
+                            >
+                                {/* Course Image */}
+                                <div className="aspect-video w-full overflow-hidden bg-gray-100 relative">
+                                    <Link href={courseLink} className="block w-full h-full">
+                                        {course.image ? (
+                                            <img
+                                                src={course.image}
+                                                alt={course.title}
+                                                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                        ) : (
+                                            <div className="h-full w-full flex items-center justify-center text-gray-400">
+                                                <Award className="w-16 h-16" />
+                                            </div>
+                                        )}
                                     </Link>
-                                </h3>
-
-                                {/* Instructor */}
-                                <p className="text-sm text-gray-600 mb-4">{t.courses.instructor}</p>
-
-                                {/* Description */}
-                                <p className="text-gray-700 text-sm mb-6 line-clamp-2">
-                                    {course.description}
-                                </p>
-
-                                {/* Meta Info */}
-                                <div className="flex items-center gap-x-6 text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
-                                    <div className="flex items-center gap-x-1.5">
-                                        <Award className="h-4 w-4" />
-                                        <span>{locale === 'es' ? 'Certificado' : 'Certificate'}</span>
-                                    </div>
                                 </div>
 
-                                {/* Price and CTA */}
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <span className="text-3xl font-bold text-black">${course.price.toFixed(2)}</span>
-                                        <span className="text-gray-600 text-sm ml-2">USD</span>
+                                {/* Course Content */}
+                                <div className="p-6">
+                                    {/* Title */}
+                                    <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#B70126] transition-colors">
+                                        <Link href={courseLink}>
+                                            {course.title}
+                                        </Link>
+                                    </h3>
+
+                                    {/* Instructor */}
+                                    <p className="text-sm text-gray-600 mb-4">{t.courses.instructor}</p>
+
+                                    {/* Description */}
+                                    <p className="text-gray-700 text-sm mb-6 line-clamp-2">
+                                        {course.description}
+                                    </p>
+
+                                    {/* Meta Info */}
+                                    <div className="flex items-center gap-x-6 text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200">
+                                        <div className="flex items-center gap-x-1.5">
+                                            <Award className="h-4 w-4" />
+                                            <span>{locale === 'es' ? 'Certificado' : 'Certificate'}</span>
+                                        </div>
                                     </div>
-                                    <AddToCartButton
-                                        course={{
-                                            id: course.id,
-                                            title: course.title,
-                                            price: course.price,
-                                            image: course.image || ''
-                                        }}
-                                        className="rounded-md px-6 py-2.5 text-sm shadow-sm"
-                                    />
+
+                                    {/* Price and CTA */}
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <span className="text-3xl font-bold text-black">${course.price.toFixed(2)}</span>
+                                            <span className="text-gray-600 text-sm ml-2">MXN</span>
+                                        </div>
+                                        <AddToCartButton
+                                            course={{
+                                                id: course.id,
+                                                title: course.title,
+                                                price: course.price,
+                                                image: course.image || ''
+                                            }}
+                                            className="rounded-md px-6 py-2.5 text-sm shadow-sm"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 {/* Login/Register Section */}

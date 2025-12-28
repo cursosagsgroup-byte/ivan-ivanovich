@@ -43,7 +43,7 @@ export default withAuth(
             if (token?.role === 'STUDENT') {
                 return NextResponse.redirect(new URL('/mi-cuenta', req.url))
             }
-            return NextResponse.redirect(new URL('/dashboard', req.url))
+            return NextResponse.redirect(new URL('/admin/dashboard', req.url))
         }
 
         // Allow auth pages for unauthenticated users
@@ -95,13 +95,13 @@ export default withAuth(
         }
 
         // Protect admin dashboard
-        if (req.nextUrl.pathname.startsWith('/dashboard') && token?.role !== 'ADMIN') {
+        if (req.nextUrl.pathname.startsWith('/admin') && token?.role !== 'ADMIN') {
             return NextResponse.redirect(new URL('/mi-cuenta', req.url))
         }
 
         // Protect student area
         if (req.nextUrl.pathname.startsWith('/mi-cuenta') && token?.role === 'ADMIN') {
-            return NextResponse.redirect(new URL('/dashboard', req.url))
+            return NextResponse.redirect(new URL('/admin/dashboard', req.url))
         }
     },
     {

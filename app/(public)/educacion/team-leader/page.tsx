@@ -193,6 +193,9 @@ export default function TeamLeaderCoursePage() {
                             </div>
                         </section>
 
+
+
+
                         {/* ISJ Influencer 2025 Section */}
                         <section className="bg-gray-100 py-16 rounded-[30px] mb-16">
                             <div className="mx-auto max-w-7xl px-4 lg:px-12">
@@ -204,14 +207,14 @@ export default function TeamLeaderCoursePage() {
                                         </p>
                                         <h2 className="text-5xl font-bold text-black uppercase mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
                                             {t('home.isjTitle')}
-                                        </h2 >
+                                        </h2>
                                         <p className="text-gray-600 text-lg">
                                             {t('home.isjDescription')}
                                         </p>
                                     </div>
                                     {/* Right: Image */}
                                     <div className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-2xl">
-                                        <img src="/images/isj-influencer-2025.jpg" alt="ISJ Influencer 2025" className="w-full h-full object-cover" />
+                                        <img src="/images/isj-ivan.png" alt="ISJ Influencer 2025" className="w-full h-full object-cover" />
                                     </div>
                                 </div>
                             </div>
@@ -345,8 +348,8 @@ export default function TeamLeaderCoursePage() {
 
                             <AddToCartButton
                                 course={{
-                                    id: 'cmikx8svl000010qr119xvkoi',
-                                    title: 'CURSO TEAM LEADER EN LA PROTECCIÓN EJECUTIVA',
+                                    id: t('teamLeader.buyButton') === 'Buy' ? 'cmiq7oga203zikveg3jbf8p8u' : 'cmio13v7r000064w1fs838sgw',
+                                    title: t('teamLeader.buyButton') === 'Buy' ? 'TEAM LEADER IN EXECUTIVE PROTECTION' : 'CURSO TEAM LEADER EN LA PROTECCIÓN EJECUTIVA',
                                     price: 1900,
                                     image: '/curso-team-leader.png'
                                 }}
