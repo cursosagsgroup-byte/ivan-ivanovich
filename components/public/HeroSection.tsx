@@ -10,16 +10,16 @@ export default function HeroSection() {
     return (
         <>
             {/* Hero Section with Background Image */}
-            <div className="relative isolate overflow-hidden rounded-[30px] min-h-[600px] h-[85vh] md:h-[120vh]">
+            <div className="relative isolate overflow-hidden rounded-[30px] min-h-[600px] h-[85vh] md:h-[100vh]">
                 {/* Background Image */}
                 <div className="absolute inset-0 -z-10">
                     <Image
-                        src="/hero-bg-v3.png"
+                        src="/hero-original.png"
                         alt="Ivan Ivanovich"
                         fill
                         className="object-cover object-center"
                         priority
-                        quality={100}
+                        quality={95}
                         sizes="100vw"
                     />
                 </div>
@@ -31,7 +31,7 @@ export default function HeroSection() {
                         <div className="inline-block bg-black/80 backdrop-blur-sm rounded-[30px] md:rounded-[40px] p-2 pb-4 md:pb-6 w-full md:w-auto">
                             {/* Red Badge - Full width inside container */}
                             <div
-                                className="rounded-[25px] md:rounded-[35px] px-4 md:px-24 py-3 md:py-4 text-white font-bold text-lg md:text-3xl uppercase mb-2"
+                                className="rounded-[25px] md:rounded-[35px] px-4 md:px-20 py-3 md:py-3 text-white font-bold text-lg md:text-2xl uppercase mb-2"
                                 style={{
                                     backgroundColor: '#B70126',
                                     fontFamily: 'var(--font-montserrat), sans-serif',
@@ -43,7 +43,7 @@ export default function HeroSection() {
 
                             {/* Main Heading - Bebas Neue */}
                             <h1
-                                className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-white uppercase px-2 md:px-8 leading-none"
+                                className="text-3xl sm:text-5xl lg:text-6xl xl:text-[5rem] font-normal text-white uppercase px-2 md:px-8 leading-none"
                                 style={{
                                     fontFamily: 'var(--font-bebas), sans-serif',
                                     letterSpacing: '0.02em',

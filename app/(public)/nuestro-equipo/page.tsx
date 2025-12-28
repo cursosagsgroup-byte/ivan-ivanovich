@@ -66,6 +66,9 @@ export default function NuestroEquipoPage() {
                                 <h3 className="text-base font-bold text-black mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                                     {t('team.ivanRole')}
                                 </h3>
+                                <p className="text-base font-semibold text-black mb-6">
+                                    {t('team.ivanRecognition')}
+                                </p>
 
                                 <div className="space-y-6 text-gray-700">
                                     {/* Principales Logros */}
