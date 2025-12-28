@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
         destination: '/educacion/cursos-online',
         permanent: true,
       },
+      // Admin routes were moved to /admin, this redirect handles legacy public access attempt
     ];
   },
 };
