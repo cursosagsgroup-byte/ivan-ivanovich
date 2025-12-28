@@ -49,6 +49,9 @@ export default function LandingPage() {
                                     <p className="text-lg font-semibold text-black">
                                         {t('home.ivanSubtitle')}
                                     </p>
+                                    <p className="font-semibold text-black">
+                                        {t('home.ivanRecognition')}
+                                    </p>
                                     <p>{t('home.ivanDescription1')}</p>
                                     <p>{t('home.ivanDescription2')}</p>
                                     <p>{t('home.ivanDescription3')}</p>
@@ -187,6 +190,9 @@ export default function LandingPage() {
                     </div>
                 </section>
 
+
+
+
                 {/* ISJ Influencer 2025 Section */}
                 <section className="bg-gray-100 py-16 rounded-[30px] mb-8">
                     <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -198,7 +204,7 @@ export default function LandingPage() {
                                 </p>
                                 <h2 className="text-5xl font-bold text-black uppercase mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
                                     {t('home.isjTitle')}
-                                </h2 >
+                                </h2>
                                 <p className="text-gray-600 text-lg">
                                     {t('home.isjDescription')}
                                 </p>
@@ -206,7 +212,7 @@ export default function LandingPage() {
                             {/* Right: Image */}
                             <div className="relative aspect-square w-full max-w-md mx-auto lg:w-[80%] overflow-hidden rounded-2xl">
                                 <Image
-                                    src="/images/isj-influencer-2025.jpg"
+                                    src="/images/isj-ivan.png"
                                     alt="ISJ Influencer 2025"
                                     fill
                                     className="object-cover"

@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { MapPin, Mail, Youtube, Facebook, Instagram } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ContactSection() {
+    const { t } = useTranslation();
+
     return (
         <section className="bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -11,7 +14,7 @@ export default function ContactSection() {
                     <h2 className="text-4xl font-black tracking-tight text-black sm:text-5xl mb-6 uppercase" style={{
                         fontFamily: 'Montserrat, sans-serif'
                     }}>
-                        CONTACTO:
+                        {t('contact.title')}:
                     </h2>
                 </div>
 
@@ -22,7 +25,7 @@ export default function ContactSection() {
                         <div className="bg-white rounded-[30px] p-8 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-6">
                             <div className="flex-grow">
                                 <p className="text-lg font-bold text-black mb-1">contacto@ivanivanovich.com</p>
-                                <p className="text-gray-500 text-sm">Enviar</p>
+                                <p className="text-gray-500 text-sm">{t('contact.sendAction')}</p>
                             </div>
                         </div>
 
@@ -33,7 +36,7 @@ export default function ContactSection() {
                             </div>
                             <div>
                                 <p className="text-lg font-bold text-black mb-1">CDMX</p>
-                                <p className="text-gray-500 text-sm">Dirección</p>
+                                <p className="text-gray-500 text-sm">{t('contact.addressLabel')}</p>
                             </div>
                         </div>
 
@@ -73,14 +76,14 @@ export default function ContactSection() {
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder="Nombre"
+                                        placeholder={t('contact.formName')}
                                         className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="email"
-                                        placeholder="Correo"
+                                        placeholder={t('contact.formEmail')}
                                         className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none"
                                     />
                                 </div>
@@ -90,14 +93,14 @@ export default function ContactSection() {
                                 <div>
                                     <input
                                         type="tel"
-                                        placeholder="Teléfono"
+                                        placeholder={t('contact.formPhone')}
                                         className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none"
                                     />
                                 </div>
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder="Asunto"
+                                        placeholder={t('contact.subject')}
                                         className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none"
                                     />
                                 </div>
@@ -106,7 +109,7 @@ export default function ContactSection() {
                             <div>
                                 <textarea
                                     rows={4}
-                                    placeholder="Mensaje"
+                                    placeholder={t('contact.message')}
                                     className="w-full rounded-3xl bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none resize-none"
                                 />
                             </div>
@@ -116,7 +119,7 @@ export default function ContactSection() {
                                     type="submit"
                                     className="w-full rounded-full bg-[#B70126] px-8 py-4 text-center text-base font-bold text-white shadow-sm hover:bg-[#D9012D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B70126] transition-colors"
                                 >
-                                    Enviar
+                                    {t('contact.formButton')}
                                 </button>
                             </div>
                         </form>
