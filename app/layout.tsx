@@ -28,8 +28,58 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-    title: "Ivan Ivanovich - Academia de Protección Ejecutiva",
-    description: "Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo",
+    metadataBase: new URL('https://ivanivanovich.com'),
+    title: {
+        default: "Ivan Ivanovich - Academia de Protección Ejecutiva",
+        template: "%s | Ivan Ivanovich"
+    },
+    description: "Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo. Cursos certificados de Team Leader y Contravigilancia con instructor de nivel internacional.",
+    keywords: ["protección ejecutiva", "seguridad privada", "team leader", "contravigilancia", "curso protección ejecutiva", "academia seguridad", "ivan ivanovich", "executive protection"],
+    authors: [{ name: "Ivan Ivanovich" }],
+    creator: "Ivan Ivanovich",
+    publisher: "Ivan Ivanovich Academia",
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'es_ES',
+        alternateLocale: ['en_US'],
+        url: 'https://ivanivanovich.com',
+        siteName: 'Ivan Ivanovich Academia',
+        title: 'Ivan Ivanovich - Academia de Protección Ejecutiva',
+        description: 'Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo',
+        images: [
+            {
+                url: '/og-image.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Ivan Ivanovich Academia de Protección Ejecutiva',
+            }
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Ivan Ivanovich - Academia de Protección Ejecutiva',
+        description: 'Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo',
+        images: ['/og-image.jpg'],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    verification: {
+        google: 'your-google-verification-code', // Add your actual code from Google Search Console
+    },
 };
 
 export default async function RootLayout({

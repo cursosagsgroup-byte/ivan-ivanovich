@@ -5,6 +5,17 @@ import { translations } from '@/lib/translations';
 import Pagination from '@/components/ui/Pagination';
 import BlogSearch from '@/components/blog/BlogSearch';
 import { Prisma } from '@prisma/client';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Blog - Protección Ejecutiva y Seguridad',
+    description: 'Artículos, noticias y recursos sobre protección ejecutiva, seguridad privada y formación profesional. Actualizado regularmente por expertos en el sector.',
+    openGraph: {
+        title: 'Blog - Ivan Ivanovich Academia',
+        description: 'Contenido experto sobre protección ejecutiva y seguridad privada',
+        type: 'website',
+    },
+};
 
 export default async function BlogIndexPage({
     searchParams,
