@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/cursos',
+        destination: '/educacion/cursos-presenciales',
+        permanent: true, // 301 redirect - preserves SEO
+      },
+      {
         source: '/libro',
         destination: '/educacion/libro',
         permanent: true, // 301 redirect - preserves SEO
