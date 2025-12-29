@@ -27,23 +27,34 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const [items, setItems] = useState<CartItem[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     // Load cart from API when user logs in
     useEffect(() => {
-        if (session?.user) {
-            loadCart();
-        } else {
-            // Load from localStorage for guests
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                setItems(JSON.parse(savedCart));
+        if (status === 'loading') return;
+
+        const initCart = async () => {
+            try {
+                if (session?.user) {
+                    await loadCart();
+                } else {
+                    // Load from localStorage for guests
+                    const savedCart = localStorage.getItem('cart');
+                    if (savedCart) {
+                        setItems(JSON.parse(savedCart));
+                    }
+                }
+            } finally {
+                setIsLoading(false);
             }
-        }
-    }, [session]);
+        };
+
+        initCart();
+    }, [session, status]);
+
 
     // Save to localStorage for guests
     useEffect(() => {
