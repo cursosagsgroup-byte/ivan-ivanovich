@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import { Shield, CreditCard, Lock } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { PasswordInput } from '@/components/ui/PasswordInput';
+import dynamic from 'next/dynamic';
+
+const StripePaymentForm = dynamic(() => import('@/components/stripe/StripePaymentForm'), { ssr: false });
 
 export default function CheckoutPage() {
     const { items, total, isLoading, clearCart } = useCart();
@@ -24,10 +27,13 @@ export default function CheckoutPage() {
     const [couponError, setCouponError] = useState('');
     const [discount, setDiscount] = useState(0);
     const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
-
-    // Password State
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    // Payment state
+    const [orderId, setOrderId] = useState<string | null>(null);
+    const [orderNumber, setOrderNumber] = useState<string | null>(null);
+    const [showPayment, setShowPayment] = useState(false);
 
     const handleApplyCoupon = async () => {
         setCouponError('');
@@ -48,7 +54,7 @@ export default function CheckoutPage() {
             if (data.valid) {
                 setDiscount(data.discountAmount);
                 setAppliedCoupon(data.coupon.code);
-                setCouponCode(''); // Clear input
+                setCouponCode('');
             } else {
                 setCouponError(data.message || t('checkout.invalidCoupon'));
                 setDiscount(0);
@@ -85,7 +91,7 @@ export default function CheckoutPage() {
         }));
     };
 
-    const handlePayment = async (e: React.FormEvent) => {
+    const handleCreateOrder = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
@@ -110,7 +116,7 @@ export default function CheckoutPage() {
                     items: items.map(item => ({ courseId: item.courseId })),
                     billingDetails: formData,
                     couponCode: appliedCoupon,
-                    verificationToken: 'no-verification-required', // Mock token for API compatibility
+                    verificationToken: 'no-verification-required',
                     password,
                     country: formData.country,
                     phone: formData.phone,
@@ -124,9 +130,10 @@ export default function CheckoutPage() {
                 throw new Error(data.error || 'Something went wrong');
             }
 
-            // Clear cart and redirect
-            await clearCart();
-            router.push(`/checkout/success?orderId=${data.orderId}&orderNumber=${data.orderNumber}`);
+            // Order created, now show payment form
+            setOrderId(data.orderId);
+            setOrderNumber(data.orderNumber);
+            setShowPayment(true);
 
         } catch (error) {
             console.error('Checkout error:', error);
@@ -134,6 +141,17 @@ export default function CheckoutPage() {
         } finally {
             setIsProcessing(false);
         }
+    };
+
+    const handlePaymentSuccess = async () => {
+        // Clear cart and redirect
+        await clearCart();
+        router.push(`/checkout/success?orderId=${orderId}&orderNumber=${orderNumber}`);
+    };
+
+    const handlePaymentError = (error: string) => {
+        alert(`Error en el pago: ${error}`);
+        setShowPayment(false);
     };
 
     return (
@@ -157,7 +175,7 @@ export default function CheckoutPage() {
                                 <Shield className="w-5 h-5 text-primary" />
                                 {t('checkout.personalInfo')}
                             </h2>
-                            <form id="checkout-form" onSubmit={handlePayment} className="space-y-4">
+                            <form id="checkout-form" onSubmit={handleCreateOrder} className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.firstName')}</label>
@@ -348,14 +366,30 @@ export default function CheckoutPage() {
                                 </div>
                             </div>
 
-                            <button
-                                type="submit"
-                                form="checkout-form"
-                                disabled={isProcessing}
-                                className="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-[#D9012D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                            >
-                                {isProcessing ? t('checkout.processing') : `${t('checkout.pay')} $${(total - discount).toFixed(2)}`}
-                            </button>
+
+                            {showPayment && orderId ? (
+                                <div className="border-t border-slate-200 pt-6">
+                                    <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                        <CreditCard className="w-5 h-5 text-primary" />
+                                        Información de Pago
+                                    </h3>
+                                    <StripePaymentForm
+                                        amount={total - discount}
+                                        orderId={orderId}
+                                        onSuccess={handlePaymentSuccess}
+                                        onError={handlePaymentError}
+                                    />
+                                </div>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    form="checkout-form"
+                                    disabled={isProcessing}
+                                    className="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-[#D9012D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                >
+                                    {isProcessing ? t('checkout.processing') : 'Continuar al Pago'}
+                                </button>
+                            )}
 
                             <p className="text-xs text-center text-slate-500 mt-4">
                                 {t('checkout.terms')}
