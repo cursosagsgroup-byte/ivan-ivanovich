@@ -165,7 +165,8 @@ export async function POST(req: Request) {
                 userId,
                 orderNumber,
                 total: finalTotal,
-                status: 'completed', // Mark as completed for now (will be 'pending' when payment gateway is integrated)
+                status: 'pending', // Keep as pending until payment is confirmed
+                paymentMethod: 'stripe',
                 billingName: `${billingDetails.firstName} ${billingDetails.lastName}`,
                 billingEmail: billingDetails.email,
                 couponId,
@@ -176,40 +177,7 @@ export async function POST(req: Request) {
             },
         });
 
-        // Automatically enroll user in purchased courses
-        for (const item of orderItemsData) {
-            // Check if already enrolled (in case of duplicate order)
-            const existingEnrollment = await prisma.enrollment.findUnique({
-                where: {
-                    userId_courseId: {
-                        userId,
-                        courseId: item.courseId,
-                    },
-                },
-            });
-
-            // Only create enrollment if not already enrolled
-            if (!existingEnrollment) {
-                await prisma.enrollment.create({
-                    data: {
-                        userId,
-                        courseId: item.courseId,
-                        progress: 0,
-                    },
-                });
-            }
-        }
-
-        // Clear cart if user was logged in
-        if (session?.user?.id) {
-            await prisma.cartItem.deleteMany({
-                where: {
-                    cart: {
-                        userId: session.user.id,
-                    },
-                },
-            }).catch(() => { }); // Ignore if cart doesn't exist
-        }
+        // Do NOT enroll user here - webhook will handle it when payment succeeds
 
         return NextResponse.json({ orderId: order.id, orderNumber: order.orderNumber });
 
