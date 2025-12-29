@@ -75,7 +75,7 @@ export default function CheckoutPage() {
 
     useEffect(() => {
         if (!isLoading && items.length === 0) {
-            router.push('/courses');
+            router.push('/educacion/cursos-online');
         }
     }, [items, isLoading, router]);
 
