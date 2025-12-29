@@ -75,11 +75,22 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     try {
         console.log('✅ Checkout completed:', session.id);
 
-        // Get order from metadata (you'll need to add this when creating checkout)
+        // Get order from metadata
         const orderId = session.metadata?.orderId;
 
         if (!orderId) {
             console.error('No orderId in session metadata');
+            return;
+        }
+
+        // Get order with items to enroll user in courses
+        const order = await prisma.order.findUnique({
+            where: { id: orderId },
+            include: { items: true },
+        });
+
+        if (!order) {
+            console.error(`Order ${orderId} not found`);
             return;
         }
 
@@ -91,7 +102,30 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
             },
         });
 
-        console.log(`✅ Order ${orderId} marked as completed`);
+        // Enroll user in courses
+        for (const item of order.items) {
+            const existingEnrollment = await prisma.enrollment.findUnique({
+                where: {
+                    userId_courseId: {
+                        userId: order.userId,
+                        courseId: item.courseId,
+                    },
+                },
+            });
+
+            if (!existingEnrollment) {
+                await prisma.enrollment.create({
+                    data: {
+                        userId: order.userId,
+                        courseId: item.courseId,
+                        progress: 0,
+                    },
+                });
+                console.log(`✅ Enrolled user ${order.userId} in course ${item.courseId}`);
+            }
+        }
+
+        console.log(`✅ Order ${orderId} completed and user enrolled`);
     } catch (error) {
         console.error('Error handling checkout completed:', error);
     }
