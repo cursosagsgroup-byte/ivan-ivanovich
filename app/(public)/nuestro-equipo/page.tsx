@@ -38,7 +38,7 @@ export default function NuestroEquipoPage() {
                                         src="/course-hero-image.jpg"
                                         alt="Ivan Ivanovich Teaching"
                                         fill
-                                        className="object-cover"
+                                        className="object-cover object-top"
                                     />
                                 </div>
                             </div>
@@ -55,7 +55,7 @@ export default function NuestroEquipoPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                             {/* Left: Photo */}
                             <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-2xl">
-                                <img src="/ivan-photo.jpg" alt="Ivan Ivanovich" className="w-full h-full object-cover" />
+                                <img src="/ivan-photo.jpg" alt="Ivan Ivanovich" className="w-full h-full object-cover object-top" />
                             </div>
 
                             {/* Right: Content */}
@@ -154,7 +154,7 @@ export default function NuestroEquipoPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                             {/* Left: Photo */}
                             <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-2xl">
-                                <img src="/braulio-barrera.png" alt="Braulio Barrera" className="w-full h-full object-cover" />
+                                <img src="/braulio-barrera.png" alt="Braulio Barrera" className="w-full h-full object-cover object-top" />
                             </div>
 
                             {/* Right: Content */}
