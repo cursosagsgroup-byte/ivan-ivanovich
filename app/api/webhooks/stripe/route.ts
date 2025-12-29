@@ -3,14 +3,16 @@ import { headers } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-12-15.clover',
-});
-
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+function getStripe() {
+    return new Stripe(process.env.STRIPE_SECRET_KEY!, {
+        apiVersion: '2025-12-15.clover',
+    });
+}
 
 export async function POST(req: NextRequest) {
     try {
+        const stripe = getStripe();
+        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
         const body = await req.text();
         const headersList = await headers();
         const signature = headersList.get('stripe-signature');
