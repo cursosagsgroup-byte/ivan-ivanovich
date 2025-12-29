@@ -93,7 +93,7 @@ export default async function BlogIndexPage({
                                     <img
                                         src="/ivan-photo.jpg"
                                         alt="Ivan Ivanovich"
-                                        className="w-full h-full object-cover object-top"
+                                        className="w-full h-full object-cover object-center"
                                     />
                                 </div>
                             </div>
