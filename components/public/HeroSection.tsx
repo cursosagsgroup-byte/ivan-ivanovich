@@ -14,7 +14,7 @@ export default function HeroSection() {
                 {/* Background Image */}
                 <div className="absolute inset-0 -z-10">
                     <Image
-                        src="/hero-original.png"
+                        src="/hero-background.png"
                         alt="Ivan Ivanovich"
                         fill
                         className="object-cover object-center"
