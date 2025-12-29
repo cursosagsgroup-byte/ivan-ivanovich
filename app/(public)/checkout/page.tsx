@@ -266,7 +266,7 @@ export default function CheckoutPage() {
                                                     return prefixes[formData.country] || '+';
                                                 })()}
                                                 disabled
-                                                className="w-24 px-3 py-2 rounded-lg border border-slate-300 bg-slate-100 text-slate-600 text-center font-mono"
+                                                className="w-16 px-2 py-2 rounded-lg border border-slate-300 bg-slate-100 text-slate-600 text-center font-mono text-sm"
                                             />
                                             <input
                                                 type="tel"
