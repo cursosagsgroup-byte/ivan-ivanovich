@@ -38,7 +38,7 @@ export default function SobreLaProteccionPage() {
                                         src="/about-protection-hero.png"
                                         alt="Sobre la protección"
                                         fill
-                                        className="object-cover"
+                                        className="object-cover object-top"
                                     />
                                 </div>
                             </div>
