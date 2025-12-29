@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-01-27.acacia',
+    apiVersion: '2024-12-18.acacia',
 });
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -12,7 +12,8 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 export async function POST(req: NextRequest) {
     try {
         const body = await req.text();
-        const signature = headers().get('stripe-signature');
+        const headersList = await headers();
+        const signature = headersList.get('stripe-signature');
 
         if (!signature) {
             return NextResponse.json({ error: 'No signature' }, { status: 400 });
@@ -75,7 +76,6 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
             where: { id: orderId },
             data: {
                 status: 'completed',
-                paymentIntentId: session.payment_intent as string,
             },
         });
 
@@ -89,45 +89,8 @@ async function handlePaymentSucceeded(paymentIntent: Stripe.PaymentIntent) {
     try {
         console.log('✅ Payment succeeded:', paymentIntent.id);
 
-        // Find order by payment intent ID
-        const order = await prisma.order.findFirst({
-            where: { paymentIntentId: paymentIntent.id },
-            include: { items: true },
-        });
-
-        if (!order) {
-            console.error('Order not found for payment intent:', paymentIntent.id);
-            return;
-        }
-
-        // Update order status
-        await prisma.order.update({
-            where: { id: order.id },
-            data: { status: 'completed' },
-        });
-
-        // Enroll user in courses if not already enrolled
-        for (const item of order.items) {
-            const existingEnrollment = await prisma.enrollment.findUnique({
-                where: {
-                    userId_courseId: {
-                        userId: order.userId,
-                        courseId: item.courseId,
-                    },
-                },
-            });
-
-            if (!existingEnrollment) {
-                await prisma.enrollment.create({
-                    data: {
-                        userId: order.userId,
-                        courseId: item.courseId,
-                        progress: 0,
-                    },
-                });
-                console.log(`✅ Enrolled user ${order.userId} in course ${item.courseId}`);
-            }
-        }
+        // For now, just log. We'll implement this when checkout is integrated
+        console.log('Payment succeeded but no order mapping yet');
     } catch (error) {
         console.error('Error handling payment succeeded:', error);
     }
@@ -137,21 +100,8 @@ async function handlePaymentFailed(paymentIntent: Stripe.PaymentIntent) {
     try {
         console.log('❌ Payment failed:', paymentIntent.id);
 
-        const order = await prisma.order.findFirst({
-            where: { paymentIntentId: paymentIntent.id },
-        });
-
-        if (!order) {
-            console.error('Order not found for payment intent:', paymentIntent.id);
-            return;
-        }
-
-        await prisma.order.update({
-            where: { id: order.id },
-            data: { status: 'failed' },
-        });
-
-        console.log(`❌ Order ${order.id} marked as failed`);
+        // For now, just log. We'll implement this when checkout is integrated
+        console.log('Payment failed but no order mapping yet');
     } catch (error) {
         console.error('Error handling payment failed:', error);
     }
