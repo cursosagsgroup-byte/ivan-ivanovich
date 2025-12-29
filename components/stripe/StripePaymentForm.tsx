@@ -71,15 +71,14 @@ export default function StripePaymentForm({ amount, orderId, onSuccess, onError 
     useEffect(() => {
         async function initStripe() {
             try {
-                const configRes = await fetch('/api/admin/payments/config');
-                const configs = await configRes.json();
-                const stripeConfig = configs.find((c: any) => c.gateway === 'stripe');
+                const configRes = await fetch('/api/stripe/config');
+                const config = await configRes.json();
 
-                if (!stripeConfig || !stripeConfig.publicKey) {
-                    throw new Error('Stripe not configured');
+                if (!configRes.ok || !config.publicKey) {
+                    throw new Error(config.error || 'Stripe not configured');
                 }
 
-                const stripe = loadStripe(stripeConfig.publicKey);
+                const stripe = loadStripe(config.publicKey);
                 setStripePromise(stripe);
 
                 const paymentRes = await fetch('/api/stripe/create-payment-intent', {
