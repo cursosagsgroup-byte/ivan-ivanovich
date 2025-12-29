@@ -16,7 +16,6 @@ export default function CheckoutPage() {
         firstName: '',
         lastName: '',
         email: '',
-        confirmEmail: '',
         country: '',
         phone: '',
         age: ''
@@ -26,62 +25,9 @@ export default function CheckoutPage() {
     const [discount, setDiscount] = useState(0);
     const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
 
-    // OTP & Auth State
-    const [verificationStep, setVerificationStep] = useState<'idle' | 'sent' | 'verified'>('idle');
-    const [otp, setOtp] = useState('');
-    const [isVerifying, setIsVerifying] = useState(false);
-    const [verificationToken, setVerificationToken] = useState<string | null>(null);
+    // Password State
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const sendOtp = async () => {
-        if (formData.email !== formData.confirmEmail) {
-            alert(t('checkout.emailsDoNotMatch') || 'Los correos no coinciden');
-            return;
-        }
-        setIsVerifying(true);
-        // ... (rest of function)
-        try {
-            const res = await fetch('/api/auth/otp/send', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: formData.email })
-            });
-            if (res.ok) {
-                setVerificationStep('sent');
-                alert(t('checkout.codeSent'));
-            } else {
-                alert(t('checkout.errorSending'));
-            }
-        } catch (error) {
-            console.error(error);
-            alert(t('checkout.errorSending'));
-        } finally {
-            setIsVerifying(false);
-        }
-    };
-
-    const verifyOtp = async () => {
-        setIsVerifying(true);
-        try {
-            const res = await fetch('/api/auth/otp/verify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: formData.email, code: otp })
-            });
-            const data = await res.json();
-            if (res.ok) {
-                setVerificationStep('verified');
-                setVerificationToken(data.verificationToken);
-            } else {
-                alert(data.error || t('checkout.invalidCode'));
-            }
-        } catch (error) {
-            console.error(error);
-            alert(t('checkout.invalidCode'));
-        } finally {
-            setIsVerifying(false);
-        }
-    };
 
     const handleApplyCoupon = async () => {
         setCouponError('');
@@ -142,15 +88,13 @@ export default function CheckoutPage() {
     const handlePayment = async (e: React.FormEvent) => {
         e.preventDefault();
 
-
-
-        if (verificationStep !== 'verified') {
-            alert(t('checkout.emailVerificationRequired'));
+        if (password !== confirmPassword) {
+            alert(t('checkout.passwordsMismatch'));
             return;
         }
 
-        if (password !== confirmPassword) {
-            alert(t('checkout.passwordsMismatch'));
+        if (password.length < 6) {
+            alert('La contraseña debe tener al menos 6 caracteres');
             return;
         }
 
@@ -166,7 +110,7 @@ export default function CheckoutPage() {
                     items: items.map(item => ({ courseId: item.courseId })),
                     billingDetails: formData,
                     couponCode: appliedCoupon,
-                    verificationToken,
+                    verificationToken: 'no-verification-required', // Mock token for API compatibility
                     password,
                     country: formData.country,
                     phone: formData.phone,
@@ -240,52 +184,15 @@ export default function CheckoutPage() {
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.email')}</label>
-                                    <div className="space-y-4">
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            required
-                                            placeholder="ejemplo@correo.com"
-                                            disabled={verificationStep === 'verified'}
-                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-slate-100 disabled:text-slate-500"
-                                        />
-
-                                        {verificationStep !== 'verified' && (
-                                            <div>
-                                                <label className="block text-sm font-medium text-slate-700 mb-1">Confirma tu Correo</label>
-                                                <input
-                                                    type="email"
-                                                    name="confirmEmail"
-                                                    value={formData.confirmEmail}
-                                                    onChange={handleInputChange}
-                                                    required
-                                                    onPaste={(e) => e.preventDefault()} // Prevent pasting to ensure typing
-                                                    placeholder="Confirma tu correo"
-                                                    className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
-                                                />
-                                            </div>
-                                        )}
-
-                                        <div className="flex justify-end">
-                                            {verificationStep === 'idle' && (
-                                                <button
-                                                    type="button"
-                                                    onClick={sendOtp}
-                                                    disabled={!formData.email || !formData.confirmEmail || formData.email !== formData.confirmEmail || isVerifying}
-                                                    className="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 disabled:opacity-50 text-sm whitespace-nowrap w-full sm:w-auto"
-                                                >
-                                                    {isVerifying ? t('checkout.verifying') : t('checkout.verify')}
-                                                </button>
-                                            )}
-                                            {verificationStep === 'verified' && (
-                                                <span className="flex items-center text-green-600 font-medium px-2">
-                                                    <Shield className="w-4 h-4 mr-1" /> {t('checkout.verified')}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        required
+                                        placeholder="ejemplo@correo.com"
+                                        className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                    />
                                 </div>
 
                                 {/* New Personal Info Fields */}
@@ -329,55 +236,28 @@ export default function CheckoutPage() {
                                     </div>
                                 </div>
 
-                                {/* OTP Input */}
-                                {verificationStep === 'sent' && (
-                                    <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                                        <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.otpLabel')}</label>
-                                        <p className="text-xs text-slate-500 mb-2">{t('checkout.otpSentTo')} {formData.email}</p>
-                                        <div className="flex gap-2">
-                                            <input
-                                                type="text"
-                                                value={otp}
-                                                onChange={(e) => setOtp(e.target.value)}
-                                                placeholder={t('checkout.otpPlaceholder')}
-                                                className="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
-                                            />
-                                            <button
-                                                type="button"
-                                                onClick={verifyOtp}
-                                                disabled={!otp || isVerifying}
-                                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 text-sm"
-                                            >
-                                                {isVerifying ? t('checkout.confirming') : t('checkout.confirm')}
-                                            </button>
-                                        </div>
+                                {/* Password Creation */}
+                                <div className="space-y-4 pt-4 border-t border-slate-100">
+                                    <h3 className="text-sm font-bold text-slate-900">{t('checkout.createPassword')}</h3>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.password')}</label>
+                                        <PasswordInput
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                            minLength={6}
+                                        />
                                     </div>
-                                )}
-
-                                {/* Password Creation - Only show if verified */}
-                                {verificationStep === 'verified' && (
-                                    <div className="space-y-4 pt-4 border-t border-slate-100">
-                                        <h3 className="text-sm font-bold text-slate-900">{t('checkout.createPassword')}</h3>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.password')}</label>
-                                            <PasswordInput
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
-                                                required
-                                                minLength={6}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.confirmPassword')}</label>
-                                            <PasswordInput
-                                                value={confirmPassword}
-                                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                                required
-                                                minLength={6}
-                                            />
-                                        </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.confirmPassword')}</label>
+                                        <PasswordInput
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            required
+                                            minLength={6}
+                                        />
                                     </div>
-                                )}
+                                </div>
                             </form>
                         </div>
 
