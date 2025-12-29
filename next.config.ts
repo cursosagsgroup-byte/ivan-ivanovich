@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
         destination: '/educacion/cursos-online',
         permanent: true,
       },
+      {
+        source: '/libro',
+        destination: '/educacion/libro',
+        permanent: true, // 301 redirect - preserves SEO
+      },
       // Admin routes were moved to /admin, this redirect handles legacy public access attempt
     ];
   },
