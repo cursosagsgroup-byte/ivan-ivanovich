@@ -16,9 +16,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/courses',
-        destination: '/educacion/cursos-online',
-        permanent: true,
+        source: '/courses/:path*',
+        destination: '/educacion/:path*',
+        permanent: true, // Handles /courses/contravigilancia, /courses/team-leader, etc.
       },
       {
         source: '/cursos',
