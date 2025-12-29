@@ -30,6 +30,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const { data: session, status } = useSession();
     const [items, setItems] = useState<CartItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isInitialized, setIsInitialized] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     // Load cart from API when user logs in
@@ -49,6 +50,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 }
             } finally {
                 setIsLoading(false);
+                setIsInitialized(true);
             }
         };
 
@@ -58,10 +60,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     // Save to localStorage for guests
     useEffect(() => {
+        if (!isInitialized) return;
+
         if (!session?.user) {
             localStorage.setItem('cart', JSON.stringify(items));
         }
-    }, [items, session]);
+    }, [items, session, isInitialized]);
 
     const loadCart = async () => {
         try {
