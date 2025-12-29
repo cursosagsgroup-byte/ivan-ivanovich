@@ -3,16 +3,26 @@ import { headers } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 import Stripe from 'stripe';
 
-function getStripe() {
-    return new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2025-12-15.clover',
-    });
-}
-
 export async function POST(req: NextRequest) {
     try {
-        const stripe = getStripe();
-        const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+        // Get Stripe credentials from database
+        const stripeConfig = await prisma.paymentConfig.findUnique({
+            where: { gateway: 'stripe' },
+        });
+
+        if (!stripeConfig || !stripeConfig.enabled) {
+            return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 });
+        }
+
+        if (!stripeConfig.secretKey || !stripeConfig.webhookSecret) {
+            return NextResponse.json({ error: 'Stripe credentials missing' }, { status: 503 });
+        }
+
+        // Initialize Stripe with credentials from database
+        const stripe = new Stripe(stripeConfig.secretKey, {
+            apiVersion: '2025-12-15.clover',
+        });
+
         const body = await req.text();
         const headersList = await headers();
         const signature = headersList.get('stripe-signature');
@@ -24,7 +34,7 @@ export async function POST(req: NextRequest) {
         let event: Stripe.Event;
 
         try {
-            event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+            event = stripe.webhooks.constructEvent(body, signature, stripeConfig.webhookSecret);
         } catch (err: any) {
             console.error('⚠️  Webhook signature verification failed.', err.message);
             return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
