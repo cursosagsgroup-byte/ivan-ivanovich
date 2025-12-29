@@ -217,40 +217,83 @@ export default function CheckoutPage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.country')}</label>
-                                        <input
-                                            type="text"
+                                        <select
                                             name="country"
                                             value={formData.country}
                                             onChange={handleInputChange}
                                             required
-                                            placeholder={t('checkout.countryPlaceholder')}
                                             className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
-                                        />
+                                        >
+                                            <option value="">Selecciona tu país</option>
+                                            <option value="México">🇲🇽 México</option>
+                                            <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+                                            <option value="España">🇪🇸 España</option>
+                                            <option value="Colombia">🇨🇴 Colombia</option>
+                                            <option value="Argentina">🇦🇷 Argentina</option>
+                                            <option value="Chile">🇨🇱 Chile</option>
+                                            <option value="Perú">🇵🇪 Perú</option>
+                                            <option value="Venezuela">🇻🇪 Venezuela</option>
+                                            <option value="Ecuador">🇪🇨 Ecuador</option>
+                                            <option value="Guatemala">🇬🇹 Guatemala</option>
+                                            <option value="Costa Rica">🇨🇷 Costa Rica</option>
+                                            <option value="Panamá">🇵🇦 Panamá</option>
+                                            <option value="Uruguay">🇺🇾 Uruguay</option>
+                                            <option value="Paraguay">🇵🇾 Paraguay</option>
+                                            <option value="Bolivia">🇧🇴 Bolivia</option>
+                                            <option value="República Dominicana">🇩🇴 República Dominicana</option>
+                                            <option value="Puerto Rico">🇵🇷 Puerto Rico</option>
+                                            <option value="El Salvador">🇸🇻 El Salvador</option>
+                                            <option value="Honduras">🇭🇳 Honduras</option>
+                                            <option value="Nicaragua">🇳🇮 Nicaragua</option>
+                                            <option value="Otro">🌎 Otro</option>
+                                        </select>
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-1">WhatsApp (Obligatorio)</label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleInputChange}
-                                            required
-                                            placeholder="Ej: +52 55..."
-                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
-                                        />
+                                        <div className="flex gap-2">
+                                            <input
+                                                type="text"
+                                                value={(() => {
+                                                    const prefixes: Record<string, string> = {
+                                                        'México': '+52', 'Estados Unidos': '+1', 'España': '+34',
+                                                        'Colombia': '+57', 'Argentina': '+54', 'Chile': '+56',
+                                                        'Perú': '+51', 'Venezuela': '+58', 'Ecuador': '+593',
+                                                        'Guatemala': '+502', 'Costa Rica': '+506', 'Panamá': '+507',
+                                                        'Uruguay': '+598', 'Paraguay': '+595', 'Bolivia': '+591',
+                                                        'República Dominicana': '+1-809', 'Puerto Rico': '+1-787',
+                                                        'El Salvador': '+503', 'Honduras': '+504', 'Nicaragua': '+505',
+                                                    };
+                                                    return prefixes[formData.country] || '+';
+                                                })()}
+                                                disabled
+                                                className="w-24 px-3 py-2 rounded-lg border border-slate-300 bg-slate-100 text-slate-600 text-center font-mono"
+                                            />
+                                            <input
+                                                type="tel"
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleInputChange}
+                                                required
+                                                placeholder="555 123 4567"
+                                                className="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                            />
+                                        </div>
+                                        <p className="text-xs text-slate-500 mt-1">Solo números, sin prefijo de país</p>
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.age')}</label>
-                                        <input
-                                            type="number"
+                                        <select
                                             name="age"
                                             value={formData.age}
                                             onChange={handleInputChange}
                                             required
-                                            min="18"
-                                            max="100"
                                             className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
-                                        />
+                                        >
+                                            <option value="">Selecciona tu edad</option>
+                                            {Array.from({ length: 65 }, (_, i) => i + 18).map(age => (
+                                                <option key={age} value={age}>{age} años</option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </div>
 
