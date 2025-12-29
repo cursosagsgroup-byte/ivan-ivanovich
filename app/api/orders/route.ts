@@ -31,21 +31,24 @@ export async function POST(req: Request) {
             });
 
             if (!user) {
-                // VERIFY TOKEN BEFORE CREATING USER
+                // VERIFY TOKEN BEFORE CREATING USER (skip for mock token)
                 if (!verificationToken) {
                     return NextResponse.json({ error: 'Email verification required' }, { status: 400 });
                 }
 
-                try {
-                    // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    const jwt = require('jsonwebtoken');
-                    const decoded = jwt.verify(verificationToken, secret) as any;
+                // Skip validation for mock token (simplified checkout)
+                if (verificationToken !== 'no-verification-required') {
+                    try {
+                        // eslint-disable-next-line @typescript-eslint/no-var-requires
+                        const jwt = require('jsonwebtoken');
+                        const decoded = jwt.verify(verificationToken, secret) as any;
 
-                    if (decoded.email !== email || !decoded.verified) {
-                        return NextResponse.json({ error: 'Invalid verification token' }, { status: 400 });
+                        if (decoded.email !== email || !decoded.verified) {
+                            return NextResponse.json({ error: 'Invalid verification token' }, { status: 400 });
+                        }
+                    } catch (err) {
+                        return NextResponse.json({ error: 'Invalid or expired verification token' }, { status: 400 });
                     }
-                } catch (err) {
-                    return NextResponse.json({ error: 'Invalid or expired verification token' }, { status: 400 });
                 }
 
                 // Create new user with PROVIDED password
