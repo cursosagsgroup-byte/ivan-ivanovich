@@ -12,7 +12,7 @@ interface BlogPostFormProps {
 export default function BlogPostForm({ postId }: BlogPostFormProps) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const [fetching, setFetching] = useState(!!postId);
+    const [fetching, setFetching] = useState(!!postId && postId !== 'new');
 
     const [formData, setFormData] = useState({
         title: '',

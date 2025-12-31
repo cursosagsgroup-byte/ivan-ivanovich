@@ -38,7 +38,7 @@ export default function CertificadoDETAPage() {
                                         src="/certificado-deta.jpg"
                                         alt="Certificación DETA"
                                         fill
-                                        className="object-cover"
+                                        className="object-cover object-top"
                                     />
                                 </div>
                             </div>

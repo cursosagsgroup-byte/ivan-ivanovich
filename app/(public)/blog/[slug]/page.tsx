@@ -10,6 +10,8 @@ interface BlogPostPageProps {
     }>;
 }
 
+import { Metadata } from 'next';
+
 export async function generateStaticParams() {
     const posts = await prisma.blogPost.findMany({
         select: { slug: true },
@@ -18,6 +20,65 @@ export async function generateStaticParams() {
     return posts.map((post) => ({
         slug: post.slug,
     }));
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+    const { slug } = await params;
+
+    const post = await prisma.blogPost.findUnique({
+        where: { slug },
+        select: {
+            title: true,
+            excerpt: true,
+            image: true,
+            published: true,
+            author: {
+                select: {
+                    name: true
+                }
+            }
+        }
+    });
+
+    if (!post) {
+        return {
+            title: 'Artículo no encontrado',
+            description: 'El artículo que buscas no existe o ha sido movido.'
+        };
+    }
+
+    const baseUrl = 'https://ivanivanovich.com';
+    const imageUrl = post.image
+        ? (post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`)
+        : `${baseUrl}/images/og-image.jpg`;
+
+    return {
+        title: post.title,
+        description: post.excerpt || `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt || `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`,
+            url: `${baseUrl}/blog/${slug}`,
+            siteName: 'Ivan Ivanovich Academy',
+            locale: 'es_ES',
+            type: 'article',
+            images: [
+                {
+                    url: imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                }
+            ],
+            authors: [post.author?.name || 'Ivan Ivanovich'],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.excerpt || `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`,
+            images: [imageUrl],
+        }
+    };
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -89,10 +150,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             .replace(/\\u([\d\w]{4})/gi, (match, grp) => String.fromCharCode(parseInt(grp, 16)));
     };
 
+    // Helper to transform YouTube links into embeds
+    const transformYouTubeLinks = (html: string) => {
+        // Match standard links in anchor tags: <a href="...youtube...">...</a>
+        const linkRegex = /<a\s+(?:[^>]*?\s+)?href="(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^"&?\/]+)[^"]*)"[^>]*>.*?<\/a>/gi;
+
+        return html.replace(linkRegex, (match, url, videoId) => {
+            return `
+                <div class="my-8 w-full aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <iframe 
+                        src="https://www.youtube.com/embed/${videoId}" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen 
+                        class="w-full h-full"
+                    ></iframe>
+                </div>
+            `;
+        });
+    };
+
     let contentWithBanners = post.content;
 
     // Ensure content is a string and decode potential unicode escapes if they persisted
-    const cleanContent = decodeHtmlEntities(post.content);
+    const cleanContent = transformYouTubeLinks(decodeHtmlEntities(post.content));
 
     // Determine the delimiter based on content structure
     let delimiter = '';
