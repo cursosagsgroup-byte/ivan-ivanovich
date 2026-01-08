@@ -4,6 +4,68 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth'; // Assuming authOptions is exported from here
 import { randomBytes } from 'crypto';
 import { hash } from 'bcryptjs';
+import nodemailer from 'nodemailer';
+
+async function sendOrderConfirmation(order: any, items: any[]) {
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+        console.warn('SMTP credentials not configured. Order confirmation email not sent.');
+        return;
+    }
+
+    try {
+        const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: Number(process.env.SMTP_PORT) || 587,
+            secure: process.env.SMTP_SECURE === 'true',
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
+        });
+
+        const itemsHtml = items.map(item => `
+            <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                <p><strong>Curso:</strong> ${item.course.title}</p>
+                <p><strong>Precio:</strong> $${item.price.toFixed(2)}</p>
+            </div>
+        `).join('');
+
+        const mailOptions = {
+            from: process.env.SMTP_FROM || '"Ivan Ivanovich Academy" <noreply@ivanivanovich.com>',
+            to: order.billingEmail,
+            subject: `Confirmación de Orden #${order.orderNumber} - Ivan Ivanovich Academy`,
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+                    <h1 style="color: #333;">¡Gracias por tu compra!</h1>
+                    <p>Hola ${order.billingName},</p>
+                    <p>Tu orden ha sido confirmada exitosamente.</p>
+                    
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h3 style="margin-top: 0;">Detalles de la Orden</h3>
+                        <p><strong>Número de Orden:</strong> ${order.orderNumber}</p>
+                        <p><strong>Fecha:</strong> ${new Date().toLocaleDateString()}</p>
+                        <p><strong>Total Pagado:</strong> $${order.total.toFixed(2)}</p>
+                    </div>
+
+                    <h3>Productos:</h3>
+                    ${itemsHtml}
+
+                    <div style="text-align: center; margin: 30px 0;">
+                        <a href="${process.env.NEXTAUTH_URL}/student" style="background-color: #B70126; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Ir a Mis Cursos</a>
+                    </div>
+
+                    <p style="font-size: 14px; color: #666;">Si tienes alguna pregunta, por favor contáctanos respondiendo a este correo.</p>
+                </div>
+            `,
+        };
+
+        await transporter.sendMail(mailOptions);
+        console.log(`✅ Order confirmation email sent to ${order.billingEmail}`);
+
+    } catch (error) {
+        console.error('Error sending order confirmation email:', error);
+    }
+}
 
 export async function POST(req: Request) {
     try {
@@ -80,6 +142,7 @@ export async function POST(req: Request) {
         // Calculate total and validate items
         let total = 0;
         const orderItemsData = [];
+        const emailItems: any[] = [];
 
         for (const item of items) {
             const course = await prisma.course.findUnique({
@@ -95,6 +158,7 @@ export async function POST(req: Request) {
                 courseId: course.id,
                 price: course.price,
             });
+            emailItems.push({ course, price: course.price });
         }
 
         // Validate and apply coupon if provided
@@ -213,6 +277,9 @@ export async function POST(req: Request) {
                     });
                 }
             }
+
+            // Send confirmation email for free orders
+            await sendOrderConfirmation(order, emailItems);
         }
 
         return NextResponse.json({

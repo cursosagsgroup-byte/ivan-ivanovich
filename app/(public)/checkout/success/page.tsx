@@ -50,12 +50,8 @@ function SuccessContent() {
     }, [orderId]);
 
     const getCourseLink = (title: string, id: string) => {
-        const lowerTitle = title.toLowerCase();
-        if (lowerTitle.includes('team leader')) return '/educacion/team-leader';
-        if (lowerTitle.includes('contravigilancia')) return '/educacion/contravigilancia';
-        if (lowerTitle.includes('counter surveillance')) return '/educacion/counter-surveillance';
-        if (lowerTitle.includes('libro')) return '/educacion/libro';
-        return `/educacion/cursos-online/${id}`;
+        // Always direct to the course player/student dashboard
+        return `/student/courses/${id}`;
     };
 
     return (
@@ -105,7 +101,7 @@ function SuccessContent() {
                         </div>
                     ) : (
                         <Link
-                            href="/mi-cuenta"
+                            href="/student"
                             className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-[#D9012D] transition-colors"
                         >
                             {t('checkout.goToCourses')}
