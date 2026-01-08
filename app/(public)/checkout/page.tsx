@@ -36,6 +36,7 @@ export default function CheckoutPage() {
     const [orderId, setOrderId] = useState<string | null>(null);
     const [orderNumber, setOrderNumber] = useState<string | null>(null);
     const [showPayment, setShowPayment] = useState(false);
+    const [isRedirecting, setIsRedirecting] = useState(false);
 
     const handleApplyCoupon = async () => {
         setCouponError('');
@@ -76,12 +77,12 @@ export default function CheckoutPage() {
     };
 
     useEffect(() => {
-        if (!isLoading && items.length === 0) {
+        if (!isLoading && items.length === 0 && !isRedirecting) {
             router.push('/educacion/cursos-online');
         }
-    }, [items, isLoading, router]);
+    }, [items, isLoading, router, isRedirecting]);
 
-    if (items.length === 0) {
+    if (items.length === 0 && !isRedirecting) {
         return null;
     }
 
@@ -136,6 +137,7 @@ export default function CheckoutPage() {
             // Order created
             // Check if it's a free order (100% discount)
             if (data.freeOrder) {
+                setIsRedirecting(true);
                 // Auto-login if password was provided (new user scenarios)
                 if (password) {
                     try {
@@ -168,12 +170,14 @@ export default function CheckoutPage() {
         } catch (error) {
             console.error('Checkout error:', error);
             alert(t('checkout.errorProcessing'));
+            setIsRedirecting(false);
         } finally {
             setIsProcessing(false);
         }
     };
 
     const handlePaymentSuccess = async () => {
+        setIsRedirecting(true);
         // Clear cart and redirect
         await clearCart();
         router.push(`/checkout/success?orderId=${orderId}&orderNumber=${orderNumber}`);
