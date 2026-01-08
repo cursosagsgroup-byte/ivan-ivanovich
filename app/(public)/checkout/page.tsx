@@ -130,7 +130,16 @@ export default function CheckoutPage() {
                 throw new Error(data.error || 'Something went wrong');
             }
 
-            // Order created, now show payment form
+
+            // Order created
+            // Check if it's a free order (100% discount)
+            if (data.freeOrder) {
+                await clearCart();
+                router.push(`/checkout/success?orderId=${data.orderId}&orderNumber=${data.orderNumber}`);
+                return;
+            }
+
+            // Normal flow: show payment form
             setOrderId(data.orderId);
             setOrderNumber(data.orderNumber);
             setShowPayment(true);

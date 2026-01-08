@@ -158,6 +158,7 @@ export async function POST(req: Request) {
         const finalTotal = total - discount;
 
         // Create Order
+        const isFreeOrder = finalTotal <= 0;
         const orderNumber = `ORD-${Date.now()}-${randomBytes(4).toString('hex').toUpperCase()}`;
 
         const order = await prisma.order.create({
@@ -165,8 +166,8 @@ export async function POST(req: Request) {
                 userId,
                 orderNumber,
                 total: finalTotal,
-                status: 'pending', // Keep as pending until payment is confirmed
-                paymentMethod: 'stripe',
+                status: isFreeOrder ? 'completed' : 'pending',
+                paymentMethod: isFreeOrder ? 'free' : 'stripe',
                 billingName: `${billingDetails.firstName} ${billingDetails.lastName}`,
                 billingEmail: billingDetails.email,
                 couponId,
@@ -175,11 +176,38 @@ export async function POST(req: Request) {
                     create: orderItemsData,
                 },
             },
+            include: { items: true } // Include items for enrollment logic
         });
 
-        // Do NOT enroll user here - webhook will handle it when payment succeeds
+        // If order is free, enroll user immediately
+        if (isFreeOrder) {
+            for (const item of order.items) {
+                const existingEnrollment = await prisma.enrollment.findUnique({
+                    where: {
+                        userId_courseId: {
+                            userId: order.userId,
+                            courseId: item.courseId,
+                        },
+                    },
+                });
 
-        return NextResponse.json({ orderId: order.id, orderNumber: order.orderNumber });
+                if (!existingEnrollment) {
+                    await prisma.enrollment.create({
+                        data: {
+                            userId: order.userId,
+                            courseId: item.courseId,
+                            progress: 0,
+                        },
+                    });
+                }
+            }
+        }
+
+        return NextResponse.json({
+            orderId: order.id,
+            orderNumber: order.orderNumber,
+            freeOrder: isFreeOrder
+        });
 
     } catch (error) {
         console.error('Order creation error:', error);
