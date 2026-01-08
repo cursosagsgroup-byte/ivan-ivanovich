@@ -51,7 +51,7 @@ async function sendOrderConfirmation(order: any, items: any[]) {
                     ${itemsHtml}
 
                     <div style="text-align: center; margin: 30px 0;">
-                        <a href="${process.env.NEXTAUTH_URL}/student" style="background-color: #B70126; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Ir a Mis Cursos</a>
+                        <a href="${process.env.NEXTAUTH_URL}/mi-cuenta" style="background-color: #B70126; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Ir a Mis Cursos</a>
                     </div>
 
                     <p style="font-size: 14px; color: #666;">Si tienes alguna pregunta, por favor contáctanos respondiendo a este correo.</p>

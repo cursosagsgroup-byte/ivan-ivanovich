@@ -50,8 +50,8 @@ function SuccessContent() {
     }, [orderId]);
 
     const getCourseLink = (title: string, id: string) => {
-        // Always direct to the course player/student dashboard
-        return `/student/courses/${id}`;
+        // Direct to the course player
+        return `/courses/${id}/learn`;
     };
 
     return (
@@ -101,7 +101,7 @@ function SuccessContent() {
                         </div>
                     ) : (
                         <Link
-                            href="/student"
+                            href="/mi-cuenta"
                             className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-[#D9012D] transition-colors"
                         >
                             {t('checkout.goToCourses')}
