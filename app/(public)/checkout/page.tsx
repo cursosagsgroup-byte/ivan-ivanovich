@@ -7,11 +7,12 @@ import { Shield, CreditCard, Lock } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { PasswordInput } from '@/components/ui/PasswordInput';
 import dynamic from 'next/dynamic';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession, signOut } from 'next-auth/react';
 
 const StripePaymentForm = dynamic(() => import('@/components/stripe/StripePaymentForm'), { ssr: false });
 
 export default function CheckoutPage() {
+    const { data: session } = useSession();
     const { items, total, isLoading, clearCart } = useCart();
     const router = useRouter();
     const { t } = useTranslation();
@@ -82,6 +83,18 @@ export default function CheckoutPage() {
         }
     }, [items, isLoading, router, isRedirecting]);
 
+    useEffect(() => {
+        if (session?.user) {
+            const names = session.user.name?.split(' ') || ['', ''];
+            setFormData(prev => ({
+                ...prev,
+                firstName: names[0] || '',
+                lastName: names.slice(1).join(' ') || '',
+                email: session.user.email || ''
+            }));
+        }
+    }, [session]);
+
     if (items.length === 0 && !isRedirecting) {
         return null;
     }
@@ -97,14 +110,16 @@ export default function CheckoutPage() {
     const handleCreateOrder = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-            alert(t('checkout.passwordsMismatch'));
-            return;
-        }
+        if (!session) {
+            if (password !== confirmPassword) {
+                alert(t('checkout.passwordsMismatch'));
+                return;
+            }
 
-        if (password.length < 6) {
-            alert('La contraseña debe tener al menos 6 caracteres');
-            return;
+            if (password.length < 6) {
+                alert('La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
         }
 
         setIsProcessing(true);
@@ -120,7 +135,7 @@ export default function CheckoutPage() {
                     billingDetails: formData,
                     couponCode: appliedCoupon,
                     verificationToken: 'no-verification-required',
-                    password,
+                    password: session ? undefined : password,
                     country: formData.country,
                     phone: formData.phone,
                     age: parseInt(formData.age),
@@ -138,8 +153,9 @@ export default function CheckoutPage() {
             // Check if it's a free order (100% discount)
             if (data.freeOrder) {
                 setIsRedirecting(true);
-                // Auto-login if password was provided (new user scenarios)
-                if (password) {
+
+                // Auto-login only if not already logged in
+                if (!session && password) {
                     try {
                         const result = await signIn('credentials', {
                             redirect: false,
@@ -149,8 +165,6 @@ export default function CheckoutPage() {
 
                         if (result?.error) {
                             console.error('Auto-login failed:', result.error);
-                            // Verify if it is an existing user who just bought a course without logging in first.
-                            // In this case, we proceed to success page, but they might need to login manually.
                         }
                     } catch (loginError) {
                         console.error('Auto-login error:', loginError);
@@ -210,6 +224,27 @@ export default function CheckoutPage() {
                                 {t('checkout.personalInfo')}
                             </h2>
                             <form id="checkout-form" onSubmit={handleCreateOrder} className="space-y-4">
+                                {session?.user && (
+                                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex justify-between items-center">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                                                {session.user.name?.[0]?.toUpperCase() || 'U'}
+                                            </div>
+                                            <div>
+                                                <p className="text-sm font-medium text-slate-900">Comprando como</p>
+                                                <p className="text-sm text-slate-600">{session.user.email}</p>
+                                            </div>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={() => signOut()}
+                                            className="text-sm text-blue-600 hover:text-blue-800 font-medium underline"
+                                        >
+                                            Cambiar cuenta
+                                        </button>
+                                    </div>
+                                )}
+
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.firstName')}</label>
@@ -242,9 +277,13 @@ export default function CheckoutPage() {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         required
+                                        disabled={!!session}
                                         placeholder="ejemplo@correo.com"
-                                        className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                        className={`w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent ${session ? 'bg-slate-100 text-slate-500 cursor-not-allowed' : ''}`}
                                     />
+                                    {!!session && (
+                                        <p className="text-xs text-slate-500 mt-1">El correo no se puede cambiar porque has iniciado sesión.</p>
+                                    )}
                                 </div>
 
                                 {/* New Personal Info Fields */}
@@ -332,27 +371,29 @@ export default function CheckoutPage() {
                                 </div>
 
                                 {/* Password Creation */}
-                                <div className="space-y-4 pt-4 border-t border-slate-100">
-                                    <h3 className="text-sm font-bold text-slate-900">{t('checkout.createPassword')}</h3>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.password')}</label>
-                                        <PasswordInput
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            required
-                                            minLength={6}
-                                        />
+                                {!session && (
+                                    <div className="space-y-4 pt-4 border-t border-slate-100">
+                                        <h3 className="text-sm font-bold text-slate-900">{t('checkout.createPassword')}</h3>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.password')}</label>
+                                            <PasswordInput
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                required
+                                                minLength={6}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.confirmPassword')}</label>
+                                            <PasswordInput
+                                                value={confirmPassword}
+                                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                                required
+                                                minLength={6}
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-1">{t('checkout.confirmPassword')}</label>
-                                        <PasswordInput
-                                            value={confirmPassword}
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            required
-                                            minLength={6}
-                                        />
-                                    </div>
-                                </div>
+                                )}
                             </form>
                         </div>
 
