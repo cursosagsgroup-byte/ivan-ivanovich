@@ -53,7 +53,7 @@ export default function DatabaseTab() {
         setLoading(true);
         setError(null);
         try {
-            const res = await fetch('/api/admin/database');
+            const res = await fetch(`/api/admin/database?t=${Date.now()}`, { cache: 'no-store' });
             if (!res.ok) {
                 if (res.status === 401) {
                     throw new Error('No autorizado. Por favor inicia sesión nuevamente como Administrador.');
