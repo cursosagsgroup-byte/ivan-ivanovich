@@ -16,9 +16,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/courses/:path*',
-        destination: '/educacion/:path*',
-        permanent: true, // Handles /courses/contravigilancia, /courses/team-leader, etc.
+        source: '/courses/:slug(contravigilancia|counter-surveillance|team-leader|cursos-online|cursos-presenciales|libro|certificado-deta)',
+        destination: '/educacion/:slug',
+        permanent: true,
       },
       {
         source: '/cursos',

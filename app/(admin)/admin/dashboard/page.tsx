@@ -8,6 +8,9 @@ import RecentActivity from '@/components/RecentActivity';
 import { prisma } from '@/lib/prisma';
 import SalesAnalytics from '@/components/dashboard/SalesAnalytics';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Home() {
   const session = await getServerSession(authOptions);
   // Admin Dashboard Logic
@@ -52,7 +55,7 @@ export default async function Home() {
 
   // Recent Enrollments (as Activity)
   const recentEnrollments = await prisma.enrollment.findMany({
-    take: 5,
+    take: 10,
     orderBy: { enrolledAt: 'desc' },
     include: {
       user: true,

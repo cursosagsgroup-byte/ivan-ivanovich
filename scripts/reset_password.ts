@@ -1,29 +1,43 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcryptjs'
 
-async function resetPassword() {
-    const email = 'asaeltc@hotmail.com';
-    const newPassword = 'test123';
+const prisma = new PrismaClient()
 
-    console.log(`🔐 Resetting password for ${email}...`);
+async function main() {
+    const email = 'gcc.mx@wso-security.com';
+    const newPasswordRaw = 'Ivan2025!';
 
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    console.log(`Resetting password for ${email}...`);
+
+    const user = await prisma.user.findUnique({
+        where: { email }
+    });
+
+    if (!user) {
+        console.error('User not found');
+        return;
+    }
+
+    const hashedPassword = await bcrypt.hash(newPasswordRaw, 10);
 
     await prisma.user.update({
         where: { email },
-        data: { password: hashedPassword }
+        data: {
+            password: hashedPassword,
+            updatedAt: new Date()
+        }
     });
 
-    console.log('✅ Password reset successfully!');
-    console.log('');
-    console.log('📧 Email:', email);
-    console.log('🔑 Password:', newPassword);
-    console.log('');
-    console.log('You can now login at http://localhost:3000/login');
-
-    await prisma.$disconnect();
+    console.log(`Password for ${email} has been reset to: ${newPasswordRaw}`);
 }
 
-resetPassword().catch(console.error);
+main()
+    .then(async () => {
+        await prisma.$disconnect()
+    })
+    .catch(async (e) => {
+        console.error(e)
+        await prisma.$disconnect()
+        process.exit(1)
+    })

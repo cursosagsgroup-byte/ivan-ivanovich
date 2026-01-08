@@ -1,9 +1,10 @@
 'use client';
 
-import { PlayCircle, Clock, Award, Download, User, Mail, Phone, MapPin, Calendar, Upload } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState, useRef } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
+import { PlayCircle, Clock, Award, Download, User, Mail, Phone, MapPin, Calendar, Upload, Loader2 } from 'lucide-react';
 
 interface EnrolledCourse {
     id: string;
@@ -37,6 +38,8 @@ export default function StudentDashboard({ enrolledCourses, profileData: initial
     const [activeTab, setActiveTab] = useState<'profile' | 'courses' | 'certificates' | 'logout'>('profile');
     const [profileData, setProfileData] = useState(initialProfileData);
     const [isEditing, setIsEditing] = useState(false);
+    const [loadingCourseId, setLoadingCourseId] = useState<string | null>(null);
+    const router = useRouter();
     const photoInputRef = useRef<HTMLInputElement>(null);
 
     const completedCourses = enrolledCourses.filter(c => c.certificateAvailable);
@@ -300,13 +303,29 @@ export default function StudentDashboard({ enrolledCourses, profileData: initial
                                                 </div>
                                             </div>
 
-                                            <Link
-                                                href={`/courses/${course.id}/learn`}
-                                                className="w-full flex items-center justify-center gap-2 bg-slate-900 text-white py-2.5 rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium"
+                                            <button
+                                                onClick={() => {
+                                                    setLoadingCourseId(course.id);
+                                                    router.push(`/courses/${course.id}/learn`);
+                                                }}
+                                                disabled={loadingCourseId === course.id}
+                                                className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-lg transition-colors text-sm font-medium ${loadingCourseId === course.id
+                                                    ? 'bg-slate-100 text-slate-500 cursor-not-allowed border border-slate-200'
+                                                    : 'bg-slate-900 text-white hover:bg-slate-800'
+                                                    }`}
                                             >
-                                                <PlayCircle className="w-4 h-4" />
-                                                {course.progress === 100 ? t('dashboard.viewCourse') : t('dashboard.continueCourse')}
-                                            </Link>
+                                                {loadingCourseId === course.id ? (
+                                                    <>
+                                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                                        Cargando...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <PlayCircle className="w-4 h-4" />
+                                                        {course.progress === 100 ? t('dashboard.viewCourse') : t('dashboard.continueCourse')}
+                                                    </>
+                                                )}
+                                            </button>
                                         </div>
                                     </div>
                                 ))}

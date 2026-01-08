@@ -120,15 +120,22 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
     const nextLesson = currentLessonIndex < allLessons.length - 1 ? allLessons[currentLessonIndex + 1] : null;
     const prevLesson = currentLessonIndex > 0 ? allLessons[currentLessonIndex - 1] : null;
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleLessonChange = async (lessonId: string) => {
-        // Check if lesson is locked
+        if (isLoading) return; // Prevent double clicks
+
+        // Check if lesson is locked (and not currently unlocking via refresh)
         const lesson = allLessons.find(l => l.id === lessonId);
         if (lesson?.isLocked) {
-            // Do nothing if locked
-            return;
+            // If we are actively completing the previous lesson, we might want to wait?
+            // But for now, just return to prevent confusion.
+            if (!activeLessonId) return;
         }
 
-        // Mark current lesson as complete before moving to next
+        setIsLoading(true);
+
+        // Mark current lesson as complete before attempting to move
         if (activeLessonId && activeLessonId !== lessonId) {
             try {
                 await fetch('/api/lessons/complete', {
@@ -137,18 +144,27 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                     body: JSON.stringify({ lessonId: activeLessonId })
                 });
                 console.log('✅ Lesson marked as complete:', activeLessonId);
-                // Refresh the page to update progress
                 router.refresh();
+                // Wait a bit for the refresh to happen? 
+                // We rely on the UI update to clear loading, or the component remounting/updating props.
             } catch (error) {
                 console.error('Error marking lesson complete:', error);
             }
         }
 
+        // Re-check lock after potential completion? 
+        // No, client state is stale until refresh comes back.
+        // We will optimistically enforce the change visually but the true unlock happens on server.
+
         setActiveLessonId(lessonId);
-        // Find module for this lesson to expand it if needed
         const module = modules.find(m => m.lessons.some(l => l.id === lessonId));
         if (module) setActiveModuleId(module.id);
+
+        // Reset loading after a delay or effect
+        setTimeout(() => setIsLoading(false), 1000);
     };
+
+
 
     if (!isClient) return null; // Prevent hydration mismatch for player
 
@@ -261,6 +277,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                         title={currentLesson.title}
                                         questions={currentLesson.questions || []}
                                         previousAttempt={previousQuizAttempt}
+                                        onNext={() => nextLesson && handleLessonChange(nextLesson.id)}
                                         onComplete={async (score, passed, answers) => {
                                             console.log('Quiz completed:', score, passed);
                                             try {
@@ -318,13 +335,13 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
 
                                                 <button
                                                     onClick={() => nextLesson && handleLessonChange(nextLesson.id)}
-                                                    disabled={!nextLesson}
-                                                    className={`flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-colors ${nextLesson
+                                                    disabled={!nextLesson || isLoading}
+                                                    className={`flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-colors ${nextLesson && !isLoading
                                                         ? 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20'
                                                         : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                                                         }`}
                                                 >
-                                                    Siguiente Lección
+                                                    {isLoading ? 'Procesando...' : 'Siguiente Lección'}
                                                     <ChevronRight className="w-4 h-4 ml-2" />
                                                 </button>
                                             </div>

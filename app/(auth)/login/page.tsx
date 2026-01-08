@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -15,6 +15,11 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isMounted, setIsMounted] = useState(true);
+
+    useEffect(() => {
+        return () => setIsMounted(false);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,20 +35,21 @@ export default function LoginPage() {
 
             if (result?.error) {
                 setError(t('auth.invalidCredentials'));
+                setLoading(false);
             } else {
                 // Fetch the session to check the user role using a fetch call to avoid hooks issues
                 const sessionRes = await fetch('/api/auth/session');
                 const session = await sessionRes.json();
 
                 if (session?.user?.role === 'ADMIN' || session?.user?.role === 'SUPER_ADMIN') {
-                    router.push('/admin/dashboard');
+                    window.location.href = '/admin/dashboard';
                 } else {
-                    router.push('/mi-cuenta');
+                    window.location.href = '/mi-cuenta';
                 }
+                // Don't set loading false. The page will reload.
             }
         } catch (error) {
             setError(t('auth.errorLogin'));
-        } finally {
             setLoading(false);
         }
     };

@@ -22,9 +22,10 @@ interface QuizPlayerProps {
         answers: Record<string, string>;
     } | null;
     onComplete: (score: number, passed: boolean, answers: Record<string, string>) => void;
+    onNext?: () => void;
 }
 
-export default function QuizPlayer({ quizId, title, questions, previousAttempt, onComplete }: QuizPlayerProps) {
+export default function QuizPlayer({ quizId, title, questions, previousAttempt, onComplete, onNext }: QuizPlayerProps) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>(previousAttempt?.answers || {});
     const [showResults, setShowResults] = useState(previousAttempt?.passed || false);
@@ -145,6 +146,7 @@ export default function QuizPlayer({ quizId, title, questions, previousAttempt, 
                     )}
                     {passed && (
                         <button
+                            onClick={onNext}
                             className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors font-medium"
                         >
                             Continuar al siguiente módulo

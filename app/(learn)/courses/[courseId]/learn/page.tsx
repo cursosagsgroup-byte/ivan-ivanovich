@@ -105,7 +105,7 @@ export default async function LearnPage({ params }: LearnPageProps) {
                 description: null as string | null,
                 videoUrl: null as string | null,
                 duration: quiz.timeLimit || null,
-                isCompleted: quiz.attempts.length > 0 && quiz.attempts[0].passed,
+                isCompleted: quiz.attempts.length > 0 && (quiz.attempts[0].passed || quiz.attempts[0].score >= 60),
                 type: 'quiz' as const,
                 order: quiz.order,
                 questions: quiz.questions,
@@ -136,16 +136,25 @@ export default async function LearnPage({ params }: LearnPageProps) {
                 lesson.isLocked = false;
             });
         } else {
-            // Check if previous module's quiz is passed
+            // Check if previous module's completion
             const previousModule = modules[moduleIndex - 1];
-            const previousQuiz = previousModule.lessons.find(l => l.type === 'quiz');
+            const previousQuizzes = previousModule.lessons.filter(l => l.type === 'quiz');
 
-            // Lock this module if previous quiz doesn't exist, isn't completed, or score < 60%
-            const isPreviousQuizPassed = previousQuiz &&
-                previousQuiz.isCompleted &&
-                (previousQuiz.lastAttemptScore ?? 0) >= 60;
+            // Lock this module if:
+            // 1. Previous module has quizzes AND any is not passed
+            // 2. Previous module has NO quiz AND its lessons are not all completed
+            let isPreviousModuleCompleted = false;
 
-            const isModuleLocked = !isPreviousQuizPassed;
+            if (previousQuizzes.length > 0) {
+                // All quizzes must be passed (isCompleted logic now handles score >= 60)
+                isPreviousModuleCompleted = previousQuizzes.every(q => q.isCompleted);
+            } else {
+                // If no quiz, check if all video lessons are completed
+                const videoLessons = previousModule.lessons.filter(l => l.type === 'video');
+                isPreviousModuleCompleted = videoLessons.length > 0 && videoLessons.every(l => l.isCompleted);
+            }
+
+            const isModuleLocked = !isPreviousModuleCompleted;
 
             // Lock all lessons in this module if module is locked
             module.lessons.forEach(lesson => {

@@ -14,25 +14,25 @@ async function getStudents(page: number = 1, search?: string) {
         const skip = (page - 1) * STUDENTS_PER_PAGE;
 
         if (search && search.trim()) {
-            // Use raw SQL for SQLite case-insensitive search
+            // Use raw SQL for Postgres case-insensitive search
             const searchTerm = `%${search.trim()}%`;
 
             const students = await prisma.$queryRaw<any[]>`
                 SELECT 
                     u.*,
-                    (SELECT COUNT(*) FROM Enrollment WHERE userId = u.id) as enrollmentCount
-                FROM User u
+                    (SELECT COUNT(*) FROM "Enrollment" WHERE "userId" = u.id) as "enrollmentCount"
+                FROM "User" u
                 WHERE u.role = 'STUDENT' 
-                AND (u.name LIKE ${searchTerm} COLLATE NOCASE OR u.email LIKE ${searchTerm} COLLATE NOCASE)
-                ORDER BY u.createdAt DESC
+                AND (u.name ILIKE ${searchTerm} OR u.email ILIKE ${searchTerm})
+                ORDER BY u."createdAt" DESC
                 LIMIT ${STUDENTS_PER_PAGE} OFFSET ${skip}
             `;
 
             const totalCountResult = await prisma.$queryRaw<[{ count: number }]>`
                 SELECT COUNT(*) as count
-                FROM User u
+                FROM "User" u
                 WHERE u.role = 'STUDENT' 
-                AND (u.name LIKE ${searchTerm} COLLATE NOCASE OR u.email LIKE ${searchTerm} COLLATE NOCASE)
+                AND (u.name ILIKE ${searchTerm} OR u.email ILIKE ${searchTerm})
             `;
 
             const totalCount = Number(totalCountResult[0].count);
