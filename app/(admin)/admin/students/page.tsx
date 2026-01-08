@@ -7,6 +7,9 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import StudentSearch from '@/components/dashboard/StudentSearch';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const STUDENTS_PER_PAGE = 50;
 
 async function getStudents(page: number = 1, search?: string) {

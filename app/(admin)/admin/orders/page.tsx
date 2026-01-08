@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     title: 'Pedidos (Orders) | Keting Media Admin',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function OrdersPage() {
     const orders = await prisma.order.findMany({
         include: {
