@@ -116,9 +116,21 @@ export async function POST(req: Request) {
                 if (coupon.maxUsesPerUser) {
                     let usageCount = 0;
                     if (userId) {
-                        usageCount = await prisma.order.count({ where: { userId, couponId: coupon.id } });
+                        usageCount = await prisma.order.count({
+                            where: {
+                                userId,
+                                couponId: coupon.id,
+                                status: 'completed'
+                            }
+                        });
                     } else {
-                        usageCount = await prisma.order.count({ where: { billingEmail: billingDetails.email, couponId: coupon.id } });
+                        usageCount = await prisma.order.count({
+                            where: {
+                                billingEmail: billingDetails.email,
+                                couponId: coupon.id,
+                                status: 'completed'
+                            }
+                        });
                     }
 
                     if (usageCount >= coupon.maxUsesPerUser) {
