@@ -282,6 +282,18 @@ export async function POST(req: Request) {
             await sendOrderConfirmation(order, emailItems);
         }
 
+        // IMPORTANT: Increment coupon usage count if a coupon was used and order is completed (free)
+        if (isFreeOrder && couponId) {
+            await prisma.coupon.update({
+                where: { id: couponId },
+                data: {
+                    usedCount: {
+                        increment: 1
+                    }
+                }
+            });
+        }
+
         return NextResponse.json({
             orderId: order.id,
             orderNumber: order.orderNumber,

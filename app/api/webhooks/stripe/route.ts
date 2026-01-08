@@ -102,6 +102,18 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
             },
         });
 
+        // Increment coupon usage if applicable
+        if (order.couponId) {
+            await prisma.coupon.update({
+                where: { id: order.couponId },
+                data: {
+                    usedCount: {
+                        increment: 1
+                    }
+                }
+            });
+        }
+
         // Enroll user in courses
         for (const item of order.items) {
             const existingEnrollment = await prisma.enrollment.findUnique({
