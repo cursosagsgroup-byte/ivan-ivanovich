@@ -7,6 +7,7 @@ import { Shield, CreditCard, Lock } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { PasswordInput } from '@/components/ui/PasswordInput';
 import dynamic from 'next/dynamic';
+import { signIn } from 'next-auth/react';
 
 const StripePaymentForm = dynamic(() => import('@/components/stripe/StripePaymentForm'), { ssr: false });
 
@@ -15,6 +16,7 @@ export default function CheckoutPage() {
     const router = useRouter();
     const { t } = useTranslation();
     const [isProcessing, setIsProcessing] = useState(false);
+    // ... skipping unchanged state ...
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -134,6 +136,25 @@ export default function CheckoutPage() {
             // Order created
             // Check if it's a free order (100% discount)
             if (data.freeOrder) {
+                // Auto-login if password was provided (new user scenarios)
+                if (password) {
+                    try {
+                        const result = await signIn('credentials', {
+                            redirect: false,
+                            email: formData.email,
+                            password: password
+                        });
+
+                        if (result?.error) {
+                            console.error('Auto-login failed:', result.error);
+                            // Verify if it is an existing user who just bought a course without logging in first.
+                            // In this case, we proceed to success page, but they might need to login manually.
+                        }
+                    } catch (loginError) {
+                        console.error('Auto-login error:', loginError);
+                    }
+                }
+
                 await clearCart();
                 router.push(`/checkout/success?orderId=${data.orderId}&orderNumber=${data.orderNumber}`);
                 return;
