@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
             excerpt: true,
             image: true,
             published: true,
+            language: true,
             author: {
                 select: {
                     name: true
@@ -52,15 +53,22 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
         ? (post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`)
         : `${baseUrl}/images/og-image.jpg`;
 
+    // Determine locale and fallback text based on post language
+    const isEnglish = post.language === 'en';
+    const locale = isEnglish ? 'en_US' : 'es_ES';
+    const fallbackText = isEnglish
+        ? `Read the article "${post.title}" on Ivan Ivanovich Academy.`
+        : `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`;
+
     return {
         title: post.title,
-        description: post.excerpt || `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`,
+        description: post.excerpt || fallbackText,
         openGraph: {
             title: post.title,
-            description: post.excerpt || `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`,
+            description: post.excerpt || fallbackText,
             url: `${baseUrl}/blog/${slug}`,
             siteName: 'Ivan Ivanovich Academy',
-            locale: 'es_ES',
+            locale: locale,
             type: 'article',
             images: [
                 {
@@ -75,7 +83,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
         twitter: {
             card: 'summary_large_image',
             title: post.title,
-            description: post.excerpt || `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`,
+            description: post.excerpt || fallbackText,
             images: [imageUrl],
         }
     };
