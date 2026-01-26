@@ -57,7 +57,7 @@ export default async function MiCuentaPage() {
             totalLessons: totalItems,
             completedLessons: Math.round((totalItems * enrollment.progress) / 100),
             completedAt: enrollment.completedAt?.toISOString() || null,
-            certificateAvailable: enrollment.progress === 100 || !!cert,
+            certificateAvailable: !!cert,  // Only true if certificate exists
             certificateId: cert?.id
         };
     });
