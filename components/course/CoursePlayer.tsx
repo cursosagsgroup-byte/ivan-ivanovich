@@ -164,6 +164,35 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
         setTimeout(() => setIsLoading(false), 1000);
     };
 
+    const handleFinishCourse = async () => {
+        if (isLoading || !currentLesson) return;
+
+        setIsLoading(true);
+
+        try {
+            // 1. Mark the current (last) lesson as complete
+            await fetch('/api/lessons/complete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ lessonId: currentLesson.id })
+            });
+            console.log('✅ Final lesson marked as complete:', currentLesson.id);
+
+            // 2. Redirect to dashboard or show success
+            // We force a refresh first to ensure server state is updated, then redirect
+            router.refresh();
+
+            // Give a moment for the user to see the change, then redirect
+            setTimeout(() => {
+                router.push('/mi-cuenta?success=course_completed');
+            }, 1000);
+
+        } catch (error) {
+            console.error('Error finishing course:', error);
+            setIsLoading(false);
+        }
+    };
+
 
 
     if (!isClient) return null; // Prevent hydration mismatch for player
@@ -333,17 +362,28 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                                     Anterior
                                                 </button>
 
-                                                <button
-                                                    onClick={() => nextLesson && handleLessonChange(nextLesson.id)}
-                                                    disabled={!nextLesson || isLoading}
-                                                    className={`flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-colors ${nextLesson && !isLoading
-                                                        ? 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20'
-                                                        : 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                                                        }`}
-                                                >
-                                                    {isLoading ? 'Procesando...' : 'Siguiente Lección'}
-                                                    <ChevronRight className="w-4 h-4 ml-2" />
-                                                </button>
+                                                {nextLesson ? (
+                                                    <button
+                                                        onClick={() => nextLesson && handleLessonChange(nextLesson.id)}
+                                                        disabled={isLoading}
+                                                        className={`flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-colors ${!isLoading
+                                                            ? 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg shadow-slate-900/20'
+                                                            : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                                                            }`}
+                                                    >
+                                                        {isLoading ? 'Procesando...' : 'Siguiente Lección'}
+                                                        <ChevronRight className="w-4 h-4 ml-2" />
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        onClick={handleFinishCourse}
+                                                        disabled={isLoading}
+                                                        className={`flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-colors bg-[#B70126] text-white hover:bg-[#96011f] shadow-lg shadow-[#B70126]/20`}
+                                                    >
+                                                        {isLoading ? 'Finalizando...' : 'Finalizar Curso'}
+                                                        <CheckCircle className="w-4 h-4 ml-2" />
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
 

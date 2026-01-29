@@ -1,0 +1,120 @@
+Searching for user...
+User found: notificacionesluis@outlook.com cmiq7nfj303kgkveggjfu5grl
+Enrollments: [ 'Team Leader en Protección Ejecutiva' ]
+Modules matching "Puesta a Punto": [
+  'Puesta a punto. (Course: Team Leader en Protección Ejecutiva)',
+  'Puesta a punto. (Course: Team Leader in Executive Protection)'
+]
+
+Analyzing progress for course: Team Leader en Protección Ejecutiva
+
+Module: Introducción (Order: 1)
+  Lesson: Introducción - INCOMPLETE
+
+Module: Tres pilares fundamentales de la protección ejecutiva moderna (Order: 2)
+  Lesson: Tres pilares fundamentales de la protección ejecutiva moderna - INCOMPLETE
+  Quiz: PROTECCIÓN EJECUTIVA TRADICIONAL - PASSED (Attempts: 1)
+    - Score: 100, Date: Wed Dec 31 2025 09:09:50 GMT-0600 (Central Standard Time)
+  Quiz: LA AUTOAMENAZA - NOT PASSED (Attempts: 0)
+
+Module: Alcances de las medidas reactivas y las armas de fuego (Order: 3)
+  Lesson: Alcances de las medidas reactivas y las armas de fuego - INCOMPLETE
+  Quiz: ALCANCES DE LAS MEDIDAS REACTIVAS EN LA PROTECCION EJECUTIVA - NOT PASSED (Attempts: 0)
+
+Module: Fundamentos de la protección ejecutiva moderna (Order: 4)
+  Lesson: Fundamentos de la protección ejecutiva moderna - INCOMPLETE
+  Quiz: PROTECCION EJECUTIVA MODERNA - NOT PASSED (Attempts: 0)
+
+Module: Objetivos de la protección ejecutiva (Order: 5)
+  Lesson: Objetivos de la protección ejecutiva - INCOMPLETE
+  Lesson: Comodidad del ejecutivo - INCOMPLETE
+  Lesson: Proteger la Imagen del ejecutivo - INCOMPLETE
+  Lesson: Proteger la información sensible del ejecutivo - INCOMPLETE
+  Quiz: Cuestionario 1: OBJETIVOS DE LA PROTECCIÓN EJECUTIVA - NOT PASSED (Attempts: 0)
+
+Module: Vigilancia en la protección ejecutiva (Order: 6)
+  Lesson: Vigilancia en la protección ejecutiva - INCOMPLETE
+  Quiz: Cuestionario 1: Vigilancia - NOT PASSED (Attempts: 0)
+
+Module: Contravigilancia en la protección ejecutiva (Order: 7)
+  Lesson: Contravigilancia en la protección ejecutiva - INCOMPLETE
+  Lesson: Contravigilancia en la protección ejecutiva continuación - INCOMPLETE
+  Quiz: FUNDAMENTOS DE LA CONTRA VIGILANCIA - NOT PASSED (Attempts: 0)
+
+Module: Inteligencia en la protección ejecutiva (Order: 8)
+  Lesson: Inteligencia en la protección ejecutiva - INCOMPLETE
+  Quiz: INTELIGENCIA - NOT PASSED (Attempts: 0)
+
+Module: Contrainteligencia en la protección ejecutiva (Order: 9)
+  Lesson: Contrainteligencia en la protección ejecutiva - INCOMPLETE
+  Quiz: Cuestionario. Contrainteligencia en la protección ejecutiva - NOT PASSED (Attempts: 0)
+
+Module: Seguridad física y electrónica dentro del esquema de protección ejecutiva (Order: 10)
+  Lesson: Seguridad física y electrónica dentro del esquema de protección ejecutiva - INCOMPLETE
+  Quiz: Seguridad física y electrónica dentro del esquema de protección ejecutiva - NOT PASSED (Attempts: 0)
+
+Module: Intervención y alerta temprana (Order: 11)
+  Lesson: Intervención y alerta temprana - INCOMPLETE
+  Lesson: Intervención y alerta temprana continuación - INCOMPLETE
+  Quiz: Objetivo principal de la alerta temprana. - NOT PASSED (Attempts: 0)
+
+Module: Planeación de rutas de traslado (Order: 12)
+  Lesson: Planeación de rutas de traslado - INCOMPLETE
+  Quiz: PLANEACION DE RUTAS - NOT PASSED (Attempts: 0)
+
+Module: Puesta a punto. (Order: 13)
+  Lesson: Puesta a punto. - INCOMPLETE
+  Lesson: Puesta a punto continuación - INCOMPLETE
+  Quiz: Cuestionario: Puesto a punto - PASSED (Attempts: 1)
+    - Score: 100, Date: Wed Dec 31 2025 11:50:33 GMT-0600 (Central Standard Time)
+
+Module: Uso de aplicaciones tecnológicas para el estudio de rutas de traslado (Order: 14)
+  Lesson: Uso de aplicaciones tecnológicas para el estudio de rutas de traslado - INCOMPLETE
+
+Module: Amenaza y riesgo (Order: 15)
+  Lesson: Amenaza y riesgo - INCOMPLETE
+
+Module: Las avanzadas (Order: 16)
+  Lesson: Las avanzada 1 - INCOMPLETE
+  Lesson: La avanzada 2 - INCOMPLETE
+  Lesson: La avanzada 3 - INCOMPLETE
+  Lesson: La avanzada 4 - INCOMPLETE
+  Lesson: La avanzada 5 - INCOMPLETE
+  Quiz: ANTICIPACION A LOS LUGARES DE DESTINO (AVANZADAS) - NOT PASSED (Attempts: 0)
+
+Module: Las costuras (Order: 17)
+  Lesson: Las Costuras - INCOMPLETE
+
+Module: Agentes no convencionales o sombra (Order: 18)
+  Lesson: Agentes no convencionales o sombra - INCOMPLETE
+  Quiz: Los agentes de protección no convencionales (agentes de sombras) - NOT PASSED (Attempts: 0)
+
+Module: Centro de control en la protección ejecutiva (Order: 19)
+  Lesson: Centro de control en la protección ejecutiva - INCOMPLETE
+
+Module: El lugar que ocupa el líder de equipo dentro del esquema de protección ejecutiva (Order: 20)
+  Lesson: El lugar que ocupa el líder de equipo dentro del esquema de protección ejecutiva - INCOMPLETE
+
+Module: Estructura operativa de la protección ejecutiva moderna (Order: 21)
+  Lesson: La estructura operativa. - INCOMPLETE
+  Quiz: Cuestionario: La estructura operativa - NOT PASSED (Attempts: 0)
+
+Module: Las formaciones en la protección ejecutiva (Order: 22)
+  Lesson: Las formaciones en la protección ejecutiva - INCOMPLETE
+  Lesson: Las formaciones en la protección ejecutiva 2 - INCOMPLETE
+  Quiz: CUESTIONARIO: Formaciones - NOT PASSED (Attempts: 0)
+
+Module: Perfil y habilidades del líder del equipo (Order: 23)
+  Lesson: Perfil y habilidades del líder del equipo - INCOMPLETE
+
+Module: Planeación en la protección ejecutiva (Order: 24)
+  Lesson: Planeación en la protección ejecutiva - INCOMPLETE
+
+Module: Uso dinámico del vehículo de seguridad (Order: 25)
+  Lesson: Uso dinámico del vehículo de seguridad - INCOMPLETE
+  Lesson: Uso dinámico del vehículo de seguridad continuación - INCOMPLETE
+  Quiz: Uso dinámico del vehículo de seguridad. - NOT PASSED (Attempts: 0)
+
+Module: Principios operativos en los tiempos Post Covid (Order: 26)
+  Lesson: Principios operativos en los tiempos Post Covid - INCOMPLETE
+  Quiz: Principios operativos en los tiempos Post Covid - NOT PASSED (Attempts: 0)

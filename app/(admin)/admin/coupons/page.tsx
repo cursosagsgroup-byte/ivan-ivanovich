@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import CouponForm from '@/components/admin/CouponForm';
-import { Plus, Trash, RefreshCw } from 'lucide-react';
+import { Plus, Trash, RefreshCw, Edit } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface Coupon {
@@ -11,9 +11,11 @@ interface Coupon {
     discountType: string;
     discountValue: number;
     maxUses: number | null;
+    maxUsesPerUser: number | null;
     usedCount: number;
     expiresAt: string | null;
     isActive: boolean;
+    courseId: string | null;
     course?: {
         title: string;
     };
@@ -23,6 +25,7 @@ export default function CouponsPage() {
     const [coupons, setCoupons] = useState<Coupon[]>([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
+    const [editingCoupon, setEditingCoupon] = useState<Coupon | null>(null);
 
     const fetchCoupons = async () => {
         try {
@@ -49,6 +52,11 @@ export default function CouponsPage() {
     useEffect(() => {
         fetchCoupons();
     }, []);
+
+    const handleEdit = (coupon: Coupon) => {
+        setEditingCoupon(coupon);
+        setShowForm(true);
+    };
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this coupon?')) return;
@@ -90,13 +98,27 @@ export default function CouponsPage() {
             {showForm && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-xl p-6 max-w-md w-full">
-                        <h2 className="text-xl font-bold mb-4">Create New Coupon</h2>
+                        <h2 className="text-xl font-bold mb-4">{editingCoupon ? 'Edit Coupon' : 'Create New Coupon'}</h2>
                         <CouponForm
                             onSuccess={() => {
                                 setShowForm(false);
+                                setEditingCoupon(null);
                                 fetchCoupons();
                             }}
-                            onCancel={() => setShowForm(false)}
+                            onCancel={() => {
+                                setShowForm(false);
+                                setEditingCoupon(null);
+                            }}
+                            initialData={editingCoupon ? {
+                                id: editingCoupon.id,
+                                code: editingCoupon.code,
+                                discountValue: editingCoupon.discountValue,
+                                maxUses: editingCoupon.maxUses,
+                                maxUsesPerUser: editingCoupon.maxUsesPerUser,
+                                expiresAt: editingCoupon.expiresAt,
+                                courseId: editingCoupon.courseId || (editingCoupon.course ? null : 'all'), // simplistic fallback
+                                discountType: editingCoupon.discountType
+                            } : undefined}
                         />
                     </div>
                 </div>
@@ -150,7 +172,13 @@ export default function CouponsPage() {
                                 <td className="p-4 text-sm text-gray-600">
                                     {coupon.expiresAt ? format(new Date(coupon.expiresAt), 'MMM d, yyyy') : '-'}
                                 </td>
-                                <td className="p-4 text-right">
+                                <td className="p-4 text-right flex items-center justify-end gap-2">
+                                    <button
+                                        onClick={() => handleEdit(coupon)}
+                                        className="text-blue-600 hover:text-blue-800 p-2"
+                                    >
+                                        <Edit size={18} />
+                                    </button>
                                     <button
                                         onClick={() => handleDelete(coupon.id)}
                                         className="text-red-600 hover:text-red-800 p-2"

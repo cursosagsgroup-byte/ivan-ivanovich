@@ -1,12 +1,20 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 
 export const WhatsAppButton = () => {
+    const pathname = usePathname();
+
     // Updated with real bot number
     const phoneNumber = '525540612974';
     const message = 'Hola, me gustaría más información sobre los cursos.';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // Don't show on auth pages to avoid confusion/overlapping
+    if (pathname?.startsWith('/login') || pathname?.startsWith('/forgot-password') || pathname?.startsWith('/admin')) {
+        return null;
+    }
 
     return (
         <a

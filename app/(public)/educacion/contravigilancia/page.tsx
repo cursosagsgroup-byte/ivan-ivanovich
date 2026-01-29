@@ -254,8 +254,8 @@ export default function ContravigilanciaPage() {
 
                             <AddToCartButton
                                 course={{
-                                    id: 'contravigilancia-course', // TODO: Verify real ID if needed
-                                    title: 'CURSO DE CONTRAVIGILANCIA EN PROTECCIÓN EJECUTIVA',
+                                    id: 'cmio13v7u000164w1bhkqj8ej',
+                                    title: 'Contravigilancia Para Protección Ejecutiva',
                                     price: 2500,
                                     image: '/curso-contravigilancia.jpg'
                                 }}

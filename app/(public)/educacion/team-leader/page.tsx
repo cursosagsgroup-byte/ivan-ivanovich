@@ -353,7 +353,7 @@ export default function TeamLeaderCoursePage() {
                                 <AddToCartButton
                                     course={{
                                         id: t('teamLeader.buyButton') === 'Buy' ? 'cmiq7oga203zikveg3jbf8p8u' : 'cmio13v7r000064w1fs838sgw',
-                                        title: t('teamLeader.buyButton') === 'Buy' ? 'TEAM LEADER IN EXECUTIVE PROTECTION' : 'CURSO TEAM LEADER EN LA PROTECCIÓN EJECUTIVA',
+                                        title: t('teamLeader.buyButton') === 'Buy' ? 'Team Leader in Executive Protection' : 'Team Leader en Protección Ejecutiva',
                                         price: 1900,
                                         image: '/curso-team-leader.png'
                                     }}

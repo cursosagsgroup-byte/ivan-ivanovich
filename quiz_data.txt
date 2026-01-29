@@ -1,0 +1,313 @@
+Inspecting quizzes for course: Team Leader en Protección Ejecutiva
+
+Module: Tres pilares fundamentales de la protección ejecutiva moderna
+  Quiz: PROTECCIÓN EJECUTIVA TRADICIONAL
+    Question: Selecciona el principal riesgo de la protección ejecutiva tradicional:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Los agresores logran su objetivo en casi todas las ocasiones ya que basa su operación en la esperanza de poder repeler una agresión al ser que un convoy que transita en espera de ser emboscado.","isCorrect":true},{"text":"Ser fácilmente identificables por los delincuentes.","isCorrect":false},{"text":"Requiere de un numero muy elevado de elementos de protección.","isCorrect":false}]
+      Correct Answer: Los agresores logran su objetivo en casi todas las ocasiones ya que basa su operación en la esperanza de poder repeler una agresión al ser que un convoy que transita en espera de ser emboscado.
+      ---
+    Question: Motivo por el cual es vulnerable la protección ejecutiva tradicional:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Carece de un plan operativo de prevención.","isCorrect":true},{"text":"Resulta posible anticipar los movimientos del equipo de seguridad.","isCorrect":false},{"text":"Tiene un esquema operativo medieval que no coincide con los potenciales riesgos actuales.","isCorrect":false}]
+      Correct Answer: Carece de un plan operativo de prevención.
+      ---
+    Question: ¿Cuál es la principal estrategia de la protección ejecutiva tradicional?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Vehículo blindado con personal armado a bordo.","isCorrect":false},{"text":"Convoy tipo militar en espera de ser emboscado.","isCorrect":true},{"text":"Uso de patrullas que puedan abrir paso al vehículo principal.","isCorrect":false}]
+      Correct Answer: Convoy tipo militar en espera de ser emboscado.
+      ---
+  Quiz: LA AUTOAMENAZA
+    Question: Menciona un ejemplo de amenaza directa y uno de amenaza indirecta.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Acudir a Gimnasios y restaurantes.","isCorrect":false},{"text":"Conducir a exceso de velocidad y abrir la ventanilla del auto para fumar.","isCorrect":true},{"text":"Hablar por teléfono dentro de la unidad y acudir a reuniones.","isCorrect":false}]
+      Correct Answer: Conducir a exceso de velocidad y abrir la ventanilla del auto para fumar.
+      ---
+    Question: ¿Quién es responsable directo de la seguridad del principal?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Escolta","isCorrect":false},{"text":"Director corporativo de seguridad.","isCorrect":false},{"text":"Protegido.","isCorrect":true}]
+      Correct Answer: Protegido.
+      ---
+    Question: ¿En qué puede derivar el desconocimiento del funcionamiento del equipo de seguridad?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Retraso en los traslados.","isCorrect":false},{"text":"Exposición a cualquier daño.","isCorrect":true},{"text":"Extravío en la ruta.","isCorrect":false}]
+      Correct Answer: Exposición a cualquier daño.
+      ---
+
+Module: Alcances de las medidas reactivas y las armas de fuego
+  Quiz: ALCANCES DE LAS MEDIDAS REACTIVAS EN LA PROTECCION EJECUTIVA
+    Question: Emplearlas podría representar un peligro para la integridad como para la imagen del principal.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Medidas preventivas.","isCorrect":false},{"text":"Medidas Reactivas.","isCorrect":true},{"text":"Avanzadas.","isCorrect":false}]
+      Correct Answer: Medidas Reactivas.
+      ---
+    Question: En una situación donde se aplican medidas reactivas el Protector se ve sometido a reacciones fisiológicas que condicionan su conducta como:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Nerviosismo.","isCorrect":false},{"text":"Tranquilidad.","isCorrect":false},{"text":"Superestres.","isCorrect":true}]
+      Correct Answer: Superestres.
+      ---
+    Question: ¿Cuál es la eficacia estimada en el uso de armas de fuego en circunstancias reactivas reales?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"65.18%","isCorrect":false},{"text":"5.36%","isCorrect":true},{"text":"80.03%","isCorrect":false}]
+      Correct Answer: 5.36%
+      ---
+
+Module: Fundamentos de la protección ejecutiva moderna
+  Quiz: PROTECCION EJECUTIVA MODERNA
+    Question: Menciona dos estrategias de la protección ejecutiva moderna.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Prevención, Planeación, Contra vigilancia y Alerta Temprana.","isCorrect":true},{"text":"Convoy con dos patrullas y un motociclista.","isCorrect":false},{"text":"Elementos armados y autos blindados nivel VI.","isCorrect":false}]
+      Correct Answer: Prevención, Planeación, Contra vigilancia y Alerta Temprana.
+      ---
+    Question: Menciona tres pilares de la protección ejecutiva moderna.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"El CSO o Team leader, El protector y Protegido.","isCorrect":true},{"text":"Lista de chequeo, Avanzadas e inteligencia.","isCorrect":false},{"text":"Escolta armado, auto blindado y patrulla.","isCorrect":false}]
+      Correct Answer: El CSO o Team leader, El protector y Protegido.
+      ---
+
+Module: Objetivos de la protección ejecutiva
+  Quiz: Cuestionario 1: OBJETIVOS DE LA PROTECCIÓN EJECUTIVA
+    Question: Ejemplo de daños intencionales que puede sufrir el protegido.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Secuestro.","isCorrect":true},{"text":"Perdida de algún objeto de valor.","isCorrect":false},{"text":"Alguna lesión.","isCorrect":false}]
+      Correct Answer: Secuestro.
+      ---
+    Question: Impactar el auto del principal con el auto escolta, es un ejemplo de:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Situación incómoda.","isCorrect":false},{"text":"Daño no intencional.","isCorrect":true},{"text":"Protección de la imagen.","isCorrect":false}]
+      Correct Answer: Daño no intencional.
+      ---
+    Question: Ser detenido por la policía de tránsito por infligir el reglamento mientras se traslada al principal es un ejemplo de:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Encargarse de la comodidad relacionada con la protección.","isCorrect":false},{"text":"Cumplir con objetivo sin causar asuntos legales.","isCorrect":true},{"text":"Proteger información sensible.","isCorrect":false}]
+      Correct Answer: Cumplir con objetivo sin causar asuntos legales.
+      ---
+
+Module: Vigilancia en la protección ejecutiva
+  Quiz: Cuestionario 1: Vigilancia
+    Question: Observación cautelosa y constante del entorno con el objeto de reconocer acciones y situaciones que podrían significar una amenaza.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Contra vigilancia.","isCorrect":false},{"text":"Vigilancia.","isCorrect":true},{"text":"Contra inteligencia.","isCorrect":false}]
+      Correct Answer: Vigilancia.
+      ---
+
+Module: Contravigilancia en la protección ejecutiva
+  Quiz: FUNDAMENTOS DE LA CONTRA VIGILANCIA
+    Question: Proceso que permite detectar una vigilancia hostil.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Inteligencia.","isCorrect":false},{"text":"Contra vigilancia.","isCorrect":true},{"text":"Contra inteligencia.","isCorrect":false}]
+      Correct Answer: Contra vigilancia.
+      ---
+    Question: Detección, identificación, y desactivación, son etapas de:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Inteligencia.","isCorrect":false},{"text":"Vigilancia hostil.","isCorrect":false},{"text":"Contra vigilancia.","isCorrect":true}]
+      Correct Answer: Contra vigilancia.
+      ---
+    Question: Nos permite neutralizar una posible agresión antes de que ocurra:Nos permite neutralizar una posible agresión antes de que ocurra:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Contra inteligencia.","isCorrect":false},{"text":"Contra vigilancia.","isCorrect":true},{"text":"Vigilancia.","isCorrect":false}]
+      Correct Answer: Contra vigilancia.
+      ---
+
+Module: Inteligencia en la protección ejecutiva
+  Quiz: INTELIGENCIA
+    Question: Proceso de recopilación y análisis de datos que nos permite obtener conocimientos para la detección anticipada de posibles daños.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Vigilancia.","isCorrect":false},{"text":"Inteligencia.","isCorrect":true},{"text":"Estrategia.","isCorrect":false}]
+      Correct Answer: Inteligencia.
+      ---
+    Question: Redes sociales, páginas web, grupos de chat y bases de datos públicas son un ejemplo de:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Fuentes abiertas.","isCorrect":true},{"text":"Fuentes cerradas.","isCorrect":false},{"text":"Fuentes inmediatas.","isCorrect":false}]
+      Correct Answer: Fuentes abiertas.
+      ---
+    Question: Contactos personales, recolección directa en el campo, investigaciones concretas, son un ejemplo de:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Fuentes inmediatas.","isCorrect":false},{"text":"Fuentes cerradas.","isCorrect":true},{"text":"Fuentes abiertas.","isCorrect":false}]
+      Correct Answer: Fuentes cerradas.
+      ---
+
+Module: Contrainteligencia en la protección ejecutiva
+  Quiz: Cuestionario. Contrainteligencia en la protección ejecutiva
+    Question: Conjunto de estrategias y acciones que nos permiten neutralizar las labores de inteligencia.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Inteligencia.","isCorrect":false},{"text":"Contra inteligencia.","isCorrect":true},{"text":"Contra vigilancia.","isCorrect":false}]
+      Correct Answer: Contra inteligencia.
+      ---
+    Question: La contra inteligencia informática y digital nos permite:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Encontrar información de personas mal intencionadas.","isCorrect":false},{"text":"Proteger información de clientes que pasan mucho tiempo navegando.","isCorrect":true},{"text":"Conocer el historial de búsqueda de las personas.","isCorrect":false}]
+      Correct Answer: Proteger información de clientes que pasan mucho tiempo navegando.
+      ---
+    Question: Es una regla central de la contra inteligencia humana.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Barrido electrónico.","isCorrect":false},{"text":"Uso del CEN.","isCorrect":true},{"text":"Proteger los sistemas de virus.","isCorrect":false}]
+      Correct Answer: Uso del CEN.
+      ---
+
+Module: Seguridad física y electrónica dentro del esquema de protección ejecutiva
+  Quiz: Seguridad física y electrónica dentro del esquema de protección ejecutiva
+    Question: Una buena coordinación entre guardias de seguridad y agentes de protección nos permite minimizar:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Tiempo de traslado.","isCorrect":false},{"text":"Costuras de seguridad.","isCorrect":true},{"text":"Tiempo de arribo.","isCorrect":false}]
+      Correct Answer: Costuras de seguridad.
+      ---
+    Question: Pueden ser capaces de detectar con anticipación un posible ataque o agresores.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Policía de Cuadrante y Sector.","isCorrect":false},{"text":"Guardias de seguridad.","isCorrect":true},{"text":"Policía ciudadana.","isCorrect":false}]
+      Correct Answer: Guardias de seguridad.
+      ---
+    Question: El domicilio del cliente debe ser revisado de manera minuciosa por parte de:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Guardias de seguridad.","isCorrect":false},{"text":"Policía especializada.","isCorrect":false},{"text":"Experto en seguridad física.","isCorrect":true}]
+      Correct Answer: Experto en seguridad física.
+      ---
+
+Module: Intervención y alerta temprana
+  Quiz: Objetivo principal de la alerta temprana.
+    Question: Objetivo principal de la alerta temprana.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Llegar antes que el principal.","isCorrect":false},{"text":"Desactivar un ataque antes de que ocurra.","isCorrect":true},{"text":"Confrontar a delincuentes potenciales.","isCorrect":false}]
+      Correct Answer: Desactivar un ataque antes de que ocurra.
+      ---
+    Question: Actividad principal de la alerta temprana.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Recorre la ruta del principal.","isCorrect":false},{"text":"Desactivar el ataque en la última fase de preparación.","isCorrect":true},{"text":"Establece una ruta de huida.","isCorrect":false}]
+      Correct Answer: Desactivar el ataque en la última fase de preparación.
+      ---
+    Question: Con cuanto tiempo de anticipación puede la alerta temprana desactivar un ataque inminente?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Minutos antes","isCorrect":true},{"text":"Días antes.","isCorrect":false},{"text":"Semanas antes.","isCorrect":false}]
+      Correct Answer: Minutos antes
+      ---
+
+Module: Planeación de rutas de traslado
+  Quiz: PLANEACION DE RUTAS
+    Question: Tres aspectos a tomar en cuenta en una ruta de seguridad.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Auto escolta, moto escolta y principal.","isCorrect":false},{"text":"Rapidez, seguridad y comodidad.","isCorrect":false},{"text":"Incidencia delictiva, puntos de apoyo y condiciones del terreno.","isCorrect":true}]
+      Correct Answer: Incidencia delictiva, puntos de apoyo y condiciones del terreno.
+      ---
+    Question: Menciona 2 factores de riesgo que se pueden identificar al planear una ruta.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Puntos de ahogo y afluencia vial.","isCorrect":true},{"text":"Consumo de combustible y ruta más rápida.","isCorrect":false},{"text":"Ruta más corta y vehículo backup.","isCorrect":false}]
+      Correct Answer: Puntos de ahogo y afluencia vial.
+      ---
+    Question: Característica que debe tener una ruta alterna.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Sirve para realizar un escape de emergencia.","isCorrect":false},{"text":"El acceso puede estar en cualquier punto del camino principal.","isCorrect":true},{"text":"Es igual de rápida que la principal.","isCorrect":false}]
+      Correct Answer: El acceso puede estar en cualquier punto del camino principal.
+      ---
+
+Module: Puesta a punto.
+  Quiz: Cuestionario: Puesto a punto
+    Question: Es realizada para valorar tanto la respuesta de la víctima como la de sus protectores.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Vigilancia hostil.","isCorrect":false},{"text":"Puesta a punto.","isCorrect":true},{"text":"Costura de seguridad.","isCorrect":false}]
+      Correct Answer: Puesta a punto.
+      ---
+    Question: ¿Por qué es de vital importancia que el especialista en seguridad ejecutiva pueda detectar una puesta a punto?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Denota una situación de peligro inminente.","isCorrect":true},{"text":"Puede reaccionar de manera distinta la próxima vez.","isCorrect":false},{"text":"Le permite no entrar en pánico.","isCorrect":false}]
+      Correct Answer: Denota una situación de peligro inminente.
+      ---
+    Question: Para poder realizar una puesta a punto es necesario conocer:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"La zona donde se realizará.","isCorrect":false},{"text":"Fecha y hora.","isCorrect":false},{"text":"Hábitos y rutinas.","isCorrect":true}]
+      Correct Answer: Hábitos y rutinas.
+      ---
+
+Module: Las avanzadas
+  Quiz: ANTICIPACION A LOS LUGARES DE DESTINO (AVANZADAS)
+    Question: La anticipación a los lugares de destino nos permite identificar:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Costuras.","isCorrect":true},{"text":"Ubicación.","isCorrect":false},{"text":"Zona.","isCorrect":false}]
+      Correct Answer: Costuras.
+      ---
+    Question: Para la anticipación a los lugares de destino es indispensable:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Domicilio.","isCorrect":false},{"text":"Vehículo.","isCorrect":false},{"text":"Lista de chequeo.","isCorrect":true}]
+      Correct Answer: Lista de chequeo.
+      ---
+    Question: Ventaja que nos brinda la anticipación a los lugares de destino.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Identificar posibles daños intencionales y no intencionales.","isCorrect":true},{"text":"Asegurar un lugar de estacionamiento.","isCorrect":false},{"text":"Identificar las salidas de emergencia.","isCorrect":false}]
+      Correct Answer: Identificar posibles daños intencionales y no intencionales.
+      ---
+
+Module: Agentes no convencionales o sombra
+  Quiz: Los agentes de protección no convencionales (agentes de sombras)
+    Question: El agente sombra se define como:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Agente del circulo lejano del principal.","isCorrect":false},{"text":"Agente del circulo medio del principal.","isCorrect":false},{"text":"Agente que no puede ser identificado a simple vista.","isCorrect":true}]
+      Correct Answer: Agente que no puede ser identificado a simple vista.
+      ---
+    Question: El agente sombra puede llegar a identificar:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Salidas de emergencia.","isCorrect":false},{"text":"Vigilancia hostil.","isCorrect":true},{"text":"Zonas de riego.","isCorrect":false}]
+      Correct Answer: Vigilancia hostil.
+      ---
+    Question: Principal ventaja del agente sombra:
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Los criminales no pueden identificarlo.","isCorrect":true},{"text":"No son el foco de atención.","isCorrect":false},{"text":"Pueden operar sin uniforme.","isCorrect":false}]
+      Correct Answer: Los criminales no pueden identificarlo.
+      ---
+
+Module: Estructura operativa de la protección ejecutiva moderna
+  Quiz: Cuestionario: La estructura operativa
+    Question: Operan en el primer círculo.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Guardias residenciales.","isCorrect":false},{"text":"Agentes de protección.","isCorrect":true},{"text":"Agentes sombra.","isCorrect":false}]
+      Correct Answer: Agentes de protección.
+      ---
+    Question: Operan en el segundo Circulo.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Agentes de protección.","isCorrect":false},{"text":"Agentes sombra.","isCorrect":true},{"text":"Guardias residenciales.","isCorrect":false}]
+      Correct Answer: Agentes sombra.
+      ---
+    Question: Parte fundamental de la estructura operativa.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Inteligencia y contra vigilancia.","isCorrect":true},{"text":"Ruta principal y alterna.","isCorrect":false},{"text":"Puesta a punto y costura de seguridad.","isCorrect":false}]
+      Correct Answer: Inteligencia y contra vigilancia.
+      ---
+
+Module: Las formaciones en la protección ejecutiva
+  Quiz: CUESTIONARIO: Formaciones
+    Question: Principal desventaja de formaciones convencionales.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Ignora los círculos de protección.","isCorrect":false},{"text":"Necesita de varios agentes.","isCorrect":false},{"text":"Formación en espera de ser sorprendida.","isCorrect":true}]
+      Correct Answer: Formación en espera de ser sorprendida.
+      ---
+    Question: Uno de los motivos por el cual clientes evitan utilizar formaciones convencionales.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Desfavorable para su imagen.","isCorrect":true},{"text":"Requieren de tres o más elementos.","isCorrect":false},{"text":"Resulta innecesaria.","isCorrect":false}]
+      Correct Answer: Desfavorable para su imagen.
+      ---
+
+Module: Uso dinámico del vehículo de seguridad
+  Quiz: Uso dinámico del vehículo de seguridad.
+    Question: Ventaja del uso dinámico del vehículo de seguridad.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Anticiparse a las costuras.","isCorrect":true},{"text":"Plena discreción.","isCorrect":false},{"text":"Abrir paso.","isCorrect":false}]
+      Correct Answer: Anticiparse a las costuras.
+      ---
+    Question: Factor crítico que se puede identificar con el uso dinámico del vehículo de seguridad.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Disuasión.","isCorrect":false},{"text":"Alerta temprana.","isCorrect":true},{"text":"Llegada prudente.","isCorrect":false}]
+      Correct Answer: Alerta temprana.
+      ---
+    Question: Factor crítico que se puede identificar con el uso dinámico del vehículo de seguridad.
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Calles cerradas.","isCorrect":false},{"text":"Contra vigilancia.","isCorrect":true},{"text":"Ruta alterna.","isCorrect":false}]
+      Correct Answer: Contra vigilancia.
+      ---
+
+Module: Principios operativos en los tiempos Post Covid
+  Quiz: Principios operativos en los tiempos Post Covid
+    Question: ¿Qué tipo de amenaza representa el virus que causa el COVID-19?
+      Type: MULTIPLE_CHOICE
+      Options: [{"text":"Verdadero","isCorrect":false},{"text":"Falso","isCorrect":false},{"text":"Amenaza no intencional.","isCorrect":true},{"text":"Amenaza intencional.","isCorrect":false},{"text":"Situaciones incomodas.","isCorrect":false}]
+      Correct Answer: Amenaza no intencional.
+      ---
+
+Total Quizzes Found: 19

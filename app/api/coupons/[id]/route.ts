@@ -48,7 +48,15 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         const coupon = await prisma.coupon.update({
             where: { id },
             data: {
-                isActive: data.isActive
+                ...(data.code && { code: data.code }),
+                ...(data.discountValue !== undefined && { discountValue: data.discountValue }),
+                ...(data.maxUses !== undefined && { maxUses: data.maxUses }),
+                ...(data.maxUsesPerUser !== undefined && { maxUsesPerUser: data.maxUsesPerUser }),
+                // Allow setting expiresAt to null if explicitly sent as null, otherwise update if present
+                ...(data.expiresAt !== undefined && { expiresAt: data.expiresAt ? new Date(data.expiresAt) : null }),
+                // Allow setting courseId to null (all courses)
+                ...(data.courseId !== undefined && { courseId: data.courseId }),
+                ...(data.isActive !== undefined && { isActive: data.isActive })
             }
         });
 

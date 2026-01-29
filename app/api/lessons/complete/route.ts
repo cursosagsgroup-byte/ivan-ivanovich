@@ -92,7 +92,8 @@ export async function POST(request: NextRequest) {
                     }
                 },
                 data: {
-                    progress: progress
+                    progress: progress,
+                    ...(progress === 100 ? { completedAt: new Date() } : {})
                 }
             });
 

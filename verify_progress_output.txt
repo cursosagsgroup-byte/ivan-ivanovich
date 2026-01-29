@@ -1,0 +1,132 @@
+Searching for user...
+User found: notificacionesluis@outlook.com cmiq7nfj303kgkveggjfu5grl
+Enrollments: [ 'Team Leader en Protección Ejecutiva' ]
+Modules matching "Puesta a Punto": [
+  'Puesta a punto. (Course: Team Leader en Protección Ejecutiva)',
+  'Puesta a punto. (Course: Team Leader in Executive Protection)'
+]
+
+Analyzing progress for course: Team Leader en Protección Ejecutiva
+Enrollment Progress: 50%
+
+Module: Introducción (Order: 1)
+  Lesson: Introducción - COMPLETED
+
+Module: Tres pilares fundamentales de la protección ejecutiva moderna (Order: 2)
+  Lesson: Tres pilares fundamentales de la protección ejecutiva moderna - COMPLETED
+  Quiz: PROTECCIÓN EJECUTIVA TRADICIONAL - PASSED (Attempts: 1)
+    - Score: 100, Date: Wed Dec 31 2025 09:09:50 GMT-0600 (Central Standard Time)
+  Quiz: LA AUTOAMENAZA - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:12 GMT-0600 (Central Standard Time)
+
+Module: Alcances de las medidas reactivas y las armas de fuego (Order: 3)
+  Lesson: Alcances de las medidas reactivas y las armas de fuego - COMPLETED
+  Quiz: ALCANCES DE LAS MEDIDAS REACTIVAS EN LA PROTECCION EJECUTIVA - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:14 GMT-0600 (Central Standard Time)
+
+Module: Fundamentos de la protección ejecutiva moderna (Order: 4)
+  Lesson: Fundamentos de la protección ejecutiva moderna - COMPLETED
+  Quiz: PROTECCION EJECUTIVA MODERNA - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:15 GMT-0600 (Central Standard Time)
+
+Module: Objetivos de la protección ejecutiva (Order: 5)
+  Lesson: Objetivos de la protección ejecutiva - COMPLETED
+  Lesson: Comodidad del ejecutivo - COMPLETED
+  Lesson: Proteger la Imagen del ejecutivo - COMPLETED
+  Lesson: Proteger la información sensible del ejecutivo - COMPLETED
+  Quiz: Cuestionario 1: OBJETIVOS DE LA PROTECCIÓN EJECUTIVA - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:17 GMT-0600 (Central Standard Time)
+
+Module: Vigilancia en la protección ejecutiva (Order: 6)
+  Lesson: Vigilancia en la protección ejecutiva - COMPLETED
+  Quiz: Cuestionario 1: Vigilancia - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:19 GMT-0600 (Central Standard Time)
+
+Module: Contravigilancia en la protección ejecutiva (Order: 7)
+  Lesson: Contravigilancia en la protección ejecutiva - COMPLETED
+  Lesson: Contravigilancia en la protección ejecutiva continuación - COMPLETED
+  Quiz: FUNDAMENTOS DE LA CONTRA VIGILANCIA - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:20 GMT-0600 (Central Standard Time)
+
+Module: Inteligencia en la protección ejecutiva (Order: 8)
+  Lesson: Inteligencia en la protección ejecutiva - COMPLETED
+  Quiz: INTELIGENCIA - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:22 GMT-0600 (Central Standard Time)
+
+Module: Contrainteligencia en la protección ejecutiva (Order: 9)
+  Lesson: Contrainteligencia en la protección ejecutiva - COMPLETED
+  Quiz: Cuestionario. Contrainteligencia en la protección ejecutiva - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:23 GMT-0600 (Central Standard Time)
+
+Module: Seguridad física y electrónica dentro del esquema de protección ejecutiva (Order: 10)
+  Lesson: Seguridad física y electrónica dentro del esquema de protección ejecutiva - COMPLETED
+  Quiz: Seguridad física y electrónica dentro del esquema de protección ejecutiva - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:24 GMT-0600 (Central Standard Time)
+
+Module: Intervención y alerta temprana (Order: 11)
+  Lesson: Intervención y alerta temprana - COMPLETED
+  Lesson: Intervención y alerta temprana continuación - COMPLETED
+  Quiz: Objetivo principal de la alerta temprana. - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:26 GMT-0600 (Central Standard Time)
+
+Module: Planeación de rutas de traslado (Order: 12)
+  Lesson: Planeación de rutas de traslado - COMPLETED
+  Quiz: PLANEACION DE RUTAS - PASSED (Attempts: 1)
+    - Score: 100, Date: Mon Jan 05 2026 15:46:27 GMT-0600 (Central Standard Time)
+
+Module: Puesta a punto. (Order: 13)
+  Lesson: Puesta a punto. - COMPLETED
+  Lesson: Puesta a punto continuación - COMPLETED
+  Quiz: Cuestionario: Puesto a punto - PASSED (Attempts: 1)
+    - Score: 100, Date: Wed Dec 31 2025 11:50:33 GMT-0600 (Central Standard Time)
+
+Module: Uso de aplicaciones tecnológicas para el estudio de rutas de traslado (Order: 14)
+  Lesson: Uso de aplicaciones tecnológicas para el estudio de rutas de traslado - INCOMPLETE
+
+Module: Amenaza y riesgo (Order: 15)
+  Lesson: Amenaza y riesgo - INCOMPLETE
+
+Module: Las avanzadas (Order: 16)
+  Lesson: Las avanzada 1 - INCOMPLETE
+  Lesson: La avanzada 2 - INCOMPLETE
+  Lesson: La avanzada 3 - INCOMPLETE
+  Lesson: La avanzada 4 - INCOMPLETE
+  Lesson: La avanzada 5 - INCOMPLETE
+  Quiz: ANTICIPACION A LOS LUGARES DE DESTINO (AVANZADAS) - NOT PASSED (Attempts: 0)
+
+Module: Las costuras (Order: 17)
+  Lesson: Las Costuras - INCOMPLETE
+
+Module: Agentes no convencionales o sombra (Order: 18)
+  Lesson: Agentes no convencionales o sombra - INCOMPLETE
+  Quiz: Los agentes de protección no convencionales (agentes de sombras) - NOT PASSED (Attempts: 0)
+
+Module: Centro de control en la protección ejecutiva (Order: 19)
+  Lesson: Centro de control en la protección ejecutiva - INCOMPLETE
+
+Module: El lugar que ocupa el líder de equipo dentro del esquema de protección ejecutiva (Order: 20)
+  Lesson: El lugar que ocupa el líder de equipo dentro del esquema de protección ejecutiva - INCOMPLETE
+
+Module: Estructura operativa de la protección ejecutiva moderna (Order: 21)
+  Lesson: La estructura operativa. - INCOMPLETE
+  Quiz: Cuestionario: La estructura operativa - NOT PASSED (Attempts: 0)
+
+Module: Las formaciones en la protección ejecutiva (Order: 22)
+  Lesson: Las formaciones en la protección ejecutiva - INCOMPLETE
+  Lesson: Las formaciones en la protección ejecutiva 2 - INCOMPLETE
+  Quiz: CUESTIONARIO: Formaciones - NOT PASSED (Attempts: 0)
+
+Module: Perfil y habilidades del líder del equipo (Order: 23)
+  Lesson: Perfil y habilidades del líder del equipo - INCOMPLETE
+
+Module: Planeación en la protección ejecutiva (Order: 24)
+  Lesson: Planeación en la protección ejecutiva - INCOMPLETE
+
+Module: Uso dinámico del vehículo de seguridad (Order: 25)
+  Lesson: Uso dinámico del vehículo de seguridad - INCOMPLETE
+  Lesson: Uso dinámico del vehículo de seguridad continuación - INCOMPLETE
+  Quiz: Uso dinámico del vehículo de seguridad. - NOT PASSED (Attempts: 0)
+
+Module: Principios operativos en los tiempos Post Covid (Order: 26)
+  Lesson: Principios operativos en los tiempos Post Covid - INCOMPLETE
+  Quiz: Principios operativos en los tiempos Post Covid - NOT PASSED (Attempts: 0)

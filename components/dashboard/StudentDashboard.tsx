@@ -39,8 +39,31 @@ export default function StudentDashboard({ enrolledCourses, profileData: initial
     const [profileData, setProfileData] = useState(initialProfileData);
     const [isEditing, setIsEditing] = useState(false);
     const [loadingCourseId, setLoadingCourseId] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
     const router = useRouter();
     const photoInputRef = useRef<HTMLInputElement>(null);
+
+    const handleSaveProfile = async () => {
+        setIsSaving(true);
+        try {
+            const res = await fetch('/api/user/profile', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(profileData),
+            });
+
+            if (!res.ok) throw new Error('Failed to update profile');
+
+            setIsEditing(false);
+            router.refresh();
+            // TODO: Add toast notification here
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            alert('Error updating profile'); // Temporary alert
+        } finally {
+            setIsSaving(false);
+        }
+    };
 
     const completedCourses = enrolledCourses.filter(c => c.certificateAvailable);
 
@@ -146,9 +169,11 @@ export default function StudentDashboard({ enrolledCourses, profileData: initial
                                 <div className="flex justify-between items-center mb-6">
                                     <h2 className="text-xl font-semibold text-slate-900">{t('dashboard.personalInfo')}</h2>
                                     <button
-                                        onClick={() => setIsEditing(!isEditing)}
-                                        className="px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium"
+                                        onClick={isEditing ? handleSaveProfile : () => setIsEditing(true)}
+                                        disabled={isSaving}
+                                        className={`px-4 py-2 ${isSaving ? 'bg-slate-500' : 'bg-slate-900'} text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium flex items-center gap-2`}
                                     >
+                                        {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                         {isEditing ? t('dashboard.saveChanges') : t('dashboard.editProfile')}
                                     </button>
                                 </div>

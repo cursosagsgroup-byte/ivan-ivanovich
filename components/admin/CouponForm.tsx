@@ -7,22 +7,41 @@ interface Course {
     title: string;
 }
 
+interface CouponConfig {
+    id?: string;
+    code: string;
+    discountValue: number;
+    maxUses: number | null;
+    maxUsesPerUser: number | null;
+    expiresAt: string | null;
+    courseId: string | null;
+    discountType?: string;
+}
+
 interface CouponFormProps {
     onSuccess: () => void;
     onCancel: () => void;
+    initialData?: CouponConfig;
 }
 
-export default function CouponForm({ onSuccess, onCancel }: CouponFormProps) {
+export default function CouponForm({ onSuccess, onCancel, initialData }: CouponFormProps) {
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState(false);
 
     // Form States
-    const [code, setCode] = useState('');
-    const [discountValue, setDiscountValue] = useState('');
-    const [maxUses, setMaxUses] = useState('');
-    const [maxUsesPerUser, setMaxUsesPerUser] = useState('');
-    const [expiresAt, setExpiresAt] = useState('');
-    const [courseId, setCourseId] = useState('');
+    const [code, setCode] = useState(initialData?.code || '');
+    const [discountValue, setDiscountValue] = useState(initialData?.discountValue?.toString() || '');
+    const [maxUses, setMaxUses] = useState(initialData?.maxUses?.toString() || '');
+    const [maxUsesPerUser, setMaxUsesPerUser] = useState(initialData?.maxUsesPerUser?.toString() || '');
+
+    // Format date for input: 'YYYY-MM-DD'
+    const formatDateForInput = (dateString: string | null) => {
+        if (!dateString) return '';
+        return new Date(dateString).toISOString().split('T')[0];
+    };
+
+    const [expiresAt, setExpiresAt] = useState(formatDateForInput(initialData?.expiresAt || null));
+    const [courseId, setCourseId] = useState(initialData?.courseId || '');
 
     useEffect(() => {
         // Fetch courses for selection
@@ -43,19 +62,30 @@ export default function CouponForm({ onSuccess, onCancel }: CouponFormProps) {
 
         try {
             const discountType = 'PERCENTAGE'; // We only support percentage for now as requested
-            const res = await fetch('/api/coupons', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    code: code.toUpperCase(),
-                    discountType,
-                    discountValue: parseFloat(discountValue),
-                    maxUses: maxUses ? parseInt(maxUses) : null,
-                    maxUsesPerUser: maxUsesPerUser ? parseInt(maxUsesPerUser) : null,
-                    expiresAt: expiresAt ? new Date(expiresAt).toISOString() : null,
-                    courseId: courseId === 'all' ? null : courseId
-                }),
-            });
+            const couponData = {
+                code: code.toUpperCase(),
+                discountType,
+                discountValue: parseFloat(discountValue),
+                maxUses: maxUses ? parseInt(maxUses) : null,
+                maxUsesPerUser: maxUsesPerUser ? parseInt(maxUsesPerUser) : null,
+                expiresAt: expiresAt ? new Date(expiresAt).toISOString() : null,
+                courseId: courseId === 'all' ? null : courseId
+            };
+
+            let res;
+            if (initialData?.id) {
+                res = await fetch(`/api/coupons/${initialData.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(couponData),
+                });
+            } else {
+                res = await fetch('/api/coupons', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(couponData),
+                });
+            }
 
             if (!res.ok) {
                 const error = await res.json();
@@ -176,7 +206,7 @@ export default function CouponForm({ onSuccess, onCancel }: CouponFormProps) {
                     disabled={loading}
                     className="flex-1 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
                 >
-                    {loading ? 'Creating...' : 'Create Coupon'}
+                    {loading ? (initialData ? 'Updating...' : 'Creating...') : (initialData ? 'Update Coupon' : 'Create Coupon')}
                 </button>
             </div>
         </form>
