@@ -247,7 +247,7 @@ model Order {
   orderNumber     String      @unique
   status          String      @default("pending") // pending, completed, failed, refunded
   total           Float
-  currency        String      @default("USD")
+  currency        String      @default("MXN")
   paymentMethod   String?     // paypal, stripe, mercadopago
   billingName     String
   billingEmail    String

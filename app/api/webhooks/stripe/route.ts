@@ -211,7 +211,7 @@ async function handlePaymentSucceeded(paymentIntent: Stripe.PaymentIntent) {
                 gateway: 'stripe',
                 transactionId: paymentIntent.id,
                 amount: paymentIntent.amount / 100, // Convert back to main currency unit
-                currency: paymentIntent.currency,
+                currency: paymentIntent.currency.toUpperCase(),
                 status: 'completed',
                 gatewayResponse: JSON.stringify(paymentIntent),
             },

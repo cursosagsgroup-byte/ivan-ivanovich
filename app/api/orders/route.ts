@@ -242,6 +242,7 @@ export async function POST(req: Request) {
                 userId,
                 orderNumber,
                 total: finalTotal,
+                currency: 'MXN',
                 status: isFreeOrder ? 'completed' : 'pending',
                 paymentMethod: isFreeOrder ? 'free' : 'stripe',
                 billingName: `${billingDetails.firstName} ${billingDetails.lastName}`,
