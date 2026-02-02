@@ -297,7 +297,8 @@ export async function POST(req: Request) {
         return NextResponse.json({
             orderId: order.id,
             orderNumber: order.orderNumber,
-            freeOrder: isFreeOrder
+            freeOrder: isFreeOrder,
+            total: finalTotal
         });
 
     } catch (error) {

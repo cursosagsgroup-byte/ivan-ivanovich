@@ -38,6 +38,7 @@ export default function CheckoutPage() {
     const [orderNumber, setOrderNumber] = useState<string | null>(null);
     const [showPayment, setShowPayment] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
+    const [paymentAmount, setPaymentAmount] = useState<number>(0);
 
     const handleApplyCoupon = async () => {
         setCouponError('');
@@ -179,6 +180,7 @@ export default function CheckoutPage() {
             // Normal flow: show payment form
             setOrderId(data.orderId);
             setOrderNumber(data.orderNumber);
+            setPaymentAmount(data.total); // Enable using authoritative total
             setShowPayment(true);
 
         } catch (error) {
@@ -492,7 +494,7 @@ export default function CheckoutPage() {
                                         Información de Pago
                                     </h3>
                                     <StripePaymentForm
-                                        amount={total - discount}
+                                        amount={paymentAmount || (total - discount)}
                                         orderId={orderId}
                                         onSuccess={handlePaymentSuccess}
                                         onError={handlePaymentError}

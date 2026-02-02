@@ -4,14 +4,18 @@ import { ShoppingCart } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 import { useTranslation } from '@/hooks/useTranslation';
 
-export default function CartIcon() {
+interface CartIconProps {
+    className?: string;
+}
+
+export default function CartIcon({ className }: CartIconProps) {
     const { t } = useTranslation();
     const { itemCount, openCart } = useCart();
 
     return (
         <button
             onClick={openCart}
-            className="relative inline-flex items-center text-gray-900 hover:text-[#B70126] transition-colors"
+            className={`relative inline-flex items-center hover:text-[#B70126] transition-colors ${className || 'text-gray-900'}`}
             aria-label={t('cart.title')}
         >
             <ShoppingCart className="w-6 h-6" />

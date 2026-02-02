@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-    // Find the admin user
     const user = await prisma.user.findFirst({
         where: { role: 'ADMIN' }
     });
@@ -15,33 +14,28 @@ async function main() {
 
     console.log(`Found admin user: ${user.email}`);
 
-    // Check if English version already exists
-    const existingPost = await prisma.blogPost.findUnique({
-        where: { slug: 'analisis-historico-efectividad-proteccion-ejecutiva-en' }
-    });
+    // Check for both old and new slugs to clean up
+    const slugsToDelete = [
+        'analisis-historico-efectividad-proteccion-ejecutiva-en',
+        'historical-analysis-effectiveness-executive-protection'
+    ];
 
-    if (existingPost) {
-        console.log('English version already exists. Deleting it first...');
-        await prisma.blogPost.delete({
-            where: { slug: 'analisis-historico-efectividad-proteccion-ejecutiva-en' }
-        });
+    for (const slug of slugsToDelete) {
+        const existing = await prisma.blogPost.findUnique({ where: { slug } });
+        if (existing) {
+            console.log(`Deleting existing post with slug: ${slug}`);
+            await prisma.blogPost.delete({ where: { slug } });
+        }
     }
 
-    // Check if Spanish version exists to get the image
     const spanishPost = await prisma.blogPost.findUnique({
         where: { slug: 'analisis-historico-efectividad-proteccion-ejecutiva' },
         select: { image: true }
     });
 
     const articleContent = `
-<h2>Abstract</h2>
-<p>This study evaluates the historical effectiveness of various measures used in Executive Protection through the analysis of 141 verified assassination attempts against high-level political and public figures, occurring between 1900 and 2025 in over 60 countries. The <strong>Circumstantial Effectiveness Index (CEI)</strong> is calculated for firearms, empty-hand techniques, armored vehicles, defensive driving, and other reactive close protection measures. The results confirm that reaction tools and tactics (weapons, large escorts, close combat) have a combined effectiveness of only <strong>17.73%</strong>, failing in over 80% of the studied attacks. In contrast, anticipatory measures—such as surveillance, counter-surveillance, and early warning—although historically underutilized, demonstrate significant potential for thwarting attacks before execution. Rigorous verification through multiple historical sources ensures reliability. The findings propose a paradigm shift: from a model centered on weapons and reaction to an intelligence-enabled, preventive, and logistical model.</p>
-
-<p><strong>Keywords:</strong> executive protection, effectiveness, assassination attempts, historical analysis, preventive strategies, intelligence, counter-surveillance.</p>
-
 <h2>Introduction</h2>
-<p>In contemporary practice, both protectors and protectees often assume that firearms constitute the central element of executive protection. This perception persists despite the absence of robust empirical evidence to support it. Part of this view stems from cultural narratives, especially cinema, fiction, and isolated anecdotes. Scientifically evaluating the effectiveness of these tools is complex due to the lack of systematic data. For example, in Mexico alone, INEGI reports 2,877 executives and officials assassinated in recent decades, but there is no complete information on how many had armed security, nor in how many cases their escorts could influence the outcome. On a global scale, an exhaustive census is unfeasible.</p>
-
+<p>In contemporary practice, both protectors and protectees often assume that firearms constitute the central element of executive protection. This perception persists despite the absence of robust empirical evidence to support it. Part of this view stems from cultural narratives, especially cinema, fiction, and isolated anecdotes. Scientifically evaluating the effectiveness of these tools is complex due to the lack of systematic data. For example, in Mexico alone, INEGI reports 2,877 executives and officials assassinated in recent decades, but there is no complete information on how many had armed security, nor in how many cases their agents could influence the outcome. On a global scale, an exhaustive census is unfeasible.</p>
 <p>Therefore, this study adopts a representative sample: <strong>141 historically verifiable assassination attempts with confirmed presence of professional armed security</strong>. Multiple sources—encyclopedic databases, academic archives, and journalistic reports—were used to ensure historical precision and consistency.</p>
 
 <h2>Methodology</h2>
@@ -71,8 +65,8 @@ async function main() {
 <p><strong>Applicable cases:</strong> situations where the tool could reasonably intervene based on distance, attack type, and operational context.</p>
 <p>Estimated distances:</p>
 <ul>
-<li>Short (&lt;7 m): 93 cases (65.96%).</li>
-<li>Long (&gt;7 m): 48 cases.</li>
+<li>Short (<7 m): 93 cases (65.96%).</li>
+<li>Long (>7 m): 48 cases.</li>
 </ul>
 <p>Distance was determined through historical reconstructions, official descriptions, and reports from the scene.</p>
 
@@ -80,8 +74,7 @@ async function main() {
 <p>Each case was corroborated across multiple sources. Examples:</p>
 <ul>
 <li>Early 20th century: attacks on Edward of Wales (1900), Leopold II (1902).</li>
-<li>Successful manual reaction: Lenin (1918), Mussolini (1926), Reagan (1981), Rabin (1995).</li>
-<li>Decisive weapons: Truman (1950), De Gaulle (1961–62), Pinochet (1986), Mubarak (1995), Karzai (2002).</li>
+<li>Successful manual reaction: Lenin (1918), Mussolini (1926), Reagan (1981)</li>
 <li>Failures with large teams: Galán (1989, 18 escorts), Cabrera Barrientos (2024, 15 escorts), Carlos Manzo (2025, ~20 escorts).</li>
 </ul>
 <p>No significant contradictions were found among consulted sources.</p>
@@ -97,16 +90,16 @@ async function main() {
 <h4>Firearms</h4>
 <ul>
 <li>Global CEI: <strong>3.55%</strong> (5/141)</li>
-<li>At short distance (&lt;7 m): <strong>0%</strong> (0/93)</li>
-<li>At long distance (&gt;7 m): <strong>10.42%</strong> (5/48)</li>
+<li>At short distance (<7 m): <strong>0%</strong> (0/93)</li>
+<li>At long distance (>7 m): <strong>10.42%</strong> (5/48)</li>
 </ul>
-<p>In most cases, the attack occurs too quickly for an effective armed response. Nonetheless, the few successful cases show that weapons should not be discarded but placed in their real context: a low-performance tool with exceptional applications.</p>
+<p>In most cases, the attack occurs too quickly for an effective armed response. Nonetheless, the few successful cases show that weapons should not be discarded at all but placed in their real context: a low-performance and secondary tool.</p>
 
 <h4>Empty-Hand Techniques</h4>
 <ul>
 <li>CEI: <strong>32.61%</strong> (15/46 applicable cases)</li>
 </ul>
-<p>They work primarily against lone attackers in crowds and at extremely short distances. They are not a substitute for early detection but a useful resource in immediate contact scenarios.</p>
+<p>They work primarily against lone attackers in crowds and at extremely short distances. Useful resource in immediate contact scenarios.</p>
 
 <h4>Armored Vehicles and Defensive Driving</h4>
 <ul>
@@ -122,7 +115,7 @@ async function main() {
 <ul>
 <li>Luis Carlos Galán (1989) with 18 armed agents.</li>
 <li>Cabrera Barrientos (2024) with 15 federal agents.</li>
-<li>Carlos Manzo (2025) with ~20 agents from Guardia Nacional and policía federal.</li>
+<li>Carlos Manzo (2025) with ~20 agents from Guardia Nacional and federal police.</li>
 </ul>
 <p>The size of the operation does not compensate for preventive deficiencies.</p>
 
@@ -156,7 +149,7 @@ async function main() {
 <h2>Discussion</h2>
 <p>The results align with contemporary operational findings, such as:</p>
 <ul>
-<li>The Tueller Drill, which demonstrates that an attacker at short distance systematically overcomes armed reaction speed.</li>
+<li>The Tueller Drill, which demonstrates that an attacker at short distance systematically overcomes armed reaction speed that explains low effectiveness of firearms in short distance attacks.</li>
 <li>Cases like Sadat (1981) and Galán (1989) prove that even a large deployment becomes irrelevant without anticipation.</li>
 <li>The success of early warning in September 2024 shows the difference between a reactive and an anticipatory model.</li>
 </ul>
@@ -181,7 +174,7 @@ async function main() {
 </li>
 <li><strong>Reactive measures are insufficient.</strong> The combined effectiveness of 17.73% demonstrates that reaction is late in most contexts.</li>
 <li><strong>21st Century Executive Protection must be:</strong>
-    <ul>
+     <ul>
     <li>Intelligence-enabled,</li>
     <li>Predictive,</li>
     <li>Logistical,</li>
@@ -338,7 +331,7 @@ async function main() {
 </ol>
 
 <h2>References</h2>
-<ol start="0">
+<ol>
 <li>Exploring factors in successful vs. unsuccessful terrorist assassinations. START. <a href="#" target="_blank">Link</a></li>
 <li>Assassination of political leaders: The role of social conflict. ScienceDirect. <a href="#" target="_blank">Link</a></li>
 <li>"A Study of Assassination"-Transcription. National Security Archive. <a href="#" target="_blank">Link</a></li>
@@ -350,29 +343,20 @@ async function main() {
 <li>Political leader assassination attempts are on the rise worldwide. The Hub. <a href="#" target="_blank">Link</a></li>
 <li>Gunman was a few hundred feet away from Trump, CNN analysis. CNN. <a href="#" target="_blank">Link</a></li>
 <li>Assassination of Miguel Uribe Turbay. Wikipedia. <a href="#" target="_blank">Link</a></li>
-</ol>
-<ol start="20">
 <li>Assassination of Charlie Kirk. Wikipedia. <a href="#" target="_blank">Link</a></li>
-</ol>
-<ol start="30">
 <li>Notable Ukrainian activist injured in apparent assassination attempt. Euronews. <a href="#" target="_blank">Link</a></li>
-</ol>
-<ol start="39">
 <li>List of United States presidential assassination attempts and plots. Wikipedia. <a href="#" target="_blank">Link</a></li>
 <li>Charlie Kirk shooting: A timeline of recent political violence in America. ABC News. <a href="#" target="_blank">Link</a></li>
 <li>How recent political violence in the U.S. fits into 'a long, dark history'. PBS. <a href="#" target="_blank">Link</a></li>
-</ol>
-<ol start="49">
 <li>List of people who survived assassination attempts. Wikipedia. <a href="#" target="_blank">Link</a></li>
 <li>List of assassinated persons. Wikipedia. <a href="#" target="_blank">Link</a></li>
 </ol>
 `;
 
-    // Create the English blog post
     await prisma.blogPost.create({
         data: {
             title: 'Historical Analysis of the Effectiveness of Executive Protection Measures: A Study of 141 Assassination Attempts Against Public Figures (1900–2025)',
-            slug: 'analisis-historico-efectividad-proteccion-ejecutiva-en',
+            slug: 'historical-analysis-effectiveness-executive-protection',
             excerpt: 'This study evaluates the historical effectiveness of executive protection measures through 141 verified assassination attempts. Results show reactive measures have only 17.73% effectiveness, while anticipatory strategies demonstrate significantly higher potential.',
             content: articleContent,
             image: spanishPost?.image || '/images/blog/executive-protection.jpg',
@@ -384,8 +368,8 @@ async function main() {
     });
 
     console.log('✅ English article created successfully!');
-    console.log('📝 Slug: analisis-historico-efectividad-proteccion-ejecutiva-en');
-    console.log('🌐 URL: /blog/analisis-historico-efectividad-proteccion-ejecutiva-en');
+    console.log('📝 Slug: historical-analysis-effectiveness-executive-protection');
+    console.log('🌐 URL: /blog/historical-analysis-effectiveness-executive-protection');
 }
 
 main()

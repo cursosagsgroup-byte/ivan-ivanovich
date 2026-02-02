@@ -6,8 +6,17 @@ export async function POST(req: NextRequest) {
     try {
         const { amount, orderId, metadata } = await req.json();
 
-        if (!amount || amount <= 0) {
-            return NextResponse.json({ error: 'Invalid amount' }, { status: 400 });
+        // Log received amount for debugging
+        console.log(`[PaymentIntent] Received amount: ${amount}, Type: ${typeof amount}`);
+
+        // Parse amount just in case it's a string
+        const amountVal = typeof amount === 'string' ? parseFloat(amount) : amount;
+
+        if (!amountVal || isNaN(amountVal) || amountVal <= 0) {
+            console.error(`[PaymentIntent] Invalid amount: ${amount}`);
+            return NextResponse.json({
+                error: `Invalid amount received: ${amount} (Type: ${typeof amount})`
+            }, { status: 400 });
         }
 
         // Get Stripe credentials from database
@@ -27,7 +36,7 @@ export async function POST(req: NextRequest) {
         // Create Payment Intent
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(amount * 100), // Convert to cents
-            currency: 'usd',
+            currency: 'mxn',
             metadata: {
                 orderId: orderId || '',
                 ...metadata,

@@ -42,7 +42,7 @@ function PaymentForm({ amount, orderId, onSuccess, onError }: StripePaymentFormP
                 onSuccess();
             }
         } catch (err: any) {
-            onError(err.message || 'Payment failed');
+            onError(`${err.message || 'Payment failed'} (Amount: ${amount})`);
         } finally {
             setIsProcessing(false);
         }

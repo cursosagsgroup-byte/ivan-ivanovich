@@ -122,6 +122,9 @@ export default function PublicNavbar() {
                             )}
                         </div>
 
+                        <Link href="/eventos" className="text-sm font-semibold leading-6 text-gray-900 hover:text-[#B70126] transition-colors">
+                            Eventos
+                        </Link>
                         <Link href="/blog" className="text-sm font-semibold leading-6 text-gray-900 hover:text-[#B70126] transition-colors">
                             {t('nav.blog')}
                         </Link>
@@ -213,6 +216,13 @@ export default function PublicNavbar() {
                                     {t('nav.detaCertificate')}
                                 </Link>
                             </div>
+                            <Link
+                                href="/eventos"
+                                className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Eventos
+                            </Link>
                             <Link
                                 href="/blog"
                                 className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
