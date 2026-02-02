@@ -71,7 +71,7 @@ export default function CourseSettings() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label htmlFor="price" className="block text-sm font-medium text-slate-700">
-                            Price (USD)
+                            Price (MXN)
                         </label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
