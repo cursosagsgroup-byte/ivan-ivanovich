@@ -40,7 +40,16 @@ export default async function CourseDetailPage({ params }: PageProps) {
 
         if (!course) {
             console.warn(`[WARN] Course not found for ID: ${id}`);
-            notFound();
+            return (
+                <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-4">
+                    <Award className="w-16 h-16 text-yellow-500 mb-4" />
+                    <h1 className="text-2xl font-bold mb-2">Curso no encontrado</h1>
+                    <p className="text-gray-400 mb-6">No pudimos encontrar el curso con ID: {id}</p>
+                    <a href="/" className="px-6 py-2 bg-[#B70126] rounded-full hover:bg-[#90011E] transition-colors">
+                        Volver al Inicio
+                    </a>
+                </div>
+            );
         }
 
         // Calculate total duration (placeholder logic as duration is 0 in db currently)
@@ -73,7 +82,18 @@ export default async function CourseDetailPage({ params }: PageProps) {
 
                                 {/* Right Column: Image */}
                                 <div className="relative aspect-video rounded-2xl overflow-hidden border-4 border-white/10 shadow-2xl">
-                                    {/* Image placeholder */}
+                                    {course.image ? (
+                                        <Image
+                                            src={course.image}
+                                            alt={course.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                                            <Award className="w-20 h-20 text-white/20" />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
