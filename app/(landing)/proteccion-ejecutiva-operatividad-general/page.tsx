@@ -83,7 +83,7 @@ export default function LandingPage() {
                                     En la <span className="font-bold text-black">Ivan Ivanovich Executive Protection Academy</span>, nos hemos propuesto una misión clara: Elevar el estándar de la seguridad ejecutiva moderna a través de la formación táctica real.
                                 </p>
                                 <div className="bg-gray-50 border-l-4 border-[#B70126] p-4 md:p-6 my-6 md:my-8">
-                                    <p className="font-bold text-black text-lg md:text-xl mb-2">Más de 900 profesionales</p>
+                                    <p className="font-bold text-black text-lg md:text-xl mb-2">Miles de profesionales</p>
                                     <p className="text-gray-600">
                                         Escoltas, jefes de seguridad y líderes corporativos ya se han entrenado con nosotros, revolucionando su manera de proteger, leer el entorno y tomar decisiones bajo presión.
                                     </p>
