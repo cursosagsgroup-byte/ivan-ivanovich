@@ -17,7 +17,7 @@ export default function LandingCTA({ className, style, children, showIcon = fals
         await addToCart({
             courseId: 'cml1dc7d60000piral5rrf0to',
             title: 'Protección Ejecutiva, Operatividad General y Logística Protectiva',
-            price: 16936.00,
+            price: 14800,
             image: '/images/landing-pe/feature-section.jpg'
         });
         openCart();
