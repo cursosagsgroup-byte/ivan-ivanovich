@@ -74,7 +74,9 @@ export default async function CursosOnlinePage() {
                             if (lowerTitle.includes('contravigilancia')) return '/educacion/contravigilancia';
                             if (lowerTitle.includes('counter surveillance')) return '/educacion/counter-surveillance';
                             if (lowerTitle.includes('libro')) return '/educacion/libro';
-                            if (lowerTitle.includes('protección ejecutiva, operatividad') || lowerTitle.includes('proteccion ejecutiva, operatividad')) return '/proteccion-ejecutiva-operatividad-general';
+                            // Specific match for "Protección Ejecutiva, Operatividad General y Logística Protectiva"
+                            // Using a significant substring to ensure it matches the correct course and NOT others like "Contravigilancia..."
+                            if (lowerTitle.includes('operatividad general') && lowerTitle.includes('logística')) return '/proteccion-ejecutiva-operatividad-general';
                             return `/educacion/cursos-online/${id}`;
                         };
 
