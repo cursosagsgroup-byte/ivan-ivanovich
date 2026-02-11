@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle2, Shield, Target, Award, MapPin, Calendar, Clock, AlertTriangle } from 'lucide-react';
 import LandingCTA from '@/components/landing/LandingCTA';
+import ExecutiveTrainingSection from '@/components/landing/ExecutiveTrainingSection';
 
 export default function LandingPage() {
     return (
@@ -47,6 +48,9 @@ export default function LandingPage() {
                     </div>
                 </div>
             </div>
+
+            {/* EXECUTIVE TRAINING SECTION */}
+            <ExecutiveTrainingSection />
 
             {/* PROBLEM / SOLUTION SECTION */}
             <section data-theme="light" className="py-12 md:py-24 bg-white">

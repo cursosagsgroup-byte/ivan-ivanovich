@@ -44,6 +44,8 @@ export async function POST(req: NextRequest) {
             automatic_payment_methods: {
                 enabled: true,
             },
+        }, {
+            idempotencyKey: `payment_intent_${orderId}`,
         });
 
         return NextResponse.json({

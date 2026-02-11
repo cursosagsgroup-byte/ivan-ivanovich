@@ -14,6 +14,7 @@ export default function LandingCTA({ className, style, children, showIcon = fals
     const { addToCart, openCart } = useCart();
 
     const handleAddToCart = async () => {
+        console.log('Adding to cart with price:', 14800);
         await addToCart({
             courseId: 'cml1dc7d60000piral5rrf0to',
             title: 'Protección Ejecutiva, Operatividad General y Logística Protectiva',

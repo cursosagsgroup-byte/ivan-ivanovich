@@ -2,7 +2,7 @@
 
 import { useCart } from '@/lib/cart-context';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Shield, CreditCard, Lock } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { PasswordInput } from '@/components/ui/PasswordInput';
@@ -192,17 +192,17 @@ export default function CheckoutPage() {
         }
     };
 
-    const handlePaymentSuccess = async () => {
+    const handlePaymentSuccess = useCallback(async () => {
         setIsRedirecting(true);
         // Clear cart and redirect
         await clearCart();
         router.push(`/checkout/success?orderId=${orderId}&orderNumber=${orderNumber}`);
-    };
+    }, [clearCart, router, orderId, orderNumber]);
 
-    const handlePaymentError = (error: string) => {
+    const handlePaymentError = useCallback((error: string) => {
         alert(`Error en el pago: ${error}`);
         setShowPayment(false);
-    };
+    }, []);
 
     return (
         <div className="bg-slate-50 min-h-screen pt-32 pb-16">
