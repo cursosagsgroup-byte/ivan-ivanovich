@@ -63,7 +63,7 @@ export default function LandingPage() {
                         <div className="order-2 lg:order-1">
                             <div className="relative h-[400px] md:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl">
                                 <Image
-                                    src="/images/landing-pe/feature-section.jpg"
+                                    src="/images/landing-pe/ivan-pensando.jpg"
                                     alt="Instructor Ivan Ivanovich"
                                     fill
                                     className="object-cover"
