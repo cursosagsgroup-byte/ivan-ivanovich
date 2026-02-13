@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { Award, CheckCircle2 } from 'lucide-react';
 
 const IMAGES = [
-    '/images/nueva-seccion/main.jpg',
     '/images/nueva-seccion/gallery-1.jpg',
     '/images/nueva-seccion/gallery-2.jpg',
-    '/images/nueva-seccion/gallery-3.jpg'
+    '/images/nueva-seccion/gallery-3.jpg',
+    '/images/nueva-seccion/main.jpg'
 ];
 
 export default function ExecutiveTrainingSection() {
@@ -52,9 +52,7 @@ export default function ExecutiveTrainingSection() {
                             ))}
                         </div>
 
-                        <p className="text-gray-600 italic text-sm md:text-base mt-4">
-                            "A lo largo de más de 30 años, Ivan Ivanovich ha capacitado a miles de protectores en América y Europa, formando escoltas y directores de seguridad que hoy operan con criterio estratégico, mentalidad preventiva y estándares internacionales."
-                        </p>
+
                     </div>
 
                     {/* Content Column */}
@@ -67,9 +65,7 @@ export default function ExecutiveTrainingSection() {
                         </h2>
 
                         <div className="space-y-4 md:space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
-                            <p className="font-medium text-black">
-                                Reconocido por la prestigiosa revista británica <span className="italic">International Security Journal</span> como uno de los <span className="text-[#B70126] font-bold">30 profesionales más influyentes del mundo</span> en seguridad ejecutiva.
-                            </p>
+                            Reconocido por la prestigiosa revista británica <span className="italic">International Security Journal</span> como uno de los <span className="text-[#B70126] font-bold">30 más influentes profesionales de seguridad en general</span>.
 
                             <div className="bg-white border-l-4 border-[#B70126] p-4 md:p-6 shadow-sm">
                                 <p className="font-bold text-black mb-3">Único en capacitar a unidades de élite en el mundo como:</p>
@@ -90,12 +86,7 @@ export default function ExecutiveTrainingSection() {
                             </div>
 
                             <div className="space-y-4">
-                                <div className="flex gap-3">
-                                    <Award className="w-6 h-6 text-[#B70126] shrink-0" />
-                                    <p>
-                                        <span className="font-bold text-black">Más de 30 años de experiencia operativa:</span> Actuando en escenarios de seguridad global, incluyendo conflictos bélicos y situaciones de alto riesgo en Europa y América.
-                                    </p>
-                                </div>
+
                                 <div className="flex gap-3">
                                     <Award className="w-6 h-6 text-[#B70126] shrink-0" />
                                     <p>

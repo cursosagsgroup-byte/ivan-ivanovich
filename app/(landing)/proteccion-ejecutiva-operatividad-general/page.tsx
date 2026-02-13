@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CheckCircle2, Shield, Target, Award, MapPin, Calendar, Clock, AlertTriangle } from 'lucide-react';
 import LandingCTA from '@/components/landing/LandingCTA';
 import ExecutiveTrainingSection from '@/components/landing/ExecutiveTrainingSection';
+import PersuasionTechniquesSection from '@/components/landing/PersuasionTechniquesSection';
 
 export default function LandingPage() {
     return (
@@ -52,7 +53,10 @@ export default function LandingPage() {
             {/* EXECUTIVE TRAINING SECTION */}
             <ExecutiveTrainingSection />
 
-            {/* PROBLEM / SOLUTION SECTION */}
+            {/* PERSUASION TECHNIQUES SECTION */}
+            <PersuasionTechniquesSection />
+
+            {/* PROBLEM / SOLUTION SECTION (RESTORED) */}
             <section data-theme="light" className="py-12 md:py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -97,25 +101,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* NEW SECTION: AUTHORITY & CREDENTIALS */}
-            <section data-theme="light" className="py-12 md:py-24 bg-gray-50">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-lg md:text-2xl font-medium text-gray-800 mb-8 leading-relaxed">
-                        Descubre cómo <span className="font-bold text-black">anticipar amenazas, ejecutar operativos reales y proteger con criterio estratégico</span> en nuestro curso, liderado por <span className="font-bold text-black">Iván Ivanovich</span>, uno de los 30 expertos más influyentes en seguridad ejecutiva a nivel mundial.
-                    </p>
 
-                    <div className="bg-white border-l-4 border-[#B70126] p-6 md:p-8 my-10 shadow-sm text-left max-w-3xl mx-auto">
-                        <p className="font-bold text-black text-xl md:text-2xl mb-3">Cientos de profesionales</p>
-                        <p className="text-gray-600 text-lg">
-                            Se forman cada año con Iván Ivanovich, quien ha entrenado a la unidad presidencial de Costa Rica y a la Fuerza de Protección de la infantería de Marina Española.
-                        </p>
-                    </div>
-
-                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium">
-                        Su experiencia actuando en escenarios de seguridad global, incluyendo conflictos bélicos y situaciones de alto riesgo en Europa y América lo sitúan como un referente mundial de la protección ejecutiva, con un enfoque basado en evitar la reacción.
-                    </p>
-                </div>
-            </section>
 
             {/* WHAT YOU WILL LEARN */}
             <section data-theme="dark" className="py-16 md:py-24 bg-gray-900 text-white">
