@@ -12,30 +12,42 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                if (!credentials?.email || !credentials?.password) {
-                    throw new Error("Invalid credentials")
-                }
-
-                const user = await prisma.user.findUnique({
-                    where: {
-                        email: credentials.email
+                try {
+                    if (!credentials?.email || !credentials?.password) {
+                        throw new Error("Invalid credentials")
                     }
-                })
 
-                if (!user || !user?.password) {
-                    throw new Error("Invalid credentials")
+                    console.log(`[AUTH] authorize() called for: ${credentials.email}`)
+
+                    const user = await prisma.user.findUnique({
+                        where: {
+                            email: credentials.email
+                        }
+                    })
+
+                    console.log(`[AUTH] User found: ${!!user}`)
+
+                    if (!user || !user?.password) {
+                        throw new Error("Invalid credentials")
+                    }
+
+                    const isCorrectPassword = await bcrypt.compare(
+                        credentials.password,
+                        user.password
+                    )
+
+                    console.log(`[AUTH] Password correct: ${isCorrectPassword}`)
+
+                    if (!isCorrectPassword) {
+                        throw new Error("Invalid credentials")
+                    }
+
+                    console.log(`[AUTH] authorize() SUCCESS for: ${credentials.email}`)
+                    return user
+                } catch (error) {
+                    console.error(`[AUTH] authorize() ERROR for ${credentials?.email}:`, error)
+                    throw error
                 }
-
-                const isCorrectPassword = await bcrypt.compare(
-                    credentials.password,
-                    user.password
-                )
-
-                if (!isCorrectPassword) {
-                    throw new Error("Invalid credentials")
-                }
-
-                return user
             }
         })
     ],
@@ -52,25 +64,32 @@ export const authOptions: NextAuthOptions = {
             return session
         },
         async jwt({ token, user }) {
-            const dbUser = await prisma.user.findUnique({
-                where: {
-                    email: token.email!,
-                },
-            })
+            try {
+                console.log(`[AUTH] jwt() called for email: ${token.email}`)
+                const dbUser = await prisma.user.findUnique({
+                    where: {
+                        email: token.email!,
+                    },
+                })
 
-            if (!dbUser) {
-                if (user) {
-                    token.id = user?.id
+                if (!dbUser) {
+                    if (user) {
+                        token.id = user?.id
+                    }
+                    return token
                 }
-                return token
-            }
 
-            return {
-                id: dbUser.id,
-                name: dbUser.name,
-                email: dbUser.email,
-                picture: dbUser.image,
-                role: dbUser.role as "ADMIN" | "STUDENT",
+                console.log(`[AUTH] jwt() SUCCESS for: ${token.email}, role: ${dbUser.role}`)
+                return {
+                    id: dbUser.id,
+                    name: dbUser.name,
+                    email: dbUser.email,
+                    picture: dbUser.image,
+                    role: dbUser.role as "ADMIN" | "STUDENT",
+                }
+            } catch (error) {
+                console.error(`[AUTH] jwt() ERROR for ${token.email}:`, error)
+                throw error
             }
         }
     },
