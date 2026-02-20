@@ -12,6 +12,14 @@ export default withAuth(
             return NextResponse.next()
         }
 
+        // Force non-www to prevent cookie mismatch issues
+        const hostname = req.headers.get("host") || "";
+        if (hostname.startsWith("www.")) {
+            const newUrl = new URL(req.url);
+            newUrl.hostname = hostname.replace("www.", "");
+            return NextResponse.redirect(newUrl);
+        }
+
         if (pathname.startsWith('/es') || pathname.startsWith('/en')) {
             // Determine locale
             const locale = pathname.startsWith('/es') ? 'es' : 'en';
