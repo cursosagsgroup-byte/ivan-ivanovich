@@ -10,7 +10,7 @@ import { PasswordInput } from '@/components/ui/PasswordInput';
 function ResetPasswordForm() {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const token = searchParams.get('token');
+    const token = searchParams?.get('token');
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');

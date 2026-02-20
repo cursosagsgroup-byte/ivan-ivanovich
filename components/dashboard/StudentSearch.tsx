@@ -7,15 +7,15 @@ import { useState, useEffect } from 'react';
 export default function StudentSearch() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+    const [searchTerm, setSearchTerm] = useState(searchParams?.get('search') || '');
 
     useEffect(() => {
-        setSearchTerm(searchParams.get('search') || '');
+        setSearchTerm(searchParams?.get('search') || '');
     }, [searchParams]);
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
-        const params = new URLSearchParams(searchParams.toString());
+        const params = new URLSearchParams(searchParams?.toString() || '');
 
         if (searchTerm.trim()) {
             params.set('search', searchTerm.trim());
@@ -29,7 +29,7 @@ export default function StudentSearch() {
 
     const handleClear = () => {
         setSearchTerm('');
-        const params = new URLSearchParams(searchParams.toString());
+        const params = new URLSearchParams(searchParams?.toString() || '');
         params.delete('search');
         params.delete('page');
         router.push(`/admin/students?${params.toString()}`);

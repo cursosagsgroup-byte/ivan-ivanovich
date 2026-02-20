@@ -19,8 +19,8 @@ interface OrderDetails {
 
 function SuccessContent() {
     const searchParams = useSearchParams();
-    const orderNumber = searchParams.get('orderNumber');
-    const orderId = searchParams.get('orderId'); // We need orderId to fetch details
+    const orderNumber = searchParams?.get('orderNumber');
+    const orderId = searchParams?.get('orderId'); // We need orderId to fetch details
     const { t } = useTranslation();
 
     const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);

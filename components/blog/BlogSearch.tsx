@@ -10,7 +10,7 @@ export default function BlogSearch({ placeholder }: { placeholder: string }) {
     const { replace } = useRouter();
 
     const handleSearch = useDebouncedCallback((term: string) => {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams?.toString());
         params.set('page', '1'); // Reset to page 1 when searching
 
         if (term) {
@@ -33,7 +33,7 @@ export default function BlogSearch({ placeholder }: { placeholder: string }) {
                 onChange={(e) => {
                     handleSearch(e.target.value);
                 }}
-                defaultValue={searchParams.get('search')?.toString()}
+                defaultValue={searchParams?.get('search')?.toString()}
             />
             <Search className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
         </div>
