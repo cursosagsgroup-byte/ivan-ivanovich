@@ -6,6 +6,12 @@ export default withAuth(
         // SEO Redirects for legacy /es and /en paths
         // We redirect them to the root (or subpath) and set the language cookie
         const pathname = req.nextUrl.pathname;
+
+        // CRITICAL FIX: Skip middleware for NextAuth API routes to prevent 405 errors
+        if (pathname.startsWith("/api/auth")) {
+            return NextResponse.next()
+        }
+
         if (pathname.startsWith('/es') || pathname.startsWith('/en')) {
             // Determine locale
             const locale = pathname.startsWith('/es') ? 'es' : 'en';

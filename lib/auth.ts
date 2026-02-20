@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
 export const authOptions: NextAuthOptions = {
+    debug: true, // Enable debug logs to troubleshoot 405 error
     providers: [
         CredentialsProvider({
             name: "credentials",
