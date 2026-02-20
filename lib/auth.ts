@@ -51,6 +51,40 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
+    // Fix for NextAuth v4 + Next.js 15 App Router: trustHost allows NextAuth
+    // to accept requests from the configured NEXTAUTH_URL domain without
+    // rejecting them due to host validation mismatches.
+    // See: https://next-auth.js.org/configuration/options#trusthost
+    trustHost: true,
+    cookies: {
+        sessionToken: {
+            name: `next-auth.session-token`,
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: true,
+            },
+        },
+        callbackUrl: {
+            name: `next-auth.callback-url`,
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: true,
+            },
+        },
+        csrfToken: {
+            name: `next-auth.csrf-token`,
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: true,
+            },
+        },
+    },
     callbacks: {
         async session({ session, token }) {
             try {
