@@ -53,46 +53,54 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async session({ session, token }) {
-            if (token) {
-                session.user.id = token.id
-                session.user.name = token.name
-                session.user.email = token.email
-                session.user.image = token.picture
-                session.user.role = token.role
-            }
-
-            return session
-        },
-        async jwt({ token, user }) {
             try {
-                console.log(`[AUTH] jwt() called for email: ${token.email}`)
-                const dbUser = await prisma.user.findUnique({
-                    where: {
-                        email: token.email!,
-                    },
-                })
-
-                if (!dbUser) {
-                    if (user) {
-                        token.id = user?.id
-                    }
-                    return token
+                console.log(`[AUTH] session() called for token.email: ${token.email}, token.id: ${token.id}, token.role: ${token.role}`)
+                if (token) {
+                    session.user.id = token.id
+                    session.user.name = token.name
+                    session.user.email = token.email
+                    session.user.image = token.picture
+                    session.user.role = token.role
                 }
-
-                console.log(`[AUTH] jwt() SUCCESS for: ${token.email}, role: ${dbUser.role}`)
-                return {
-                    id: dbUser.id,
-                    name: dbUser.name,
-                    email: dbUser.email,
-                    picture: dbUser.image,
-                    role: dbUser.role as "ADMIN" | "STUDENT",
-                }
+                console.log(`[AUTH] session() SUCCESS`)
+                return session
             } catch (error) {
-                console.error(`[AUTH] jwt() ERROR for ${token.email}:`, error)
+                console.error(`[AUTH] session() ERROR:`, error)
                 throw error
             }
-        }
+        },
+        return session
     },
+    async jwt({ token, user }) {
+        try {
+            console.log(`[AUTH] jwt() called for email: ${token.email}`)
+            const dbUser = await prisma.user.findUnique({
+                where: {
+                    email: token.email!,
+                },
+            })
+
+            if (!dbUser) {
+                if (user) {
+                    token.id = user?.id
+                }
+                return token
+            }
+
+            console.log(`[AUTH] jwt() SUCCESS for: ${token.email}, role: ${dbUser.role}`)
+            return {
+                id: dbUser.id,
+                name: dbUser.name,
+                email: dbUser.email,
+                picture: dbUser.image,
+                role: dbUser.role as "ADMIN" | "STUDENT",
+            }
+        } catch (error) {
+            console.error(`[AUTH] jwt() ERROR for ${token.email}:`, error)
+            throw error
+        }
+    }
+},
     pages: {
         signIn: "/login",
     },
