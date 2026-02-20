@@ -1,20 +1,24 @@
-import { prisma } from '../lib/prisma';
+
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 async function main() {
-    console.log('--- Checking Payment Config ---');
-    const stripeConfig = await prisma.paymentConfig.findUnique({
-        where: { gateway: 'stripe' },
-    });
+    console.log('Checking Payment Configuration...');
 
-    if (!stripeConfig) {
-        console.log('Stripe config NOT found in database.');
+    const configs = await prisma.paymentConfig.findMany();
+
+    if (configs.length === 0) {
+        console.log('No payment configurations found.');
     } else {
-        console.log('Stripe Config found:');
-        console.log(`  Enabled: ${stripeConfig.enabled}`);
-        console.log(`  Test Mode: ${stripeConfig.testMode}`);
-        console.log(`  Public Key: ${stripeConfig.publicKey ? 'Set' : 'Missing'}`);
-        console.log(`  Secret Key: ${stripeConfig.secretKey ? 'Set' : 'Missing'}`);
-        console.log(`  Webhook Secret: ${stripeConfig.webhookSecret ? 'Set' : 'Missing'}`);
+        configs.forEach(config => {
+            console.log(`\nGateway: ${config.gateway}`);
+            console.log(`Enabled: ${config.enabled}`);
+            console.log(`Test Mode: ${config.testMode}`);
+            console.log(`Public Key: ${config.publicKey ? 'SET' : 'MISSING'}`);
+            console.log(`Secret Key: ${config.secretKey ? 'SET' : 'MISSING'}`);
+            console.log(`Webhook Secret: ${config.webhookSecret ? 'SET' : 'MISSING'}`);
+        });
     }
 }
 
