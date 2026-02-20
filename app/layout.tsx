@@ -8,7 +8,7 @@ import CartSlidePanel from '@/components/cart/CartSlidePanel';
 import { LanguageProvider } from '@/components/providers/LanguageProvider';
 import { cookies } from 'next/headers';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SpeedInsights } from "@vercel/speed-insights/next"
