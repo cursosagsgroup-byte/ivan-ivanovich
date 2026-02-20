@@ -69,38 +69,36 @@ export const authOptions: NextAuthOptions = {
                 throw error
             }
         },
-        return session
-    },
-    async jwt({ token, user }) {
-        try {
-            console.log(`[AUTH] jwt() called for email: ${token.email}`)
-            const dbUser = await prisma.user.findUnique({
-                where: {
-                    email: token.email!,
-                },
-            })
+        async jwt({ token, user }) {
+            try {
+                console.log(`[AUTH] jwt() called for email: ${token.email}`)
+                const dbUser = await prisma.user.findUnique({
+                    where: {
+                        email: token.email!,
+                    },
+                })
 
-            if (!dbUser) {
-                if (user) {
-                    token.id = user?.id
+                if (!dbUser) {
+                    if (user) {
+                        token.id = user?.id
+                    }
+                    return token
                 }
-                return token
-            }
 
-            console.log(`[AUTH] jwt() SUCCESS for: ${token.email}, role: ${dbUser.role}`)
-            return {
-                id: dbUser.id,
-                name: dbUser.name,
-                email: dbUser.email,
-                picture: dbUser.image,
-                role: dbUser.role as "ADMIN" | "STUDENT",
+                console.log(`[AUTH] jwt() SUCCESS for: ${token.email}, role: ${dbUser.role}`)
+                return {
+                    id: dbUser.id,
+                    name: dbUser.name,
+                    email: dbUser.email,
+                    picture: dbUser.image,
+                    role: dbUser.role as "ADMIN" | "STUDENT",
+                }
+            } catch (error) {
+                console.error(`[AUTH] jwt() ERROR for ${token.email}:`, error)
+                throw error
             }
-        } catch (error) {
-            console.error(`[AUTH] jwt() ERROR for ${token.email}:`, error)
-            throw error
         }
-    }
-},
+    },
     pages: {
         signIn: "/login",
     },
