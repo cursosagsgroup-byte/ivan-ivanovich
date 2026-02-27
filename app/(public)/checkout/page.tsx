@@ -500,7 +500,6 @@ export default function CheckoutPage() {
                                 </div>
                             </div>
 
-
                             <div className="border-t border-slate-200 pt-6">
                                 <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                                     <CreditCard className="w-5 h-5 text-primary" />
@@ -513,7 +512,12 @@ export default function CheckoutPage() {
                                             className={`border-2 rounded-xl overflow-hidden transition-colors ${selectedPaymentMethod === 'stripe' ? 'border-primary' : 'border-slate-200 hover:border-slate-300'}`}
                                         >
                                             <div
-                                                onClick={() => !showPayment && setSelectedPaymentMethod('stripe')}
+                                                onClick={() => {
+                                                    setSelectedPaymentMethod('stripe');
+                                                    if (showPayment && selectedPaymentMethod !== 'stripe') {
+                                                        setShowPayment(false);
+                                                    }
+                                                }}
                                                 className={`p-4 flex items-center justify-between cursor-pointer ${selectedPaymentMethod === 'stripe' ? 'bg-red-50' : ''}`}
                                             >
                                                 <div className="flex items-center gap-4">
@@ -539,7 +543,12 @@ export default function CheckoutPage() {
                                             className={`border-2 rounded-xl overflow-hidden transition-colors ${selectedPaymentMethod === 'mercadopago' ? 'border-[#009EE3]' : 'border-slate-200 hover:border-slate-300'}`}
                                         >
                                             <div
-                                                onClick={() => !showPayment && setSelectedPaymentMethod('mercadopago')}
+                                                onClick={() => {
+                                                    setSelectedPaymentMethod('mercadopago');
+                                                    if (showPayment && selectedPaymentMethod !== 'mercadopago') {
+                                                        setShowPayment(false);
+                                                    }
+                                                }}
                                                 className={`p-4 flex items-center justify-between cursor-pointer ${selectedPaymentMethod === 'mercadopago' ? 'bg-blue-50' : ''}`}
                                             >
                                                 <div className="flex items-center gap-4">
