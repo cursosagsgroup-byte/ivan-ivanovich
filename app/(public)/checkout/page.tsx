@@ -423,41 +423,6 @@ export default function CheckoutPage() {
                             </form>
                         </div>
 
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                            <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                                <CreditCard className="w-5 h-5 text-primary" />
-                                {t('checkout.paymentMethod')}
-                            </h2>
-                            <div className="space-y-3">
-                                {activeMethods.includes('stripe') && (
-                                    <div
-                                        onClick={() => setSelectedPaymentMethod('stripe')}
-                                        className={`p-4 border-2 rounded-xl flex items-center justify-between cursor-pointer transition-colors ${selectedPaymentMethod === 'stripe' ? 'border-primary bg-red-50' : 'border-slate-200 hover:border-slate-300'}`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className={`w-4 h-4 rounded-full border-4 shadow-sm ring-1 ${selectedPaymentMethod === 'stripe' ? 'bg-primary border-white ring-primary' : 'bg-transparent border-white ring-slate-300'}`}></div>
-                                            <span className="font-medium text-slate-900">{t('checkout.creditCard')} (Stripe)</span>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {activeMethods.includes('mercadopago') && (
-                                    <div
-                                        onClick={() => setSelectedPaymentMethod('mercadopago')}
-                                        className={`p-4 border-2 rounded-xl flex items-center justify-between cursor-pointer transition-colors ${selectedPaymentMethod === 'mercadopago' ? 'border-[#009EE3] bg-blue-50' : 'border-slate-200 hover:border-slate-300'}`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <div className={`w-4 h-4 rounded-full border-4 shadow-sm ring-1 ${selectedPaymentMethod === 'mercadopago' ? 'bg-[#009EE3] border-white ring-[#009EE3]' : 'bg-transparent border-white ring-slate-300'}`}></div>
-                                            <span className="font-medium text-slate-900">Mercado Pago</span>
-                                        </div>
-                                        <div className="flex gap-2 text-xl">
-                                            <span className="font-bold text-[#009EE3]">mercado</span>
-                                            <span className="font-bold text-[#1f2937]">pago</span>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
                     </div>
 
                     {/* Order Summary */}
@@ -536,38 +501,81 @@ export default function CheckoutPage() {
                             </div>
 
 
-                            {showPayment && orderId ? (
-                                <div className="border-t border-slate-200 pt-6">
-                                    <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <CreditCard className="w-5 h-5 text-primary" />
-                                        Información de Pago
-                                    </h3>
-                                    {selectedPaymentMethod === 'mercadopago' ? (
-                                        <MercadoPagoPaymentForm
-                                            amount={paymentAmount || (total - discount)}
-                                            orderId={orderId}
-                                            onSuccess={handlePaymentSuccess}
-                                            onError={handlePaymentError}
-                                        />
-                                    ) : (
-                                        <StripePaymentForm
-                                            amount={paymentAmount || (total - discount)}
-                                            orderId={orderId}
-                                            onSuccess={handlePaymentSuccess}
-                                            onError={handlePaymentError}
-                                        />
+                            <div className="border-t border-slate-200 pt-6">
+                                <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                    <CreditCard className="w-5 h-5 text-primary" />
+                                    {t('checkout.paymentMethod')}
+                                </h3>
+
+                                <div className="space-y-3 mb-6">
+                                    {activeMethods.includes('stripe') && (
+                                        <div
+                                            className={`border-2 rounded-xl overflow-hidden transition-colors ${selectedPaymentMethod === 'stripe' ? 'border-primary' : 'border-slate-200 hover:border-slate-300'}`}
+                                        >
+                                            <div
+                                                onClick={() => !showPayment && setSelectedPaymentMethod('stripe')}
+                                                className={`p-4 flex items-center justify-between cursor-pointer ${selectedPaymentMethod === 'stripe' ? 'bg-red-50' : ''}`}
+                                            >
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`w-4 h-4 rounded-full border-4 shadow-sm ring-1 ${selectedPaymentMethod === 'stripe' ? 'bg-primary border-white ring-primary' : 'bg-transparent border-white ring-slate-300'}`}></div>
+                                                    <span className="font-medium text-slate-900">{t('checkout.creditCard')} (Stripe)</span>
+                                                </div>
+                                            </div>
+                                            {selectedPaymentMethod === 'stripe' && showPayment && orderId && (
+                                                <div className="p-4 bg-white border-t border-slate-100">
+                                                    <StripePaymentForm
+                                                        amount={paymentAmount || (total - discount)}
+                                                        orderId={orderId}
+                                                        onSuccess={handlePaymentSuccess}
+                                                        onError={handlePaymentError}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
+                                    {activeMethods.includes('mercadopago') && (
+                                        <div
+                                            className={`border-2 rounded-xl overflow-hidden transition-colors ${selectedPaymentMethod === 'mercadopago' ? 'border-[#009EE3]' : 'border-slate-200 hover:border-slate-300'}`}
+                                        >
+                                            <div
+                                                onClick={() => !showPayment && setSelectedPaymentMethod('mercadopago')}
+                                                className={`p-4 flex items-center justify-between cursor-pointer ${selectedPaymentMethod === 'mercadopago' ? 'bg-blue-50' : ''}`}
+                                            >
+                                                <div className="flex items-center gap-4">
+                                                    <div className={`w-4 h-4 rounded-full border-4 shadow-sm ring-1 ${selectedPaymentMethod === 'mercadopago' ? 'bg-[#009EE3] border-white ring-[#009EE3]' : 'bg-transparent border-white ring-slate-300'}`}></div>
+                                                    <span className="font-medium text-slate-900">Mercado Pago</span>
+                                                </div>
+                                                <div className="flex gap-2 text-xl">
+                                                    <span className="font-bold text-[#009EE3]">mercado</span>
+                                                    <span className="font-bold text-[#1f2937]">pago</span>
+                                                </div>
+                                            </div>
+                                            {selectedPaymentMethod === 'mercadopago' && showPayment && orderId && (
+                                                <div className="p-4 bg-white border-t border-slate-100">
+                                                    <MercadoPagoPaymentForm
+                                                        amount={paymentAmount || (total - discount)}
+                                                        orderId={orderId}
+                                                        onSuccess={handlePaymentSuccess}
+                                                        onError={handlePaymentError}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
                                     )}
                                 </div>
-                            ) : (
-                                <button
-                                    type="submit"
-                                    form="checkout-form"
-                                    disabled={isProcessing}
-                                    className="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-[#D9012D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                                >
-                                    {isProcessing ? t('checkout.processing') : 'Continuar al Pago'}
-                                </button>
-                            )}
+
+                                {!showPayment && (
+                                    <button
+                                        type="submit"
+                                        form="checkout-form"
+                                        disabled={isProcessing}
+                                        className="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-[#D9012D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                    >
+                                        {isProcessing ? t('checkout.processing') : 'Continuar al Pago'}
+                                    </button>
+                                )}
+                            </div>
 
                             <p className="text-xs text-center text-slate-500 mt-4">
                                 {t('checkout.terms')}
