@@ -24,6 +24,8 @@ const GATEWAYS = [
         fields: [
             { name: 'publicKey', label: 'Public Key', type: 'text' },
             { name: 'secretKey', label: 'Access Token', type: 'password' },
+            { name: 'clientId', label: 'Client ID', type: 'text' },
+            { name: 'clientSecret', label: 'Client Secret', type: 'password' },
             { name: 'webhookSecret', label: 'Webhook Secret', type: 'password' }
         ]
     },

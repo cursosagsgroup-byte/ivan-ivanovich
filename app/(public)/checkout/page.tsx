@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import { signIn, useSession, signOut } from 'next-auth/react';
 
 const StripePaymentForm = dynamic(() => import('@/components/stripe/StripePaymentForm'), { ssr: false });
+const MercadoPagoPaymentForm = dynamic(() => import('@/components/mercadopago/MercadoPagoPaymentForm'), { ssr: false });
 
 export default function CheckoutPage() {
     const { data: session } = useSession();
@@ -39,6 +40,28 @@ export default function CheckoutPage() {
     const [showPayment, setShowPayment] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
     const [paymentAmount, setPaymentAmount] = useState<number>(0);
+
+    const [activeMethods, setActiveMethods] = useState<string[]>([]);
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('stripe');
+
+    useEffect(() => {
+        async function fetchMethods() {
+            try {
+                const res = await fetch('/api/payments/methods');
+                const data = await res.json();
+                if (data.activeMethods && data.activeMethods.length > 0) {
+                    setActiveMethods(data.activeMethods);
+                    setSelectedPaymentMethod(data.activeMethods[0]);
+                } else {
+                    setActiveMethods(['stripe']); // fallback
+                }
+            } catch (e) {
+                console.error('Error', e);
+                setActiveMethods(['stripe']);
+            }
+        }
+        fetchMethods();
+    }, []);
 
     const handleApplyCoupon = async () => {
         setCouponError('');
@@ -135,6 +158,7 @@ export default function CheckoutPage() {
                     items: items.map(item => ({ courseId: item.courseId })),
                     billingDetails: formData,
                     couponCode: appliedCoupon,
+                    paymentMethod: selectedPaymentMethod,
                     verificationToken: 'no-verification-required',
                     password: session ? undefined : password,
                     country: formData.country,
@@ -404,9 +428,34 @@ export default function CheckoutPage() {
                                 <CreditCard className="w-5 h-5 text-primary" />
                                 {t('checkout.paymentMethod')}
                             </h2>
-                            <div className="p-4 border-2 border-primary bg-red-50 rounded-xl flex items-center gap-4 cursor-pointer">
-                                <div className="w-4 h-4 rounded-full bg-primary border-4 border-white shadow-sm ring-1 ring-primary"></div>
-                                <span className="font-medium text-slate-900">{t('checkout.creditCard')}</span>
+                            <div className="space-y-3">
+                                {activeMethods.includes('stripe') && (
+                                    <div
+                                        onClick={() => setSelectedPaymentMethod('stripe')}
+                                        className={`p-4 border-2 rounded-xl flex items-center justify-between cursor-pointer transition-colors ${selectedPaymentMethod === 'stripe' ? 'border-primary bg-red-50' : 'border-slate-200 hover:border-slate-300'}`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className={`w-4 h-4 rounded-full border-4 shadow-sm ring-1 ${selectedPaymentMethod === 'stripe' ? 'bg-primary border-white ring-primary' : 'bg-transparent border-white ring-slate-300'}`}></div>
+                                            <span className="font-medium text-slate-900">{t('checkout.creditCard')} (Stripe)</span>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeMethods.includes('mercadopago') && (
+                                    <div
+                                        onClick={() => setSelectedPaymentMethod('mercadopago')}
+                                        className={`p-4 border-2 rounded-xl flex items-center justify-between cursor-pointer transition-colors ${selectedPaymentMethod === 'mercadopago' ? 'border-[#009EE3] bg-blue-50' : 'border-slate-200 hover:border-slate-300'}`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className={`w-4 h-4 rounded-full border-4 shadow-sm ring-1 ${selectedPaymentMethod === 'mercadopago' ? 'bg-[#009EE3] border-white ring-[#009EE3]' : 'bg-transparent border-white ring-slate-300'}`}></div>
+                                            <span className="font-medium text-slate-900">Mercado Pago</span>
+                                        </div>
+                                        <div className="flex gap-2 text-xl">
+                                            <span className="font-bold text-[#009EE3]">mercado</span>
+                                            <span className="font-bold text-[#1f2937]">pago</span>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -493,12 +542,21 @@ export default function CheckoutPage() {
                                         <CreditCard className="w-5 h-5 text-primary" />
                                         Información de Pago
                                     </h3>
-                                    <StripePaymentForm
-                                        amount={paymentAmount || (total - discount)}
-                                        orderId={orderId}
-                                        onSuccess={handlePaymentSuccess}
-                                        onError={handlePaymentError}
-                                    />
+                                    {selectedPaymentMethod === 'mercadopago' ? (
+                                        <MercadoPagoPaymentForm
+                                            amount={paymentAmount || (total - discount)}
+                                            orderId={orderId}
+                                            onSuccess={handlePaymentSuccess}
+                                            onError={handlePaymentError}
+                                        />
+                                    ) : (
+                                        <StripePaymentForm
+                                            amount={paymentAmount || (total - discount)}
+                                            orderId={orderId}
+                                            onSuccess={handlePaymentSuccess}
+                                            onError={handlePaymentError}
+                                        />
+                                    )}
                                 </div>
                             ) : (
                                 <button
