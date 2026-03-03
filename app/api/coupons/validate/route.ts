@@ -31,18 +31,16 @@ export async function POST(req: NextRequest) {
         }
 
         if (coupon.maxUsesPerUser && email) {
-            // Find user by email
-            const user = await prisma.user.findUnique({ where: { email } });
-            if (user) {
-                const userUsage = await prisma.order.count({
-                    where: {
-                        userId: user.id,
-                        couponId: coupon.id
-                    }
-                });
-                if (userUsage >= coupon.maxUsesPerUser) {
-                    return NextResponse.json({ valid: false, message: 'You have verified this coupon the maximum number of times' }, { status: 400 });
+            // Buscamos cuántas veces este correo electrónico ha completado una orden con este cupón
+            const userUsage = await prisma.order.count({
+                where: {
+                    billingEmail: email,
+                    couponId: coupon.id,
+                    status: 'completed'
                 }
+            });
+            if (userUsage >= coupon.maxUsesPerUser) {
+                return NextResponse.json({ valid: false, message: 'Este cupón ya ha sido utilizado el máximo de veces permitidas por este correo electrónico.' }, { status: 400 });
             }
         }
 

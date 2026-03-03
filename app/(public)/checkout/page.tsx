@@ -63,17 +63,19 @@ export default function CheckoutPage() {
         fetchMethods();
     }, []);
 
-    const handleApplyCoupon = async () => {
+    const handleApplyCoupon = async (codeToUse?: string) => {
         setCouponError('');
-        if (!couponCode.trim()) return;
+        const code = typeof codeToUse === 'string' ? codeToUse : couponCode;
+        if (!code.trim()) return;
 
         try {
             const res = await fetch('/api/coupons/validate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    code: couponCode,
-                    cartItems: items
+                    code: code,
+                    cartItems: items,
+                    email: formData.email
                 })
             });
 
@@ -82,7 +84,7 @@ export default function CheckoutPage() {
             if (data.valid) {
                 setDiscount(data.discountAmount);
                 setAppliedCoupon(data.coupon.code);
-                setCouponCode('');
+                if (typeof codeToUse !== 'string') setCouponCode('');
             } else {
                 setCouponError(data.message || t('checkout.invalidCoupon'));
                 setDiscount(0);
@@ -93,6 +95,13 @@ export default function CheckoutPage() {
             setCouponError(t('checkout.invalidCoupon'));
         }
     };
+
+    useEffect(() => {
+        if (appliedCoupon && formData.email) {
+            handleApplyCoupon(appliedCoupon);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formData.email]);
 
     const handleRemoveCoupon = () => {
         setDiscount(0);
@@ -472,7 +481,7 @@ export default function CheckoutPage() {
                                         />
                                         <button
                                             type="button"
-                                            onClick={handleApplyCoupon}
+                                            onClick={() => handleApplyCoupon()}
                                             disabled={!couponCode}
                                             className="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                                         >

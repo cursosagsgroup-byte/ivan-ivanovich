@@ -198,38 +198,38 @@ export async function POST(req: Request) {
                     }
 
                     if (usageCount >= coupon.maxUsesPerUser) {
-                        userLimitReached = true;
+                        return NextResponse.json({ error: 'Este cupón ya ha sido utilizado el máximo de veces permitidas por tu cuenta o correo electrónico.' }, { status: 400 });
                     }
                 }
 
-                if (!userLimitReached) {
-                    // 2. Calculate Discount
-                    if (coupon.courseId) {
-                        // Course-specific coupon
-                        const courseInOrder = orderItemsData.find(item => item.courseId === coupon.courseId);
-                        if (courseInOrder) {
-                            couponId = coupon.id;
-                            if (coupon.discountType === 'PERCENTAGE') {
-                                discount = (courseInOrder.price * coupon.discountValue) / 100;
-                            } else {
-                                discount = coupon.discountValue;
-                                if (discount > courseInOrder.price) discount = courseInOrder.price;
-                            }
-                        }
-                    } else {
-                        // Global coupon
+                // 2. Calculate Discount
+                if (coupon.courseId) {
+                    // Course-specific coupon
+                    const courseInOrder = orderItemsData.find(item => item.courseId === coupon.courseId);
+                    if (courseInOrder) {
                         couponId = coupon.id;
                         if (coupon.discountType === 'PERCENTAGE') {
-                            discount = (total * coupon.discountValue) / 100;
+                            discount = (courseInOrder.price * coupon.discountValue) / 100;
                         } else {
                             discount = coupon.discountValue;
+                            if (discount > courseInOrder.price) discount = courseInOrder.price;
                         }
+                    } else {
+                        return NextResponse.json({ error: 'Este cupón no es válido para los cursos en tu carrito.' }, { status: 400 });
+                    }
+                } else {
+                    // Global coupon
+                    couponId = coupon.id;
+                    if (coupon.discountType === 'PERCENTAGE') {
+                        discount = (total * coupon.discountValue) / 100;
+                    } else {
+                        discount = coupon.discountValue;
                     }
                 }
+            } else {
+                return NextResponse.json({ error: 'El cupón no es válido, ha expirado, o ya alcanzó su límite global de usos.' }, { status: 400 });
             }
         }
-
-        if (discount > total) discount = total;
 
         const finalTotal = total - discount;
 
