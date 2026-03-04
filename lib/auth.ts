@@ -18,15 +18,11 @@ export const authOptions: NextAuthOptions = {
                         throw new Error("Invalid credentials")
                     }
 
-                    console.log(`[AUTH] authorize() called for: ${credentials.email}`)
-
                     const user = await prisma.user.findUnique({
                         where: {
                             email: credentials.email
                         }
                     })
-
-                    console.log(`[AUTH] User found: ${!!user}`)
 
                     if (!user || !user?.password) {
                         throw new Error("Invalid credentials")
@@ -37,13 +33,10 @@ export const authOptions: NextAuthOptions = {
                         user.password
                     )
 
-                    console.log(`[AUTH] Password correct: ${isCorrectPassword}`)
-
                     if (!isCorrectPassword) {
                         throw new Error("Invalid credentials")
                     }
 
-                    console.log(`[AUTH] authorize() SUCCESS for: ${credentials.email}`)
                     return user
                 } catch (error) {
                     console.error(`[AUTH] authorize() ERROR for ${credentials?.email}:`, error)
@@ -60,21 +53,14 @@ export const authOptions: NextAuthOptions = {
     trustHost: true,
     callbacks: {
         async session({ session, token }) {
-            try {
-                console.log(`[AUTH] session() called for token.email: ${token.email}, token.id: ${token.id}, token.role: ${token.role}`)
-                if (token) {
-                    session.user.id = token.id
-                    session.user.name = token.name
-                    session.user.email = token.email
-                    session.user.image = token.picture
-                    session.user.role = token.role
-                }
-                console.log(`[AUTH] session() SUCCESS`)
-                return session
-            } catch (error) {
-                console.error(`[AUTH] session() ERROR:`, error)
-                throw error
+            if (token) {
+                session.user.id = token.id
+                session.user.name = token.name
+                session.user.email = token.email
+                session.user.image = token.picture
+                session.user.role = token.role
             }
+            return session
         },
         async jwt({ token, user }) {
             try {
@@ -116,7 +102,24 @@ export const authOptions: NextAuthOptions = {
         signIn: "/login",
     },
     session: {
-        strategy: "jwt"
+        strategy: "jwt",
+        // MaxAge de 30 días. Cookies viejas sin maxAge explícito vivían indefinidamente
+        // y se acumulaban causando el error 494 REQUEST_HEADER_TOO_LARGE en Vercel.
+        maxAge: 30 * 24 * 60 * 60, // 30 días
+    },
+    cookies: {
+        sessionToken: {
+            name: process.env.NODE_ENV === 'production'
+                ? '__Secure-next-auth.session-token'
+                : 'next-auth.session-token',
+            options: {
+                httpOnly: true,
+                sameSite: 'lax',
+                path: '/',
+                secure: process.env.NODE_ENV === 'production',
+                maxAge: 30 * 24 * 60 * 60, // 30 días — fuerza expiración de cookies viejas
+            }
+        }
     },
     secret: process.env.NEXTAUTH_SECRET,
 }

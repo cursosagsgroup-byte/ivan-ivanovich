@@ -1,11 +1,42 @@
 import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
 
+// Nombres de cookies de sesión de NextAuth (incluyendo chunks)
+const NEXTAUTH_COOKIE_NAMES = [
+    'next-auth.session-token',
+    '__Secure-next-auth.session-token',
+    // Chunks que NextAuth genera cuando el JWT es muy grande
+    'next-auth.session-token.0',
+    'next-auth.session-token.1',
+    'next-auth.session-token.2',
+    '__Secure-next-auth.session-token.0',
+    '__Secure-next-auth.session-token.1',
+    '__Secure-next-auth.session-token.2',
+];
+
 export default withAuth(
     function middleware(req) {
-        // SEO Redirects for legacy /es and /en paths
-        // We redirect them to the root (or subpath) and set the language cookie
         const pathname = req.nextUrl.pathname;
+
+        // PROTECCIÓN CONTRA 494: Si las cookies superan 12KB (margen antes del límite de 16KB de Vercel),
+        // limpiar todas las cookies de sesión de NextAuth y redirigir al login.
+        // Esto ocurre cuando el usuario tiene cookies viejas acumuladas en el navegador.
+        const cookieHeader = req.headers.get('cookie') || '';
+        const cookieSizeBytes = new TextEncoder().encode(cookieHeader).length;
+        if (cookieSizeBytes > 12000) {
+            console.warn(`[MIDDLEWARE] Cookie header too large (${cookieSizeBytes} bytes), clearing NextAuth cookies`);
+            const response = NextResponse.redirect(new URL('/login?reason=session_reset', req.url));
+            // Borrar todas las cookies de sesión stale
+            for (const cookieName of NEXTAUTH_COOKIE_NAMES) {
+                response.cookies.set(cookieName, '', {
+                    maxAge: 0,
+                    path: '/',
+                    httpOnly: true,
+                    sameSite: 'lax',
+                });
+            }
+            return response;
+        }
 
         // CRITICAL FIX: Skip middleware for NextAuth API routes to prevent 405 errors
         if (pathname.startsWith("/api/auth")) {
@@ -146,9 +177,13 @@ export const config = {
         "/certificates/:path*",
         "/login",
         "/register",
+        // Checkout: necesario para detectar cookies infladas y evitar el error 494
+        "/checkout/:path*",
+        "/checkout",
         // Add legacy language paths to matcher so middleware runs for them
         "/es/:path*",
         "/en/:path*",
         "/admin/:path*"
     ]
 }
+
