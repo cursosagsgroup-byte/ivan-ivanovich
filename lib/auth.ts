@@ -57,8 +57,8 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = token.id
                 session.user.name = token.name
                 session.user.email = token.email
-                session.user.image = token.picture
                 session.user.role = token.role
+                // image excluido del JWT para evitar cookies enormes (494)
             }
             return session
         },
@@ -89,7 +89,7 @@ export const authOptions: NextAuthOptions = {
                     id: dbUser.id,
                     name: dbUser.name,
                     email: dbUser.email,
-                    picture: dbUser.image,
+                    // picture excluido: si es base64 infla el JWT y causa 494 al hacer login
                     role: dbUser.role as "ADMIN" | "STUDENT",
                 }
             } catch (error) {
