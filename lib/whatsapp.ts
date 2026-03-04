@@ -247,7 +247,18 @@ export const sendWhatsAppMessage = async (phone: string, message: string) => {
 
     try {
         // Basic cleanup: remove '+' and any non-digit chars
-        const cleanPhone = phone.replace(/\D/g, '');
+        let cleanPhone = phone.replace(/\D/g, '');
+
+        // Add Mexico country code (+52) if not already present
+        // Mexican numbers are 10 digits, WhatsApp JID needs full international format
+        if (cleanPhone.length === 10) {
+            cleanPhone = `52${cleanPhone}`;
+        } else if (cleanPhone.length === 11 && cleanPhone.startsWith('1')) {
+            // US/Canada number starting with 1, leave as is
+        }
+        // If already starts with country code (52, 1, etc.) leave as is
+
+        console.log(`WA SEND: normalized phone ${phone} → ${cleanPhone}`);
         const jid = `${cleanPhone}@s.whatsapp.net`;
 
         await sock.sendMessage(jid, { text: message });

@@ -240,15 +240,83 @@ export default function StudentDashboard({ enrolledCourses, profileData: initial
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 mb-1">
                                                 <Phone className="w-4 h-4 inline mr-2" />
-                                                {t('dashboard.phone')}
+                                                {t('dashboard.phone')} <span className="text-slate-400 font-normal">(WhatsApp)</span>
                                             </label>
-                                            <input
-                                                type="tel"
-                                                value={profileData.phone}
-                                                onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
-                                                disabled={!isEditing}
-                                                className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-slate-100 disabled:text-slate-500"
-                                            />
+                                            <div className="flex gap-2">
+                                                <select
+                                                    disabled={!isEditing}
+                                                    value={(() => {
+                                                        const p = profileData.phone || '';
+                                                        const prefixes = ['52', '1', '54', '57', '56', '51', '593', '598', '595', '591', '502', '503', '504', '505', '506', '507', '53', '1787', '1809', '58'];
+                                                        for (const pre of prefixes) {
+                                                            if (p.startsWith(pre)) return pre;
+                                                        }
+                                                        return '52';
+                                                    })()}
+                                                    onChange={(e) => {
+                                                        const prefix = e.target.value;
+                                                        const oldPhone = profileData.phone || '';
+                                                        const prefixes = ['52', '1', '54', '57', '56', '51', '593', '598', '595', '591', '502', '503', '504', '505', '506', '507', '53', '1787', '1809', '58'];
+                                                        let digits = oldPhone;
+                                                        for (const pre of prefixes) {
+                                                            if (digits.startsWith(pre)) { digits = digits.slice(pre.length); break; }
+                                                        }
+                                                        setProfileData({ ...profileData, phone: prefix + digits });
+                                                    }}
+                                                    className="px-2 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-slate-100 disabled:text-slate-500 text-sm bg-white"
+                                                >
+                                                    <option value="52">🇲🇽 +52 MX</option>
+                                                    <option value="1">🇺🇸 +1 US/CA</option>
+                                                    <option value="54">🇦🇷 +54 AR</option>
+                                                    <option value="57">🇨🇴 +57 CO</option>
+                                                    <option value="56">🇨🇱 +56 CL</option>
+                                                    <option value="51">🇵🇪 +51 PE</option>
+                                                    <option value="593">🇪🇨 +593 EC</option>
+                                                    <option value="598">🇺🇾 +598 UY</option>
+                                                    <option value="595">🇵🇾 +595 PY</option>
+                                                    <option value="591">🇧🇴 +591 BO</option>
+                                                    <option value="502">🇬🇹 +502 GT</option>
+                                                    <option value="503">🇸🇻 +503 SV</option>
+                                                    <option value="504">🇭🇳 +504 HN</option>
+                                                    <option value="505">🇳🇮 +505 NI</option>
+                                                    <option value="506">🇨🇷 +506 CR</option>
+                                                    <option value="507">🇵🇦 +507 PA</option>
+                                                    <option value="53">🇨🇺 +53 CU</option>
+                                                    <option value="1787">🇵🇷 +1787 PR</option>
+                                                    <option value="1809">🇩🇴 +1809 DO</option>
+                                                    <option value="34">🇪🇸 +34 ES</option>
+                                                    <option value="58">🇻🇪 +58 VE</option>
+                                                </select>
+                                                <input
+                                                    type="tel"
+                                                    placeholder="5543830150"
+                                                    value={(() => {
+                                                        const p = profileData.phone || '';
+                                                        const prefixes = ['52', '1', '54', '57', '56', '51', '593', '598', '595', '591', '502', '503', '504', '505', '506', '507', '53', '1787', '1809', '58'];
+                                                        for (const pre of prefixes) {
+                                                            if (p.startsWith(pre)) return p.slice(pre.length);
+                                                        }
+                                                        return p;
+                                                    })()}
+                                                    onChange={(e) => {
+                                                        const digits = e.target.value.replace(/\D/g, '');
+                                                        const p = profileData.phone || '';
+                                                        const prefixes = ['52', '1', '54', '57', '56', '51', '593', '598', '595', '591', '502', '503', '504', '505', '506', '507', '53', '1787', '1809', '58'];
+                                                        let prefix = '52';
+                                                        for (const pre of prefixes) {
+                                                            if (p.startsWith(pre)) { prefix = pre; break; }
+                                                        }
+                                                        setProfileData({ ...profileData, phone: prefix + digits });
+                                                    }}
+                                                    disabled={!isEditing}
+                                                    className="flex-1 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent disabled:bg-slate-100 disabled:text-slate-500"
+                                                />
+                                            </div>
+                                            {isEditing && (
+                                                <p className="text-xs text-slate-500 mt-1">
+                                                    📱 Ingresa solo los dígitos sin el prefijo del país. Se usará para recuperar tu contraseña por WhatsApp.
+                                                </p>
+                                            )}
                                         </div>
 
                                         <div>

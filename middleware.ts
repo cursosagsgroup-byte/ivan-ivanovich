@@ -37,12 +37,15 @@ export default withAuth(
 
             const response = NextResponse.redirect(url);
 
-            // Set the NEXT_LOCALE cookie so the app renders in the correct language
-            response.cookies.set('NEXT_LOCALE', locale, {
-                path: '/',
-                maxAge: 60 * 60 * 24 * 365, // 1 year
-                sameSite: 'lax'
-            });
+            // Optimization: Only set cookie if it's different to minimize header size
+            const currentLocale = req.cookies.get('NEXT_LOCALE')?.value;
+            if (currentLocale !== locale) {
+                response.cookies.set('NEXT_LOCALE', locale, {
+                    path: '/',
+                    maxAge: 60 * 60 * 24 * 365, // 1 year
+                    sameSite: 'lax'
+                });
+            }
 
             return response;
         }

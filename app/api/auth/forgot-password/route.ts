@@ -14,14 +14,18 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Email or Phone is required' }, { status: 400 });
         }
 
-        // Clean phone number if it looks like one (remove + and spaces) to match DB if needed
-        // Assuming DB stores raw or formatted? Checkout page sends raw usually.
-        // Let's search by OR
+        // Clean input: strip non-digits for phone comparison
+        const cleanInput = input.replace(/\D/g, '');
+        // Strip common country prefixes (52=MX, 1=US, 54=AR, 57=CO, etc.) to get local number
+        const withoutPrefix = cleanInput.replace(/^(52|1|54|57|56|51|593|598|595|591|502|503|504|505|506|507|53|34|58)/, '');
+
         const user = await prisma.user.findFirst({
             where: {
                 OR: [
                     { email: input },
-                    { phone: input }
+                    { phone: cleanInput },          // full number with prefix e.g. 525543830150
+                    { phone: withoutPrefix },        // without prefix e.g. 5543830150 (legacy accounts)
+                    { phone: input },               // original input as fallback
                 ]
             },
         });
@@ -48,23 +52,23 @@ export async function POST(req: Request) {
         const resetLink = `${process.env.NEXTAUTH_URL || 'https://ivanivanovich.com'}/reset-password?token=${token}`;
         const isPhone = /^[0-9+ ]+$/.test(input) && !input.includes('@');
 
+        let whatsappSent = false;
         if (isPhone && user.phone) {
             // Send WhatsApp
             const message = `*Restablecimiento de Contraseña*\n\nHemos recibido una solicitud para tu cuenta en Ivan Ivanovich.\n\nUsa este enlace para crear una nueva contraseña:\n${resetLink}\n\nSi no fuiste tú, ignora este mensaje.`;
-            const sent = await sendWhatsAppMessage(user.phone, message);
-            if (!sent) {
-                // Fallback to email if WhatsApp fails? Or just log?
-                console.error('Failed to send WhatsApp, attempting email fallback if available');
+            whatsappSent = await sendWhatsAppMessage(user.phone, message);
+            if (!whatsappSent) {
+                console.error('Failed to send WhatsApp — will fallback to email');
             }
         }
 
-        // Always send email if it was email input OR if we want dual notification?
-        // Let's stick to: If input was email, send email. If input was phone, send WhatsApp.
-        // BUT if I input phone, and WA fails, user is stuck.
-        // Also user might prefer Email.
-        // Let's do: If input is email -> Email. If input is Phone -> WhatsApp.
+        // Send email if:
+        // a) Input was an email, OR
+        // b) Input was phone but WhatsApp failed (fallback), OR
+        // c) Input was phone but user has no phone in DB
+        const shouldSendEmail = !isPhone || !whatsappSent;
 
-        if (!isPhone || (isPhone && !user.phone)) {
+        if (shouldSendEmail && user.email) {
             // Send Email logic
             const transporter = nodemailer.createTransport({
                 host: process.env.SMTP_HOST || 'smtp.example.com',
