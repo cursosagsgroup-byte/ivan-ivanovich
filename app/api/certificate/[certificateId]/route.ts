@@ -153,12 +153,16 @@ export async function GET(
         });
 
 
-        // 5. QR Code
-        // To cover the placeholder, it likely needs to be slightly larger or positioned differently.
-        // Assuming placeholder is in similar spot (bottom left).
-        const verificationUrl = process.env.NEXTAUTH_URL
-            ? `${process.env.NEXTAUTH_URL}/verify/${certUuid}`
-            : `https://ivanivanovich.com/verify/${certUuid}`;
+        // 5. QR Code — points to the course landing page
+        const courseToLanding: Record<string, string> = {
+            'Team Leader en Protección Ejecutiva': '/educacion/team-leader',
+            'Contravigilancia Para Protección Ejecutiva': '/educacion/contravigilancia',
+            'Team Leader in Executive Protection': '/educacion/team-leader',
+            'Counter Surveillance for Executive Protection': '/educacion/counter-surveillance',
+        };
+        const baseUrl = process.env.NEXTAUTH_URL || 'https://ivanivanovich.com';
+        const landingPath = courseToLanding[courseName] ?? '/educacion/cursos-online';
+        const verificationUrl = `${baseUrl}${landingPath}`;
 
         const qrDataUrl = await QRCode.toDataURL(verificationUrl);
         const qrImage = await pdfDoc.embedPng(qrDataUrl);
