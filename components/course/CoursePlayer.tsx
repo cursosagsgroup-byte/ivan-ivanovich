@@ -306,6 +306,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                         title={currentLesson.title}
                                         questions={currentLesson.questions || []}
                                         previousAttempt={previousQuizAttempt}
+                                        isLastLesson={!nextLesson}
                                         onNext={() => nextLesson && handleLessonChange(nextLesson.id)}
                                         onComplete={async (score, passed, answers) => {
                                             console.log('Quiz completed:', score, passed);

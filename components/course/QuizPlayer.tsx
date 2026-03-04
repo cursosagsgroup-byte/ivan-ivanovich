@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { CheckCircle, XCircle, ChevronRight, AlertCircle, RefreshCw } from 'lucide-react';
+import { CheckCircle, XCircle, ChevronRight, AlertCircle, RefreshCw, Award, Download } from 'lucide-react';
+import Link from 'next/link';
 
 interface Question {
     id: string;
@@ -23,9 +24,10 @@ interface QuizPlayerProps {
     } | null;
     onComplete: (score: number, passed: boolean, answers: Record<string, string>) => void;
     onNext?: () => void;
+    isLastLesson?: boolean;
 }
 
-export default function QuizPlayer({ quizId, title, questions, previousAttempt, onComplete, onNext }: QuizPlayerProps) {
+export default function QuizPlayer({ quizId, title, questions, previousAttempt, onComplete, onNext, isLastLesson }: QuizPlayerProps) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>(previousAttempt?.answers || {});
     const [showResults, setShowResults] = useState(previousAttempt?.passed || false);
@@ -134,6 +136,17 @@ export default function QuizPlayer({ quizId, title, questions, previousAttempt, 
                     Has obtenido una calificación de <span className="font-bold text-slate-900">{score}%</span>
                 </p>
 
+                {/* Certificate banner — only when passing the last quiz */}
+                {passed && isLastLesson && (
+                    <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+                        <Award className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
+                        <div>
+                            <p className="font-semibold text-amber-900">🎉 ¡Tu certificado está listo!</p>
+                            <p className="text-sm text-amber-700 mt-0.5">Puedes descargarlo desde tu perfil de estudiante.</p>
+                        </div>
+                    </div>
+                )}
+
                 <div className="flex justify-center gap-4">
                     {!passed && (
                         <button
@@ -144,7 +157,16 @@ export default function QuizPlayer({ quizId, title, questions, previousAttempt, 
                             Intentar de nuevo
                         </button>
                     )}
-                    {passed && (
+                    {passed && isLastLesson && (
+                        <Link
+                            href="/mi-cuenta"
+                            className="flex items-center px-6 py-3 bg-amber-600 text-white rounded-xl hover:bg-amber-700 transition-colors font-medium"
+                        >
+                            <Download className="w-4 h-4 mr-2" />
+                            Descargar mi certificado
+                        </Link>
+                    )}
+                    {passed && !isLastLesson && (
                         <button
                             onClick={onNext}
                             className="px-6 py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors font-medium"
