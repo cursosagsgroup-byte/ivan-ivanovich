@@ -1,49 +1,77 @@
 import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
 
-// Nombres de cookies de sesión de NextAuth (incluyendo chunks)
+// Cookies de sesión de NextAuth (incluyendo posibles chunks)
 const NEXTAUTH_COOKIE_NAMES = [
     'next-auth.session-token',
     '__Secure-next-auth.session-token',
-    // Chunks que NextAuth genera cuando el JWT es muy grande
     'next-auth.session-token.0',
     'next-auth.session-token.1',
     'next-auth.session-token.2',
     '__Secure-next-auth.session-token.0',
     '__Secure-next-auth.session-token.1',
     '__Secure-next-auth.session-token.2',
+    'next-auth.callback-url',
+    '__Secure-next-auth.callback-url',
+    'next-auth.csrf-token',
+    '__Host-next-auth.csrf-token',
 ];
+
+/**
+ * Limpia cookies infladas de NextAuth.
+ * Retorna una respuesta con las cookies borradas si detecta el problema,
+ * o null si todo está bien.
+ */
+function handleBloatedCookies(req: NextRequest): NextResponse | null {
+    const cookieHeader = req.headers.get('cookie') || '';
+    const cookieSizeBytes = new TextEncoder().encode(cookieHeader).length;
+
+    if (cookieSizeBytes <= 12000) return null;
+
+    console.warn(`[MIDDLEWARE] Cookie header too large (${cookieSizeBytes} bytes), clearing session cookies`);
+
+    const pathname = req.nextUrl.pathname;
+    const isApiRoute = pathname.startsWith('/api/');
+
+    let response: NextResponse;
+
+    if (isApiRoute) {
+        // Para rutas API: no podemos redirigir, devolvemos JSON de sesión vacía
+        // para que el cliente maneje el estado no-autenticado limpiamente
+        response = NextResponse.json(null, { status: 200 });
+    } else {
+        // Para páginas: redirigir al login con mensaje de reset
+        response = NextResponse.redirect(new URL('/login?reason=session_reset', req.url));
+    }
+
+    // Borrar todas las cookies de sesión stale
+    for (const cookieName of NEXTAUTH_COOKIE_NAMES) {
+        response.cookies.set(cookieName, '', {
+            maxAge: 0,
+            path: '/',
+            httpOnly: true,
+            sameSite: 'lax',
+        });
+    }
+
+    return response;
+}
 
 export default withAuth(
     function middleware(req) {
         const pathname = req.nextUrl.pathname;
 
-        // PROTECCIÓN CONTRA 494: Si las cookies superan 12KB (margen antes del límite de 16KB de Vercel),
-        // limpiar todas las cookies de sesión de NextAuth y redirigir al login.
-        // Esto ocurre cuando el usuario tiene cookies viejas acumuladas en el navegador.
-        const cookieHeader = req.headers.get('cookie') || '';
-        const cookieSizeBytes = new TextEncoder().encode(cookieHeader).length;
-        if (cookieSizeBytes > 12000) {
-            console.warn(`[MIDDLEWARE] Cookie header too large (${cookieSizeBytes} bytes), clearing NextAuth cookies`);
-            const response = NextResponse.redirect(new URL('/login?reason=session_reset', req.url));
-            // Borrar todas las cookies de sesión stale
-            for (const cookieName of NEXTAUTH_COOKIE_NAMES) {
-                response.cookies.set(cookieName, '', {
-                    maxAge: 0,
-                    path: '/',
-                    httpOnly: true,
-                    sameSite: 'lax',
-                });
-            }
-            return response;
-        }
+        // PROTECCIÓN CONTRA 494: Detectar cookies infladas PRIMERO
+        const bloatedResponse = handleBloatedCookies(req);
+        if (bloatedResponse) return bloatedResponse;
 
-        // CRITICAL FIX: Skip middleware for NextAuth API routes to prevent 405 errors
+        // Skip auth logic for NextAuth API routes
         if (pathname.startsWith("/api/auth")) {
-            return NextResponse.next()
+            return NextResponse.next();
         }
 
-        // Force non-www to prevent cookie mismatch issues
+        // Force non-www
         const hostname = req.headers.get("host") || "";
         if (hostname.startsWith("www.")) {
             const newUrl = new URL(req.url);
@@ -51,118 +79,67 @@ export default withAuth(
             return NextResponse.redirect(newUrl);
         }
 
+        // SEO Redirects para rutas /es y /en legacy
         if (pathname.startsWith('/es') || pathname.startsWith('/en')) {
-            // Determine locale
             const locale = pathname.startsWith('/es') ? 'es' : 'en';
-
-            // Remove /es or /en from path. 
-            // e.g. /es -> /, /es/about -> /about
-            // regex: starts with /es or /en, optionally followed by / or end of string
-            // actually simpler: just replace the prefix.
             let newPath = pathname.replace(/^\/(es|en)/, '');
             if (!newPath) newPath = '/';
 
             const url = new URL(newPath, req.url);
-            // Preserve query params
             url.search = req.nextUrl.search;
 
             const response = NextResponse.redirect(url);
-
-            // Optimization: Only set cookie if it's different to minimize header size
             const currentLocale = req.cookies.get('NEXT_LOCALE')?.value;
             if (currentLocale !== locale) {
                 response.cookies.set('NEXT_LOCALE', locale, {
                     path: '/',
-                    maxAge: 60 * 60 * 24 * 365, // 1 year
+                    maxAge: 60 * 60 * 24 * 365,
                     sameSite: 'lax'
                 });
             }
-
             return response;
         }
 
         const token = req.nextauth.token
         const isAuth = !!token
-        const isAuthPage = req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/register')
+        const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/register')
 
         // Role-based redirects after login
         if (isAuthPage && isAuth) {
-            // Redirect based on role
             if (token?.role === 'STUDENT') {
                 return NextResponse.redirect(new URL('/mi-cuenta', req.url))
             }
             return NextResponse.redirect(new URL('/admin/dashboard', req.url))
         }
 
-        // Allow auth pages for unauthenticated users
         if (isAuthPage) {
             return null
         }
 
-        // Redirect unauthenticated users to login
-        // Only if they are accessing protected routes (defined in older matcher logic, keeping consistent)
-        // But since we expanded matcher to /es and /en, we must be careful NOT to block public pages if they were accessed via /es/public-page
-        // However, the original matcher only protected specific routes.
-        // We should check if the CURRENT (rewritten) path is protected? 
-        // Actually, preventing regression: we only enforce login if path matches the protected list.
-        // The redirects happen BEFORE this check.
-        // BUT, if I access /es/dashboard, it redirects to /dashboard. Then middleware runs AGAIN on /dashboard?
-        // Yes, unexpected side effect if we don't catch it. 
-        // Redirect triggers new request.
-
-        // So for the rest of the logic, it applies to the target path.
-        // We just need to make sure we don't accidentally block public routes if we expand matcher?
-        // The matcher below includes /es* and /en*.
-        // If I visit /es (public), it redirects to /. / is NOT in matcher. Middleware won't run on /. Safe.
-        // If I visit /es/dashboard (protected), it redirects to /dashboard. /dashboard IS in matcher. Middleware runs. Safe.
-
-        // Wait, what if I visit /protected-route directly? It hits this logic below.
-        // What if I visit /es/protected-route? Redirects -> /protected-route. Logic runs on new request.
-
-        // One edge case: The checks below rely on isAuth. 
-        // We need to ensure we don't block auth pages or public pages if they somehow fall through?
-        // matchers are inclusive. 
-
         if (!isAuth && !isAuthPage) {
-            // We only want to redirect to login if it's a protected route.
-            // The original matcher was: /dashboard, /mi-cuenta, /profile, /certificates, /login, /register
-            // We are adding /es and /en to matcher.
-            // If we are here, and path starts with /es or /en, we already redirected above.
-            // So we are here ONLY if path does NOT start with /es or /en.
-            // AND path matches one of the other matchers (/dashboard, etc).
-            // So we are safe.
-
-            let from = req.nextUrl.pathname;
+            let from = pathname;
             if (req.nextUrl.search) {
                 from += req.nextUrl.search;
             }
-
             return NextResponse.redirect(
                 new URL(`/login?from=${encodeURIComponent(from)}`, req.url)
             );
         }
 
         // Protect admin dashboard
-        if (req.nextUrl.pathname.startsWith('/admin') && token?.role !== 'ADMIN') {
+        if (pathname.startsWith('/admin') && token?.role !== 'ADMIN') {
             return NextResponse.redirect(new URL('/mi-cuenta', req.url))
         }
 
         // Protect student area
-        if (req.nextUrl.pathname.startsWith('/mi-cuenta') && token?.role === 'ADMIN') {
+        if (pathname.startsWith('/mi-cuenta') && token?.role === 'ADMIN') {
             return NextResponse.redirect(new URL('/admin/dashboard', req.url))
         }
     },
     {
         callbacks: {
             authorized: async ({ req, token }) => {
-                // Return true to let middleware function handle logic
-                // But we must return true for our new public redirect paths too!
-                // If we return false here, next-auth forces login BEFORE our middleware runs?
-                // Documentation says: "If you return false, the user will be redirected to the sign-in page."
-                // "If you return true, the middleware function will be invoked."
-
-                // So we MUST return true. The default implementation checks for token.
-                // Our implementation is custom.
+                // Siempre true — dejamos que el middleware maneje la lógica de auth
                 return true
             },
         },
@@ -171,19 +148,22 @@ export default withAuth(
 
 export const config = {
     matcher: [
+        // Rutas protegidas
         "/dashboard/:path*",
         "/mi-cuenta/:path*",
         "/profile/:path*",
         "/certificates/:path*",
         "/login",
         "/register",
-        // Checkout: necesario para detectar cookies infladas y evitar el error 494
-        "/checkout/:path*",
+        "/admin/:path*",
+        // Checkout: para limpiar cookies infladas antes de que ocurra el 494
         "/checkout",
-        // Add legacy language paths to matcher so middleware runs for them
+        "/checkout/:path*",
+        // Legacy language paths
         "/es/:path*",
         "/en/:path*",
-        "/admin/:path*"
+        // Rutas API de auth: para interceptar cookies infladas y retornar sesión vacía
+        // en lugar de dejar que Vercel rechace con 494
+        "/api/auth/:path*",
     ]
 }
-
