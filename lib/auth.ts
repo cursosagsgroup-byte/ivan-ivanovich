@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
 export const authOptions: NextAuthOptions = {
-    debug: true, // Enable debug logs to troubleshoot 405 error
+    debug: process.env.NODE_ENV === 'development',
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -78,7 +78,14 @@ export const authOptions: NextAuthOptions = {
         },
         async jwt({ token, user }) {
             try {
-                console.log(`[AUTH] jwt() called for email: ${token.email}`)
+                // Si el token ya tiene id y role, reutilizarlo sin hacer query a DB.
+                // Esto evita queries innecesarias en cada API request (checkout, coupons, etc.)
+                // y previene que el JWT se regenere constantemente, lo que infla las cookies
+                // y causa el error 494 REQUEST_HEADER_TOO_LARGE en Vercel.
+                if (!user && token.id && token.role) {
+                    return token;
+                }
+
                 const dbUser = await prisma.user.findUnique({
                     where: {
                         email: token.email!,
@@ -92,7 +99,6 @@ export const authOptions: NextAuthOptions = {
                     return token
                 }
 
-                console.log(`[AUTH] jwt() SUCCESS for: ${token.email}, role: ${dbUser.role}`)
                 return {
                     id: dbUser.id,
                     name: dbUser.name,
