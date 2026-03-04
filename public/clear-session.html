@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restableciendo sesión — Ivan Ivanovich</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #334155;
+            border-top-color: #e3032d;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .done {
+            display: none;
+        }
+
+        .done svg {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <!-- Estado: limpiando -->
+        <div id="cleaning">
+            <div class="spinner"></div>
+            <h1>Restableciendo tu sesión</h1>
+            <p>Estamos limpiando datos de sesión antiguos. Serás redirigido en un momento.</p>
+        </div>
+        <!-- Estado: listo -->
+        <div id="done" class="done">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9 12l2 2 4-4" />
+            </svg>
+            <h1>¡Sesión restablecida!</h1>
+            <p>Redirigiendo al inicio de sesión...</p>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            // Lista de cookies de NextAuth a limpiar
+            var cookieNames = [
+                'next-auth.session-token',
+                '__Secure-next-auth.session-token',
+                'next-auth.session-token.0',
+                'next-auth.session-token.1',
+                'next-auth.session-token.2',
+                '__Secure-next-auth.session-token.0',
+                '__Secure-next-auth.session-token.1',
+                '__Secure-next-auth.session-token.2',
+                'next-auth.callback-url',
+                '__Secure-next-auth.callback-url',
+                'next-auth.csrf-token',
+                '__Host-next-auth.csrf-token',
+            ];
+
+            var domains = [
+                location.hostname,
+                '.' + location.hostname,
+            ];
+
+            var paths = ['/', '/api', '/api/auth'];
+
+            // Borrar por nombre explícito
+            cookieNames.forEach(function (name) {
+                domains.forEach(function (domain) {
+                    paths.forEach(function (path) {
+                        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + path + '; domain=' + domain + ';';
+                        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + path + ';';
+                    });
+                });
+            });
+
+            // También limpiar cualquier otra cookie del sitio que empiece con "next-auth"
+            document.cookie.split(';').forEach(function (c) {
+                var name = c.trim().split('=')[0];
+                if (name.indexOf('next-auth') !== -1 || name.indexOf('__Secure-next-auth') !== -1 || name.indexOf('__Host-next-auth') !== -1) {
+                    paths.forEach(function (path) {
+                        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=' + path + ';';
+                    });
+                }
+            });
+
+            // Mostrar estado "listo" y redirigir
+            setTimeout(function () {
+                document.getElementById('cleaning').style.display = 'none';
+                document.getElementById('done').style.display = 'block';
+                setTimeout(function () {
+                    window.location.href = '/login';
+                }, 1200);
+            }, 800);
+        })();
+    </script>
+</body>
+
+</html>

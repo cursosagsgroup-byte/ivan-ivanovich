@@ -162,8 +162,5 @@ export const config = {
         // Legacy language paths
         "/es/:path*",
         "/en/:path*",
-        // Rutas API de auth: para interceptar cookies infladas y retornar sesión vacía
-        // en lugar de dejar que Vercel rechace con 494
-        "/api/auth/:path*",
     ]
 }
