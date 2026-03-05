@@ -74,6 +74,8 @@ export default async function CursosOnlinePage() {
                             if (lowerTitle.includes('contravigilancia')) return '/educacion/contravigilancia';
                             if (lowerTitle.includes('counter surveillance')) return '/educacion/counter-surveillance';
                             if (lowerTitle.includes('libro')) return '/educacion/libro';
+                            // Specific match for Costa Rica course
+                            if (lowerTitle.includes('costa rica')) return '/proteccion-ejecutiva-costa-rica';
                             // Specific match for "Protección Ejecutiva, Operatividad General y Logística Protectiva"
                             // Using a significant substring to ensure it matches the correct course and NOT others like "Contravigilancia..."
                             if (lowerTitle.includes('operatividad general') && lowerTitle.includes('logística')) return '/proteccion-ejecutiva-operatividad-general';
