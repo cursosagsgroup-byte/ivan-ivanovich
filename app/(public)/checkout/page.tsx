@@ -1,7 +1,7 @@
 'use client';
 
 import { useCart } from '@/lib/cart-context';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
 import { Shield, CreditCard, Lock } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -14,8 +14,9 @@ const MercadoPagoPaymentForm = dynamic(() => import('@/components/mercadopago/Me
 
 export default function CheckoutPage() {
     const { data: session } = useSession();
-    const { items, total, isLoading, clearCart } = useCart();
+    const { items, total, isLoading, clearCart, addToCart } = useCart();
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { t } = useTranslation();
     const [isProcessing, setIsProcessing] = useState(false);
     // ... skipping unchanged state ...
@@ -103,6 +104,35 @@ export default function CheckoutPage() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData.email]);
 
+    useEffect(() => {
+        if (!searchParams) return;
+        const courseToAdd = searchParams.get('add');
+        if (courseToAdd && !isLoading) {
+            const alreadyInCart = items.some(item => item.courseId === courseToAdd);
+            if (!alreadyInCart) {
+                // Fetch course info and add to cart
+                fetch(`/api/courses/public/${courseToAdd}`)
+                    .then(res => res.json())
+                    .then(course => {
+                        if (course && !course.error) {
+                            addToCart({
+                                courseId: course.id,
+                                title: course.title,
+                                price: course.price,
+                                image: course.image || ''
+                            });
+                        }
+                    })
+                    .catch(err => console.error('Error auto-adding course:', err));
+            }
+
+            // Clean up URL
+            const url = new URL(window.location.href);
+            url.searchParams.delete('add');
+            window.history.replaceState({}, '', url.toString());
+        }
+    }, [searchParams, isLoading, items, addToCart]);
+
     const handleRemoveCoupon = () => {
         setDiscount(0);
         setAppliedCoupon(null);
@@ -111,10 +141,11 @@ export default function CheckoutPage() {
     };
 
     useEffect(() => {
-        if (!isLoading && items.length === 0 && !isRedirecting) {
+        const isAddingCourse = searchParams?.get('add');
+        if (!isLoading && items.length === 0 && !isRedirecting && !isAddingCourse) {
             router.push('/educacion/cursos-online');
         }
-    }, [items, isLoading, router, isRedirecting]);
+    }, [items, isLoading, router, isRedirecting, searchParams]);
 
     useEffect(() => {
         if (session?.user) {
@@ -127,6 +158,18 @@ export default function CheckoutPage() {
             }));
         }
     }, [session]);
+
+    const handlePaymentSuccess = useCallback(async () => {
+        setIsRedirecting(true);
+        // Clear cart and redirect
+        await clearCart();
+        router.push(`/checkout/success?orderId=${orderId}&orderNumber=${orderNumber}`);
+    }, [clearCart, router, orderId, orderNumber]);
+
+    const handlePaymentError = useCallback((error: string) => {
+        alert(`Error en el pago: ${error}`);
+        setShowPayment(false);
+    }, []);
 
     if (items.length === 0 && !isRedirecting) {
         return null;
@@ -225,17 +268,7 @@ export default function CheckoutPage() {
         }
     };
 
-    const handlePaymentSuccess = useCallback(async () => {
-        setIsRedirecting(true);
-        // Clear cart and redirect
-        await clearCart();
-        router.push(`/checkout/success?orderId=${orderId}&orderNumber=${orderNumber}`);
-    }, [clearCart, router, orderId, orderNumber]);
 
-    const handlePaymentError = useCallback((error: string) => {
-        alert(`Error en el pago: ${error}`);
-        setShowPayment(false);
-    }, []);
 
     return (
         <div className="bg-slate-50 min-h-screen pt-32 pb-16">

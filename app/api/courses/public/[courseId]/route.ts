@@ -1,0 +1,30 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+
+export async function GET(
+    request: NextRequest,
+    { params }: { params: Promise<{ courseId: string }> }
+) {
+    try {
+        const { courseId } = await params;
+
+        const course = await prisma.course.findUnique({
+            where: { id: courseId, published: true },
+            select: {
+                id: true,
+                title: true,
+                price: true,
+                image: true,
+            }
+        });
+
+        if (!course) {
+            return NextResponse.json({ error: 'Course not found' }, { status: 404 });
+        }
+
+        return NextResponse.json(course);
+    } catch (error) {
+        console.error('Error fetching public course:', error);
+        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    }
+}

@@ -66,6 +66,11 @@ export default withAuth(
         const bloatedResponse = handleBloatedCookies(req);
         if (bloatedResponse) return bloatedResponse;
 
+        // Rutas públicas que NO requieren sesión
+        if (pathname.startsWith('/checkout')) {
+            return NextResponse.next();
+        }
+
         // Skip auth logic for NextAuth API routes
         if (pathname.startsWith("/api/auth")) {
             return NextResponse.next();
@@ -116,7 +121,9 @@ export default withAuth(
             return null
         }
 
-        if (!isAuth && !isAuthPage) {
+        const isPublicPage = isAuthPage || pathname.startsWith('/checkout')
+
+        if (!isAuth && !isPublicPage) {
             let from = pathname;
             if (req.nextUrl.search) {
                 from += req.nextUrl.search;
