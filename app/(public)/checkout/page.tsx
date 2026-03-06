@@ -536,9 +536,13 @@ export default function CheckoutPage() {
                                         <span>-${discount.toFixed(2)}</span>
                                     </div>
                                 )}
+                                <div className="flex justify-between text-slate-600">
+                                    <span>IVA (16%)</span>
+                                    <span>${((total - discount) * 0.16).toFixed(2)}</span>
+                                </div>
                                 <div className="flex justify-between text-lg font-bold text-slate-900 border-t border-slate-200 pt-2 mt-2">
                                     <span>{t('checkout.total')}</span>
-                                    <span>${(total - discount).toFixed(2)}</span>
+                                    <span>${((total - discount) * 1.16).toFixed(2)}</span>
                                 </div>
                             </div>
 

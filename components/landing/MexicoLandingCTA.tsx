@@ -3,21 +3,21 @@
 import { useCart } from '@/lib/cart-context';
 import { useRouter } from 'next/navigation';
 
-interface CostaRicaLandingCTAProps {
+interface MexicoLandingCTAProps {
     className?: string;
     style?: React.CSSProperties;
     children: React.ReactNode;
 }
 
-export default function CostaRicaLandingCTA({ className, style, children }: CostaRicaLandingCTAProps) {
+export default function MexicoLandingCTA({ className, style, children }: MexicoLandingCTAProps) {
     const { addToCart } = useCart();
     const router = useRouter();
 
     const handleBuyNow = async () => {
         await addToCart({
-            courseId: 'cmmdxl4jq00002djx81x89qm2',
-            title: 'Protección Ejecutiva, Operatividad General y Logística Protectiva - Costa Rica',
-            price: 14400,
+            courseId: 'cmmfhyxbg0000x698qxjdy165',
+            title: 'Alerta Temprana en Protección Ejecutiva - México',
+            price: 14800,
             image: '/images/landing-pe/ivan-pensando.jpg'
         });
         router.push('/checkout');

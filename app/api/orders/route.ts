@@ -231,7 +231,7 @@ export async function POST(req: Request) {
             }
         }
 
-        const finalTotal = total - discount;
+        const finalTotal = (total - discount) * 1.16;
 
         // Create Order
         const isFreeOrder = finalTotal <= 0;

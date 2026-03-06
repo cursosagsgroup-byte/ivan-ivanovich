@@ -128,20 +128,18 @@ export default function CartPage() {
                         <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 sticky top-24">
                             <h2 className="text-xl font-bold text-slate-900 mb-6">{t('cart.orderSummary')}</h2>
 
-                            <div className="space-y-3 mb-6">
+                            <div className="border-t border-slate-200 pt-4 space-y-2 mb-6">
                                 <div className="flex justify-between text-slate-600">
                                     <span>{t('cart.subtotal')}</span>
                                     <span>${total.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-slate-600">
-                                    <span>{t('cart.taxes')}</span>
-                                    <span>$0.00</span>
+                                    <span>IVA (16%)</span>
+                                    <span>${(total * 0.16).toFixed(2)}</span>
                                 </div>
-                                <div className="border-t border-slate-300 pt-3">
-                                    <div className="flex justify-between text-lg font-bold text-slate-900">
-                                        <span>{t('cart.total')}</span>
-                                        <span>${total.toFixed(2)}</span>
-                                    </div>
+                                <div className="flex justify-between text-lg font-bold text-slate-900 border-t border-slate-200 pt-2 mt-2">
+                                    <span>{t('cart.total')}</span>
+                                    <span>${(total * 1.16).toFixed(2)}</span>
                                 </div>
                             </div>
 
