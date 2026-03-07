@@ -137,6 +137,9 @@ export default function LandingPage() {
                             <p>
                                 A diferencia de los enfoques tradicionales que se enfocan en reaccionar cuando el ataque ya comenzó, la alerta temprana busca <span className="text-[#B70126] font-bold">intervenir mucho antes</span>, cuando los agresores aún se encuentran en la fase de preparación.
                             </p>
+                            <p className="text-white border-l-2 border-[#B70126] pl-4 italic bg-white/5 py-4 rounded-r-lg">
+                                El curso es totalmente práctico e implica dividir a los alumnos en dos grupos para simular emboscadas. Un día, un equipo analiza y planifica dónde colocar una emboscada, mientras que el de Alerta Temprana tiene la tarea de detectarla anticipadamente; al día siguiente, los roles de los equipos se invierten.
+                            </p>
                         </div>
                     </div>
 
