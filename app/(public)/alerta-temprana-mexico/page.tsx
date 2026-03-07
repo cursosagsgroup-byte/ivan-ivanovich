@@ -41,6 +41,9 @@ export default function LandingPage() {
                                 Reservar Mi Lugar <span className="text-2xl">→</span>
                             </MexicoLandingCTA>
                         </div>
+                        <p className="mt-4 text-white font-bold uppercase tracking-widest text-sm md:text-lg animate-pulse" style={{ fontFamily: 'var(--font-bebas)' }}>
+                            💳 Paga a meses sin intereses
+                        </p>
                         <p className="mt-6 text-sm md:text-base text-gray-400 max-w-2xl mx-auto px-4 italic">
                             "No enseña lo que suena bien, entrena lo que funciona."
                         </p>
