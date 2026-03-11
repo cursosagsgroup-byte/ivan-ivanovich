@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { PasswordInput } from '@/components/ui/PasswordInput';
 import dynamic from 'next/dynamic';
 import { signIn, useSession, signOut } from 'next-auth/react';
+import { COSTA_RICA_COURSE_ID } from '@/lib/course-constants';
 
 const StripePaymentForm = dynamic(() => import('@/components/stripe/StripePaymentForm'), { ssr: false });
 const MercadoPagoPaymentForm = dynamic(() => import('@/components/mercadopago/MercadoPagoPaymentForm'), { ssr: false });
@@ -41,6 +42,13 @@ export default function CheckoutPage() {
     const [showPayment, setShowPayment] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
     const [paymentAmount, setPaymentAmount] = useState<number>(0);
+    const [orderCurrency, setOrderCurrency] = useState<'MXN' | 'USD'>('MXN');
+
+    // Detectar moneda desde el carrito antes de crear la orden
+    useEffect(() => {
+        const isUSD = items.some(item => item.courseId === COSTA_RICA_COURSE_ID);
+        setOrderCurrency(isUSD ? 'USD' : 'MXN');
+    }, [items]);
 
     const [activeMethods, setActiveMethods] = useState<string[]>([]);
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>('stripe');
@@ -257,6 +265,7 @@ export default function CheckoutPage() {
             setOrderId(data.orderId);
             setOrderNumber(data.orderNumber);
             setPaymentAmount(data.total); // Enable using authoritative total
+            setOrderCurrency(data.currency || 'MXN'); // Capture currency from response
             setShowPayment(true);
 
         } catch (error) {
@@ -528,7 +537,7 @@ export default function CheckoutPage() {
                             <div className="border-t border-slate-200 pt-4 space-y-2 mb-6">
                                 <div className="flex justify-between text-slate-600">
                                     <span>{t('checkout.subtotal')}</span>
-                                    <span>${total.toFixed(2)}</span>
+                                    <span>{orderCurrency === 'USD' ? 'USD' : ''} ${total.toFixed(2)}</span>
                                 </div>
                                 {discount > 0 && (
                                     <div className="flex justify-between text-green-600 font-medium">
@@ -536,14 +545,24 @@ export default function CheckoutPage() {
                                         <span>-${discount.toFixed(2)}</span>
                                     </div>
                                 )}
-                                <div className="flex justify-between text-slate-600">
-                                    <span>IVA (16%)</span>
-                                    <span>${((total - discount) * 0.16).toFixed(2)}</span>
-                                </div>
+                                {orderCurrency !== 'USD' && (
+                                    <div className="flex justify-between text-slate-600">
+                                        <span>IVA (16%)</span>
+                                        <span>${((total - discount) * 0.16).toFixed(2)}</span>
+                                    </div>
+                                )}
                                 <div className="flex justify-between text-lg font-bold text-slate-900 border-t border-slate-200 pt-2 mt-2">
                                     <span>{t('checkout.total')}</span>
-                                    <span>${((total - discount) * 1.16).toFixed(2)}</span>
+                                    <span>
+                                        {orderCurrency === 'USD'
+                                            ? `USD $${(total - discount).toFixed(2)}`
+                                            : `$${((total - discount) * 1.16).toFixed(2)}`
+                                        }
+                                    </span>
                                 </div>
+                                {orderCurrency === 'USD' && (
+                                    <p className="text-xs text-slate-500 mt-1">💵 Este curso se cobra en dólares estadounidenses (USD), sin IVA.</p>
+                                )}
                             </div>
 
                             <div className="border-t border-slate-200 pt-6">

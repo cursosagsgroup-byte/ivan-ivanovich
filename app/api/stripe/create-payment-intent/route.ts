@@ -28,6 +28,20 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 });
         }
 
+        // Look up the order's currency so we charge in the correct one (USD vs MXN)
+        let orderCurrency = 'mxn';
+        if (orderId) {
+            const order = await prisma.order.findUnique({
+                where: { id: orderId },
+                select: { currency: true },
+            });
+            if (order?.currency) {
+                orderCurrency = order.currency.toLowerCase();
+            }
+        }
+
+        console.log(`[PaymentIntent] Using currency: ${orderCurrency} for order ${orderId}`);
+
         // Initialize Stripe
         const stripe = new Stripe(stripeConfig.secretKey, {
             apiVersion: '2025-12-15.clover',
@@ -35,8 +49,8 @@ export async function POST(req: NextRequest) {
 
         // Create Payment Intent
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: Math.round(amount * 100), // Convert to cents
-            currency: 'mxn',
+            amount: Math.round(amountVal * 100), // Convert to cents
+            currency: orderCurrency,
             metadata: {
                 orderId: orderId || '',
                 ...metadata,
@@ -51,6 +65,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             clientSecret: paymentIntent.client_secret,
             paymentIntentId: paymentIntent.id,
+            currency: orderCurrency,
         });
 
     } catch (error: any) {
@@ -61,3 +76,4 @@ export async function POST(req: NextRequest) {
         );
     }
 }
+

@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth'; // Assuming authOptions is exported from here
+import { authOptions } from '@/lib/auth';
 import { randomBytes } from 'crypto';
 import { hash } from 'bcryptjs';
 import nodemailer from 'nodemailer';
+import { USD_COURSE_IDS } from '@/lib/course-constants';
+
 
 async function sendOrderConfirmation(order: any, items: any[]) {
     if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
@@ -231,7 +233,13 @@ export async function POST(req: Request) {
             }
         }
 
-        const finalTotal = (total - discount) * 1.16;
+        // Determinar moneda: si todos los cursos son de tipo internacional USD, cobrar en USD sin IVA.
+        // Si hay mezcla (poco probable pero posible), se usa MXN con IVA.
+        const isUSDOrder = orderItemsData.every(item => USD_COURSE_IDS.includes(item.courseId));
+        const finalTotal = isUSDOrder
+            ? (total - discount)            // USD: sin IVA mexicano
+            : (total - discount) * 1.16;    // MXN: con 16% IVA
+        const orderCurrency = isUSDOrder ? 'USD' : 'MXN';
 
         // Create Order
         const isFreeOrder = finalTotal <= 0;
@@ -242,7 +250,7 @@ export async function POST(req: Request) {
                 userId,
                 orderNumber,
                 total: finalTotal,
-                currency: 'MXN',
+                currency: orderCurrency,
                 status: isFreeOrder ? 'completed' : 'pending',
                 paymentMethod: isFreeOrder ? 'free' : 'stripe',
                 billingName: `${billingDetails.firstName} ${billingDetails.lastName}`,
@@ -299,7 +307,8 @@ export async function POST(req: Request) {
             orderId: order.id,
             orderNumber: order.orderNumber,
             freeOrder: isFreeOrder,
-            total: finalTotal
+            total: finalTotal,
+            currency: orderCurrency,
         });
 
     } catch (error) {

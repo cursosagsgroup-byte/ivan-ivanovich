@@ -2,6 +2,7 @@
 
 import { useCart } from '@/lib/cart-context';
 import { useRouter } from 'next/navigation';
+import { COSTA_RICA_COURSE_ID } from '@/lib/course-constants';
 
 interface CostaRicaLandingCTAProps {
     className?: string;
@@ -15,9 +16,9 @@ export default function CostaRicaLandingCTA({ className, style, children }: Cost
 
     const handleBuyNow = async () => {
         await addToCart({
-            courseId: 'cmmdxl4jq00002djx81x89qm2',
+            courseId: COSTA_RICA_COURSE_ID,
             title: 'Protección Ejecutiva, Operatividad General y Logística Protectiva - Costa Rica',
-            price: 14400,
+            price: 800,
             image: '/images/landing-pe/ivan-pensando.jpg'
         });
         router.push('/checkout');

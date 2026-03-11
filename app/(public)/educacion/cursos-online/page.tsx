@@ -5,6 +5,7 @@ import AddToCartButton from '@/components/cart/AddToCartButton';
 import { prisma } from '@/lib/prisma';
 import { cookies } from 'next/headers';
 import { translations } from '@/lib/translations';
+import { COSTA_RICA_COURSE_ID } from '@/lib/course-constants';
 
 
 export default async function CursosOnlinePage() {
@@ -137,7 +138,9 @@ export default async function CursosOnlinePage() {
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <span className="text-3xl font-bold text-black">${course.price.toFixed(2)}</span>
-                                            <span className="text-gray-600 text-sm ml-2">MXN</span>
+                                            <span className="text-gray-600 text-sm ml-2">
+                                                {course.id === COSTA_RICA_COURSE_ID ? 'USD' : 'MXN'}
+                                            </span>
                                         </div>
                                         <AddToCartButton
                                             course={{
