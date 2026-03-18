@@ -246,3 +246,22 @@ h6 {
 .animate-spotlight {
   animation: spotlight 3.5s ease-in-out infinite;
 }
+
+/* --- Checkout & Autofill Visibility Fix --- */
+/* Forza el texto oscuro en el checkout para que sea visible incluso en modo oscuro */
+.checkout-page-container input:not([type="checkbox"]):not([type="radio"]),
+.checkout-page-container select,
+.checkout-page-container textarea {
+    color: #0f172a !important;
+}
+
+/* Fix específico para el Autofill del navegador (Chrome, Safari, etc.) */
+/* Asegura que cuando el navegador autocompleta, el texto siga siendo oscuro y el fondo blanco */
+.checkout-page-container input:-webkit-autofill,
+.checkout-page-container input:-webkit-autofill:hover,
+.checkout-page-container input:-webkit-autofill:focus,
+.checkout-page-container input:-webkit-autofill:active {
+    -webkit-text-fill-color: #0f172a !important;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}

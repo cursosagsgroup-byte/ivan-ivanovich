@@ -280,7 +280,7 @@ export default function CheckoutPage() {
 
 
     return (
-        <div className="bg-slate-50 min-h-screen pt-32 pb-16">
+        <div className="bg-slate-50 min-h-screen pt-32 pb-16 checkout-page-container">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
@@ -331,7 +331,7 @@ export default function CheckoutPage() {
                                             value={formData.firstName}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900"
                                         />
                                     </div>
                                     <div>
@@ -342,7 +342,7 @@ export default function CheckoutPage() {
                                             value={formData.lastName}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900"
                                         />
                                     </div>
                                 </div>
@@ -356,7 +356,7 @@ export default function CheckoutPage() {
                                         required
                                         disabled={!!session}
                                         placeholder="ejemplo@correo.com"
-                                        className={`w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent ${session ? 'bg-slate-100 text-slate-500 cursor-not-allowed' : ''}`}
+                                        className={`w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900 ${session ? 'bg-slate-100 text-slate-500 cursor-not-allowed' : ''}`}
                                     />
                                     {!!session && (
                                         <p className="text-xs text-slate-500 mt-1">El correo no se puede cambiar porque has iniciado sesión.</p>
@@ -372,7 +372,7 @@ export default function CheckoutPage() {
                                             value={formData.country}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900"
                                         >
                                             <option value="">Selecciona tu país</option>
                                             <option value="México">🇲🇽 México</option>
@@ -425,7 +425,7 @@ export default function CheckoutPage() {
                                                 onChange={handleInputChange}
                                                 required
                                                 placeholder="555 123 4567"
-                                                className="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                                className="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900"
                                             />
                                         </div>
                                         <p className="text-xs text-slate-500 mt-1">Solo números, sin prefijo de país</p>
@@ -437,7 +437,7 @@ export default function CheckoutPage() {
                                             value={formData.age}
                                             onChange={handleInputChange}
                                             required
-                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent"
+                                            className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent text-slate-900"
                                         >
                                             <option value="">Selecciona tu edad</option>
                                             {Array.from({ length: 65 }, (_, i) => i + 18).map(age => (
@@ -519,7 +519,7 @@ export default function CheckoutPage() {
                                             value={couponCode}
                                             onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                                             placeholder={t('checkout.couponPlaceholder')}
-                                            className="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent uppercase"
+                                            className="flex-1 px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent uppercase text-slate-900"
                                         />
                                         <button
                                             type="button"
