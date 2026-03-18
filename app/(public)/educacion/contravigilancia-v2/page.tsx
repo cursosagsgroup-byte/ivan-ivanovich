@@ -1,21 +1,20 @@
 'use client';
 
 import Image from 'next/image';
-import { ChevronDown, Play, CheckCircle2, BadgeCheck, Globe, Award, Clock } from 'lucide-react';
+import { ChevronDown, Play, CheckCircle2, BadgeCheck, Globe, Award, Clock, AlertTriangle, TrendingUp, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
-import PublicNavbar from '@/components/public/PublicNavbar';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useTranslation } from '@/hooks/useTranslation';
 import ContravigilanciaLandingCTA from '@/components/landing/ContravigilanciaLandingCTA';
+import ExecutiveTrainingSection from '@/components/landing/ExecutiveTrainingSection';
+import PersuasionTechniquesSection from '@/components/landing/PersuasionTechniquesSection';
 
 export default function ContravigilanciaV2Page() {
     const { t } = useTranslation();
 
     return (
         <div className="bg-white min-h-screen font-sans">
-            <PublicNavbar />
-
-            {/* HERO SECTION (Full width, dark style like PE) */}
+            {/* HERO SECTION */}
             <div data-theme="dark" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden bg-black pt-20">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
@@ -59,33 +58,59 @@ export default function ContravigilanciaV2Page() {
                 </div>
             </div>
 
-            {/* MAIN CONTENT AREA: Full Width Sections */}
-            <div className="space-y-16 py-12 md:py-24">
-                
-                {/* Intro Section */}
-                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-5xl font-black text-black uppercase leading-none mb-6 md:mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>
-                            {t('counterSurveillance.introTitle')}
-                        </h2>
-                        <div className="space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
-                            <p>
-                                {t('counterSurveillance.introDescription1')} <span className="font-bold text-black">Aprenderás a detectar la vigilancia hostil</span>, incluso cuando los criminales creen que están ocultos.
-                            </p>
-                            <div className="bg-gray-50 border-l-4 border-[#B70126] p-4 md:p-6 my-6 md:my-8">
-                                <p className="text-gray-900 font-bold text-lg md:text-xl italic">
-                                    &quot;La mayoría de los equipos seguridad solo reaccionan cuando el ataque ya empezó. Los <span className="text-[#B70126]">operadores de élite</span> detectan la amenaza antes de que ocurra.&quot;
+            {/* EXECUTIVE TRAINING SECTION */}
+            <ExecutiveTrainingSection />
+
+            {/* PERSUASION TECHNIQUES SECTION */}
+            <PersuasionTechniquesSection />
+
+            {/* PROBLEM / SOLUTION SECTION */}
+            <section data-theme="light" className="py-12 md:py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        <div className="order-2 lg:order-1">
+                            <div className="relative h-[400px] md:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl">
+                                <Image
+                                    src="/curso-contravigilancia.jpg"
+                                    alt="Curso de Contravigilancia"
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 md:p-8">
+                                    <p className="text-white text-lg font-bold">Curso en Línea</p>
+                                    <p className="text-gray-300 text-sm">Certificación WSO</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="order-1 lg:order-2">
+                            <h3 className="text-[#B70126] font-bold text-base md:text-lg uppercase tracking-wide mb-2">La Realidad Operativa</h3>
+                            <h2 className="text-3xl md:text-5xl font-black text-black uppercase leading-none mb-6 md:mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>
+                                Una formación que <span className="text-[#B70126]">transforma</span> tu criterio
+                            </h2>
+                            <div className="space-y-4 md:space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
+                                <p>
+                                    {t('counterSurveillance.introDescription1')} <span className="font-bold text-black">Aprenderás a detectar la vigilancia hostil</span>, incluso cuando los criminales creen que están ocultos.
+                                </p>
+                                <p>
+                                    La mayoría de los equipos de seguridad solo reaccionan cuando el ataque ya empezó. Los <span className="font-bold text-black">operadores de élite</span> detectan la amenaza antes de que ocurra.
+                                </p>
+                                <div className="bg-gray-50 border-l-4 border-[#B70126] p-4 md:p-6 my-6 md:my-8">
+                                    <p className="font-bold text-black text-lg md:text-xl mb-2">Capacitación de nivel mundial</p>
+                                    <p className="text-gray-600">
+                                        Profesionales de protección ejecutiva en todo el continente ya dominan las técnicas de contravigilancia que enseñamos en este curso, anticipándose a las amenazas antes de que se materialicen.
+                                    </p>
+                                </div>
+                                <p className="font-bold text-black text-lg">
+                                    {t('counterSurveillance.introDescription3')}
                                 </p>
                             </div>
-                            <p className="font-bold text-black text-xl">
-                                {t('counterSurveillance.introDescription3')}
-                            </p>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* Video Section */}
-                <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Video Section */}
+            <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-0">
                     <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                         <iframe
                             src="https://player.vimeo.com/video/954253693"
@@ -98,13 +123,13 @@ export default function ContravigilanciaV2Page() {
                     </div>
                 </section>
 
-                {/* What You Will Learn (Dark theme style from PE) */}
-                <section className="bg-gray-900 py-16 md:py-24 text-white relative overflow-hidden">
+                {/* WHAT YOU WILL LEARN */}
+                <section data-theme="dark" className="py-16 md:py-24 bg-gray-900 text-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-10 md:mb-16">
                             <span className="text-[#B70126] font-bold tracking-widest uppercase text-sm md:text-base">Temario del Curso</span>
                             <h2 className="text-3xl md:text-6xl font-black uppercase mt-2" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('counterSurveillance.whatYouWillLearnTitle')}
+                                ¿Qué <span className="text-[#B70126]">Aprenderás?</span>
                             </h2>
                             <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-base md:text-lg px-2">
                                 Desarrolla la capacidad de identificar riesgos antes de que se conviertan en ataques.
@@ -113,16 +138,89 @@ export default function ContravigilanciaV2Page() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                             {(t('counterSurveillance.whatYouWillLearnItems') as unknown as string[]).map((item, index) => (
-                                <div key={index} className="bg-gray-800 p-4 md:p-6 rounded-xl border border-gray-700 hover:border-[#B70126] transition-all hover:bg-gray-700 group flex items-start gap-4">
-                                    <div className="bg-[#B70126]/20 p-2.5 rounded-lg group-hover:bg-[#B70126] transition-colors shrink-0">
-                                        <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#B70126] group-hover:text-white" />
+                                <div key={index} className="bg-gray-800 p-4 md:p-6 rounded-xl hover:bg-gray-700 transition-colors border border-gray-700 hover:border-[#B70126] group">
+                                    <div className="flex items-start gap-4">
+                                        <div className="bg-[#B70126]/20 p-2 rounded-lg group-hover:bg-[#B70126] transition-colors shrink-0">
+                                            <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-[#B70126] group-hover:text-white" />
+                                        </div>
+                                        <p className="text-base md:text-lg font-medium text-gray-200 group-hover:text-white">{item}</p>
                                     </div>
-                                    <p className="text-base md:text-lg font-medium text-gray-200 group-hover:text-white pt-1">{item}</p>
                                 </div>
                             ))}
+
+                            {/* Destacado */}
+                            <div className="bg-gradient-to-br from-[#B70126] to-[#90011E] p-6 rounded-xl shadow-lg md:col-span-2 lg:col-span-1 flex items-center mt-4 md:mt-0">
+                                <div>
+                                    <h4 className="text-lg md:text-xl font-bold uppercase mb-2 text-white flex items-center gap-2">
+                                        <AlertTriangle className="w-6 h-6" />
+                                        Enfoque Real
+                                    </h4>
+                                    <p className="text-white/90 text-sm md:text-base">
+                                        Contenido aplicado a escenarios operativos reales de protección ejecutiva.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
+
+            {/* CLASSROOM IMAGE SECTION */}
+            <section className="w-full relative h-[300px] md:h-[500px]">
+                <Image
+                    src="/curso-contravigilancia.jpg"
+                    alt="Curso de Contravigilancia - Ivan Ivanovich"
+                    fill
+                    className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+            </section>
+
+            {/* TRAINING METHODOLOGY 3 STEPS */}
+            <section data-theme="light" className="py-16 md:py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 md:mb-20">
+                        <h2 className="text-3xl md:text-6xl font-black uppercase text-black" style={{ fontFamily: 'var(--font-bebas)' }}>
+                            Así Funciona tu Entrenamiento <span className="text-[#B70126]">Online</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                        <div className="hidden md:block absolute top-12 left-0 right-0 h-1 bg-gray-100 -z-10 translate-y-4"></div>
+
+                        <div className="relative bg-white md:pt-8 bg-white/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-xl md:rounded-none border md:border-none border-gray-100 shadow-sm md:shadow-none">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-black text-white text-xl md:text-2xl font-black flex items-center justify-center rounded-2xl mb-4 md:mb-6 mx-auto shadow-lg border-4 border-white relative z-10 font-[var(--font-bebas)]">01</div>
+                            <h3 className="text-xl md:text-2xl font-bold text-black uppercase text-center mb-2 md:mb-4">Accede al contenido</h3>
+                            <p className="text-gray-600 text-center leading-relaxed text-sm md:text-base">
+                                Inscríbete y obtén <span className="font-bold text-[#B70126]">acceso inmediato</span> a todo el material. Videos, recursos y ejercicios disponibles 24/7 para que aprendas a tu ritmo.
+                            </p>
+                        </div>
+
+                        <div className="relative bg-white md:pt-8 bg-white/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-xl md:rounded-none border md:border-none border-gray-100 shadow-sm md:shadow-none">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-[#B70126] text-white text-xl md:text-2xl font-black flex items-center justify-center rounded-2xl mb-4 md:mb-6 mx-auto shadow-lg border-4 border-white relative z-10 font-[var(--font-bebas)]">02</div>
+                            <h3 className="text-xl md:text-2xl font-bold text-black uppercase text-center mb-2 md:mb-4">Aprende el método</h3>
+                            <p className="text-gray-600 text-center leading-relaxed text-sm md:text-base">
+                                Domina las técnicas de <span className="font-bold text-[#B70126]">contravigilancia</span> que usan los operadores de élite. Detecta vigilancia hostil antes de que se convierta en amenaza.
+                            </p>
+                        </div>
+
+                        <div className="relative bg-white md:pt-8 bg-white/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-xl md:rounded-none border md:border-none border-gray-100 shadow-sm md:shadow-none">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-black text-white text-xl md:text-2xl font-black flex items-center justify-center rounded-2xl mb-4 md:mb-6 mx-auto shadow-lg border-4 border-white relative z-10 font-[var(--font-bebas)]">03</div>
+                            <h3 className="text-xl md:text-2xl font-bold text-black uppercase text-center mb-2 md:mb-4">Certifícate</h3>
+                            <p className="text-gray-600 text-center leading-relaxed text-sm md:text-base">
+                                Obtén tu certificación WSO y lleva tu perfil profesional a un nivel que pocos alcanzan en el sector.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="mt-12 md:mt-16 text-center">
+                        <ContravigilanciaLandingCTA
+                            className="inline-block bg-black hover:bg-[#333] text-white text-base md:text-lg font-bold py-3 md:py-4 px-8 md:px-10 rounded-full transition-all hover:scale-105 shadow-xl uppercase border border-gray-800 w-full md:w-auto cursor-pointer"
+                        >
+                            Sí, quiero acceder al curso completo
+                        </ContravigilanciaLandingCTA>
+                    </div>
+                </div>
+            </section>
 
                 {/* Modules Section */}
                 <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -219,85 +317,69 @@ export default function ContravigilanciaV2Page() {
                     </div>
                 </section>
 
-                <div className="space-y-24">
-                    {/* ARMADA ESPAÑOLA (Styled like PE) */}
-                    <section className="bg-gray-50 py-16 md:py-24 border-y border-gray-100">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                                <div className="text-center lg:text-left">
-                                    <h3 className="text-[#B70126] font-bold text-base md:text-lg uppercase tracking-wide mb-2">{t('home.armadaLabel')}</h3>
-                                    <h2 className="text-3xl md:text-5xl font-black text-black uppercase leading-none mb-6 md:mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                        {t('home.armadaTitle')}
-                                    </h2>
-                                    <p className="text-gray-600 mb-10 text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                                        Fuimos el <span className="font-bold text-black">primer equipo civil</span> en capacitar a la prestigiosa <span className="text-[#B70126] font-bold">Infantería de Marina de España</span> en técnicas avanzadas de protección.
-                                    </p>
-                                    <div className="flex gap-6 justify-center lg:justify-start">
-                                        <div className="bg-white p-4 rounded-2xl shadow-xl w-24 h-24 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all border border-gray-100">
-                                            <Image src="/escudo-armada-1.png" alt="Escudo Armada 1" fill className="p-4 object-contain" />
+                {/* TARGET AUDIENCE */}
+                <section data-theme="light" className="bg-gray-50 py-16 md:py-24">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h2 className="text-3xl md:text-5xl font-black text-black uppercase mb-6 md:mb-8 text-center lg:text-left" style={{ fontFamily: 'var(--font-bebas)' }}>
+                                    ¿Para quién es <br /><span className="text-[#B70126]">este curso?</span>
+                                </h2>
+                                <div className="space-y-4 md:space-y-6">
+                                    <div className="flex gap-4">
+                                        <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-[#B70126]">
+                                            <BadgeCheck className="w-5 h-5 md:w-6 md:h-6" />
                                         </div>
-                                        <div className="bg-white p-4 rounded-2xl shadow-xl w-24 h-24 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all border border-gray-100">
-                                            <Image src="/escudo-armada-2.png" alt="Escudo Armada 2" fill className="p-4 object-contain" />
+                                        <div>
+                                            <h4 className="text-lg md:text-xl font-bold text-black mb-1">Profesionales de Protección</h4>
+                                            <p className="text-sm md:text-base text-gray-600">Eres escolta operativo, jefe de equipo o responsable de seguridad corporativa.</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-[#B70126]">
+                                            <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg md:text-xl font-bold text-black mb-1">Buscas Evolucionar</h4>
+                                            <p className="text-sm md:text-base text-gray-600">Necesitas criterio preventivo y herramientas reales para anticiparte a las amenazas.</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-[#B70126]">
+                                            <Globe className="w-5 h-5 md:w-6 md:h-6" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg md:text-xl font-bold text-black mb-1">Estándares Internacionales</h4>
+                                            <p className="text-sm md:text-base text-gray-600">Quieres operar con metodologías probadas a nivel mundial.</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-[#B70126]">
+                                            <ShieldCheck className="w-5 h-5 md:w-6 md:h-6" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg md:text-xl font-bold text-black mb-1">Alto Perfil</h4>
+                                            <p className="text-sm md:text-base text-gray-600">Debes proteger figuras de alto perfil sin margen de error.</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="relative h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.15)] order-first lg:order-last">
-                                    <Image src="/photo-armada-square.jpg" alt="Armada" fill className="object-cover transition-transform duration-1000 hover:scale-110" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* COSTA RICA (Styled like PE) */}
-                    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                            <div className="relative h-[400px] md:h-[600px] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.15)]">
-                                <Image src="/photo-costarica-square.jpg" alt="Costa Rica" fill className="object-cover transition-transform duration-1000 hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                            </div>
-                            <div className="text-center lg:text-left">
-                                <h3 className="text-[#B70126] font-bold text-base md:text-lg uppercase tracking-wide mb-2">{t('home.costaRicaLabel')}</h3>
-                                <h2 className="text-3xl md:text-5xl font-black text-black uppercase leading-none mb-6 md:mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                    {t('home.costaRicaTitle')}
-                                </h2>
-                                <p className="text-gray-600 text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                                    Entrenamiento especializado para la <span className="font-bold text-black">Unidad de Protección Presidencial</span>, elevando los estándares de seguridad nacional.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* Top 9 Mundial e ISJ (Styled like PE/ATM but with PE sizes) */}
-                    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                            <div className="bg-black text-white rounded-[2.5rem] overflow-hidden p-10 md:p-14 flex flex-col justify-between h-full group transform transition duration-500 hover:shadow-2xl hover:shadow-[#B70126]/10 border border-white/5 relative">
-                                <div className="relative z-10">
-                                    <h3 className="text-[#B70126] font-bold text-base uppercase tracking-widest mb-4">{t('home.top9Label')}</h3>
-                                    <h2 className="text-3xl md:text-5xl font-black uppercase leading-none mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>{t('home.top9Title')}</h2>
-                                    <p className="text-gray-400 font-medium mb-10 text-base md:text-lg leading-relaxed italic border-l-3 border-[#B70126] pl-6">{t('home.top9Description')}</p>
-                                </div>
-                                <div className="relative h-80 w-full rounded-2xl overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity ring-1 ring-white/10 z-10">
-                                    <Image src="/photo-top9-square.png" alt="Top 9" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
-                                </div>
-                            </div>
-
-                            <div className="bg-black text-white rounded-[2.5rem] overflow-hidden p-10 md:p-14 flex flex-col justify-between h-full group transform transition duration-500 hover:shadow-2xl hover:shadow-[#B70126]/10 border border-white/5 relative">
-                                <div className="relative z-10">
-                                    <h3 className="text-[#B70126] font-bold text-base uppercase tracking-widest mb-4">{t('home.isjLabel')}</h3>
-                                    <h2 className="text-3xl md:text-5xl font-black uppercase leading-none mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>{t('home.isjTitle')}</h2>
-                                    <p className="text-gray-400 font-medium mb-10 text-base md:text-lg leading-relaxed italic border-l-3 border-[#B70126] pl-6 text-white/90">
-                                        &quot;Iván Ivanovich ha sido nombrado entre los <span className="font-bold text-white">30 líderes más influyentes</span> de la seguridad global.&quot;
+                                <div className="mt-8 md:mt-10 bg-white p-4 md:p-6 rounded-xl border border-gray-200 shadow-sm">
+                                    <p className="text-black font-bold text-base md:text-lg text-center">
+                                        &quot;Este curso no es para quien quiere más teoría. Es para quien quiere ejecutar con excelencia.&quot;
                                     </p>
                                 </div>
-                                <div className="relative h-80 w-full rounded-2xl overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity ring-1 ring-white/10 z-10">
-                                    <Image src="/images/isj-ivan.png" alt="ISJ" fill className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700" />
-                                </div>
+                            </div>
+                            <div className="relative h-[400px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl skew-y-3 transform lg:translate-x-12 ring-8 ring-white mt-8 lg:mt-0">
+                                <Image
+                                    src="/curso-contravigilancia.jpg"
+                                    alt="Curso de Contravigilancia para Protección Ejecutiva"
+                                    fill
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
-                    </section>
-                </div>
-            </div>
+                    </div>
+                </section>
             
             {/* INSTRUCTOR SECTION (Dark PE Style) */}
             <section data-theme="dark" className="bg-[#0f172a] py-16">
