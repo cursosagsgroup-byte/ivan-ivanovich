@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, CheckCircle, Circle, Menu, X, PlayCircle, Fi
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import QuizPlayer from './QuizPlayer';
+import { translations, Language } from '@/lib/translations';
 
 // Helper function to extract Vimeo video ID from URL
 function extractVimeoId(url: string): string {
@@ -38,9 +39,12 @@ interface CoursePlayerProps {
     modules: Module[];
     initialProgress: number;
     userId: string;
+    language?: string;
 }
 
-export default function CoursePlayer({ courseId, courseTitle, modules, initialProgress, userId }: CoursePlayerProps) {
+export default function CoursePlayer({ courseId, courseTitle, modules, initialProgress, userId, language }: CoursePlayerProps) {
+    const lang = (language as Language) || 'es';
+    const t = translations[lang].player;
     const router = useRouter();
     const [activeModuleId, setActiveModuleId] = useState<string>(modules[0]?.id || '');
     const [activeLessonId, setActiveLessonId] = useState<string>(modules[0]?.lessons[0]?.id || '');
@@ -214,7 +218,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                     <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-900 text-white">
                         <Link href="/mi-cuenta" className="flex items-center text-sm hover:text-slate-300 transition-colors">
                             <ChevronLeft className="w-4 h-4 mr-1" />
-                            Volver al Dashboard
+                            {t.backToDashboard}
                         </Link>
                         <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
                             <X className="w-5 h-5" />
@@ -230,7 +234,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                 style={{ width: `${initialProgress}%` }}
                             />
                         </div>
-                        <p className="text-xs text-slate-500 text-right">{initialProgress}% Completado</p>
+                        <p className="text-xs text-slate-500 text-right">{initialProgress}% {t.completed}</p>
                     </div>
 
                     {/* Modules List */}
@@ -360,7 +364,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                                         }`}
                                                 >
                                                     <ChevronLeft className="w-4 h-4 mr-2" />
-                                                    Anterior
+                                                    {t.previous}
                                                 </button>
 
                                                 {nextLesson ? (
@@ -372,7 +376,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                                             : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                                                             }`}
                                                     >
-                                                        {isLoading ? 'Procesando...' : 'Siguiente Lección'}
+                                                        {isLoading ? t.processing : t.nextLesson}
                                                         <ChevronRight className="w-4 h-4 ml-2" />
                                                     </button>
                                                 ) : (
@@ -381,7 +385,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                                                         disabled={isLoading}
                                                         className={`flex items-center px-6 py-2 rounded-lg text-sm font-medium transition-colors bg-[#B70126] text-white hover:bg-[#96011f] shadow-lg shadow-[#B70126]/20`}
                                                     >
-                                                        {isLoading ? 'Finalizando...' : 'Finalizar Curso'}
+                                                        {isLoading ? t.finishing : t.finishCourse}
                                                         <CheckCircle className="w-4 h-4 ml-2" />
                                                     </button>
                                                 )}
@@ -403,7 +407,7 @@ export default function CoursePlayer({ courseId, courseTitle, modules, initialPr
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full text-slate-400">
                                 <HelpCircle className="w-16 h-16 mb-4" />
-                                <p>Selecciona una lección para comenzar</p>
+                                <p>{t.selectLesson}</p>
                             </div>
                         )}
                     </div>

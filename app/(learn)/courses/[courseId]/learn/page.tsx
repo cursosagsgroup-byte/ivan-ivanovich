@@ -190,6 +190,7 @@ export default async function LearnPage({ params }: LearnPageProps) {
             modules={serializedModules}
             initialProgress={enrollment.progress}
             userId={user.id}
+            language={course.language}
         />
     );
 }

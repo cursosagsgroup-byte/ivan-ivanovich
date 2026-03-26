@@ -113,6 +113,16 @@ export const translations = {
             rights: 'Todos los derechos reservados',
             admin: 'Admin',
         },
+        player: {
+            backToDashboard: 'Volver al Dashboard',
+            completed: 'Completado',
+            previous: 'Anterior',
+            nextLesson: 'Siguiente Lección',
+            processing: 'Procesando...',
+            finishing: 'Finalizando...',
+            finishCourse: 'Finalizar Curso',
+            selectLesson: 'Selecciona una lección para comenzar'
+        },
         contact: {
             title: 'Contacto',
             subtitle: 'Ponte en contacto con nosotros para más información sobre nuestros cursos y servicios.',
@@ -729,6 +739,16 @@ export const translations = {
             documentation: 'Documentation',
             rights: 'All rights reserved',
             admin: 'Admin',
+        },
+        player: {
+            backToDashboard: 'Back to Dashboard',
+            completed: 'Completed',
+            previous: 'Previous',
+            nextLesson: 'Next Lesson',
+            processing: 'Processing...',
+            finishing: 'Finishing...',
+            finishCourse: 'Finish Course',
+            selectLesson: 'Select a lesson to begin'
         },
         contact: {
             title: 'Contact',
