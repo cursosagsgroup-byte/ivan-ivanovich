@@ -2,19 +2,18 @@ import { Metadata } from 'next'
 import { generateMetadata, courseSchema } from '@/lib/seo-utils'
 
 export const metadata: Metadata = generateMetadata({
-    title: 'Team Leader in Executive Protection',
-    description: 'Professional Team Leader course certified by internationally recognized expert. Learn the most advanced executive protection techniques and security team management.',
+    title: 'Counter Surveillance for Executive Protection',
+    description: 'Expert Counter Surveillance course for Executive Protection professionals. Learn to detect and neutralize threats with international instructor Ivan Ivanovich.',
     keywords: [
-        'team leader executive protection',
-        'executive protection course',
-        'team leader training',
-        'security team management',
-        'executive protection certification',
+        'counter surveillance',
+        'executive protection',
+        'surveillance detection',
+        'security training',
         'ivan ivanovich',
         'protection academy',
     ],
-    image: '/curso-team-leader.png',
-    url: '/en/educacion/team-leader',
+    image: '/curso-contravigilancia.jpg',
+    url: '/educacion/counter-surveillance',
     type: 'website',
 })
 

@@ -265,3 +265,32 @@ h6 {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
     transition: background-color 5000s ease-in-out 0s;
 }
+
+/* --- Blog Visibility Fix --- */
+/* Forza el texto oscuro en el blog para que sea visible incluso en modo oscuro sobre fondo blanco */
+.blog-page-container {
+    color: #374151 !important;
+}
+
+.blog-page-container h1,
+.blog-page-container h2,
+.blog-page-container h3,
+.blog-page-container h4,
+.blog-page-container h5,
+.blog-page-container h6 {
+    color: #111827 !important;
+}
+
+/* Fix específico para que la fecha y metadata no sean invisibles en móviles con modo oscuro */
+.blog-page-container time,
+.blog-page-container .text-gray-500,
+.blog-page-container .text-gray-600 {
+    color: #4b5563 !important; /* Gray 600 - Un poco más legible que el 500 original */
+}
+
+/* Asegurar que los párrafos dentro de blog-content siempre sean oscuros */
+.blog-content p,
+.blog-content li,
+.blog-content span {
+    color: #374151 !important;
+}

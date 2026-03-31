@@ -2,16 +2,15 @@ import { Metadata } from 'next'
 import { generateMetadata, courseSchema } from '@/lib/seo-utils'
 
 export const metadata: Metadata = generateMetadata({
-    title: 'Team Leader en Protección Ejecutiva',
-    description: 'Curso profesional de Team Leader certificado por experto reconocido internacionalmente. Aprende las técnicas más avanzadas de protección ejecutiva y manejo de equipos de seguridad.',
+    title: 'Team Leader in Executive Protection',
+    description: 'Elite professional Team Leader training in Executive Protection. Learn to lead high-performance security teams with international instructor Ivan Ivanovich.',
     keywords: [
-        'team leader protección ejecutiva',
-        'curso protección ejecutiva',
-        'formación team leader',
-        'gestión equipos seguridad',
-        'protección ejecutiva certificado',
-        'ivan ivanov ich',
-        'academia protección méxico',
+        'team leader',
+        'executive protection',
+        'security team leadership',
+        'high performance security',
+        'ivan ivanovich',
+        'protection academy',
     ],
     image: '/curso-team-leader.png',
     url: '/educacion/team-leader',
@@ -19,9 +18,9 @@ export const metadata: Metadata = generateMetadata({
 })
 
 export const teamLeaderSchema = courseSchema({
-    name: 'Team Leader en Protección Ejecutiva',
+    name: 'Team Leader in Executive Protection',
     description:
-        'Curso completo para liderar equipos de protección ejecutiva con técnicas profesionales y certificación internacional.',
+        'Advanced course for leading executive protection teams with professional techniques and international certification.',
     image: 'https://ivanivanovich.com/curso-team-leader.png',
     price: 1900,
     currency: 'MXN',

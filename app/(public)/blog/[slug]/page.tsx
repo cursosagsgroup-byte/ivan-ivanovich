@@ -291,7 +291,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 
     return (
-        <div className="bg-white py-24 sm:py-32">
+        <div className="bg-white py-24 sm:py-32 blog-page-container">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0 mb-10">
                     <Link href="/blog" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">

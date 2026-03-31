@@ -7,15 +7,32 @@ import BlogSearch from '@/components/blog/BlogSearch';
 import { Prisma } from '@prisma/client';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-    title: 'Blog - Protección Ejecutiva y Seguridad',
-    description: 'Artículos, noticias y recursos sobre protección ejecutiva, seguridad privada y formación profesional. Actualizado regularmente por expertos en el sector.',
-    openGraph: {
-        title: 'Blog - Ivan Ivanovich Academia',
-        description: 'Contenido experto sobre protección ejecutiva y seguridad privada',
-        type: 'website',
-    },
-};
+export async function generateMetadata(): Promise<Metadata> {
+    const cookieStore = await cookies();
+    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    
+    if (locale === 'en') {
+        return {
+            title: 'Blog - Executive Protection and Security',
+            description: 'Articles, news, and resources on executive protection, private security, and professional training. Regularly updated by industry experts.',
+            openGraph: {
+                title: 'Blog - Ivan Ivanovich Academy',
+                description: 'Expert content on executive protection and private security',
+                type: 'website',
+            },
+        };
+    }
+
+    return {
+        title: 'Blog - Protección Ejecutiva y Seguridad',
+        description: 'Artículos, noticias y recursos sobre protección ejecutiva, seguridad privada y formación profesional. Actualizado regularmente por expertos en el sector.',
+        openGraph: {
+            title: 'Blog - Ivan Ivanovich Academia',
+            description: 'Contenido experto sobre protección ejecutiva y seguridad privada',
+            type: 'website',
+        },
+    };
+}
 
 export default async function BlogIndexPage({
     searchParams,
@@ -66,7 +83,7 @@ export default async function BlogIndexPage({
     });
 
     return (
-        <div className="bg-white min-h-screen pt-24">
+        <div className="bg-white min-h-screen pt-24 blog-page-container">
             {/* Hero Section */}
             <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
                 <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">

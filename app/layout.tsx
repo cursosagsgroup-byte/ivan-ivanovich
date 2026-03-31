@@ -27,60 +27,104 @@ const bebasNeue = Bebas_Neue({
     display: 'swap',
 });
 
-export const metadata: Metadata = {
-    metadataBase: new URL('https://ivanivanovich.com'),
-    title: {
-        default: "Ivan Ivanovich - Academia de Protección Ejecutiva",
-        template: "%s | Ivan Ivanovich"
-    },
-    description: "Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo. Cursos certificados de Team Leader y Contravigilancia con instructor de nivel internacional.",
-    keywords: ["protección ejecutiva", "seguridad privada", "team leader", "contravigilancia", "curso protección ejecutiva", "academia seguridad", "ivan ivanovich", "executive protection"],
-    authors: [{ name: "Ivan Ivanovich" }],
-    creator: "Ivan Ivanovich",
-    publisher: "Ivan Ivanovich Academia",
-    formatDetection: {
-        email: false,
-        address: false,
-        telephone: false,
-    },
-    openGraph: {
-        type: 'website',
-        locale: 'es_ES',
-        alternateLocale: ['en_US'],
-        url: 'https://ivanivanovich.com',
-        siteName: 'Ivan Ivanovich Academia',
-        title: 'Ivan Ivanovich - Academia de Protección Ejecutiva',
-        description: 'Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo',
-        images: [
-            {
-                url: '/og-image.jpg',
-                width: 1200,
-                height: 630,
-                alt: 'Ivan Ivanovich Academia de Protección Ejecutiva',
-            }
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Ivan Ivanovich - Academia de Protección Ejecutiva',
-        description: 'Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo',
-        images: ['/og-image.jpg'],
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+    const cookieStore = await cookies();
+    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+
+    const baseMetadata: Metadata = {
+        metadataBase: new URL('https://ivanivanovich.com'),
+        authors: [{ name: "Ivan Ivanovich" }],
+        creator: "Ivan Ivanovich",
+        publisher: "Ivan Ivanovich Academia",
+        formatDetection: {
+            email: false,
+            address: false,
+            telephone: false,
+        },
+        robots: {
             index: true,
             follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
         },
-    },
-    verification: {
-        google: 'pyhDD-fpOL3bp5TcSHVRlqoaWWcTrFbpCDpyU3U705k',
-    },
-};
+        verification: {
+            google: 'pyhDD-fpOL3bp5TcSHVRlqoaWWcTrFbpCDpyU3U705k',
+        },
+    };
+
+    if (locale === 'en') {
+        return {
+            ...baseMetadata,
+            title: {
+                default: "Ivan Ivanovich - Executive Protection Academy",
+                template: "%s | Ivan Ivanovich"
+            },
+            description: "Executive Protection Academy recognized among the top 9 in the world. Certified Team Leader and Counter-surveillance courses with an international instructor.",
+            keywords: ["executive protection", "private security", "team leader", "counter-surveillance", "executive protection course", "security academy", "ivan ivanovich"],
+            openGraph: {
+                type: 'website',
+                locale: 'en_US',
+                url: 'https://ivanivanovich.com',
+                siteName: 'Ivan Ivanovich Academy',
+                title: 'Ivan Ivanovich - Executive Protection Academy',
+                description: 'Academy recognized among the top 9 in the world',
+                images: [
+                    {
+                        url: '/og-image.jpg',
+                        width: 1200,
+                        height: 630,
+                        alt: 'Ivan Ivanovich Executive Protection Academy',
+                    }
+                ],
+            },
+            twitter: {
+                card: 'summary_large_image',
+                title: 'Ivan Ivanovich - Executive Protection Academy',
+                description: 'Academy recognized among the top 9 in the world',
+                images: ['/og-image.jpg'],
+            },
+        };
+    }
+
+    return {
+        ...baseMetadata,
+        title: {
+            default: "Ivan Ivanovich - Academia de Protección Ejecutiva",
+            template: "%s | Ivan Ivanovich"
+        },
+        description: "Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo. Cursos certificados de Team Leader y Contravigilancia con instructor de nivel internacional.",
+        keywords: ["protección ejecutiva", "seguridad privada", "team leader", "contravigilancia", "curso protección ejecutiva", "academia seguridad", "ivan ivanovich", "executive protection"],
+        openGraph: {
+            type: 'website',
+            locale: 'es_ES',
+            alternateLocale: ['en_US'],
+            url: 'https://ivanivanovich.com',
+            siteName: 'Ivan Ivanovich Academia',
+            title: 'Ivan Ivanovich - Academia de Protección Ejecutiva',
+            description: 'Academia reconocida entre las 9 mejores del mundo',
+            images: [
+                {
+                    url: '/og-image.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: 'Ivan Ivanovich Academia de Protección Ejecutiva',
+                }
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: 'Ivan Ivanovich - Academia de Protección Ejecutiva',
+            description: 'Academia de Protección Ejecutiva reconocida entre las 9 mejores del mundo',
+            images: ['/og-image.jpg'],
+        },
+    };
+}
+
 
 export default async function RootLayout({
     children,
