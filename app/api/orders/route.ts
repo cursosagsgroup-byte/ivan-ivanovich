@@ -155,12 +155,19 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: `Course not found: ${item.courseId}` }, { status: 400 });
             }
 
-            total += course.price;
+            let price = course.price;
+            // SI LLEVA EL PRESENCIAL, EL DIGITAL ES GRATIS
+            if (course.id === 'cmio13v7u000164w1bhkqj8ej') {
+                const hasPresencial = items.some((i: any) => i.courseId === 'cmnrtl3s10000srovyccll84f');
+                if (hasPresencial) price = 0;
+            }
+
+            total += price;
             orderItemsData.push({
                 courseId: course.id,
-                price: course.price,
+                price: price,
             });
-            emailItems.push({ course, price: course.price });
+            emailItems.push({ course, price: price });
         }
 
         // Validate and apply coupon if provided

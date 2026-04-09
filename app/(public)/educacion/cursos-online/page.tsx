@@ -71,6 +71,7 @@ export default async function CursosOnlinePage() {
                     {courses.map((course) => {
                         const getCourseLink = (title: string, id: string) => {
                             const lowerTitle = title.toLowerCase();
+                            if (lowerTitle.includes('curso de contravigilancia en protección ejecutiva') || lowerTitle.includes('curso de contravigilancia en proteccion ejecutiva')) return '/contravigilancias-pres';
                             if (lowerTitle.includes('team leader')) return '/educacion/team-leader';
                             if (lowerTitle.includes('contravigilancia')) return '/educacion/contravigilancia';
                             if (lowerTitle.includes('counter surveillance')) return '/educacion/counter-surveillance';

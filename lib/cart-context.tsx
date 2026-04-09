@@ -161,11 +161,31 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const openCart = () => setIsCartOpen(true);
     const closeCart = () => setIsCartOpen(false);
 
-    const itemCount = items.length;
-    const total = items.reduce((sum, item) => sum + item.price, 0);
+    const presencialId = 'cmnrtl3s10000srovyccll84f';
+    const digitalId = 'cmio13v7u000164w1bhkqj8ej';
+
+    // Apply the bundle logic for rendering
+    const processedItems = items.map(item => {
+        if (item.courseId === digitalId) {
+            const hasPresencial = items.some(i => i.courseId === presencialId);
+            if (hasPresencial) {
+                return {
+                    ...item,
+                    price: 0,
+                    title: item.title.toLowerCase().includes('incluido gratis') 
+                        ? item.title 
+                        : `${item.title} (incluido gratis)`
+                };
+            }
+        }
+        return item;
+    });
+
+    const itemCount = processedItems.length;
+    const total = processedItems.reduce((sum, item) => sum + item.price, 0);
 
     return (
-        <CartContext.Provider value={{ items, itemCount, total, addToCart, removeFromCart, clearCart, isLoading, isCartOpen, openCart, closeCart }}>
+        <CartContext.Provider value={{ items: processedItems, itemCount, total, addToCart, removeFromCart, clearCart, isLoading, isCartOpen, openCart, closeCart }}>
             {children}
         </CartContext.Provider>
     );

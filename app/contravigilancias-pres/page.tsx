@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react';
+import { useCart } from '@/lib/cart-context';
+import { useRouter } from 'next/navigation';
 import './contravigilancia.css';
 
 
@@ -11,6 +13,36 @@ export default function ContravigilanciasPres() {
     const [openMod, setOpenMod] = useState<number | null>(null);
     const [isStickyVisible, setIsStickyVisible] = useState(false);
     const [progressWidth, setProgressWidth] = useState('100%');
+    
+    const { addToCart, items } = useCart();
+    const router = useRouter();
+
+    const handleCheckout = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        
+        const presencialCourse = {
+            courseId: 'cmnrtl3s10000srovyccll84f',
+            title: 'Curso de Contravigilancia en Protección Ejecutiva',
+            price: 14800,
+            image: '/curso-contravigilancia.jpg'
+        };
+
+        const digitalCourse = {
+            courseId: 'cmio13v7u000164w1bhkqj8ej',
+            title: 'Contravigilancia Para Protección Ejecutiva (Incluido)',
+            price: 0,
+            image: '/curso-contravigilancia.jpg'
+        };
+
+        if (!items.some(i => i.courseId === presencialCourse.courseId)) {
+            await addToCart(presencialCourse);
+        }
+        if (!items.some(i => i.courseId === digitalCourse.courseId)) {
+            await addToCart(digitalCourse);
+        }
+
+        router.push('/checkout');
+    };
 
     useEffect(() => {
         const target = new Date('2026-05-05T09:00:00-06:00').getTime();
@@ -81,9 +113,9 @@ export default function ContravigilanciasPres() {
     <img src="https://ivanivanovich.com/_next/image?url=%2Flogo.png&w=384&q=75" alt="Ivan Ivanovich Academy" className="nav-logo"/>
     <div className="nav-right">
       <a href="#temario" className="nav-link">Temario</a>
-      <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" className="nav-cta">
+      <button onClick={handleCheckout} className="nav-cta border-none cursor-pointer">
         Asegurar lugar &rarr;
-      </a>
+      </button>
     </div>
   </nav>
 
@@ -121,7 +153,7 @@ export default function ContravigilanciasPres() {
       </p>
 
       <div className="hero-actions">
-        <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" className="btn-main">Asegurar mi lugar ahora &rarr;</a>
+        <button onClick={handleCheckout} className="btn-main border-none cursor-pointer text-base">Asegurar mi lugar ahora &rarr;</button>
         <a href="#temario" className="btn-ghost">Ver el temario completo</a>
       </div>
 
@@ -524,7 +556,7 @@ export default function ContravigilanciasPres() {
       <p className="body">Un solo operador formado en Contravigilancia activa el Anillo de Tiempo más poderoso de toda la operación: el que neutraliza la amenaza meses antes de que llegue al ejecutivo.</p>
       <p className="body">Forma a tu equipo con el mismo estándar que el Ejército Español. <strong>Esa decisión no tiene precio. Pero tiene fecha límite.</strong></p>
       <div style={{marginTop: '40px', }}>
-        <a href="https://wa.me/525540612974?text=Quiero%20inscribir%20a%20mi%20equipo%20al%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" className="btn-main">Inscribir a mi equipo &rarr;</a>
+        <button onClick={handleCheckout} className="btn-main border-none cursor-pointer text-base">Inscribir a mi equipo &rarr;</button>
       </div>
     </div>
   </div>
@@ -564,7 +596,7 @@ export default function ContravigilanciasPres() {
         </div>
       </div>
 
-      <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva%205-6%20Mayo" target="_blank" className="btn-cta">Asegurar mi lugar hoy &rarr;</a>
+      <button onClick={handleCheckout} className="btn-cta border-none cursor-pointer w-full text-center text-lg">Asegurar mi lugar hoy &rarr;</button>
       <p className="cta-urgency"><strong>⚠ Solo 12 lugares disponibles.</strong> Una vez agotados, no hay segunda oportunidad hasta la próxima edición.</p>
       <p className="cta-ws">¿Tienes preguntas? Escríbenos por WhatsApp. Respondemos solo a profesionales serios.</p>
       <div className="cta-closing">La misión empieza ahora.</div>
@@ -587,9 +619,9 @@ export default function ContravigilanciasPres() {
       <span className="sticky-price">$14,800 MXN</span>
       <span className="sticky-cupos">⚡ Solo 4 lugares</span>
     </div>
-    <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" className="btn-main" style={{padding: '12px 22px', fontSize: '11px', }}>
+    <button onClick={handleCheckout} className="btn-main border-none cursor-pointer whitespace-nowrap" style={{padding: '12px 22px', fontSize: '11px', }}>
       Asegurar lugar &rarr;
-    </a>
+    </button>
   </div>
         </div>
     );

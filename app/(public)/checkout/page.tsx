@@ -489,7 +489,14 @@ export default function CheckoutPage() {
                                             )}
                                         </div>
                                         <div className="flex-1">
-                                            <h3 className="text-sm font-medium text-slate-900 line-clamp-2">{item.title}</h3>
+                                            <h3 className="text-sm font-medium text-slate-900 line-clamp-2">
+                                                {item.title.replace(' (incluido gratis)', '')}
+                                                {item.title.includes('(incluido gratis)') && (
+                                                    <span className="ml-2 inline-block bg-[#B70126] text-white text-xs px-2.5 py-1 rounded-md font-bold align-middle uppercase">
+                                                        incluido gratis
+                                                    </span>
+                                                )}
+                                            </h3>
                                             <p className="text-primary font-bold">${item.price.toFixed(2)}</p>
                                         </div>
                                     </div>
