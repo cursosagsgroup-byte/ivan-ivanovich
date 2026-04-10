@@ -1,94 +1,45 @@
 
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '../lib/prisma';
 
 async function main() {
-    console.log('Searching for user...');
-    const user = await prisma.user.findUnique({
-        where: { email: 'notificacionesluis@outlook.com' },
-        include: {
-            enrollments: {
-                include: {
-                    course: {
-                        include: {
-                            modules: {
-                                include: {
-                                    lessons: true,
-                                    quizzes: true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            lessonProgress: true,
-            quizAttempts: true
-        }
-    })
+  const email = 'Jprovandrope@icloud.com';
+  console.log(`--- INVESTIGATING ${email} ---`);
 
-    if (!user) {
-        console.log('User not found');
-    } else {
-        console.log('User found:', user.email, user.id);
-        console.log('Enrollments:', user.enrollments.map(e => e.course.title));
+  // Search in User
+  const user = await prisma.user.findFirst({
+    where: { email: { equals: email, mode: 'insensitive' } }
+  });
+  console.log('USER found:', user ? 'YES' : 'NO');
+  if (user) console.log(user);
 
-        // Find if any module matches "Puesta a Punto"
-        const modules = await prisma.module.findMany({
-            where: {
-                title: {
-                    contains: 'Puesta a Punto',
-                    mode: 'insensitive'
-                }
-            },
-            include: {
-                course: true
-            }
-        });
+  // Search in Order
+  const order = await prisma.order.findFirst({
+    where: { billingEmail: { equals: email, mode: 'insensitive' } },
+    orderBy: { createdAt: 'desc' },
+    include: { payment: true }
+  });
+  console.log('ORDER found:', order ? 'YES' : 'NO');
+  if (order) console.log(order);
 
-        console.log('Modules matching "Puesta a Punto":', modules.map(m => `${m.title} (Course: ${m.course.title})`));
+  // Search in Enrollment
+  if (user) {
+    const enrollments = await prisma.enrollment.findMany({
+      where: { userId: user.id },
+      include: { course: true }
+    });
+    console.log('ENROLLMENTS:', enrollments.length);
+    enrollments.forEach(e => console.log(`- ${e.course.title} (Progress: ${e.progress}%)`));
+  }
 
-
-        const courseTitle = 'Team Leader en Protección Ejecutiva';
-        const enrollment = user.enrollments.find(e => e.course.title === courseTitle);
-
-        if (enrollment) {
-            console.log(`\nAnalyzing progress for course: ${courseTitle}`);
-            console.log(`Enrollment Progress: ${enrollment.progress}%`); // Added log
-            const modules = enrollment.course.modules.sort((a, b) => a.order - b.order);
-
-            for (const module of modules) {
-                console.log(`\nModule: ${module.title} (Order: ${module.order})`);
-
-                // Check Lessons
-                for (const lesson of module.lessons.sort((a, b) => a.order - b.order)) {
-                    const progress = user.lessonProgress.find(lp => lp.lessonId === lesson.id);
-                    console.log(`  Lesson: ${lesson.title} - ${progress?.completed ? 'COMPLETED' : 'INCOMPLETE'}`);
-                }
-
-                // Check Quizzes
-                for (const quiz of module.quizzes.sort((a, b) => a.order - b.order)) {
-                    const attempts = user.quizAttempts.filter(qa => qa.quizId === quiz.id);
-                    const passed = attempts.some(a => a.passed);
-                    console.log(`  Quiz: ${quiz.title} - ${passed ? 'PASSED' : 'NOT PASSED'} (Attempts: ${attempts.length})`);
-                    if (attempts.length > 0) {
-                        attempts.forEach(a => console.log(`    - Score: ${a.score}, Date: ${a.attemptedAt}`));
-                    }
-                }
-            }
-        } else {
-            console.log(`User not enrolled in ${courseTitle}`);
-        }
-
-    }
+  // All recent orders to see if there's a misspelled one
+  console.log('\nLast 10 orders overall:');
+  const recentOrders = await prisma.order.findMany({
+    take: 10,
+    orderBy: { createdAt: 'desc' }
+  });
+  recentOrders.forEach(o => console.log(`- ${o.billingEmail} (${o.status}) - ${o.createdAt.toISOString()}`));
 }
 
 main()
-    .then(async () => {
-        await prisma.$disconnect()
-    })
-    .catch(async (e) => {
-        console.error(e)
-        await prisma.$disconnect()
-        process.exit(1)
-    })
+  .catch(e => { console.error(e); process.exit(1); })
+  .finally(async () => { await prisma.$disconnect(); });

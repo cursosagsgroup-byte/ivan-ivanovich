@@ -97,7 +97,7 @@ export default async function OrdersPage() {
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col gap-1">
                                                 {order.items.map((item) => (
-                                                    <span key={item.id} className="inline-block bg-gray-100 px-2 py-1 rounded text-xs text-gray-700 truncate max-w-[200px]">
+                                                    <span key={item.id} className="inline-block bg-gray-100 px-2 py-1 rounded text-xs text-gray-700 truncate max-w-[350px] cursor-help hover:text-black hover:bg-gray-200 transition-colors" title={item.course.title}>
                                                         {item.course.title}
                                                     </span>
                                                 ))}
