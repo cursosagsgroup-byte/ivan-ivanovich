@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contravigilancia en Protección Ejecutiva | Ivan Ivanovich Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --surface: #111111;
+      --surface2: #181818;
+      --red: #8B0000;
+      --red-light: #a30000;
+      --gold: #B8922A;
+      --gold-light: #D4A93A;
+      --white: #EFEFEF;
+      --gray: #888888;
+      --light: #d8d8d8;
+      --muted: #666;
+      --line: #1C1C1C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── ANNOUNCE BAR ─── */
+    .announce-bar {
+      background: var(--red);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+    .announce-bar span { color: rgba(255,255,255,0.55); margin: 0 14px; }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,8,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 60px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { height: 38px; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-link { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: .5px; transition: color .2s; }
+    .nav-link:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--white); color: var(--black);
+      padding: 10px 22px; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; transition: all .2s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; min-height: 96vh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://ivanivanovich.com/_next/image?url=%2Fimages%2Fnueva-seccion%2Fmain.jpg&w=1920&q=75');
+      background-size: cover; background-position: center 30%;
+      filter: brightness(0.28);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(8,8,8,0.95) 45%, rgba(8,8,8,0.15) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 100px 80px; max-width: 900px;
+    }
+    .eyebrow-hero {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 40px;
+    }
+    .eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+      animation: glow 2s ease-in-out infinite;
+    }
+    @keyframes glow { 0%,100%{box-shadow:0 0 0 0 rgba(184,146,42,.4)} 50%{box-shadow:0 0 0 6px rgba(184,146,42,0)} }
+
+    .hero-tagline {
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 700; color: var(--gold-light);
+      letter-spacing: 1px; line-height: 1.3;
+      margin-bottom: 20px; text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5.5vw, 72px);
+      font-weight: 900; line-height: 1.0; letter-spacing: -2px;
+      color: var(--white); max-width: 820px; margin-bottom: 40px;
+    }
+    h1 em { font-style: normal; color: var(--red); }
+
+    /* Hero prominent info row */
+    .hero-info-row {
+      display: flex; gap: 0; flex-wrap: wrap;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 680px;
+    }
+    .info-item {
+      flex: 1; min-width: 130px;
+      padding: 18px 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .info-item:last-child { border-right: none; }
+    .info-label { display: block; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .info-value { display: block; font-size: 18px; font-weight: 800; color: var(--white); letter-spacing: -0.3px; line-height: 1.2; }
+    .info-value.gold { color: var(--gold); }
+    .info-value.price { font-size: 16px; }
+
+    .hero-body {
+      font-size: 15px; color: #c0c0c0; line-height: 1.6;
+      max-width: 540px; margin-bottom: 40px; font-weight: 400;
+    }
+    .hero-body strong { color: var(--white); font-weight: 600; }
+
+    /* Hero CTA */
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 16px 32px; text-decoration: none; transition: all .25s;
+    }
+    .btn-main:hover { background: var(--red-light); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: .5px;
+      transition: color .2s; border-bottom: 1px solid transparent; padding-bottom: 1px;
+    }
+    .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.15); }
+
+    /* Cupos widget */
+    .cupos-widget {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 24px; margin: 40px 0 48px; max-width: 420px;
+    }
+    .cupos-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .cupos-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .cupos-count { font-size: 12px; font-weight: 800; color: var(--gold); }
+    .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.07); overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--gold)); width: 0%; transition: width 1.8s ease-out; }
+    .cupos-foot { margin-top: 10px; font-size: 12px; color: var(--muted); }
+    .cupos-foot strong { color: var(--white); }
+
+    /* Hero stats row */
+    .hero-stats {
+      display: flex; gap: 0; margin-top: 64px;
+      padding-top: 40px; border-top: 1px solid var(--line); flex-wrap: wrap;
+    }
+    .hero-stat {
+      flex: 1; min-width: 130px;
+      padding: 0 32px 0 0; border-right: 1px solid var(--line); margin-right: 32px;
+    }
+    .hero-stat:last-child { border-right: none; margin-right: 0; }
+    .stat-val { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -.5px; margin-bottom: 4px; }
+    .stat-val.gold { color: var(--gold); }
+    .stat-lbl { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+    /* ─── COUNTDOWN TOP BAR ─── */
+    .countdown-bar {
+      background: var(--black);
+      border-bottom: 1px solid rgba(139,0,0,0.3);
+      padding: 11px 80px;
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      flex-wrap: wrap;
+    }
+    .countdown-inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
+    .countdown-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .countdown-timer { display: flex; align-items: center; gap: 10px; }
+    .time-unit { text-align: center; }
+    .time-number { font-size: 22px; font-weight: 900; line-height: 1; color: var(--white); display: block; min-width: 32px; font-variant-numeric: tabular-nums; letter-spacing: -0.5px; }
+    .time-label { font-size: 8px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+    .time-sep { font-size: 18px; font-weight: 200; color: rgba(255,255,255,0.2); margin-bottom: 10px; }
+
+    /* ─── GALLERY STRIP ─── */
+    .gallery-strip { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; height: 380px; }
+    .gallery-item { overflow: hidden; position: relative; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.6); transition: all 0.5s ease;
+    }
+    .gallery-item:hover img { filter: brightness(0.82); transform: scale(1.04); }
+
+    /* ─── SHARED SECTION BASE ─── */
+    .section { padding: 72px 80px; max-width: 100%; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--red); display: block; }
+
+    h2.display {
+      font-size: clamp(28px, 4vw, 50px);
+      font-weight: 800; letter-spacing: -1.5px; line-height: 1.1;
+      color: var(--white); margin-bottom: 24px;
+    }
+    h2.display em { font-style: normal; color: var(--red); }
+
+    p.body {
+      font-size: 15px; color: #bebebe; line-height: 1.6;
+      margin-bottom: 14px; font-weight: 400;
+    }
+    p.body strong { color: var(--white); font-weight: 600; }
+    p.body em { color: var(--gold); font-style: normal; }
+
+    .divider { height: 1px; background: var(--line); }
+
+    /* ─── PROBLEMA ─── */
+    .prob-list { margin: 48px 0; display: flex; flex-direction: column; gap: 1px; background: var(--line); }
+    .prob-item {
+      background: var(--surface); padding: 28px 32px;
+      display: grid; grid-template-columns: 48px 1fr; gap: 24px; align-items: start;
+    }
+    .prob-n { font-size: 28px; font-weight: 900; color: var(--red); letter-spacing: -1px; line-height: 1; padding-top: 2px; }
+    .prob-text h4 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .prob-text p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.65; }
+
+    /* ─── DOCTRINA ─── */
+    .doctrina-wrap {
+      background: var(--surface);
+      border-top: 2px solid var(--red);
+      padding: 64px 80px;
+    }
+    .doctrina-inner { max-width: 860px; margin: 0 auto; }
+    .quote-big {
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: 300; color: var(--white);
+      line-height: 1.7; letter-spacing: -.3px;
+      margin-bottom: 40px; font-style: italic;
+    }
+    .quote-big span { display: block; }
+    .quote-src {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    .quote-src-line { width: 32px; height: 1px; background: var(--gold); }
+    .quote-src-name { color: var(--gold); }
+    .doctrina-note {
+      padding-top: 40px; border-top: 1px solid var(--line);
+      font-size: 15px; color: #c0c0c0; line-height: 1.6; font-weight: 400; max-width: 600px;
+    }
+    .doctrina-note strong { color: var(--white); font-weight: 600; }
+
+    /* ─── EVIDENCIA ─── */
+    .ev-cases { display: flex; gap: 1px; background: var(--line); margin: 40px 0; }
+    .ev-case { flex: 1; background: var(--surface); padding: 24px 20px; }
+    .ev-case-name { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .ev-case-year { font-size: 10px; font-weight: 600; color: var(--red); letter-spacing: 2px; text-transform: uppercase; }
+
+    .testimony {
+      margin: 40px 0;
+      border-left: 3px solid var(--gold); background: var(--surface); overflow: hidden;
+    }
+    .testimony-with-photo { display: grid; grid-template-columns: 220px 1fr; }
+    .testimony-photo {
+      width: 220px; height: 100%; object-fit: cover; object-position: center top;
+      filter: grayscale(25%); display: block;
+    }
+    .testimony-text { padding: 36px 40px; }
+    .testimony p { font-size: 15px; color: #d0d0d0; line-height: 1.6; font-style: italic; font-weight: 400; margin: 0; }
+    .testimony p em { color: var(--gold); font-style: normal; }
+    .testimony-credit {
+      font-size: 11px; color: var(--gold); font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; margin-top: 16px; display: block;
+    }
+    @media (max-width: 680px) {
+      .testimony-with-photo { grid-template-columns: 1fr; }
+      .testimony-photo { width: 100%; height: 240px; }
+      .testimony-text { padding: 24px 20px; }
+    }
+
+    /* ─── AUTORIDAD ─── */
+    .autoridad-wrap { background: var(--surface); }
+    .autoridad-grid {
+      display: grid; grid-template-columns: 400px 1fr;
+      gap: 80px; align-items: start;
+    }
+    .autoridad-image { position: relative; overflow: hidden; }
+    .autoridad-image img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top;
+      display: block; filter: grayscale(15%);
+    }
+    .autoridad-image::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 30%; background: linear-gradient(to top, var(--surface), transparent);
+    }
+
+    .creds { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin: 48px 0; }
+    .cred { background: var(--surface2); padding: 28px 24px; }
+    .cred-highlight { border-top: 2px solid var(--gold); }
+    .cred-icon { font-size: 28px; margin-bottom: 12px; }
+    .cred h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; line-height: 1.4; }
+    .cred p { font-size: 12px; color: #aaa; margin: 0; line-height: 1.45; }
+
+    /* ─── CONOCIMIENTO ─── */
+    .conocimiento-wrap { background: var(--black); }
+    .conocimiento-highlight {
+      margin: 48px 0; padding: 40px;
+      border: 1px solid rgba(184,146,42,0.2);
+      background: rgba(184,146,42,0.04);
+    }
+    .conocimiento-highlight p {
+      font-size: 16px; color: var(--light); line-height: 1.8; margin: 0; font-weight: 300;
+    }
+    .conocimiento-highlight strong { color: var(--gold); font-weight: 600; }
+
+    /* ─── TRANSFORMACIÓN ─── */
+    .transform-wrap { background: var(--surface); }
+    .transform-items { margin: 48px 0; }
+    .t-item {
+      display: grid; grid-template-columns: 1fr auto; gap: 16px;
+      padding: 22px 0; border-bottom: 1px solid var(--line); align-items: center;
+    }
+    .t-item p { font-size: 15px; color: #d0d0d0; margin: 0; font-weight: 400; line-height: 1.5; }
+    .t-item p strong { color: var(--white); font-weight: 600; }
+    .t-arrow { color: var(--red); font-size: 28px; font-weight: 900; flex-shrink: 0; line-height: 1; }
+    .transform-big { padding: 48px 0; border-bottom: 1px solid var(--line); }
+    .transform-big p { font-size: clamp(17px, 2.2vw, 24px); font-weight: 700; color: var(--white); line-height: 1.45; letter-spacing: -.3px; }
+    .transform-big p span { color: var(--red); }
+
+    /* ─── TEMARIO ─── */
+    .temario-wrap { background: var(--black); }
+    .modules { margin-top: 48px; border-top: 1px solid var(--line); }
+    .mod { border-bottom: 1px solid var(--line); }
+    .mod-head {
+      display: grid; grid-template-columns: 40px 1fr 24px; gap: 16px;
+      padding: 22px 0; cursor: pointer; align-items: center;
+    }
+    .mod-head:hover .mod-title { color: var(--white); }
+    .mod-num { font-size: 22px; font-weight: 900; color: var(--red); letter-spacing: -0.5px; line-height: 1; }
+    .mod-title { font-size: 14px; font-weight: 600; color: #bbb; transition: color .2s; letter-spacing: -.2px; }
+    .mod-toggle {
+      width: 30px; height: 30px; border: 1px solid rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 300; color: rgba(255,255,255,0.5); transition: all .2s; flex-shrink: 0;
+    }
+    .mod.open .mod-toggle { background: var(--red); border-color: var(--red); color: #fff; font-weight: 700; }
+    .mod.open .mod-title { color: var(--white); }
+    .mod-body { padding: 0 0 28px 56px; display: none; }
+    .mod.open .mod-body { display: block; }
+    .mod-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .mod-list li { font-size: 13px; color: #b0b0b0; line-height: 1.5; display: flex; gap: 12px; }
+    .mod-list li::before { content: '→'; color: var(--red); flex-shrink: 0; font-size: 14px; font-weight: 700; margin-top: 1px; }
+
+    /* ─── PRÁCTICA ─── */
+    .practica-wrap { background: var(--surface); }
+    .practica-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 48px 0 0; }
+    .practica-card { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+    .practica-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.4); transition: filter 0.5s;
+    }
+    .practica-card:hover img { filter: brightness(0.55); }
+    .practica-overlay {
+      position: absolute; inset: 0; padding: 36px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .p-tag {
+      font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .p-tag::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+    .practica-card h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 12px; letter-spacing: -.3px; }
+    .practica-card p { font-size: 13px; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.7; }
+
+    .inversion { background: var(--red); padding: 24px 40px; text-align: center; }
+    .inversion p { font-size: 16px; font-weight: 700; color: #fff; margin: 0; }
+
+    .practica-extra { padding: 40px; background: var(--surface2); border-top: 1px solid var(--line); }
+    .practica-extra p.body { max-width: none; }
+
+    .cert {
+      display: grid; grid-template-columns: 48px 1fr; gap: 24px;
+      padding: 36px 40px; border-top: 1px solid var(--line);
+      background: var(--black); align-items: start;
+    }
+    .cert-icon-wrap {
+      width: 48px; height: 48px;
+      background: rgba(184,146,42,.1); border: 1px solid rgba(184,146,42,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .cert h4 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .cert p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.6; }
+    .cert p span { color: var(--gold); }
+
+    /* ─── PARA EMPRESAS ─── */
+    .empresas-wrap { background: var(--black); }
+
+    /* ─── CTA FINAL ─── */
+    .cta-wrap {
+      background: var(--surface); border-top: 1px solid var(--line);
+      padding: 80px; text-align: center;
+    }
+    .cta-inner { max-width: 640px; margin: 0 auto; }
+    .cta-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 40px;
+    }
+    .cta-eyebrow::before, .cta-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--gold); display: block; }
+    .cta-h { font-size: clamp(30px, 5vw, 52px); font-weight: 900; color: var(--white); letter-spacing: -2px; line-height: 1.05; margin-bottom: 20px; }
+    .cta-sub { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 48px; font-weight: 300; }
+
+    .urgency-line {
+      font-size: 15px; color: #bbb; line-height: 1.75; font-weight: 300;
+      max-width: 540px; margin: 0 auto 40px;
+    }
+    .urgency-line strong { color: var(--white); font-weight: 600; }
+
+    .price-row { display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+    .price-currency { font-size: 18px; font-weight: 700; color: var(--muted); }
+    .price-amount { font-size: 52px; font-weight: 900; color: var(--white); letter-spacing: -2px; line-height: 1; }
+    .price-period { font-size: 13px; color: var(--muted); align-self: flex-end; padding-bottom: 6px; }
+    .price-note { font-size: 11px; color: var(--muted); margin-bottom: 40px; }
+
+    .cta-details-row {
+      display: flex; justify-content: center; gap: 32px;
+      margin-bottom: 48px; padding-bottom: 40px;
+      border-bottom: 1px solid var(--line); flex-wrap: wrap;
+    }
+    .cta-d { text-align: center; }
+    .cta-d-lbl { font-size: 9px; color: var(--muted); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 6px; }
+    .cta-d-val { font-size: 14px; font-weight: 700; color: var(--white); }
+
+    .btn-cta {
+      display: block; background: var(--red); color: #fff;
+      font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      padding: 20px 40px; text-decoration: none; transition: all .25s; margin-bottom: 16px;
+      max-width: 380px; margin-left: auto; margin-right: auto;
+    }
+    .btn-cta:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,0,0,.3); }
+
+    .cta-urgency { font-size: 12px; color: var(--muted); }
+    .cta-urgency strong { color: var(--gold); }
+    .cta-ws { font-size: 12px; color: var(--muted); margin-top: 16px; }
+    .cta-closing { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-top: 56px; }
+
+    /* ─── STICKY CTA BAR ─── */
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(8,8,8,0.97); border-top: 1px solid rgba(139,0,0,0.45);
+      padding: 16px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 200;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      backdrop-filter: blur(12px);
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-info { display: flex; align-items: center; gap: 28px; }
+    .sticky-dates { font-size: 13px; font-weight: 600; color: var(--light); }
+    .sticky-price { font-size: 18px; font-weight: 900; color: var(--white); }
+    .sticky-cupos { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--line); padding: 32px 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: .5px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 11px; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: .1s; } .rd2 { transition-delay: .2s; } .rd3 { transition-delay: .3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .section { padding: 72px 24px; }
+      .hero-content { padding: 72px 24px; }
+      .nav { padding: 0 20px; }
+      .countdown-bar { padding: 24px; }
+      .gallery-strip { grid-template-columns: 1fr 1fr; height: 260px; }
+      .gallery-strip .gallery-item:nth-child(3),
+      .gallery-strip .gallery-item:nth-child(4) { display: none; }
+      .autoridad-grid { grid-template-columns: 1fr; gap: 40px; }
+      .autoridad-image img { aspect-ratio: 4/3; }
+      .creds { grid-template-columns: 1fr; }
+      .practica-grid { grid-template-columns: 1fr; }
+      .ev-cases { flex-direction: column; }
+      .testimony { overflow: hidden; }
+      .cert { grid-template-columns: 1fr; }
+      .doctrina-wrap { padding: 60px 24px; }
+      .cta-wrap { padding: 80px 24px; }
+      footer { padding: 28px 24px; flex-direction: column; gap: 12px; text-align: center; }
+      .footer-links { justify-content: center; }
+      .sticky-cta { padding: 12px 16px; }
+      .sticky-info { gap: 12px; flex-wrap: wrap; }
+      .nav-link { display: none; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; letter-spacing: -1px; }
+      .time-number { font-size: 18px; }
+      .countdown-bar { padding: 10px 16px; gap: 10px; }
+      .hero-info-row { flex-direction: column; }
+      .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 14px 20px; }
+      .info-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── COUNTDOWN TOP BAR ── -->
+  <div class="countdown-bar">
+    <div class="countdown-inner">
+      <span class="countdown-label">El curso inicia en</span>
+      <div class="countdown-timer">
+        <div class="time-unit"><span class="time-number" id="cdDays">--</span><div class="time-label">Días</div></div>
+        <span class="time-sep">:</span>
+        <div class="time-unit"><span class="time-number" id="cdHours">--</span><div class="time-label">Horas</div></div>
+        <span class="time-sep">:</span>
+        <div class="time-unit"><span class="time-number" id="cdMins">--</span><div class="time-label">Min</div></div>
+        <span class="time-sep">:</span>
+        <div class="time-unit"><span class="time-number" id="cdSecs">--</span><div class="time-label">Seg</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ANNOUNCE BAR ── -->
+  <div class="announce-bar">
+    Ciudad de México<span>·</span>5 y 6 de Mayo<span>·</span>Solo 12 lugares disponibles
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <img src="https://ivanivanovich.com/_next/image?url=%2Flogo.png&w=384&q=75" alt="Ivan Ivanovich Academy" class="nav-logo">
+    <div class="nav-right">
+      <a href="#temario" class="nav-link">Temario</a>
+      <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" class="nav-cta">
+        Asegurar lugar &rarr;
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+
+      <p class="hero-tagline">Ellos ya te están observando. Tú aún no lo sabes.</p>
+
+      <h1>Curso de<br/>Contravigilancia en<br/><em>Protección Ejecutiva</em></h1>
+
+      <div class="hero-info-row">
+        <div class="info-item">
+          <span class="info-label">Fecha</span>
+          <span class="info-value">5 y 6 de Mayo</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Ciudad</span>
+          <span class="info-value">CDMX</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Cupos disponibles</span>
+          <span class="info-value gold">12 lugares</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Inversión</span>
+          <span class="info-value price">$14,800 MXN</span>
+        </div>
+      </div>
+
+      <p class="hero-body">
+        El conocimiento que estás a punto de adquirir no está en ningún manual público. No se enseña en academias convencionales. Viene de tres décadas de operaciones reales en los escenarios más hostiles del mundo. Y por primera vez, está disponible para ti.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" class="btn-main">Asegurar mi lugar ahora &rarr;</a>
+        <a href="#temario" class="btn-ghost">Ver el temario completo</a>
+      </div>
+
+      <div class="cupos-widget">
+        <div class="cupos-header">
+          <span class="cupos-label">Disponibilidad del grupo</span>
+          <span class="cupos-count">12 / 12 disponibles</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="cupos-foot"><strong>12 lugares disponibles.</strong> El grupo cierra cuando se llena.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── GALLERY STRIP ── -->
+  <div class="gallery-strip">
+    <div class="gallery-item">
+      <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Fnueva-seccion%2Fmain.jpg&w=1920&q=75" alt="Entrenamiento Ivan Ivanovich" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Fnueva-seccion%2Fgallery-1.jpg&w=1200&q=75" alt="Práctica de campo" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Fnueva-seccion%2Fgallery-2.jpg&w=1200&q=75" alt="Entrenamiento en equipo" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Fnueva-seccion%2Fgallery-3.jpg&w=1200&q=75" alt="Ejercicios tácticos" loading="lazy">
+    </div>
+  </div>
+
+  <!-- ── EL PROBLEMA ── -->
+  <div class="section reveal" style="background: var(--surface);">
+    <div class="section-inner">
+      <div class="eyebrow">El problema</div>
+      <h2 class="display">El modelo de protección que te enseñaron está diseñado para <em>reaccionar.</em></h2>
+      <p class="body">Reaccionar significa que el daño ya ocurrió.</p>
+      <p class="body">La protección ejecutiva tradicional — escoltas de cerca, vehículos blindados, acciones reactivas — tiene una limitación fatal: espera a que el ataque ocurra para responder. Pero el agresor no ataca cuando tú estás listo. Ataca cuando la ventaja ya es completamente suya.</p>
+      <p class="body">Porque mientras tú reaccionas, él ya pasó meses observando. Identificó tu ruta crítica. Tu horario crítico. Tu punto de máxima vulnerabilidad.</p>
+      <p class="body">Las «peligrosas fantasías sobre armas y reacción» — como las llama Ivan Ivanovich — no salvan vidas. La detección temprana de la vigilancia hostil, sí.</p>
+
+      <div class="prob-list">
+        <div class="prob-item">
+          <div class="prob-n">01</div>
+          <div class="prob-text">
+            <h4>Protección reactiva</h4>
+            <p>Responde cuando el ataque ya ocurrió. El daño es inevitable en este modelo.</p>
+          </div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-n">02</div>
+          <div class="prob-text">
+            <h4>Punto ciego crítico</h4>
+            <p>Sin Contravigilancia, el equipo opera sin detectar la fase de preparación del agresor.</p>
+          </div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-n">03</div>
+          <div class="prob-text">
+            <h4>El agresor tiene meses de ventaja</h4>
+            <p>El criminal planifica durante meses. El escolta reacciona en segundos. La matemática no funciona.</p>
+          </div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-n">04</div>
+          <div class="prob-text">
+            <h4>La solución existe</h4>
+            <p>La detección temprana de vigilancia hostil neutraliza el ataque antes de que ocurra.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOCTRINA ── -->
+  <div class="doctrina-wrap reveal">
+    <div class="doctrina-inner">
+      <div class="quote-big">
+        <span>«Tenemos que saber quiénes son, como ellos saben quiénes somos.</span>
+        <span>Tenemos que saber dónde están, como ellos saben dónde estamos.</span>
+        <span>Tenemos que seguirlos, como ellos nos siguen a nosotros.</span>
+        <span>Tenemos que sorprenderlos, como ellos nos quieren sorprender a nosotros.»</span>
+      </div>
+      <div class="quote-src">
+        <div class="quote-src-line"></div>
+        <div class="quote-src-name">Ivan Ivanovich</div>
+      </div>
+      <div class="doctrina-note">
+        Esta no es una filosofía defensiva. Es una declaración de guerra táctica.<br/>
+        El operador que entiende esto deja de ser el objetivo. <strong>Y se convierte en la amenaza que el agresor no vio venir.</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── LA EVIDENCIA ── -->
+  <div class="section reveal" style="background: var(--black);">
+    <div class="section-inner">
+      <div class="eyebrow">La evidencia</div>
+      <h2 class="display">Esto no es teoría.<br/>Está documentado en casos reales que ocurrieron en México.</h2>
+      <p class="body">Casos reales. Víctimas reales. Un denominador común confirmado por las investigaciones: <strong>todos habían sido vigilados durante meses antes del ataque, sin que nadie lo detectara.</strong></p>
+
+      <div class="ev-cases">
+        <div class="ev-case">
+          <div class="ev-case-name">Omar García Harfuch</div>
+          <div class="ev-case-year">Atentado · 2020</div>
+        </div>
+        <div class="ev-case">
+          <div class="ev-case-name">Eduardo Beaven</div>
+          <div class="ev-case-year">Asesinato · 2021</div>
+        </div>
+        <div class="ev-case">
+          <div class="ev-case-name">Ciro Gómez Leyva</div>
+          <div class="ev-case-year">Ataque · 2022</div>
+        </div>
+      </div>
+
+      <p class="body">Un sistema de Contravigilancia activo los habría identificado en esa fase. <strong>El ataque nunca habría ocurrido.</strong></p>
+      <p class="body">Y la evidencia más poderosa no viene de un experto. Viene de una ex criminal.</p>
+
+      <div class="testimony testimony-with-photo">
+        <img
+          src="https://cdn.wionews.com/sites/default/files/2018/11/19/75361-serbian-former-jewel-thief.jpg"
+          alt="Olivera Ćirković"
+          class="testimony-photo"
+          loading="lazy"
+        >
+        <div class="testimony-text">
+          <p>Olivera Ćirković, ex miembro de los <em>Pink Panthers</em>, confesó que los agentes armados nunca la disuadieron. Pero si alguien anotaba la matrícula de su vehículo durante la vigilancia — abandonaba a la víctima de inmediato.<br/><br/>
+          Durante la vigilancia hostil, el criminal no puede usar disfraz. Sus vehículos son identificables. Es su momento más vulnerable.<br/><br/>
+          Fue en esa fase donde finalmente fue arrestada.</p>
+          <span class="testimony-credit">Olivera Ćirković · Ex miembro · Los Pink Panthers</span>
+        </div>
+      </div>
+
+      <p class="body"><strong>Los criminales de alto perfil no le temen a tus armas. Le temen a ser detectados.</strong></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── AUTORIDAD ── -->
+  <div class="section autoridad-wrap reveal">
+    <div class="section-inner" style="max-width:1100px;">
+      <div class="autoridad-grid">
+        <div class="autoridad-image">
+          <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Flanding-pe%2Fivan-pensando.jpg&w=1200&q=75" alt="Ivan Ivanovich" loading="lazy">
+        </div>
+        <div>
+          <div class="eyebrow">El instructor</div>
+          <h2 class="display">No aprenderás de alguien que leyó sobre seguridad. Aprenderás de alguien que operó donde el error costaba vidas.</h2>
+          <p class="body">Ivan Ivanovich no construyó su reputación en salones de clase.</p>
+          <p class="body">La construyó en campo. En <strong>Serbia. En Bosnia. En Macedonia.</strong> Durante la guerra de los Balcanes, cuando la Contravigilancia no era una asignatura — era la diferencia entre sobrevivir o no.</p>
+          <p class="body">Desde el año 2000 en México, ha formado a cientos de operadores de élite y desarrolló la doctrina que hoy redefine la protección ejecutiva en Latinoamérica: los <strong>Anillos del Tiempo</strong> — un sistema que desplaza el modelo reactivo por uno anticipatorio, donde la amenaza se neutraliza antes de llegar al ejecutivo.</p>
+
+          <div class="creds">
+            <div class="cred cred-highlight">
+              <div class="cred-icon">⚔️</div>
+              <h4>Infantería de Marina · España</h4>
+              <p>Único instructor civil y extranjero en la historia en capacitar al Ejército Español en Protección Ejecutiva.</p>
+            </div>
+            <div class="cred">
+              <div class="cred-icon">🌍</div>
+              <h4>Top 9 mundial</h4>
+              <p>Una de las 9 mejores escuelas de Protección Ejecutiva en el mundo. Revista EP Wired.</p>
+            </div>
+            <div class="cred">
+              <div class="cred-icon">🏆</div>
+              <h4>Top 100 en México</h4>
+              <p>Uno de los 100 profesionales más influyentes en seguridad privada. Revista Seguridad en América.</p>
+            </div>
+            <div class="cred">
+              <div class="cred-icon">📖</div>
+              <h4>Bestseller #1</h4>
+              <p>"Protección Ejecutiva en el Siglo XXI: La Nueva Doctrina" — #1 en ventas al publicarse.</p>
+            </div>
+          </div>
+
+          <p class="body">Cuando el Ejército Español necesitó elevar su estándar operativo, llamaron a Ivan.<br/><strong>Ahora tienes dos días para formarte directamente con él.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── EL CONOCIMIENTO ── -->
+  <div class="section conocimiento-wrap reveal">
+    <div class="section-inner">
+      <div class="eyebrow">El conocimiento</div>
+      <h2 class="display">La Contravigilancia es la medida más efectiva y <em>menos empleada</em> en la protección ejecutiva.</h2>
+      <p class="body">No porque sea difícil. Porque casi nadie la enseña bien.</p>
+
+      <div class="conocimiento-highlight">
+        <p>Mientras la protección tradicional actúa <strong>a la derecha del impacto</strong> — después de que el ataque ocurrió — la Contravigilancia opera <strong>a la izquierda del impacto</strong>: en la fase de observación y preparación del agresor, cuando aún puede ser detectado, disuadido e identificado.</p>
+      </div>
+
+      <p class="body">Es en esa fase donde el criminal es más vulnerable. Es en esa fase donde el operador entrenado tiene la mayor ventaja. Y es exactamente esa fase la que este curso te enseña a dominar.</p>
+      <p class="body">Este conocimiento viene de las unidades de inteligencia y contraespionaje más efectivas del mundo. En este curso, <strong>se convierte en tuyo.</strong></p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── TRANSFORMACIÓN ── -->
+  <div class="section transform-wrap reveal">
+    <div class="section-inner">
+      <div class="eyebrow">Tu transformación</div>
+      <h2 class="display">Hay escoltas.<br/>Y hay operadores que <em>controlan</em> el entorno antes de que la amenaza exista.</h2>
+      <p class="body">Después de estos dos días, no serás el mismo profesional.</p>
+
+      <div class="transform-items">
+        <div class="t-item">
+          <p>Detectarás <strong>vigilancia hostil</strong> antes de que tu equipo sepa que existe.</p>
+          <div class="t-arrow">→</div>
+        </div>
+        <div class="t-item">
+          <p>Identificarás la <strong>ruta crítica, el horario crítico y el perímetro crítico</strong> de cada operativo.</p>
+          <div class="t-arrow">→</div>
+        </div>
+        <div class="t-item">
+          <p>Operarás bajo observación <strong>sin revelar que la descubriste</strong> — conservando la ventaja táctica.</p>
+          <div class="t-arrow">→</div>
+        </div>
+        <div class="t-item">
+          <p>Diseñarás rutas de Contravigilancia que <strong>convierten al depredador en la presa.</strong></p>
+          <div class="t-arrow">→</div>
+        </div>
+        <div class="t-item">
+          <p>Tomarás decisiones con la misma doctrina que usan <strong>las unidades de élite a nivel global.</strong></p>
+          <div class="t-arrow">→</div>
+        </div>
+      </div>
+
+      <div class="transform-big">
+        <p>Dejarás de proteger en el momento del peligro.<br/><span>Empezarás a eliminar el peligro antes de que llegue.</span></p>
+      </div>
+
+      <p class="body" style="margin-top:32px;">Eso es lo que separa a un escolta de un protector ejecutivo de élite. <strong>Eso es exactamente en lo que te vas a convertir.</strong></p>
+    </div>
+  </div>
+
+  <!-- ── TEMARIO ── -->
+  <div class="section temario-wrap reveal" id="temario">
+    <div class="section-inner">
+      <div class="eyebrow">Temario completo</div>
+      <h2 class="display">Lo que aprenderás.<br/>Sin filtros.</h2>
+      <p class="body">5 módulos de formación teórico-práctica basados en doctrina de inteligencia y operaciones de élite.</p>
+
+      <div class="modules">
+        <div class="mod" onclick="toggleMod(this)">
+          <div class="mod-head">
+            <div class="mod-num">01</div>
+            <div class="mod-title">Inteligencia estratégica</div>
+            <div class="mod-toggle">+</div>
+          </div>
+          <div class="mod-body">
+            <ul class="mod-list">
+              <li>Por qué la Contravigilancia es la medida más poderosa en Protección Ejecutiva</li>
+              <li>Por qué los criminales le temen más a la Contravigilancia que a las armas</li>
+              <li>Orígenes de las técnicas de Detección y Manejo de Vigilancia Hostil</li>
+              <li>De las agencias de espionaje y contraespionaje a la Protección Ejecutiva</li>
+              <li>Tipos de vigilancia hostil según el perfil de amenaza</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod" onclick="toggleMod(this)">
+          <div class="mod-head">
+            <div class="mod-num">02</div>
+            <div class="mod-title">Detección y Manejo de Vigilancia Hostil (GVT)</div>
+            <div class="mod-toggle">+</div>
+          </div>
+          <div class="mod-body">
+            <ul class="mod-list">
+              <li>Cómo piensa y opera el agresor durante la fase de vigilancia</li>
+              <li>Autodetección: cómo identificar que estás bajo vigilancia hostil sin revelarlo</li>
+              <li>Medidas pasivas, activas y evasivas</li>
+              <li>El Principio TCDC</li>
+              <li>La regla táctica fundamental: por qué nunca debes mostrar que detectaste la vigilancia</li>
+              <li>Diferencia operativa entre ser vigilado y ser perseguido</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod" onclick="toggleMod(this)">
+          <div class="mod-head">
+            <div class="mod-num">03</div>
+            <div class="mod-title">Operaciones de Contravigilancia</div>
+            <div class="mod-toggle">+</div>
+          </div>
+          <div class="mod-body">
+            <ul class="mod-list">
+              <li>Composición y roles del equipo de Contravigilancia</li>
+              <li>Planeación de rutas de Contravigilancia</li>
+              <li>Cómo definir y operar en puntos de detección de vigilancia hostil</li>
+              <li>Cuándo y cómo involucrar al ejecutivo protegido</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod" onclick="toggleMod(this)">
+          <div class="mod-head">
+            <div class="mod-num">04</div>
+            <div class="mod-title">Las 4 fases operativas</div>
+            <div class="mod-toggle">+</div>
+          </div>
+          <div class="mod-body">
+            <ul class="mod-list">
+              <li>Detección</li>
+              <li>Contra seguimiento: convirtiendo al depredador en la presa</li>
+              <li>Identificación</li>
+              <li>Desactivación de la amenaza detectada e identificada</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mod" onclick="toggleMod(this)">
+          <div class="mod-head">
+            <div class="mod-num">05</div>
+            <div class="mod-title">Aplicación para todo el equipo</div>
+            <div class="mod-toggle">+</div>
+          </div>
+          <div class="mod-body">
+            <ul class="mod-list">
+              <li>Técnicas de detección para el agente de protección</li>
+              <li>Técnicas de detección para el chofer de seguridad</li>
+              <li>Medidas pasivas de autodetección: fase fija, en vehículo y a pie</li>
+              <li>Medidas activas de autodetección: fase fija, en vehículo y a pie</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRÁCTICA EN CAMPO ── -->
+  <div class="section practica-wrap reveal">
+    <div class="section-inner">
+      <div class="eyebrow">Práctica en campo</div>
+      <h2 class="display">Dos días que cambian lo que eres como operador.</h2>
+      <p class="body">La mayoría de los cursos terminan en el salón. Este termina en el campo.</p>
+      <p class="body">Aquí la práctica no es un ejercicio genérico. Es una recreación basada en ataques reales que han ocurrido en México.</p>
+      <p class="body">Los participantes se dividen en dos equipos:</p>
+    </div>
+
+    <div class="practica-grid" style="max-width:100%; margin-top:40px;">
+      <div class="practica-card">
+        <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Flanding-pe%2Fpersuasion-1.jpg&w=1200&q=75" alt="Equipo A" loading="lazy">
+        <div class="practica-overlay">
+          <div class="p-tag">Día 1 · Equipo A</div>
+          <h3>Reconstrucción del escenario de amenaza</h3>
+          <p>Basándose en casos documentados, mapean las vulnerabilidades, los patrones de vigilancia hostil y los puntos críticos que los agresores históricamente han explotado. El objetivo: entender la amenaza desde adentro para poder anticiparla.</p>
+        </div>
+      </div>
+      <div class="practica-card">
+        <img src="https://ivanivanovich.com/_next/image?url=%2Fimages%2Flanding-pe%2Faction-5.jpg&w=1200&q=75" alt="Equipo B" loading="lazy">
+        <div class="practica-overlay">
+          <div class="p-tag">Día 1 · Equipo B</div>
+          <h3>Operación de Contravigilancia</h3>
+          <p>Su misión es una sola: detectar la vigilancia hostil en su fase de preparación y neutralizar el ataque antes de que el protegido corra cualquier riesgo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inversion">
+      <p>Al día siguiente, los roles se invierten.</p>
+    </div>
+
+    <div class="practica-extra">
+      <div class="section-inner">
+        <p class="body">Porque para anticipar una amenaza, primero tienes que entender cómo se construye.</p>
+        <p class="body">Al final de estos dos días habrás analizado la amenaza desde ambos ángulos, operado bajo la misma presión táctica de un operativo real, y cerrado los puntos ciegos que los agresores buscan explotar.</p>
+        <p class="body" style="margin-bottom:0;"><strong>Y te irás con algo más.</strong></p>
+      </div>
+    </div>
+
+    <div class="cert">
+      <div class="cert-icon-wrap">📋</div>
+      <div>
+        <h4>Certificado avalado por la Secretaría del Trabajo</h4>
+        <p>Un respaldo institucional que acredita tu formación ante cualquier empresa, cliente o corporativo que exija el más alto estándar en protección ejecutiva. <span>No solo serás mejor operador. Tendrás el papel que lo demuestra.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── PARA EMPRESAS ── -->
+  <div class="section empresas-wrap reveal">
+    <div class="section-inner">
+      <div class="eyebrow">Para empresas</div>
+      <h2 class="display">Si tienes un equipo de seguridad, esto es lo que necesitas entender.</h2>
+      <p class="body">Tienes escoltas. Bien entrenados. Bien equipados.</p>
+      <p class="body">Pero si ninguno fue formado en Contravigilancia, están operando con un punto ciego que el agresor ya conoce y está dispuesto a explotar.</p>
+      <p class="body">No se trata de contratar más personal. <strong>Se trata de elevar el estándar operativo del equipo que ya tienes.</strong></p>
+      <p class="body">Un solo operador formado en Contravigilancia activa el Anillo de Tiempo más poderoso de toda la operación: el que neutraliza la amenaza meses antes de que llegue al ejecutivo.</p>
+      <p class="body">Forma a tu equipo con el mismo estándar que el Ejército Español. <strong>Esa decisión no tiene precio. Pero tiene fecha límite.</strong></p>
+      <div style="margin-top:40px;">
+        <a href="https://wa.me/525540612974?text=Quiero%20inscribir%20a%20mi%20equipo%20al%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" class="btn-main">Inscribir a mi equipo &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA FINAL ── -->
+  <div class="cta-wrap reveal" id="cta">
+    <div class="cta-inner">
+      <div class="cta-eyebrow">Solo 12 lugares · Sin excepciones</div>
+      <h2 class="cta-h">12 lugares.<br/>Una sola fecha.<br/>Sin excepciones.</h2>
+      <p class="cta-sub">Este no es un seminario masivo. Es una formación presencial de alto nivel diseñada intencionalmente para un grupo reducido — porque la calidad del entrenamiento lo exige.</p>
+
+      <div class="urgency-line">
+        Cada edición anterior se ha llenado antes de la fecha. Y cuando los lugares se agotan, no hay lista de espera.<br/><br/>
+        <strong>Cada día que pasa sin este conocimiento es un día en que la vigilancia hostil puede estar ocurriendo — sin que nadie en tu equipo lo sepa.</strong><br/><br/>
+        No esperes a que el cupo se cierre para tomar la decisión.
+      </div>
+
+      <div class="price-row">
+        <span class="price-currency">$</span>
+        <span class="price-amount">14,800</span>
+        <span class="price-period">MXN</span>
+      </div>
+      <div class="price-note">+ IVA en caso de requerir factura</div>
+
+      <div class="cta-details-row">
+        <div class="cta-d">
+          <div class="cta-d-lbl">Curso</div>
+          <div class="cta-d-val">Contravigilancia en Protección Ejecutiva</div>
+        </div>
+        <div class="cta-d">
+          <div class="cta-d-lbl">Fecha</div>
+          <div class="cta-d-val">5 y 6 de Mayo 2026</div>
+        </div>
+        <div class="cta-d">
+          <div class="cta-d-lbl">Modalidad</div>
+          <div class="cta-d-val">Presencial · CDMX</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva%205-6%20Mayo" target="_blank" class="btn-cta">Asegurar mi lugar hoy &rarr;</a>
+      <p class="cta-urgency"><strong>⚠ Solo 12 lugares disponibles.</strong> Una vez agotados, no hay segunda oportunidad hasta la próxima edición.</p>
+      <p class="cta-ws">¿Tienes preguntas? Escríbenos por WhatsApp. Respondemos solo a profesionales serios.</p>
+      <div class="cta-closing">La misión empieza ahora.</div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">© 2026 Ivan Ivanovich Executive Protection Academy</div>
+    <div class="footer-links">
+      <a href="https://ivanivanovich.com" target="_blank">ivanivanovich.com</a>
+      <a href="mailto:contacto@ivanivanovich.com">contacto@ivanivanovich.com</a>
+    </div>
+  </footer>
+
+  <!-- ── STICKY CTA BAR ── -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-info">
+      <span class="sticky-dates">5 – 6 Mayo · CDMX</span>
+      <span class="sticky-price">$14,800 MXN</span>
+      <span class="sticky-cupos">⚡ Solo 4 lugares</span>
+    </div>
+    <a href="https://wa.me/525540612974?text=Quiero%20asegurar%20mi%20lugar%20en%20el%20curso%20de%20Contravigilancia%20Ejecutiva" target="_blank" class="btn-main" style="padding:12px 22px;font-size:11px;">
+      Asegurar lugar &rarr;
+    </a>
+  </div>
+
+  <script>
+    // ── COUNTDOWN ──
+    function tick() {
+      const target = new Date('2026-05-05T09:00:00-06:00').getTime();
+      const diff   = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000)  / 60000);
+      const s = Math.floor((diff % 60000)    / 1000);
+      document.getElementById('cdDays').textContent  = String(d).padStart(2,'0');
+      document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cdMins').textContent  = String(m).padStart(2,'0');
+      document.getElementById('cdSecs').textContent  = String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick, 1000);
+
+    // ── PROGRESS BAR: 12/12 disponibles = vacío ──
+    setTimeout(() => { document.getElementById('progressFill').style.width = '0%'; }, 600);
+
+    // ── SCROLL REVEAL ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── ACCORDION ──
+    function toggleMod(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.mod').forEach(m => {
+        m.classList.remove('open');
+        m.querySelector('.mod-toggle').textContent = '+';
+      });
+      if (!isOpen) {
+        el.classList.add('open');
+        el.querySelector('.mod-toggle').textContent = '−';
+      }
+    }
+
+    // ── STICKY CTA ──
+    const stickyCta = document.getElementById('stickyCta');
+    window.addEventListener('scroll', () => {
+      stickyCta.classList.toggle('visible', window.scrollY > 700);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
