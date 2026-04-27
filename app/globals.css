@@ -25,7 +25,7 @@
 
   --color-muted: #64748b;
   /* Slate 500 */
-  --color-muted-foreground: #f8fafc;
+  --color-muted-foreground: #475569;
 
   --color-border: #e2e8f0;
   /* Slate 200 */
@@ -267,9 +267,16 @@ h6 {
 }
 
 /* --- Blog Visibility Fix --- */
-/* Forza el texto oscuro en el blog para que sea visible incluso en modo oscuro sobre fondo blanco */
+/* color-scheme: light fuerza al navegador a NO aplicar adaptaciones de modo oscuro
+   dentro del contenedor, incluyendo elementos con estilos inline del editor */
 .blog-page-container {
+    color-scheme: light;
+    background-color: #ffffff !important;
     color: #374151 !important;
+}
+
+.blog-page-container *:not(a):not([style*="color"]) {
+    color: inherit;
 }
 
 .blog-page-container h1,
@@ -281,16 +288,30 @@ h6 {
     color: #111827 !important;
 }
 
-/* Fix específico para que la fecha y metadata no sean invisibles en móviles con modo oscuro */
 .blog-page-container time,
-.blog-page-container .text-gray-500,
-.blog-page-container .text-gray-600 {
-    color: #4b5563 !important; /* Gray 600 - Un poco más legible que el 500 original */
+.blog-page-container span,
+.blog-page-container div,
+.blog-page-container section,
+.blog-page-container p,
+.blog-page-container li,
+.blog-page-container td,
+.blog-page-container th {
+    color: #374151 !important;
 }
 
-/* Asegurar que los párrafos dentro de blog-content siempre sean oscuros */
+.blog-page-container .text-gray-500,
+.blog-page-container .text-gray-600 {
+    color: #4b5563 !important;
+}
+
+.blog-page-container .text-gray-900,
+.blog-page-container .font-medium {
+    color: #111827 !important;
+}
+
 .blog-content p,
 .blog-content li,
-.blog-content span {
+.blog-content span,
+.blog-content div {
     color: #374151 !important;
 }
