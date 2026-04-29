@@ -275,27 +275,31 @@ h6 {
     color: #374151 !important;
 }
 
-.blog-page-container *:not(a):not([style*="color"]) {
+.blog-page-container *:not(a):not(.text-white) {
     color: inherit;
 }
 
-.blog-page-container h1,
-.blog-page-container h2,
-.blog-page-container h3,
-.blog-page-container h4,
-.blog-page-container h5,
-.blog-page-container h6 {
+.blog-page-container h1:not(.text-white),
+.blog-page-container h2:not(.text-white),
+.blog-page-container h3:not(.text-white),
+.blog-page-container h4:not(.text-white),
+.blog-page-container h5:not(.text-white),
+.blog-page-container h6:not(.text-white) {
     color: #111827 !important;
 }
 
 .blog-page-container time,
-.blog-page-container span,
-.blog-page-container div,
+.blog-page-container span:not(.text-white),
+.blog-page-container div:not(.text-white),
 .blog-page-container section,
-.blog-page-container p,
+.blog-page-container p:not(.text-white),
 .blog-page-container li,
 .blog-page-container td,
-.blog-page-container th {
+.blog-page-container th,
+.blog-page-container strong:not(.text-white),
+.blog-page-container b:not(.text-white),
+.blog-page-container em:not(.text-white),
+.blog-page-container i:not(.text-white) {
     color: #374151 !important;
 }
 
@@ -312,6 +316,10 @@ h6 {
 .blog-content p,
 .blog-content li,
 .blog-content span,
-.blog-content div {
+.blog-content div,
+.blog-content strong,
+.blog-content b,
+.blog-content em,
+.blog-content i {
     color: #374151 !important;
 }
