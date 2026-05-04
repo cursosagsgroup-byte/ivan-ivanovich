@@ -26,7 +26,7 @@ export function LanguageProvider({
     const switchLanguage = async (lang: Language) => {
         setLanguageState(lang);
         await setLanguage(lang);
-        router.refresh(); // Refresh server components
+        window.location.reload();
     };
 
     return (

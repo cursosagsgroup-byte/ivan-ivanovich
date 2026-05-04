@@ -108,29 +108,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     // Redirect logic based on language
     if (locale === 'en' && post.language === 'es') {
         // Try to find the English version
-        // Assumption: English slug is spanish-slug + "-en"
-        const englishSlug = `${slug}-en`;
+        const englishSlug = slug.endsWith('-en') ? slug : `${slug}-en`;
         const englishPost = await prisma.blogPost.findUnique({
             where: { slug: englishSlug },
             select: { slug: true }
         });
 
-        if (englishPost) {
+        if (englishPost && englishPost.slug !== slug) {
             redirect(`/blog/${englishPost.slug}`);
         }
     } else if (locale === 'es' && post.language === 'en') {
         // Try to find the Spanish version
-        // Assumption: current slug ends with "-en"
-        if (slug.endsWith('-en')) {
-            const spanishSlug = slug.slice(0, -3);
-            const spanishPost = await prisma.blogPost.findUnique({
-                where: { slug: spanishSlug },
-                select: { slug: true }
-            });
+        const spanishSlug = slug.endsWith('-en') ? slug.slice(0, -3) : slug;
+        const spanishPost = await prisma.blogPost.findUnique({
+            where: { slug: spanishSlug },
+            select: { slug: true }
+        });
 
-            if (spanishPost) {
-                redirect(`/blog/${spanishPost.slug}`);
-            }
+        if (spanishPost && spanishPost.slug !== slug) {
+            redirect(`/blog/${spanishPost.slug}`);
         }
     }
 
