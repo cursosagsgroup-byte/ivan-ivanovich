@@ -147,7 +147,10 @@ export default async function RootLayout({
     }
 
     return (
-        <html lang={locale}>
+        <html lang={locale} translate="no" className="notranslate">
+            <head>
+                <meta name="google" content="notranslate" />
+            </head>
             <body className={`${montserrat.variable} ${bebasNeue.variable} antialiased`}>
                 <AuthProvider>
                     <LanguageProvider initialLanguage={locale}>

@@ -18,12 +18,15 @@ export default function Error({
     }, [error]);
 
     return (
-        <html>
+        <html translate="no" className="notranslate">
+            <head>
+                <meta name="google" content="notranslate" />
+            </head>
             <body>
                 <div className="flex flex-col items-center justify-center min-h-screen">
-                    <h2 className="text-2xl font-bold mb-4">Something went wrong!</h2>
+                    <h2 className="text-2xl font-bold mb-4">¡Algo ha salido mal!</h2>
                     <p className="mb-4 text-red-500">{error.message}</p>
-                    <p className="text-sm text-gray-500 mb-8">Digest: {error.digest}</p>
+                    <p className="text-sm text-gray-500 mb-8">Código: {error.digest}</p>
                     <button
                         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                         onClick={
@@ -31,7 +34,7 @@ export default function Error({
                             () => reset()
                         }
                     >
-                        Try again
+                        Inténtalo de nuevo
                     </button>
                 </div>
             </body>
