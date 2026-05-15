@@ -2,13 +2,13 @@
 
 import { useCart } from '@/lib/cart-context';
 
-interface ContravigilanciaLandingCTAProps {
+interface ContravigilanciaCTAProps {
     className?: string;
     style?: React.CSSProperties;
     children: React.ReactNode;
 }
 
-export default function ContravigilanciaLandingCTA({ className, style, children }: ContravigilanciaLandingCTAProps) {
+export default function ContravigilanciaCTA({ className, style, children }: ContravigilanciaCTAProps) {
     const { addToCart, openCart } = useCart();
 
     const handleAddToCart = async () => {

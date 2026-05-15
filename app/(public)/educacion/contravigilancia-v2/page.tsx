@@ -5,7 +5,7 @@ import { ChevronDown, Play, CheckCircle2, BadgeCheck, Globe, Award, Clock, Alert
 import { useState } from 'react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useTranslation } from '@/hooks/useTranslation';
-import ContravigilanciaLandingCTA from '@/components/landing/ContravigilanciaLandingCTA';
+import ContravigilanciaCTA from '@/components/landing/ContravigilanciaCTA';
 import ExecutiveTrainingSection from '@/components/landing/ExecutiveTrainingSection';
 import PersuasionTechniquesSection from '@/components/landing/PersuasionTechniquesSection';
 
@@ -41,12 +41,12 @@ export default function ContravigilanciaV2Page() {
                         </p>
  
                         <div className="flex justify-center px-4">
-                            <ContravigilanciaLandingCTA
+                            <ContravigilanciaCTA
                                 className="bg-[#B70126] hover:bg-[#90011E] text-white text-lg md:text-xl font-bold py-3 md:py-4 px-8 md:px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_30px_rgba(183,1,38,0.5)] uppercase flex items-center gap-2 w-full sm:w-auto justify-center cursor-pointer group"
                                 style={{ fontFamily: 'var(--font-montserrat)' }}
                             >
                                 Iniciar curso <span className="text-2xl transition-transform duration-300 group-hover:translate-x-2">→</span>
-                            </ContravigilanciaLandingCTA>
+                            </ContravigilanciaCTA>
                         </div>
                         <p className="mt-4 text-white font-bold uppercase tracking-widest text-sm md:text-base animate-pulse" style={{ fontFamily: 'var(--font-bebas)' }}>
                             💳 Paga a meses sin intereses
@@ -213,11 +213,11 @@ export default function ContravigilanciaV2Page() {
                     </div>
 
                     <div className="mt-12 md:mt-16 text-center">
-                        <ContravigilanciaLandingCTA
+                        <ContravigilanciaCTA
                             className="inline-block bg-black hover:bg-[#333] text-white text-base md:text-lg font-bold py-3 md:py-4 px-8 md:px-10 rounded-full transition-all hover:scale-105 shadow-xl uppercase border border-gray-800 w-full md:w-auto cursor-pointer"
                         >
                             Sí, quiero acceder al curso completo
-                        </ContravigilanciaLandingCTA>
+                        </ContravigilanciaCTA>
                     </div>
                 </div>
             </section>
