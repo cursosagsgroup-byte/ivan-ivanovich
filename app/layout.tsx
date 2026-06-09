@@ -150,6 +150,9 @@ export default async function RootLayout({
         <html lang={locale} translate="no" className="notranslate">
             <head>
                 <meta name="google" content="notranslate" />
+                {/* El sitio es solo modo claro: evita que el modo oscuro del sistema
+                    o "Forzar modo oscuro" de Android invierta los colores (texto blanco sobre blanco). */}
+                <meta name="color-scheme" content="light" />
             </head>
             <body className={`${montserrat.variable} ${bebasNeue.variable} antialiased`}>
                 <AuthProvider>

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 :root {
+  /* El sitio está diseñado 100% en modo claro (no se usa ninguna variante dark:).
+     color-scheme: light evita que Android Chrome "Forzar modo oscuro" invierta los colores. */
+  color-scheme: light;
   --background: #f8fafc;
   /* Slate 50 */
   --foreground: #0f172a;
@@ -31,14 +34,10 @@
   /* Slate 200 */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    /* Slate 900 */
-    --foreground: #f8fafc;
-    /* Slate 50 */
-  }
-}
+/* NOTA: Se eliminó el bloque @media (prefers-color-scheme: dark) heredado del
+   boilerplate de Next.js. Volvía --foreground casi blanco (#f8fafc) en teléfonos
+   con el modo oscuro del sistema activado, causando texto blanco sobre fondo blanco.
+   El sitio no tiene diseño en modo oscuro, así que debe permanecer siempre claro. */
 
 body {
   background: var(--background);
