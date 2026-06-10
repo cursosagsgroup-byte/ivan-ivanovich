@@ -7,6 +7,13 @@ import { cookies } from 'next/headers';
 import { translations } from '@/lib/translations';
 import { COSTA_RICA_COURSE_ID } from '@/lib/course-constants';
 
+// Usa <a> para archivos estáticos (.html en /public) y <Link> para rutas de Next.
+function CourseLink({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
+    if (href.endsWith('.html')) {
+        return <a href={href} className={className}>{children}</a>;
+    }
+    return <Link href={href} className={className}>{children}</Link>;
+}
 
 export default async function CursosOnlinePage() {
     const cookieStore = await cookies();
@@ -83,6 +90,8 @@ export default async function CursosOnlinePage() {
                             // Specific match for "Protección Ejecutiva, Operatividad General y Logística Protectiva"
                             // Using a significant substring to ensure it matches the correct course and NOT others like "Contravigilancia..."
                             if (lowerTitle.includes('operatividad general') && lowerTitle.includes('logística')) return '/proteccion-ejecutiva-operatividad-general';
+                            // Seminario Online en Vivo → landing HTML estática
+                            if (lowerTitle.includes('seminario online')) return '/landings/seminario-proteccion-ejecutiva.html';
                             return `/educacion/cursos-online/${id}`;
                         };
 
@@ -95,7 +104,7 @@ export default async function CursosOnlinePage() {
                             >
                                 {/* Course Image */}
                                 <div className="aspect-video w-full overflow-hidden bg-gray-100 relative">
-                                    <Link href={courseLink} className="block w-full h-full">
+                                    <CourseLink href={courseLink} className="block w-full h-full">
                                         {course.image ? (
                                             <img
                                                 src={course.image}
@@ -107,16 +116,16 @@ export default async function CursosOnlinePage() {
                                                 <Award className="w-16 h-16" />
                                             </div>
                                         )}
-                                    </Link>
+                                    </CourseLink>
                                 </div>
 
                                 {/* Course Content */}
                                 <div className="p-6">
                                     {/* Title */}
                                     <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#B70126] transition-colors">
-                                        <Link href={courseLink}>
+                                        <CourseLink href={courseLink}>
                                             {course.title}
-                                        </Link>
+                                        </CourseLink>
                                     </h3>
 
                                     {/* Instructor */}
