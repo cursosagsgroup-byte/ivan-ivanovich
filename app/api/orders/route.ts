@@ -6,6 +6,7 @@ import { randomBytes } from 'crypto';
 import { hash } from 'bcryptjs';
 import nodemailer from 'nodemailer';
 import { USD_COURSE_IDS } from '@/lib/course-constants';
+import { fulfillSeminarioBundle, orderHasSeminario } from '@/lib/seminario-fulfillment';
 
 
 async function sendOrderConfirmation(order: any, items: any[]) {
@@ -294,8 +295,14 @@ export async function POST(req: Request) {
                 }
             }
 
-            // Send confirmation email for free orders
-            await sendOrderConfirmation(order, emailItems);
+            // Correo: si la orden incluye el Seminario, enviamos el correo de bienvenida
+            // del bundle (con cursos bono + WhatsApp) en lugar del genérico, y damos acceso
+            // a los cursos bono. Si no, va el correo de confirmación normal.
+            if (orderHasSeminario(order.items)) {
+                await fulfillSeminarioBundle(order);
+            } else {
+                await sendOrderConfirmation(order, emailItems);
+            }
         }
 
         // IMPORTANT: Increment coupon usage count if a coupon was used and order is completed (free)

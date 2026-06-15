@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { MercadoPagoConfig, Payment } from 'mercadopago';
+import { fulfillSeminarioBundle, orderHasSeminario } from '@/lib/seminario-fulfillment';
 
 export async function POST(req: NextRequest) {
     try {
@@ -119,6 +120,12 @@ export async function POST(req: NextRequest) {
                     });
                     console.log(`✅ Enrolled user ${order.userId} in course ${item.courseId}`);
                 }
+            }
+
+            // Bundle del Seminario: acceso a cursos bono + correo con WhatsApp.
+            // La guardia de arriba (order.status === 'completed') evita duplicados.
+            if (orderHasSeminario(order.items)) {
+                await fulfillSeminarioBundle(order);
             }
 
             console.log(`✅ Order ${orderId} completed via MP Webhook`);
