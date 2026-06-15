@@ -24,7 +24,7 @@ export default function LandingPage() {
                     <div className="animate-fade-in-up">
 
                         <h2 className="text-white font-bold text-lg md:text-2xl uppercase tracking-wider mb-2">
-                            Ciudad de México | 24 y 25 de Febrero
+                            Ciudad de México | 4 y 5 de Agosto
                         </h2>
                         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-none mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
                             Protección <span className="text-[#B70126]">Ejecutiva</span>,<br />
