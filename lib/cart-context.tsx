@@ -15,7 +15,7 @@ interface CartContextType {
     items: CartItem[];
     itemCount: number;
     total: number;
-    addToCart: (course: Omit<CartItem, 'id'>) => Promise<void>;
+    addToCart: (course: Omit<CartItem, 'id'>, options?: { openPanel?: boolean }) => Promise<void>;
     removeFromCart: (courseId: string) => Promise<void>;
     clearCart: () => Promise<void>;
     isLoading: boolean;
@@ -79,7 +79,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }
     };
 
-    const addToCart = async (course: Omit<CartItem, 'id'>) => {
+    const addToCart = async (course: Omit<CartItem, 'id'>, options?: { openPanel?: boolean }) => {
+        // openPanel por defecto true (comportamiento normal). El checkout lo pasa como
+        // false al auto-agregar vía ?add= para no abrir el carrito encima del checkout.
+        const openPanel = options?.openPanel !== false;
         console.log('[Cart] Adding to cart:', course);
         console.log('[Cart] Session:', session?.user ? 'Logged in' : 'Guest');
         setIsLoading(true);
@@ -96,7 +99,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 if (response.ok) {
                     console.log('[Cart] Successfully added to database');
                     await loadCart();
-                    setIsCartOpen(true); // Auto-open cart panel
+                    if (openPanel) setIsCartOpen(true); // Auto-open cart panel
                 } else {
                     console.error('[Cart] Failed to add to database:', await response.text());
                 }
@@ -112,7 +115,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                     console.log('[Cart] Updated items:', updated);
                     return updated;
                 });
-                setIsCartOpen(true); // Auto-open cart panel
+                if (openPanel) setIsCartOpen(true); // Auto-open cart panel
             }
         } catch (error) {
             console.error('Failed to add to cart:', error);

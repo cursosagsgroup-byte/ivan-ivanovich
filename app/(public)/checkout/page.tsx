@@ -128,7 +128,7 @@ export default function CheckoutPage() {
                                 title: course.title,
                                 price: course.price,
                                 image: course.image || ''
-                            });
+                            }, { openPanel: false });
                         }
                     })
                     .catch(err => console.error('Error auto-adding course:', err));
