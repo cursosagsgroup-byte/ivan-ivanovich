@@ -35,6 +35,9 @@ yarn-error.log*
 *.tar.gz
 *.sql
 
+# carpeta de origen de materiales: el PDF publicado vive en public/materials/
+/LIBRO
+
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
