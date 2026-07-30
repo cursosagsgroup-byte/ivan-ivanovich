@@ -38,6 +38,11 @@ yarn-error.log*
 # carpeta de origen de materiales: el PDF publicado vive en public/materials/
 /LIBRO
 
+# carpetas de trabajo local: los archivos publicados viven en public/
+# (la landing buena del seminario ya está en public/landings/)
+/Nueva landing 10 jun 2026
+/scratch
+
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
