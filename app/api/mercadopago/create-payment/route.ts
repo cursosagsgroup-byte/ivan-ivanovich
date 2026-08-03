@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { MercadoPagoConfig, Payment } from 'mercadopago';
+import { completePaidOrder } from '@/lib/order-completion';
 
 export async function POST(req: NextRequest) {
     try {
@@ -26,6 +27,12 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'Orden no encontrada' }, { status: 404 });
         }
 
+        // notification_url solo funciona con URLs públicas https; en local se omite.
+        const baseUrl = process.env.NEXTAUTH_URL || '';
+        const notificationUrl = baseUrl.startsWith('https://')
+            ? `${baseUrl}/api/webhooks/mercadopago`
+            : undefined;
+
         // Configuración para el pago con Bricks (Card Payment)
         const paymentData = {
             body: {
@@ -40,6 +47,7 @@ export async function POST(req: NextRequest) {
                     identification: formData.payer.identification
                 },
                 external_reference: orderId, // Esto enviará el ID de la orden en el Webhook
+                ...(notificationUrl ? { notification_url: notificationUrl } : {}),
             }
         };
 
@@ -58,7 +66,19 @@ export async function POST(req: NextRequest) {
             }
         });
 
-        if (result.status === 'approved' || result.status === 'in_process' || result.status === 'pending') {
+        if (result.status === 'approved') {
+            // Bricks confirma tarjetas de forma síncrona: completamos la orden aquí
+            // mismo (inscripción + correo) sin depender de que llegue el webhook.
+            // El pago de Sergio Barrientos (ago 2026) se perdió por confiar solo en él.
+            try {
+                await completePaidOrder(orderId, 'mercadopago');
+            } catch (completionError) {
+                // El cobro ya se hizo: no convertimos esto en error para el cliente.
+                // El webhook (idempotente) sirve de segundo intento.
+                console.error(`Pago MP ${result.id} aprobado pero la orden ${orderId} no se pudo completar:`, completionError);
+            }
+            return NextResponse.json({ status: result.status, id: result.id });
+        } else if (result.status === 'in_process' || result.status === 'pending') {
             return NextResponse.json({ status: result.status, id: result.id });
         } else {
             return NextResponse.json({ error: `Pago rechazado o fallido: ${result.status_detail}` }, { status: 400 });

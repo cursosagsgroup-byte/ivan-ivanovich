@@ -28,7 +28,7 @@ function PaymentForm({ amount, orderId, onSuccess, onError }: StripePaymentFormP
         setIsProcessing(true);
 
         try {
-            const { error } = await stripe.confirmPayment({
+            const { error, paymentIntent } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
                     return_url: `${window.location.origin}/checkout/success?orderId=${orderId}`,
@@ -38,8 +38,11 @@ function PaymentForm({ amount, orderId, onSuccess, onError }: StripePaymentFormP
 
             if (error) {
                 onError(error.message || 'Payment failed');
-            } else {
+            } else if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing')) {
+                // 'processing' = métodos asíncronos: el webhook completará la orden.
                 onSuccess();
+            } else {
+                onError(`El pago no se completó (estado: ${paymentIntent?.status || 'desconocido'}). Intenta de nuevo.`);
             }
         } catch (err: any) {
             onError(`${err.message || 'Payment failed'} (Amount: ${amount})`);
