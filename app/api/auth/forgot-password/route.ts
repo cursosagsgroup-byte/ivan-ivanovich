@@ -5,6 +5,10 @@ import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import { sendWhatsAppMessage } from '@/lib/whatsapp';
 
+// Validez del enlace de recuperación. Una hora dejaba fuera a quien abría el
+// correo más tarde o desde otro huso horario (varios casos reportados).
+const RESET_TOKEN_HOURS = 24;
+
 export async function POST(req: Request) {
     try {
         const { email, identifier } = await req.json();
@@ -37,7 +41,12 @@ export async function POST(req: Request) {
 
         // Generate token
         const token = crypto.randomBytes(32).toString('hex');
-        const expires = new Date(Date.now() + 3600 * 1000); // 1 hour
+        const expires = new Date(Date.now() + RESET_TOKEN_HOURS * 3600 * 1000);
+
+        // Se anulan los enlaces anteriores: si el usuario pide varios correos,
+        // solo el último funciona. Antes convivían todos y abrir uno ya usado
+        // devolvía "Invalid token" sin explicar que había que pedir otro.
+        await prisma.verificationToken.deleteMany({ where: { identifier: user.email } });
 
         // Save token - Use user.email as identifier to keep it consistent for verification
         // or usage in the reset flow.
@@ -96,7 +105,7 @@ export async function POST(req: Request) {
                             <div style="text-align: center; margin: 30px 0;">
                                 <a href="${resetLink}" style="background-color: #B70126; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">Restablecer Contraseña</a>
                             </div>
-                            <p style="font-size: 14px; color: #666;">Si no solicitaste este cambio, puedes ignorar este correo. El enlace expirará en 1 hora.</p>
+                            <p style="font-size: 14px; color: #666;">Si no solicitaste este cambio, puedes ignorar este correo. El enlace caduca en ${RESET_TOKEN_HOURS} horas y solo funciona una vez: si pides otro correo, este dejará de servir.</p>
                             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
                             <p style="font-size: 12px; color: #999;">Ivan Ivanovich - Protección Ejecutiva</p>
                         </div>

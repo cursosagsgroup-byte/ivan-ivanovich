@@ -7,6 +7,22 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PasswordInput } from '@/components/ui/PasswordInput';
 
+// El API responde en inglés; aquí se traduce y se le dice al usuario qué hacer.
+// "Invalid token" = el enlace ya se usó o se anuló al pedir otro correo.
+const ERRORES: Record<string, string> = {
+    'Invalid token': 'Este enlace ya se usó o dejó de ser válido porque pediste uno más nuevo.',
+    'Token expired': 'Este enlace caducó.',
+};
+
+function traducirError(mensaje: string) {
+    return ERRORES[mensaje] || mensaje || 'No pudimos actualizar tu contraseña.';
+}
+
+// Estos dos casos solo se resuelven pidiendo un enlace nuevo.
+function necesitaEnlaceNuevo(mensaje: string) {
+    return mensaje in ERRORES;
+}
+
 function ResetPasswordForm() {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -16,11 +32,13 @@ function ResetPasswordForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
+    const [pedirNuevo, setPedirNuevo] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!token) {
-            setError('Token inválido o faltante.');
+            setError('Este enlace está incompleto.');
+            setPedirNuevo(true);
         }
     }, [token]);
 
@@ -51,7 +69,8 @@ function ResetPasswordForm() {
                     router.push('/login?reset=success');
                 }, 3000);
             } else {
-                setError(data.error || 'Error al actualizar contraseña.');
+                setError(traducirError(data.error));
+                setPedirNuevo(necesitaEnlaceNuevo(data.error));
             }
         } catch (error) {
             setError('Error de conexión.');
@@ -60,7 +79,20 @@ function ResetPasswordForm() {
         }
     };
 
-    if (!token) return <div className="text-center text-red-600">Enlace inválido.</div>;
+    // Sin token en la URL no hay formulario que mostrar: solo la salida.
+    if (!token) {
+        return (
+            <div className="text-center space-y-4">
+                <p className="text-red-600">Este enlace está incompleto.</p>
+                <Link
+                    href="/forgot-password"
+                    className="inline-block rounded-md bg-[#B70126] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#D9012D] transition-colors"
+                >
+                    Pedir un enlace nuevo
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -103,8 +135,16 @@ function ResetPasswordForm() {
             )}
 
             {error && (
-                <div className="text-red-600 text-sm text-center">
-                    {error}
+                <div className="text-center space-y-3">
+                    <p className="text-red-600 text-sm">{error}</p>
+                    {pedirNuevo && (
+                        <Link
+                            href="/forgot-password"
+                            className="inline-block rounded-md bg-[#B70126] px-5 py-2.5 text-sm font-bold text-white hover:bg-[#D9012D] transition-colors"
+                        >
+                            Pedir un enlace nuevo
+                        </Link>
+                    )}
                 </div>
             )}
 
