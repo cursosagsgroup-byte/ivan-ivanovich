@@ -81,8 +81,10 @@ export default function CounterSurveillancePage() {
 
                         {/* Video Section */}
                         <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+                            {/* Presentación en inglés. La versión en español (954253693)
+                                vive en /educacion/contravigilancia. */}
                             <iframe
-                                src="https://player.vimeo.com/video/954253693"
+                                src="https://player.vimeo.com/video/1134754045"
                                 frameBorder="0"
                                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"

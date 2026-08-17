@@ -11,8 +11,16 @@ import { teamLeaderSchema } from './metadata';
 
 import { useTranslation } from '@/hooks/useTranslation';
 
+// Presentación del curso, una por idioma. Los títulos en Vimeo están ambos en
+// español, pero 950896444 está locutado en inglés.
+const VIDEO_INTRO = {
+    es: '786635929',
+    en: '950896444',
+} as const;
+
 export default function TeamLeaderCoursePage() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
+    const videoId = VIDEO_INTRO[language === 'en' ? 'en' : 'es'];
     return (
         <>
             <StructuredData data={teamLeaderSchema} />
@@ -86,7 +94,8 @@ export default function TeamLeaderCoursePage() {
                             {/* Video Section */}
                             <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                                 <iframe
-                                    src="https://player.vimeo.com/video/786635929?badge=0&autopause=0&player_id=0&app_id=58479"
+                                    key={videoId}
+                                    src={`https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
                                     frameBorder="0"
                                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                                     referrerPolicy="strict-origin-when-cross-origin"
