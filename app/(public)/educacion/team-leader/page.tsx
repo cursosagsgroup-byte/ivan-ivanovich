@@ -10,6 +10,7 @@ import { StructuredData } from '@/components/seo/StructuredData';
 import { teamLeaderSchema } from './metadata';
 
 import { useTranslation } from '@/hooks/useTranslation';
+import ShareLanguageLink from '@/components/ShareLanguageLink';
 
 // Presentación del curso, una por idioma. Los títulos en Vimeo están ambos en
 // español, pero 950896444 está locutado en inglés.
@@ -102,6 +103,11 @@ export default function TeamLeaderCoursePage() {
                                     style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                                     title="Introducción al Curso"
                                 />
+                            </div>
+
+                            {/* Copia el enlace conservando el idioma actual */}
+                            <div className="mt-4 flex justify-center">
+                                <ShareLanguageLink />
                             </div>
 
                             {/* Animated Brand Strip */}

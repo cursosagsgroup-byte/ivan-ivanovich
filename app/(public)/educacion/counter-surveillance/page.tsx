@@ -6,6 +6,7 @@ import { useState } from 'react';
 import PublicNavbar from '@/components/public/PublicNavbar';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useTranslation } from '@/hooks/useTranslation';
+import ShareLanguageLink from '@/components/ShareLanguageLink';
 
 export default function CounterSurveillancePage() {
     const { t } = useTranslation();
@@ -91,6 +92,11 @@ export default function CounterSurveillancePage() {
                                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                                 title="Course Introduction"
                             />
+                        </div>
+
+                        {/* Copia el enlace conservando el idioma actual */}
+                        <div className="mt-4 flex justify-center">
+                            <ShareLanguageLink />
                         </div>
 
                         {/* Instructor Bio */}
