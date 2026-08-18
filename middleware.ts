@@ -113,6 +113,20 @@ export default withAuth(
             return response;
         }
 
+        if (pathname === '/es' || pathname.startsWith('/es/')) {
+            const destino = pathname.replace(/^\/es/, '') || '/';
+            const url = new URL(destino, req.url);
+            url.search = req.nextUrl.search;
+
+            const response = NextResponse.redirect(url);
+            response.cookies.set('NEXT_LOCALE', 'es', {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 365,
+                sameSite: 'lax'
+            });
+            return response;
+        }
+
         // Primera visita sin preferencia: se deduce el idioma del navegador
         // (Accept-Language) y, si este no dice nada, del país de la IP que
         // reporta Vercel. Solo para personas: los rastreadores reciben siempre
@@ -150,20 +164,6 @@ export default withAuth(
                 response.cookies.set('NEXT_LOCALE', 'es', { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' });
                 return response;
             }
-        }
-
-        if (pathname === '/es' || pathname.startsWith('/es/')) {
-            const destino = pathname.replace(/^\/es/, '') || '/';
-            const url = new URL(destino, req.url);
-            url.search = req.nextUrl.search;
-
-            const response = NextResponse.redirect(url);
-            response.cookies.set('NEXT_LOCALE', 'es', {
-                path: '/',
-                maxAge: 60 * 60 * 24 * 365,
-                sameSite: 'lax'
-            });
-            return response;
         }
 
         const token = req.nextauth.token

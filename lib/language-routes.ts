@@ -18,7 +18,7 @@ const EN_A_ES: Record<string, string> = Object.fromEntries(
 
 /** Quita el prefijo /en de una ruta, si lo lleva. */
 export function rutaSinPrefijo(pathname: string): string {
-    const limpia = pathname.replace(/^\/en(?=\/|$)/, '');
+    const limpia = pathname.replace(/^\/(en|es)(?=\/|$)/, '');
     return limpia === '' ? '/' : limpia;
 }
 
@@ -36,6 +36,10 @@ export function rutaEnIdioma(pathname: string, destino: 'es' | 'en'): string {
         ruta = EN_A_ES[ruta];
     }
 
-    if (destino === 'es') return ruta;
+    // Ambos idiomas llevan prefijo: la ruta desnuda significa "el idioma que
+    // el visitante ya tenga", no "español". Sin el prefijo /es, un enlace
+    // compartido se abría en inglés si el destinatario había visitado antes
+    // una página en inglés. /es redirige a la ruta limpia tras fijar el idioma.
+    if (destino === 'es') return ruta === '/' ? '/es' : `/es${ruta}`;
     return ruta === '/' ? '/en' : `/en${ruta}`;
 }
