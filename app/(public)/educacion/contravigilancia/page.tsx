@@ -8,8 +8,23 @@ import AddToCartButton from '@/components/cart/AddToCartButton';
 import { useTranslation } from '@/hooks/useTranslation';
 import ShareLanguageLink from '@/components/ShareLanguageLink';
 
+// Página única del curso de contravigilancia. El vídeo, el curso a la venta y
+// las etiquetas fijas cambian según el idioma; los textos largos ya salen de
+// las traducciones. La versión en inglés vive en /en/educacion/contravigilancia.
+const VIDEO_INTRO = {
+    es: '954253693',
+    en: '1134754045',
+} as const;
+
+const CURSO = {
+    es: { id: 'cmio13v7u000164w1bhkqj8ej', title: 'Contravigilancia Para Protección Ejecutiva' },
+    en: { id: 'cmiq7oga703zjkvegaq8v1ir4', title: 'COUNTER SURVEILLANCE FOR EXECUTIVE PROTECTION' },
+} as const;
+
 export default function ContravigilanciaPage() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
+    const en = language === 'en';
+    const idioma = en ? 'en' : 'es';
 
     return (
         <div className="min-h-screen bg-white pt-24">
@@ -83,12 +98,13 @@ export default function ContravigilanciaPage() {
                         {/* Video Section */}
                         <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                             <iframe
-                                src="https://player.vimeo.com/video/954253693"
+                                key={VIDEO_INTRO[idioma]}
+                                src={`https://player.vimeo.com/video/${VIDEO_INTRO[idioma]}`}
                                 frameBorder="0"
                                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                                 referrerPolicy="strict-origin-when-cross-origin"
                                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                                title="Introducción al Curso"
+                                title={en ? "Course Introduction" : "Introducción al Curso"}
                             />
                         </div>
 
@@ -100,20 +116,26 @@ export default function ContravigilanciaPage() {
                         {/* Instructor Bio */}
                         <div className="prose max-w-none text-gray-700">
                             <h3 className="text-[35px] font-bold text-black uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                IVAN IVANOVICH
+                                {t('home.ivanTitle')}
                             </h3>
                             <p>
-                                Presidente del Board of Directors de WSO-Worldwide Security Options. Experto global en seguridad con más de 30 años de experiencia en escenarios de alto riesgo en Europa, América y Africa.
+                                {t('home.ivanSubtitle')}
                             </p>
                             <p>
-                                El primer civil en capacitar en protección ejecutiva a la Infantería de Marina Española y a la Unidad de Protección Presidencial de Costa Rica. Fundador de la Academia Ivan Ivanovich, reconocida entre las 9 mejores escuelas de protección ejecutiva del mundo por EP Wired (EE. UU.).
+                                {t('home.ivanDescription1')}
                             </p>
                             <p>
-                                Autor del bestseller <em>Protección Ejecutiva en el Siglo XXI</em>, #1 en Amazon México. Promotor de un enfoque preventivo, ético e innovador, ha transformado los estándares de la protección ejecutiva moderna a nivel global. Miembro del consejo directivo de la International Protective Security Board (IPSB), organización líder en protección ejecutiva globalmente.
+                                {t('home.ivanDescription2')} {t('home.ivanDescription3')}
+                            </p>
+                            <p>
+                                {t('home.ivanDescription4')}
+                            </p>
+                            <p>
+                                {t('home.ivanDescription5')}
                             </p>
                         </div>
 
-                        {/* Armada Española Section */}
+                        {/* Armada Section */}
                         <section className="bg-gray-100 py-16 rounded-[30px] mb-8">
                             <div className="mx-auto max-w-7xl px-4 lg:px-12">
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -139,7 +161,7 @@ export default function ContravigilanciaPage() {
                             </div>
                         </section>
 
-                        {/* Unidad de Protección Presidencial - Costa Rica */}
+                        {/* Costa Rica Section */}
                         <section className="bg-gray-100 py-16 rounded-[30px] mb-8">
                             <div className="mx-auto max-w-7xl px-4 lg:px-12">
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -162,7 +184,7 @@ export default function ContravigilanciaPage() {
                             </div>
                         </section>
 
-                        {/* TOP 9 MUNDIAL */}
+                        {/* TOP 9 GLOBAL */}
                         <section className="bg-gray-100 py-16 rounded-[30px] mb-16">
                             <div className="mx-auto max-w-7xl px-4 lg:px-12">
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -246,7 +268,7 @@ export default function ContravigilanciaPage() {
                             <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden">
                                 <Image
                                     src="/curso-contravigilancia.jpg"
-                                    alt="Curso Contravigilancia"
+                                    alt={en ? "Counter Surveillance Course" : "Curso de Contravigilancia"}
                                     fill
                                     className="object-cover"
                                 />
@@ -260,8 +282,8 @@ export default function ContravigilanciaPage() {
 
                             <AddToCartButton
                                 course={{
-                                    id: 'cmio13v7u000164w1bhkqj8ej',
-                                    title: 'Contravigilancia Para Protección Ejecutiva',
+                                    id: CURSO[idioma].id,
+                                    title: CURSO[idioma].title,
                                     price: 2500,
                                     image: '/curso-contravigilancia.jpg'
                                 }}
@@ -271,16 +293,16 @@ export default function ContravigilanciaPage() {
 
                             <div className="space-y-4 text-sm text-gray-600 mt-6">
                                 <div className="flex justify-between border-b pb-2">
-                                    <span>Duración:</span>
+                                    <span>{en ? 'Duration:' : 'Duración:'}</span>
                                     <span className="font-bold">Online</span>
                                 </div>
                                 <div className="flex justify-between border-b pb-2">
-                                    <span>Acceso:</span>
-                                    <span className="font-bold">De por vida</span>
+                                    <span>{en ? 'Access:' : 'Acceso:'}</span>
+                                    <span className="font-bold">{en ? 'Lifetime' : 'De por vida'}</span>
                                 </div>
                                 <div className="flex justify-between border-b pb-2">
-                                    <span>Certificado:</span>
-                                    <span className="font-bold">Sí</span>
+                                    <span>{en ? 'Certificate:' : 'Certificado:'}</span>
+                                    <span className="font-bold">{en ? 'Yes' : 'Sí'}</span>
                                 </div>
                             </div>
                         </div>
@@ -295,6 +317,8 @@ export default function ContravigilanciaPage() {
 }
 
 function ModuleItem({ title, duration }: { title: string, duration?: string }) {
+    const { language } = useTranslation();
+    const en = language === 'en';
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -313,7 +337,7 @@ function ModuleItem({ title, duration }: { title: string, duration?: string }) {
                 <div className="p-4 bg-white border-t border-gray-200">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Play className="w-4 h-4" />
-                        <span>Contenido del módulo...</span>
+                        <span>{en ? 'Module content...' : 'Contenido del módulo...'}</span>
                     </div>
                 </div>
             )}

@@ -21,6 +21,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // La página en inglés se fusionó con la de español: una sola ruta
+        // que sirve ambos idiomas. Permanente: la URL vieja no volverá.
+        source: '/educacion/counter-surveillance',
+        destination: '/en/educacion/contravigilancia',
+        permanent: true,
+      },
+      {
+        source: '/en/educacion/counter-surveillance',
+        destination: '/en/educacion/contravigilancia',
+        permanent: true,
+      },
+      {
         source: '/cursos',
         destination: '/educacion/cursos-presenciales',
         permanent: true, // 301 redirect - preserves SEO

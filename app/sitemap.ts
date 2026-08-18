@@ -83,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/en/educacion/counter-surveillance`,
+            url: `${baseUrl}/en/educacion/contravigilancia`,
             lastModified: courses.find(c => c.id === 'cmiq7oga703zjkvegaq8v1ir4')?.updatedAt || new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,

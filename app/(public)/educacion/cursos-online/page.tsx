@@ -91,7 +91,7 @@ export default async function CursosOnlinePage() {
                             if (lowerTitle.includes('curso de contravigilancia en protección ejecutiva') || lowerTitle.includes('curso de contravigilancia en proteccion ejecutiva')) return '/contravigilancias-pres';
                             if (lowerTitle.includes('team leader')) return '/educacion/team-leader';
                             if (lowerTitle.includes('contravigilancia')) return '/educacion/contravigilancia';
-                            if (lowerTitle.includes('counter surveillance')) return '/educacion/counter-surveillance';
+                            if (lowerTitle.includes('counter surveillance')) return '/educacion/contravigilancia';
                             if (lowerTitle.includes('libro')) return '/educacion/libro';
                             // Specific match for Costa Rica course
                             if (lowerTitle.includes('costa rica')) return '/proteccion-ejecutiva-costa-rica';

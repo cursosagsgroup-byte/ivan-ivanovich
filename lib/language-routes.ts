@@ -7,9 +7,10 @@
  * cambiaba el idioma pero dejaba al visitante en la ruta del otro idioma:
  * textos en español con el vídeo en inglés.
  */
-const ES_A_EN: Record<string, string> = {
-    '/educacion/contravigilancia': '/educacion/counter-surveillance',
-};
+// Vacío desde la fusión de contravigilancia/counter-surveillance: hoy todas
+// las páginas sirven ambos idiomas en la misma ruta. Si alguna vuelve a
+// necesitar página propia por idioma, se registra aquí su pareja.
+const ES_A_EN: Record<string, string> = {};
 
 const EN_A_ES: Record<string, string> = Object.fromEntries(
     Object.entries(ES_A_EN).map(([es, en]) => [en, es])
