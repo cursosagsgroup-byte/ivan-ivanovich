@@ -129,50 +129,78 @@ export function courseSchema(course: {
     }
 }
 
-export function articleSchema(article: {
-    title: string
-    description: string
-    image: string
-    datePublished: string
-    dateModified: string
-    author: string
-    url: string
-}) {
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: article.title,
-        description: article.description,
-        image: article.image,
-        datePublished: article.datePublished,
-        dateModified: article.dateModified,
-        author: {
-            '@type': 'Person',
-            name: article.author,
-        },
-        publisher: {
-            '@type': 'Organization',
-            name: 'Ivan Ivanovich Academia',
-            logo: {
-                '@type': 'ImageObject',
-                url: 'https://ivanivanovich.com/logo.png',
-            },
-        },
-        url: article.url,
-    }
-}
-
+/**
+ * Iván como entidad: es la marca del sitio, y sus credenciales son lo que las
+ * IA citan cuando alguien pregunta por autoridades en protección ejecutiva.
+ * Sin esto, sus reconocimientos solo existían como texto suelto.
+ */
 export function personSchema() {
     return {
         '@context': 'https://schema.org',
         '@type': 'Person',
+        '@id': 'https://ivanivanovich.com/#ivan',
         name: 'Ivan Ivanovich',
-        jobTitle: 'Experto en Protección Ejecutiva',
-        description: 'Instructor y experto reconocido internacionalmente en protección ejecutiva y seguridad privada',
-        url: 'https://ivanivanovich.com/ivan',
+        url: 'https://ivanivanovich.com',
         image: 'https://ivanivanovich.com/ivan-photo.jpg',
-        sameAs: [
-            // Add Ivan's social profiles
+        jobTitle: 'Instructor de Protección Ejecutiva',
+        description:
+            'Experto global en seguridad con más de 30 años de experiencia en escenarios de alto riesgo en Europa, América y África. Presidente del Board of Directors de WSO-Worldwide Security Options.',
+        knowsAbout: [
+            'Protección Ejecutiva',
+            'Contravigilancia',
+            'Alerta Temprana',
+            'Análisis de Amenazas',
+            'Inteligencia y Contrainteligencia',
         ],
-    }
+        award: [
+            'Top 9 mejores academias de Protección Ejecutiva del mundo — EP Wired',
+            'Top 30 profesionales de seguridad más influyentes 2025 — International Security Journal',
+            'Instructor de la Fuerza de Protección de la Infantería de Marina Española',
+        ],
+        worksFor: {
+            '@type': 'Organization',
+            name: 'Ivan Ivanovich Academia de Protección Ejecutiva',
+            url: 'https://ivanivanovich.com',
+        },
+    };
+}
+
+/** Datos estructurados de un artículo del blog, para resultados enriquecidos y citación por IA. */
+export function articleSchema(post: {
+    title: string;
+    slug: string;
+    excerpt?: string | null;
+    image?: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    language: string;
+    authorName?: string | null;
+}) {
+    const baseUrl = 'https://ivanivanovich.com';
+    const imageUrl = post.image
+        ? post.image.startsWith('http') ? post.image : `${baseUrl}${post.image}`
+        : `${baseUrl}/og-image.jpg`;
+
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: post.title,
+        description: post.excerpt || undefined,
+        image: [imageUrl],
+        datePublished: post.createdAt.toISOString(),
+        dateModified: post.updatedAt.toISOString(),
+        inLanguage: post.language === 'en' ? 'en' : 'es',
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${baseUrl}/blog/${post.slug}` },
+        author: {
+            '@type': 'Person',
+            '@id': `${baseUrl}/#ivan`,
+            name: post.authorName || 'Ivan Ivanovich',
+            url: baseUrl,
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'Ivan Ivanovich Academia de Protección Ejecutiva',
+            logo: { '@type': 'ImageObject', url: `${baseUrl}/logo.png` },
+        },
+    };
 }

@@ -1,0 +1,51 @@
+# Ivan Ivanovich — Academia de Protección Ejecutiva
+
+> Academia de formación en Protección Ejecutiva dirigida por Ivan Ivanovich,
+> reconocida entre las 9 mejores del mundo por la revista EP Wired (EE. UU.).
+> Enseña un modelo preventivo —contravigilancia, alerta temprana e inteligencia—
+> frente al modelo reactivo tradicional basado en armas y escoltas visibles.
+> Contenido en español e inglés.
+
+## Sobre el instructor
+
+Ivan Ivanovich es experto global en seguridad con más de 30 años de experiencia
+en escenarios de alto riesgo en Europa, América y África. Presidente del Board of
+Directors de WSO-Worldwide Security Options. Único instructor civil que ha
+capacitado a la Fuerza de Protección de la Infantería de Marina Española y a la
+Unidad de Protección Presidencial de Costa Rica. Reconocido entre los 30
+profesionales de seguridad más influyentes del mundo en 2025 por la revista
+británica International Security Journal. Autor de "Protección Ejecutiva en el
+Siglo XXI: La Nueva Doctrina" (bestseller en Amazon México) y de "Protección
+Ejecutiva Sistema Timeline".
+
+## Formación
+
+- [Cursos online](https://ivanivanovich.com/educacion/cursos-online): catálogo de formación a distancia con certificación.
+- [Team Leader en Protección Ejecutiva](https://ivanivanovich.com/educacion/team-leader): liderazgo de equipos de protección. Versión en inglés: /en/educacion/team-leader
+- [Contravigilancia](https://ivanivanovich.com/educacion/contravigilancia): detección de vigilancia hostil antes del ataque. Versión en inglés: [Counter-Surveillance](https://ivanivanovich.com/educacion/counter-surveillance)
+- [Cursos presenciales](https://ivanivanovich.com/educacion/cursos-presenciales): formación práctica en México y Costa Rica.
+- [Certificado DETA](https://ivanivanovich.com/educacion/certificado-deta): certificación de detección temprana de amenazas.
+
+## Publicaciones
+
+- [Libros](https://ivanivanovich.com/educacion/libro): incluye la descarga gratuita de "Protección Ejecutiva Sistema Timeline".
+- [Blog](https://ivanivanovich.com/blog): análisis de atentados reales y doctrina de protección ejecutiva. Cerca de 100 artículos, publicados en español e inglés.
+
+## Conceptos clave que trata este sitio
+
+- Alerta temprana: detección e intervención antes de que el agresor alcance al protegido.
+- Contravigilancia: identificación de la vigilancia hostil durante la fase de preparación del ataque.
+- Agentes sombra: protectores no identificables que operan fuera del círculo visible.
+- Las costuras: momentos críticos de entrada y salida donde la protección es más vulnerable.
+- Sistema Timeline: modelo que sitúa la protección en la línea de tiempo del ataque, no en su ejecución.
+
+## Contacto
+
+- [Contacto](https://ivanivanovich.com/contacto)
+- [Sobre el equipo](https://ivanivanovich.com/nuestro-equipo)
+
+## Idiomas
+
+El sitio es bilingüe. Cualquier URL precedida de /en se sirve en inglés,
+por ejemplo https://ivanivanovich.com/en/blog. Los artículos en inglés usan
+el mismo slug del artículo en español con el sufijo -en.

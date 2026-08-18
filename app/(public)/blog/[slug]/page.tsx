@@ -11,6 +11,8 @@ interface BlogPostPageProps {
 }
 
 import { Metadata } from 'next';
+import { StructuredData } from '@/components/seo/StructuredData';
+import { articleSchema, personSchema } from '@/lib/seo-utils';
 
 export async function generateStaticParams() {
     const posts = await prisma.blogPost.findMany({
@@ -60,9 +62,32 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
         ? `Read the article "${post.title}" on Ivan Ivanovich Academy.`
         : `Lee el artículo "${post.title}" en Ivan Ivanovich Academy.`;
 
+    // Pareja de idiomas: la versión en inglés es el mismo slug con sufijo -en.
+    // Se comprueba que exista para no declarar un hreflang que apunte a un 404.
+    const slugEs = slug.endsWith('-en') ? slug.slice(0, -3) : slug;
+    const slugEn = `${slugEs}-en`;
+    const gemelo = await prisma.blogPost.findFirst({
+        where: { slug: slug === slugEs ? slugEn : slugEs, published: true },
+        select: { slug: true },
+    });
+
+    const languages: Record<string, string> = {};
+    if (slug === slugEs) {
+        languages['es'] = `${baseUrl}/blog/${slugEs}`;
+        if (gemelo) languages['en'] = `${baseUrl}/blog/${slugEn}`;
+    } else {
+        languages['en'] = `${baseUrl}/blog/${slugEn}`;
+        if (gemelo) languages['es'] = `${baseUrl}/blog/${slugEs}`;
+    }
+    if (languages['es']) languages['x-default'] = languages['es'];
+
     return {
         title: post.title,
         description: post.excerpt || fallbackText,
+        alternates: {
+            canonical: `${baseUrl}/blog/${slug}`,
+            languages,
+        },
         openGraph: {
             title: post.title,
             description: post.excerpt || fallbackText,
@@ -288,6 +313,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     return (
         <div className="bg-white py-24 sm:py-32 blog-page-container">
+            {/* Datos estructurados: sin ellos las IA no ven autor ni fecha del artículo */}
+            <StructuredData data={articleSchema({
+                title: post.title,
+                slug: post.slug,
+                excerpt: post.excerpt,
+                image: post.image,
+                createdAt: post.createdAt,
+                updatedAt: post.updatedAt,
+                language: post.language,
+                authorName: post.author?.name,
+            })} />
+            <StructuredData data={personSchema()} />
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0 mb-10">
                     <Link href="/blog" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
