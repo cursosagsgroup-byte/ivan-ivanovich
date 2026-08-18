@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { setLanguage } from '@/actions/language';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { rutaEnIdioma } from '@/lib/language-routes';
 
 type Language = 'es' | 'en';
 
@@ -21,12 +22,14 @@ export function LanguageProvider({
     initialLanguage?: string;
 }) {
     const [language, setLanguageState] = useState<Language>(initialLanguage as Language);
-    const router = useRouter();
+    const pathname = usePathname();
 
     const switchLanguage = async (lang: Language) => {
         setLanguageState(lang);
         await setLanguage(lang);
-        window.location.reload();
+        // Navegar en vez de recargar: si la página tiene gemela en el otro
+        // idioma hay que ir a ella, y el prefijo /en deja el idioma en la URL.
+        window.location.href = rutaEnIdioma(pathname || '/', lang);
     };
 
     return (
