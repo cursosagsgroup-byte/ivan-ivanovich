@@ -11,7 +11,7 @@
 const BASE = process.argv[2] || 'http://localhost:3000';
 
 const PAGINAS = ['/en', '/en/educacion/cursos-online', '/en/educacion/team-leader',
-    '/en/educacion/counter-surveillance', '/en/blog', '/en/eventos', '/en/contacto',
+    '/en/educacion/contravigilancia', '/en/blog', '/en/eventos', '/en/contacto',
     '/en/educacion/libro', '/en/servicios', '/en/nuestro-equipo'];
 
 const FUGAS = ['Inscribirse', 'Descargar', 'Próximos', 'No hay fechas', '¡Contáctanos',
