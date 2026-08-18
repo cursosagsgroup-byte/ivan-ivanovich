@@ -57,3 +57,6 @@ next-env.d.ts
 
 /app/generated/prisma
 .env*.local
+
+# carpeta de origen de imágenes del blog: las publicadas viven en public/images/blog/
+/Imagen blog
