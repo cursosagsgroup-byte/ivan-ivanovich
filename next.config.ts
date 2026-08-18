@@ -30,6 +30,26 @@ const nextConfig: NextConfig = {
         destination: '/educacion/libro',
         permanent: true, // 301 redirect - preserves SEO
       },
+      // Landings de cursos presenciales ya celebrados. Sus cursos están
+      // despublicados, así que el botón de compra fallaría: se redirige el
+      // tráfico que aún llega desde Google o enlaces antiguos al catálogo.
+      // Redirección temporal (307) a propósito: si se reactiva una edición,
+      // basta con quitar la regla y volver a publicar el curso.
+      {
+        source: '/proteccion-ejecutiva-operatividad-general',
+        destination: '/educacion/cursos-presenciales',
+        permanent: false,
+      },
+      {
+        source: '/alerta-temprana-mexico',
+        destination: '/educacion/cursos-presenciales',
+        permanent: false,
+      },
+      {
+        source: '/proteccion-ejecutiva-costa-rica',
+        destination: '/educacion/cursos-presenciales',
+        permanent: false,
+      },
       // Admin routes were moved to /admin, this redirect handles legacy public access attempt
     ];
   },

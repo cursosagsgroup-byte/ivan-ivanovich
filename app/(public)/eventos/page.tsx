@@ -7,18 +7,18 @@ import { useTranslation } from '@/hooks/useTranslation';
 export default function EventsPage() {
     const { t } = useTranslation();
 
-    const events = [
-        {
-            id: 'proteccion-ejecutiva',
-            title: 'Protección Ejecutiva, Operatividad General y Logística Protectiva',
-            date: '24 y 25 de Febrero, 2026',
-            location: 'Ciudad de México, CDMX',
-            image: '/images/landing-pe/feature-section.jpg',
-            price: '$14,600 MXN + IVA',
-            link: '/proteccion-ejecutiva-operatividad-general',
-            status: 'Cupo Limitado'
-        }
-    ];
+    // Al anunciar una nueva edición presencial, se añade aquí. La página ya
+    // muestra un aviso propio cuando la lista está vacía.
+    const events: {
+        id: string;
+        title: string;
+        date: string;
+        location: string;
+        image: string;
+        price: string;
+        link: string;
+        status: string;
+    }[] = [];
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -33,6 +33,31 @@ export default function EventsPage() {
                         Capacitaciones presenciales de alto nivel, certificaciones y seminarios exclusivos para profesionales de la seguridad.
                     </p>
                 </div>
+
+                {events.length === 0 && (
+                    <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-white p-10 text-center">
+                        <p className="text-lg font-semibold text-gray-900 mb-2">
+                            No hay fechas presenciales abiertas en este momento.
+                        </p>
+                        <p className="text-gray-600 mb-6">
+                            Estamos preparando las próximas convocatorias. Mientras tanto, puedes formarte desde donde estés.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                            <Link
+                                href="/educacion/cursos-online"
+                                className="inline-block rounded-full bg-[#B70126] px-8 py-3 font-bold uppercase text-white transition-colors hover:bg-[#D9012D]"
+                            >
+                                Ver cursos online
+                            </Link>
+                            <Link
+                                href="/contacto"
+                                className="inline-block rounded-full border-2 border-gray-300 px-8 py-3 font-bold uppercase text-gray-800 transition-colors hover:border-gray-800"
+                            >
+                                Avísenme de la próxima fecha
+                            </Link>
+                        </div>
+                    </div>
+                )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {events.map((event) => (
