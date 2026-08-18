@@ -113,6 +113,45 @@ export default withAuth(
             return response;
         }
 
+        // Primera visita sin preferencia: se deduce el idioma del navegador
+        // (Accept-Language) y, si este no dice nada, del país de la IP que
+        // reporta Vercel. Solo para personas: los rastreadores reciben siempre
+        // el español por defecto, y el hreflang les señala la versión /en.
+        // Un clic en ES|EN o un enlace /en pisan esta deducción.
+        const yaTienePreferencia = req.cookies.get('NEXT_LOCALE');
+        const esNavegacion = req.headers.get('sec-fetch-dest') !== 'image';
+        const userAgent = (req.headers.get('user-agent') || '').toLowerCase();
+        const esBot = /bot|crawl|spider|slurp|bingpreview|facebookexternalhit|whatsapp|telegram|preview/.test(userAgent);
+
+        if (!yaTienePreferencia && esNavegacion && !esBot) {
+            const acceptLanguage = (req.headers.get('accept-language') || '').toLowerCase();
+            const primerIdioma = acceptLanguage.split(',')[0] || '';
+
+            let idioma: 'es' | 'en' | null = null;
+            if (primerIdioma.startsWith('es')) idioma = 'es';
+            else if (primerIdioma.startsWith('en')) idioma = 'en';
+            else if (!acceptLanguage) {
+                // Navegador mudo: país de la IP como respaldo
+                const pais = req.headers.get('x-vercel-ip-country') || '';
+                const PAISES_EN = ['US', 'GB', 'CA', 'AU', 'NZ', 'IE'];
+                if (PAISES_EN.includes(pais)) idioma = 'en';
+            }
+
+            if (idioma === 'en') {
+                // Renderizar YA esta petición en inglés y recordar la elección
+                const requestHeaders = new Headers(req.headers);
+                requestHeaders.set('x-locale', 'en');
+                const response = NextResponse.next({ request: { headers: requestHeaders } });
+                response.cookies.set('NEXT_LOCALE', 'en', { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' });
+                return response;
+            }
+            if (idioma === 'es') {
+                const response = NextResponse.next();
+                response.cookies.set('NEXT_LOCALE', 'es', { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' });
+                return response;
+            }
+        }
+
         if (pathname === '/es' || pathname.startsWith('/es/')) {
             const destino = pathname.replace(/^\/es/, '') || '/';
             const url = new URL(destino, req.url);
@@ -143,9 +182,13 @@ export default withAuth(
             return null
         }
 
-        const isPublicPage = isAuthPage || pathname.startsWith('/checkout')
+        // El middleware ahora corre en todo el sitio (para la detección de
+        // idioma), así que lo protegido se declara explícitamente en vez de
+        // asumir que todo lo que llega aquí lo es.
+        const RUTAS_PROTEGIDAS = ['/dashboard', '/mi-cuenta', '/profile', '/certificates', '/admin'];
+        const esProtegida = RUTAS_PROTEGIDAS.some(r => pathname === r || pathname.startsWith(`${r}/`));
 
-        if (!isAuth && !isPublicPage) {
+        if (!isAuth && esProtegida) {
             let from = pathname;
             if (req.nextUrl.search) {
                 from += req.nextUrl.search;
@@ -176,20 +219,10 @@ export default withAuth(
 )
 
 export const config = {
+    // Todo el sitio salvo API, archivos generados y estáticos: hace falta en
+    // cada página para detectar el idioma de la primera visita. La protección
+    // de rutas se decide dentro con RUTAS_PROTEGIDAS.
     matcher: [
-        // Rutas protegidas
-        "/dashboard/:path*",
-        "/mi-cuenta/:path*",
-        "/profile/:path*",
-        "/certificates/:path*",
-        "/login",
-        "/register",
-        "/admin/:path*",
-        // Checkout: para limpiar cookies infladas antes de que ocurra el 494
-        "/checkout",
-        "/checkout/:path*",
-        // Legacy language paths
-        "/es/:path*",
-        "/en/:path*",
+        "/((?!api|_next|favicon\\.ico|robots\\.txt|sitemap\\.xml|llms\\.txt|.*\\.[a-zA-Z0-9]+$).*)",
     ]
 }
