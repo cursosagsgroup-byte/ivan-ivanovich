@@ -9,7 +9,7 @@ export async function GET(
         const { courseId } = await params;
 
         const course = await prisma.course.findUnique({
-            where: { id: courseId, published: true },
+            where: { id: courseId, published: true, soldOut: false },
             select: {
                 id: true,
                 title: true,

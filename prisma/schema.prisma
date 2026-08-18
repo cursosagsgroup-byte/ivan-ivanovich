@@ -76,6 +76,9 @@ model Course {
   image       String?
   language    String       @default("es")
   published   Boolean      @default(false)
+  /// Edición ya celebrada o sin cupo: sigue visible en el catálogo como prueba
+  /// social, al final de la lista y sin posibilidad de compra.
+  soldOut     Boolean      @default(false)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   cartItems   CartItem[]

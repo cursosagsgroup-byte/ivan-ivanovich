@@ -156,6 +156,15 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: `Course not found: ${item.courseId}` }, { status: 400 });
             }
 
+            // Las ediciones terminadas siguen visibles como prueba social, pero
+            // no se pueden comprar aunque alguien fuerce la petición.
+            if (course.soldOut) {
+                return NextResponse.json(
+                    { error: `Esta edición ya finalizó: ${course.title}` },
+                    { status: 400 }
+                );
+            }
+
             let price = course.price;
             // SI LLEVA EL PRESENCIAL, EL DIGITAL ES GRATIS
             if (course.id === 'cmio13v7u000164w1bhkqj8ej') {

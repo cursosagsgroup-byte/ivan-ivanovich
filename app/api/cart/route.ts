@@ -76,6 +76,18 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'User not found' }, { status: 404 });
         }
 
+        // Las ediciones terminadas no se pueden añadir al carrito.
+        const curso = await prisma.course.findUnique({
+            where: { id: courseId },
+            select: { soldOut: true, title: true },
+        });
+        if (curso?.soldOut) {
+            return NextResponse.json(
+                { error: `Esta edición ya finalizó: ${curso.title}` },
+                { status: 400 }
+            );
+        }
+
         // Check if already enrolled
         const enrollment = await prisma.enrollment.findUnique({
             where: {

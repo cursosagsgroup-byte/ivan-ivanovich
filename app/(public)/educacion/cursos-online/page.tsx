@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Star, Clock, Users, Award } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
+import CourseWaitlistButton from '@/components/course/CourseWaitlistButton';
 import { prisma } from '@/lib/prisma';
 import { cookies } from 'next/headers';
 import { getLocale } from '@/lib/get-locale';
@@ -9,7 +10,12 @@ import { translations } from '@/lib/translations';
 import { COSTA_RICA_COURSE_ID } from '@/lib/course-constants';
 
 // Usa <a> para archivos estáticos (.html en /public) y <Link> para rutas de Next.
-function CourseLink({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) {
+// Con `disabled` no enlaza: las ediciones terminadas tienen su landing retirada,
+// así que la tarjeta se queda como está en vez de llevar a un callejón.
+function CourseLink({ href, className, children, disabled }: { href: string; className?: string; children: React.ReactNode; disabled?: boolean }) {
+    if (disabled) {
+        return <div className={className}>{children}</div>;
+    }
     if (href.endsWith('.html')) {
         return <a href={href} className={className}>{children}</a>;
     }
@@ -27,9 +33,12 @@ export default async function CursosOnlinePage() {
             published: true,
             language: locale,
         },
-        orderBy: {
-            createdAt: 'desc',
-        },
+        orderBy: [
+            // Las ediciones terminadas van al final: siguen visibles como prueba
+            // social y anclaje de precio, pero no compiten con lo que sí se vende.
+            { soldOut: 'asc' },
+            { createdAt: 'desc' },
+        ],
     });
     return (
         <div className="bg-white min-h-screen pt-24">
@@ -105,12 +114,19 @@ export default async function CursosOnlinePage() {
                             >
                                 {/* Course Image */}
                                 <div className="aspect-video w-full overflow-hidden bg-gray-100 relative">
-                                    <CourseLink href={courseLink} className="block w-full h-full">
+                                    {course.soldOut && (
+                                        <div className="absolute inset-x-0 top-0 z-10 bg-[#B70126] py-2 text-center">
+                                            <span className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+                                                {locale === 'es' ? 'Agotado · Edición terminada' : 'Sold out · Past edition'}
+                                            </span>
+                                        </div>
+                                    )}
+                                    <CourseLink href={courseLink} disabled={course.soldOut} className="block w-full h-full">
                                         {course.image ? (
                                             <img
                                                 src={course.image}
                                                 alt={course.title}
-                                                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                className={`h-full w-full object-cover transition-transform duration-300 ${course.soldOut ? 'grayscale opacity-70' : 'group-hover:scale-105'}`}
                                             />
                                         ) : (
                                             <div className="h-full w-full flex items-center justify-center text-gray-400">
@@ -123,8 +139,8 @@ export default async function CursosOnlinePage() {
                                 {/* Course Content */}
                                 <div className="p-6">
                                     {/* Title */}
-                                    <h3 className="text-xl font-bold text-black mb-2 group-hover:text-[#B70126] transition-colors">
-                                        <CourseLink href={courseLink}>
+                                    <h3 className={`text-xl font-bold mb-2 transition-colors ${course.soldOut ? "text-gray-700" : "text-black group-hover:text-[#B70126]"}`}>
+                                        <CourseLink href={courseLink} disabled={course.soldOut}>
                                             {course.title}
                                         </CourseLink>
                                     </h3>
@@ -148,20 +164,24 @@ export default async function CursosOnlinePage() {
                                     {/* Price and CTA */}
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <span className="text-3xl font-bold text-black">${course.price.toFixed(2)}</span>
+                                            <span className={`text-3xl font-bold ${course.soldOut ? 'text-gray-400 line-through' : 'text-black'}`}>${course.price.toFixed(2)}</span>
                                             <span className="text-gray-600 text-sm ml-2">
                                                 {course.id === COSTA_RICA_COURSE_ID ? 'USD' : 'MXN'}
                                             </span>
                                         </div>
-                                        <AddToCartButton
-                                            course={{
-                                                id: course.id,
-                                                title: course.title,
-                                                price: course.price,
-                                                image: course.image || ''
-                                            }}
-                                            className="rounded-md px-6 py-2.5 text-sm shadow-sm"
-                                        />
+                                        {course.soldOut ? (
+                                            <CourseWaitlistButton courseTitle={course.title} locale={locale as 'es' | 'en'} />
+                                        ) : (
+                                            <AddToCartButton
+                                                course={{
+                                                    id: course.id,
+                                                    title: course.title,
+                                                    price: course.price,
+                                                    image: course.image || ''
+                                                }}
+                                                className="rounded-md px-6 py-2.5 text-sm shadow-sm"
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             </div>
