@@ -6,6 +6,7 @@ import PublicFooter from '@/components/public/PublicFooter';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { prisma } from '@/lib/prisma';
 import { cookies } from 'next/headers';
+import { getLocale } from '@/lib/get-locale';
 import { translations } from '@/lib/translations';
 import ModuleList from './ModuleList';
 
@@ -20,7 +21,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
     console.log(`[INFO] Rendering course page for ID: ${id}`);
 
     const cookieStore = await cookies();
-    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    const locale = await getLocale();
     const t = translations[locale as 'es' | 'en'] || translations.es; // Fallback to 'es' safety
 
     try {

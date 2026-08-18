@@ -84,24 +84,46 @@ export default withAuth(
             return NextResponse.redirect(newUrl);
         }
 
-        // SEO Redirects para rutas /es y /en legacy
-        if (pathname.startsWith('/es') || pathname.startsWith('/en')) {
-            const locale = pathname.startsWith('/es') ? 'es' : 'en';
-            let newPath = pathname.replace(/^\/(es|en)/, '');
-            if (!newPath) newPath = '/';
+        // Rutas por idioma.
+        //
+        // /en/...  se REESCRIBE (no se redirige): la URL permanece en la barra
+        // de direcciones y devuelve 200, así Google puede indexarla como la
+        // versión en inglés y el hreflang tiene a dónde apuntar. Antes redirigía
+        // a la ruta sin prefijo, de modo que el idioma solo vivía en una cookie
+        // y un enlace compartido llegaba en español.
+        //
+        // /es/...  se sigue redirigiendo: el español es el idioma por defecto y
+        // ya se sirve en la ruta limpia; mantener las dos crearía duplicados.
+        if (pathname === '/en' || pathname.startsWith('/en/')) {
+            const destino = pathname.replace(/^\/en/, '') || '/';
+            const url = new URL(destino, req.url);
+            url.search = req.nextUrl.search;
 
-            const url = new URL(newPath, req.url);
+            // La cabecera le dice al servidor en qué idioma renderizar esta
+            // petición, sin depender de que la cookie ya esté puesta.
+            const requestHeaders = new Headers(req.headers);
+            requestHeaders.set('x-locale', 'en');
+
+            const response = NextResponse.rewrite(url, { request: { headers: requestHeaders } });
+            response.cookies.set('NEXT_LOCALE', 'en', {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 365,
+                sameSite: 'lax'
+            });
+            return response;
+        }
+
+        if (pathname === '/es' || pathname.startsWith('/es/')) {
+            const destino = pathname.replace(/^\/es/, '') || '/';
+            const url = new URL(destino, req.url);
             url.search = req.nextUrl.search;
 
             const response = NextResponse.redirect(url);
-            const currentLocale = req.cookies.get('NEXT_LOCALE')?.value;
-            if (currentLocale !== locale) {
-                response.cookies.set('NEXT_LOCALE', locale, {
-                    path: '/',
-                    maxAge: 60 * 60 * 24 * 365,
-                    sameSite: 'lax'
-                });
-            }
+            response.cookies.set('NEXT_LOCALE', 'es', {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 365,
+                sameSite: 'lax'
+            });
             return response;
         }
 

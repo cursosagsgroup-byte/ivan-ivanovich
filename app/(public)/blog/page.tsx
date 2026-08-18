@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { cookies } from 'next/headers';
+import { getLocale } from '@/lib/get-locale';
 import { translations } from '@/lib/translations';
 import Pagination from '@/components/ui/Pagination';
 import BlogSearch from '@/components/blog/BlogSearch';
@@ -9,7 +10,7 @@ import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
     const cookieStore = await cookies();
-    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    const locale = await getLocale();
     
     if (locale === 'en') {
         return {
@@ -41,7 +42,7 @@ export default async function BlogIndexPage({
 }) {
     const resolvedSearchParams = await searchParams;
     const cookieStore = await cookies();
-    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    const locale = await getLocale();
     const t = translations[locale as 'es' | 'en'];
 
     // Pagination and Search parameters

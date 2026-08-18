@@ -44,6 +44,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     ]
 
+    // Versión en inglés de las páginas fijas. Desde que /en se sirve con 200
+    // (antes redirigía), son URLs indexables por derecho propio y el hreflang
+    // de cada página apunta a ellas, así que deben figurar en el sitemap.
+    const staticPagesEn: MetadataRoute.Sitemap = staticPages.map((page) => ({
+        ...page,
+        url: page.url === baseUrl ? `${baseUrl}/en` : page.url.replace(baseUrl, `${baseUrl}/en`),
+        priority: typeof page.priority === 'number' ? Math.max(page.priority - 0.1, 0.1) : undefined,
+    }))
+
     // Dynamic course pages
     const courses = await prisma.course.findMany({
         select: {
@@ -99,5 +108,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }))
 
-    return [...staticPages, ...coursePages, ...blogPages]
+    return [...staticPages, ...staticPagesEn, ...coursePages, ...blogPages]
 }

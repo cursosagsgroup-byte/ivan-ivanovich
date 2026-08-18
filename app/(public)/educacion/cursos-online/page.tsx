@@ -4,6 +4,7 @@ import { Star, Clock, Users, Award } from 'lucide-react';
 import AddToCartButton from '@/components/cart/AddToCartButton';
 import { prisma } from '@/lib/prisma';
 import { cookies } from 'next/headers';
+import { getLocale } from '@/lib/get-locale';
 import { translations } from '@/lib/translations';
 import { COSTA_RICA_COURSE_ID } from '@/lib/course-constants';
 
@@ -17,7 +18,7 @@ function CourseLink({ href, className, children }: { href: string; className?: s
 
 export default async function CursosOnlinePage() {
     const cookieStore = await cookies();
-    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    const locale = await getLocale();
     const t = translations[locale as 'es' | 'en'];
 
     // Fetch published courses from database filtered by language

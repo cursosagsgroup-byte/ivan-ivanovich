@@ -7,6 +7,7 @@ import { CartProvider } from '@/lib/cart-context';
 import CartSlidePanel from '@/components/cart/CartSlidePanel';
 import { LanguageProvider } from '@/components/providers/LanguageProvider';
 import { cookies } from 'next/headers';
+import { getLocale, localeFromUrl } from '@/lib/get-locale';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
@@ -28,8 +29,7 @@ const bebasNeue = Bebas_Neue({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-    const cookieStore = await cookies();
-    const locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    const locale = await getLocale();
 
     const baseMetadata: Metadata = {
         metadataBase: new URL('https://ivanivanovich.com'),
@@ -131,18 +131,22 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const cookieStore = await cookies();
-    let locale = cookieStore.get('NEXT_LOCALE')?.value || 'es';
+    let locale: string = await getLocale();
+    const idiomaEnLaUrl = await localeFromUrl();
 
-    // If user is logged in, use their language preference
-    const session = await getServerSession(authOptions);
-    if (session?.user?.email) {
-        const user = await prisma.user.findUnique({
-            where: { email: session.user.email },
-            select: { language: true },
-        });
-        if (user?.language) {
-            locale = user.language;
+    // La preferencia guardada del usuario solo se aplica si la URL no impone
+    // idioma: si alguien abre un enlace /en/... debe verlo en inglés aunque
+    // tenga el perfil en español.
+    if (!idiomaEnLaUrl) {
+        const session = await getServerSession(authOptions);
+        if (session?.user?.email) {
+            const user = await prisma.user.findUnique({
+                where: { email: session.user.email },
+                select: { language: true },
+            });
+            if (user?.language) {
+                locale = user.language;
+            }
         }
     }
 

@@ -58,6 +58,14 @@ export function generateMetadata({
         },
         alternates: {
             canonical: fullUrl,
+            // El sitio sirve la misma ruta en español y, con prefijo /en, en
+            // inglés. Declararlo evita que Google trate ambas como duplicados
+            // y le permite servir cada idioma a quien corresponde.
+            languages: {
+                es: fullUrl,
+                en: url ? `${baseUrl}/en${url}` : `${baseUrl}/en`,
+                'x-default': fullUrl,
+            },
         },
     }
 

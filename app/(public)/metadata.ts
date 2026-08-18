@@ -19,6 +19,14 @@ export const metadata: Metadata = {
         type: 'website',
         images: ['/og-image.jpg'],
     },
+    alternates: {
+        canonical: 'https://ivanivanovich.com',
+        languages: {
+            es: 'https://ivanivanovich.com',
+            en: 'https://ivanivanovich.com/en',
+            'x-default': 'https://ivanivanovich.com',
+        },
+    },
 };
 
 export const homeSchema = organizationSchema();

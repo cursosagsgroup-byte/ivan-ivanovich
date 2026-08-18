@@ -1,5 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { getLocale } from '@/lib/get-locale';
 import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { translations, Language } from '@/lib/translations';
@@ -118,7 +119,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const { slug } = await params;
 
     const cookieStore = await cookies();
-    const locale = (cookieStore.get('NEXT_LOCALE')?.value || 'es') as Language;
+    const locale = (await getLocale()) as Language;
     const t = translations[locale];
 
     const post = await prisma.blogPost.findUnique({
