@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function EventsPage() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
+    const en = language === 'en';
 
     // Al anunciar una nueva edición presencial, se añade aquí. La página ya
     // muestra un aviso propio cuando la lista está vacía.
@@ -27,33 +28,33 @@ export default function EventsPage() {
             <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 uppercase" style={{ fontFamily: 'var(--font-bebas)' }}>
-                        Próximos <span className="text-[#B70126]">Eventos</span>
+                        {en ? <>Upcoming <span className="text-[#B70126]">Events</span></> : <>Próximos <span className="text-[#B70126]">Eventos</span></>}
                     </h1>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Capacitaciones presenciales de alto nivel, certificaciones y seminarios exclusivos para profesionales de la seguridad.
+                        {en ? 'High-level in-person training, certifications and exclusive seminars for security professionals.' : 'Capacitaciones presenciales de alto nivel, certificaciones y seminarios exclusivos para profesionales de la seguridad.'}
                     </p>
                 </div>
 
                 {events.length === 0 && (
                     <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-white p-10 text-center">
                         <p className="text-lg font-semibold text-gray-900 mb-2">
-                            No hay fechas presenciales abiertas en este momento.
+                            {en ? 'There are no in-person dates open at the moment.' : 'No hay fechas presenciales abiertas en este momento.'}
                         </p>
                         <p className="text-gray-600 mb-6">
-                            Estamos preparando las próximas convocatorias. Mientras tanto, puedes formarte desde donde estés.
+                            {en ? 'We are preparing the next editions. In the meantime, you can train from wherever you are.' : 'Estamos preparando las próximas convocatorias. Mientras tanto, puedes formarte desde donde estés.'}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
                             <Link
                                 href="/educacion/cursos-online"
                                 className="inline-block rounded-full bg-[#B70126] px-8 py-3 font-bold uppercase text-white transition-colors hover:bg-[#D9012D]"
                             >
-                                Ver cursos online
+                                {en ? 'View online courses' : 'Ver cursos online'}
                             </Link>
                             <Link
                                 href="/contacto"
                                 className="inline-block rounded-full border-2 border-gray-300 px-8 py-3 font-bold uppercase text-gray-800 transition-colors hover:border-gray-800"
                             >
-                                Avísenme de la próxima fecha
+                                {en ? 'Notify me of the next date' : 'Avísenme de la próxima fecha'}
                             </Link>
                         </div>
                     </div>

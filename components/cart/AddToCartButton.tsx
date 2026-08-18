@@ -1,6 +1,7 @@
 'use client';
 
 import { useCart } from '@/lib/cart-context';
+import { useLanguage } from '@/components/providers/LanguageProvider';
 import { ShoppingCart, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -15,7 +16,10 @@ interface AddToCartButtonProps {
     label?: string;
 }
 
-export default function AddToCartButton({ course, className = '', label = 'Inscribirse' }: AddToCartButtonProps) {
+export default function AddToCartButton({ course, className = '', label }: AddToCartButtonProps) {
+    const { language } = useLanguage();
+    // Etiqueta por idioma salvo que quien lo usa pase una propia.
+    const textoBoton = label ?? (language === 'en' ? 'Enroll' : 'Inscribirse');
     const { addToCart, items, isLoading } = useCart();
     const [isInCart, setIsInCart] = useState(false);
 
@@ -59,7 +63,7 @@ export default function AddToCartButton({ course, className = '', label = 'Inscr
             ) : (
                 <>
                     <ShoppingCart className="w-5 h-5" />
-                    {label}
+                    {textoBoton}
                 </>
             )}
         </button>
