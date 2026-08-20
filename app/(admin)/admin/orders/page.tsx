@@ -3,7 +3,9 @@ import { prisma } from '@/lib/prisma';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ShoppingBag, Search, Filter, ArrowLeft } from 'lucide-react';
+import { ShoppingBag, ArrowLeft } from 'lucide-react';
+import { Prisma } from '@prisma/client';
+import OrdersFilters from '@/components/admin/OrdersFilters';
 
 export const metadata: Metadata = {
     title: 'Pedidos (Orders) | Keting Media Admin',
@@ -12,9 +14,57 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function OrdersPage() {
-    const orders = await prisma.order.findMany({
-        include: {
+type Busqueda = {
+    producto?: string;
+    estado?: string;
+    desde?: string;
+    hasta?: string;
+    q?: string;
+};
+
+export default async function OrdersPage({
+    searchParams,
+}: {
+    searchParams: Promise<Busqueda>;
+}) {
+    const filtros = await searchParams;
+
+    // Los filtros se combinan: producto Y estado Y rango de fechas Y búsqueda.
+    const where: Prisma.OrderWhereInput = {};
+
+    if (filtros.producto) {
+        where.items = { some: { courseId: filtros.producto } };
+    }
+
+    if (filtros.estado) {
+        where.status = filtros.estado;
+    }
+
+    if (filtros.desde || filtros.hasta) {
+        const rango: Prisma.DateTimeFilter = {};
+        if (filtros.desde) rango.gte = new Date(`${filtros.desde}T00:00:00`);
+        // El día "hasta" se incluye entero: hasta las 23:59:59 de esa fecha.
+        if (filtros.hasta) rango.lte = new Date(`${filtros.hasta}T23:59:59.999`);
+        where.createdAt = rango;
+    }
+
+    if (filtros.q) {
+        const texto = filtros.q.trim();
+        where.OR = [
+            { orderNumber: { contains: texto, mode: 'insensitive' } },
+            { billingName: { contains: texto, mode: 'insensitive' } },
+            { billingEmail: { contains: texto, mode: 'insensitive' } },
+            { user: { name: { contains: texto, mode: 'insensitive' } } },
+            { user: { email: { contains: texto, mode: 'insensitive' } } },
+        ];
+    }
+
+    // Solo se ofrecen en el desplegable los cursos que tienen algún pedido:
+    // filtrar por uno sin ventas devolvería siempre una tabla vacía.
+    const [orders, cursos, totalSinFiltrar] = await Promise.all([
+        prisma.order.findMany({
+            where,
+            include: {
             user: {
                 select: {
                     name: true,
@@ -31,10 +81,20 @@ export default async function OrdersPage() {
                 },
             },
         },
-        orderBy: {
-            createdAt: 'desc',
-        },
-    });
+            orderBy: {
+                createdAt: 'desc',
+            },
+        }),
+        prisma.course.findMany({
+            where: { orderItems: { some: {} } },
+            select: { id: true, title: true },
+            orderBy: { title: 'asc' },
+        }),
+        prisma.order.count(),
+    ]);
+
+    const hayFiltros = Boolean(filtros.producto || filtros.estado || filtros.desde || filtros.hasta || filtros.q);
+    const sumaTotal = orders.reduce((suma, o) => suma + o.total, 0);
 
     return (
         <div className="p-6">
@@ -48,17 +108,23 @@ export default async function OrdersPage() {
                         Pedidos
                     </h1>
                 </div>
-                {/* Search/Filter placeholders for future enhancement */}
-                <div className="flex gap-2">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <input
-                            type="text"
-                            placeholder="Buscar pedido..."
-                            className="pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-black focus:border-transparent"
-                        />
-                    </div>
-                </div>
+            </div>
+
+            <OrdersFilters cursos={cursos} />
+
+            <div className="flex items-baseline justify-between mb-3 px-1">
+                <p className="text-sm text-gray-600">
+                    {hayFiltros ? (
+                        <>Mostrando <strong className="text-gray-900">{orders.length}</strong> de {totalSinFiltrar} pedidos</>
+                    ) : (
+                        <><strong className="text-gray-900">{orders.length}</strong> pedidos</>
+                    )}
+                </p>
+                {orders.length > 0 && (
+                    <p className="text-sm text-gray-600">
+                        Suma: <strong className="text-gray-900">${sumaTotal.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+                    </p>
+                )}
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -79,7 +145,9 @@ export default async function OrdersPage() {
                             {orders.length === 0 ? (
                                 <tr>
                                     <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
-                                        No hay pedidos registrados.
+                                        {hayFiltros
+                                            ? 'Ningún pedido coincide con estos filtros.'
+                                            : 'No hay pedidos registrados.'}
                                     </td>
                                 </tr>
                             ) : (
