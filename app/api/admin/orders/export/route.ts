@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
     const pedidos = await prisma.order.findMany({
         where,
         include: {
-            user: { select: { name: true, email: true } },
+            user: { select: { name: true, email: true, phone: true } },
             items: { include: { course: { select: { title: true } } } },
             payment: { select: { gateway: true, transactionId: true } },
         },
@@ -59,7 +59,8 @@ export async function GET(req: NextRequest) {
             fecha.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }),
             o.billingName || o.user.name || '',
             o.billingEmail || o.user.email || '',
-            o.billingPhone || '',
+            // Respaldo en la cuenta: los pedidos previos no guardaban teléfono.
+            o.billingPhone || o.user.phone || '',
             o.items.map((i) => i.course.title).join(' | '),
             ESTADOS[o.status.toLowerCase()] || o.status,
             o.paymentMethod || '',

@@ -41,6 +41,7 @@ export default async function OrdersPage({
                 select: {
                     name: true,
                     email: true,
+                    phone: true,
                 },
             },
             items: {
@@ -107,6 +108,7 @@ export default async function OrdersPage({
                                 <th className="px-6 py-4 font-semibold text-gray-700">Pedido</th>
                                 <th className="px-6 py-4 font-semibold text-gray-700">Cliente</th>
                                 <th className="px-6 py-4 font-semibold text-gray-700">Email</th>
+                                <th className="px-6 py-4 font-semibold text-gray-700">Teléfono</th>
                                 <th className="px-6 py-4 font-semibold text-gray-700">Productos</th>
                                 <th className="px-6 py-4 font-semibold text-gray-700">Fecha</th>
                                 <th className="px-6 py-4 font-semibold text-gray-700">Estado</th>
@@ -116,7 +118,7 @@ export default async function OrdersPage({
                         <tbody className="divide-y divide-gray-200">
                             {orders.length === 0 ? (
                                 <tr>
-                                    <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                                    <td colSpan={8} className="px-6 py-8 text-center text-gray-500">
                                         {hayFiltros
                                             ? 'Ningún pedido coincide con estos filtros.'
                                             : 'No hay pedidos registrados.'}
@@ -133,6 +135,19 @@ export default async function OrdersPage({
                                         </td>
                                         <td className="px-6 py-4 text-gray-600">
                                             {order.user.email}
+                                        </td>
+                                        <td className="px-6 py-4 text-gray-600 whitespace-nowrap">
+                                            {(() => {
+                                                // Los pedidos anteriores no guardaban el teléfono; se
+                                                // recupera de la cuenta del cliente, que sí lo tiene.
+                                                const tel = order.billingPhone || order.user.phone;
+                                                if (!tel) return <span className="text-gray-300">—</span>;
+                                                return (
+                                                    <a href={`https://wa.me/${tel.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-green-600 hover:underline">
+                                                        {tel}
+                                                    </a>
+                                                );
+                                            })()}
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col gap-1">

@@ -75,6 +75,10 @@ export async function POST(req: Request) {
         const session = await getServerSession(authOptions);
         const body = await req.json();
         const { items, billingDetails, couponCode } = body;
+        // El teléfono llega del checkout y se guardaba solo en la cuenta del
+        // cliente; el pedido quedaba sin él. Se toma aquí, fuera del bloque de
+        // alta de usuario, para poder registrarlo también en la orden.
+        const telefonoComprador: string | undefined = body.phone || billingDetails?.phone || undefined;
 
         if (!items || items.length === 0) {
             return NextResponse.json({ error: 'No items in order' }, { status: 400 });
@@ -272,6 +276,7 @@ export async function POST(req: Request) {
                 paymentMethod: isFreeOrder ? 'free' : 'stripe',
                 billingName: `${billingDetails.firstName} ${billingDetails.lastName}`,
                 billingEmail: billingDetails.email,
+                billingPhone: telefonoComprador,
                 couponId,
                 discountTotal: discount,
                 items: {
