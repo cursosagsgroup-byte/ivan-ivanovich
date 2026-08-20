@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, useState, useTransition } from 'react';
-import { Search, X, Loader2 } from 'lucide-react';
+import { Search, X, Loader2, Download } from 'lucide-react';
 
 type Curso = { id: string; title: string };
 
@@ -129,6 +129,15 @@ export default function OrdersFilters({ cursos }: { cursos: Curso[] }) {
                         Limpiar
                     </button>
                 )}
+
+                {/* Descarga los pedidos que cumplen los filtros actuales, no todos */}
+                <a
+                    href={`/api/admin/orders/export${searchParams.toString() ? `?${searchParams.toString()}` : ''}`}
+                    className="flex items-center gap-1.5 px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
+                >
+                    <Download className="w-4 h-4" />
+                    Exportar CSV
+                </a>
 
                 {pendiente && <Loader2 className="w-4 h-4 animate-spin text-gray-400 mb-2.5" />}
             </div>

@@ -4,8 +4,8 @@ import { prisma } from '@/lib/prisma';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ShoppingBag, ArrowLeft } from 'lucide-react';
-import { Prisma } from '@prisma/client';
 import OrdersFilters from '@/components/admin/OrdersFilters';
+import { construirFiltroPedidos, hayFiltrosActivos } from '@/lib/order-filters';
 
 export const metadata: Metadata = {
     title: 'Pedidos (Orders) | Keting Media Admin',
@@ -29,35 +29,7 @@ export default async function OrdersPage({
 }) {
     const filtros = await searchParams;
 
-    // Los filtros se combinan: producto Y estado Y rango de fechas Y búsqueda.
-    const where: Prisma.OrderWhereInput = {};
-
-    if (filtros.producto) {
-        where.items = { some: { courseId: filtros.producto } };
-    }
-
-    if (filtros.estado) {
-        where.status = filtros.estado;
-    }
-
-    if (filtros.desde || filtros.hasta) {
-        const rango: Prisma.DateTimeFilter = {};
-        if (filtros.desde) rango.gte = new Date(`${filtros.desde}T00:00:00`);
-        // El día "hasta" se incluye entero: hasta las 23:59:59 de esa fecha.
-        if (filtros.hasta) rango.lte = new Date(`${filtros.hasta}T23:59:59.999`);
-        where.createdAt = rango;
-    }
-
-    if (filtros.q) {
-        const texto = filtros.q.trim();
-        where.OR = [
-            { orderNumber: { contains: texto, mode: 'insensitive' } },
-            { billingName: { contains: texto, mode: 'insensitive' } },
-            { billingEmail: { contains: texto, mode: 'insensitive' } },
-            { user: { name: { contains: texto, mode: 'insensitive' } } },
-            { user: { email: { contains: texto, mode: 'insensitive' } } },
-        ];
-    }
+    const where = construirFiltroPedidos(filtros);
 
     // Solo se ofrecen en el desplegable los cursos que tienen algún pedido:
     // filtrar por uno sin ventas devolvería siempre una tabla vacía.
@@ -93,7 +65,7 @@ export default async function OrdersPage({
         prisma.order.count(),
     ]);
 
-    const hayFiltros = Boolean(filtros.producto || filtros.estado || filtros.desde || filtros.hasta || filtros.q);
+    const hayFiltros = hayFiltrosActivos(filtros);
     const sumaTotal = orders.reduce((suma, o) => suma + o.total, 0);
 
     return (
