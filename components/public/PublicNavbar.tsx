@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Menu, X, ChevronDown, User } from 'lucide-react';
 import Image from 'next/image';
 import CartIcon from '@/components/cart/CartIcon';
@@ -13,10 +13,38 @@ export default function PublicNavbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [liderazgoOpen, setLiderazgoOpen] = useState(false);
     const [educacionOpen, setEducacionOpen] = useState(false);
+    // La barra se esconde al bajar y reaparece al subir. Se guarda la última
+    // posición en un ref para no re-renderizar en cada pixel de scroll.
+    const [barraVisible, setBarraVisible] = useState(true);
+    const ultimoScroll = useRef(0);
+
+    useEffect(() => {
+        const alScrollear = () => {
+            const y = window.scrollY;
+            const delta = y - ultimoScroll.current;
+            // Umbral de 8px: ignora los microajustes del trackpad.
+            if (Math.abs(delta) < 8) return;
+            // Cerca del tope siempre visible; bajando se esconde, subiendo vuelve.
+            setBarraVisible(y < 120 || delta < 0);
+            ultimoScroll.current = y;
+        };
+        window.addEventListener('scroll', alScrollear, { passive: true });
+        return () => window.removeEventListener('scroll', alScrollear);
+    }, []);
+
+    // Con el menú móvil abierto la barra no debe escaparse.
+    const oculta = !barraVisible && !mobileMenuOpen;
 
     return (
-        <header className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-[90%] mt-4">
-            <nav className="backdrop-blur-md bg-white/80 border border-white/20 shadow-lg rounded-[30px] px-6 py-4" aria-label="Global">
+        <header
+            className={`fixed top-0 left-0 right-0 z-50 w-full transition-transform duration-300 ease-in-out ${
+                oculta ? '-translate-y-full' : 'translate-y-0'
+            }`}
+        >
+            {/* Barra de ancho completo y esquinas rectas: la píldora flotante
+                dejaba la página asomando por los lados y se montaba sobre las
+                portadas de los artículos. */}
+            <nav className="w-full bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-4" aria-label="Global">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <div className="flex lg:flex-1">

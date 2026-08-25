@@ -14,6 +14,8 @@ interface BlogPostPageProps {
 import { Metadata } from 'next';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { articleSchema, personSchema } from '@/lib/seo-utils';
+import KeyPoints, { type PuntoClave } from '@/components/blog/KeyPoints';
+import ShareArticle from '@/components/blog/ShareArticle';
 
 export async function generateStaticParams() {
     const posts = await prisma.blogPost.findMany({
@@ -265,7 +267,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             if (index === 1 && bannersInjected < 1) {
                 newContentParts.push(`
                     <div class="my-8 w-full flex justify-center">
-                        <img src="${banners[0]}" alt="Banner Publicidad 1" class="w-full h-auto rounded-lg shadow-md object-cover" />
+                        <img src="${banners[0]}" alt="Banner Publicidad 1" class="w-full h-auto shadow-md object-cover" />
                     </div>
                 `);
                 bannersInjected++;
@@ -279,7 +281,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 if (relativeIndex % interval === 0) {
                     newContentParts.push(`
                         <div class="my-8 w-full flex justify-center">
-                            <img src="${banners[bannersInjected]}" alt="Banner Publicidad ${bannersInjected + 1}" class="w-full h-auto rounded-lg shadow-md object-cover" />
+                            <img src="${banners[bannersInjected]}" alt="Banner Publicidad ${bannersInjected + 1}" class="w-full h-auto shadow-md object-cover" />
                         </div>
                     `);
                     bannersInjected++;
@@ -291,7 +293,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         // 3. Last Banner (4): Always append at the very end
         newContentParts.push(`
             <div class="my-8 w-full flex justify-center">
-                <img src="${banners[3]}" alt="Banner Publicidad 4" class="w-full h-auto rounded-lg shadow-md object-cover" />
+                <img src="${banners[3]}" alt="Banner Publicidad 4" class="w-full h-auto shadow-md object-cover" />
             </div>
         `);
         console.log(`[BannerDebug] Injected Banner 4 at the end`);
@@ -304,7 +306,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         if (cleanContent.length > 0) {
             contentWithBanners += `
                 <div class="my-8 w-full flex justify-center">
-                    <img src="${banners[3]}" alt="Banner Publicidad 4" class="w-full h-auto rounded-lg shadow-md object-cover" />
+                    <img src="${banners[3]}" alt="Banner Publicidad 4" class="w-full h-auto shadow-md object-cover" />
                 </div>
             `;
         }
@@ -312,8 +314,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 
 
+    // Tiempo de lectura a partir del texto real, sin etiquetas HTML.
+    const palabras = post.content.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length;
+    const minutosLectura = Math.max(1, Math.round(palabras / 200));
+    const puntosClave = (Array.isArray(post.keyPoints) ? post.keyPoints : []) as PuntoClave[];
+
+    // La franja de puntos clave se intercala tras los primeros párrafos, no al
+    // principio ni al final: así funciona como una parada dentro de la lectura.
+    const PARRAFOS_ANTES = 4;
+    let aperturaTexto = contentWithBanners;
+    let restoTexto = '';
+    if (puntosClave.length > 0) {
+        const corte = (() => {
+            let pos = 0;
+            for (let i = 0; i < PARRAFOS_ANTES; i++) {
+                const siguiente = contentWithBanners.indexOf('</p>', pos);
+                if (siguiente === -1) return -1;
+                pos = siguiente + 4;
+            }
+            return pos;
+        })();
+        if (corte > 0 && corte < contentWithBanners.length) {
+            aperturaTexto = contentWithBanners.slice(0, corte);
+            restoTexto = contentWithBanners.slice(corte);
+        }
+    }
+
     return (
-        <div className="bg-white py-24 sm:py-32 blog-page-container">
+        <div className="bg-white pb-24 blog-page-container">
             {/* Datos estructurados: sin ellos las IA no ven autor ni fecha del artículo */}
             <StructuredData data={articleSchema({
                 title: post.title,
@@ -326,56 +354,96 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 authorName: post.author?.name,
             })} />
             <StructuredData data={personSchema()} />
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl lg:mx-0 mb-10">
-                    <Link href="/blog" className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            {/* Portada: la foto cubre todo el fondo y un degradado negro por la
+                izquierda asienta el texto. La banda es alta (620px) porque en
+                una tira estrecha la foto se recortaba hasta perder la escena. */}
+            <header className="blog-hero relative w-full overflow-hidden bg-white lg:bg-[#0B0B0D]">
+                {post.image && (
+                    <>
+                        <img
+                            src={post.image}
+                            alt=""
+                            aria-hidden="true"
+                            className="absolute inset-0 hidden h-full w-full object-cover object-[50%_32%] lg:block"
+                        />
+                        {/* Capa negra traslúcida uniforme: oscurece lo justo para
+                            que el título blanco lea sin esconder la foto. */}
+                        <div className="absolute inset-0 hidden bg-black/55 lg:block" />
+                    </>
+                )}
+                <div className="relative mx-auto flex max-w-[1440px] flex-col justify-center px-6 pb-8 pt-28 sm:pb-10 lg:min-h-[720px] lg:px-8 lg:pb-20 lg:pt-36">
+                    <div className="max-w-3xl">
+                        <p className="blog-hero-etiqueta mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#B70126]">
+                            {t.blog.categoryLabel}
+                        </p>
+                        <div className="mb-6 h-[3px] w-12 bg-[#B70126]" />
+                        <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-[56px] lg:text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                            {post.title}
+                        </h1>
+                        {post.subtitle && (
+                            <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg lg:text-white">
+                                {post.subtitle}
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </header>
+
+            {/* En móvil la portada se ve entera bajo el título; en ordenador va de fondo del hero */}
+            {post.image && (
+                <figure className="w-full lg:hidden">
+                    <img
+                        src={post.image}
+                        alt={post.title}
+                        className="h-auto w-full"
+                    />
+                </figure>
+            )}
+
+            <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
+                <div className="pt-6">
+                    <Link href="/blog" className="text-sm font-semibold leading-6 text-[#B70126] hover:underline">
                         {t.blog.backToBlog}
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Main Content Column (2/3 width on large screens) */}
-                    <div className="lg:col-span-2">
-                        <div className="mx-auto max-w-2xl lg:mx-0">
-                            <h1 className="mt-2 font-bold tracking-tight text-gray-900 text-3xl md:text-[42px] leading-tight" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
-                                {post.title}
-                            </h1>
-                            <div className="mt-6 flex items-center gap-x-4 text-xs text-gray-500">
+                {/* Autor, fecha, tiempo de lectura y compartir */}
+                <div className="mt-4 flex flex-col gap-4 border-b border-gray-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex items-center gap-x-3">
+                        <img
+                            src={post.author?.image || '/images/ivan-avatar.jpg'}
+                            alt={post.author?.name || 'Ivan Ivanovich'}
+                            className="h-12 w-12 rounded-full object-cover"
+                        />
+                        <div>
+                            <p className="font-semibold text-gray-900">{post.author?.name || 'Ivan Ivanovich'}</p>
+                            <p className="text-sm text-gray-500">
                                 <time dateTime={post.createdAt.toISOString()}>
-                                    <time dateTime={post.createdAt.toISOString()}>
-                                        {new Date(post.createdAt).toLocaleDateString(locale === 'en' ? 'en-US' : 'es-ES', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric'
-                                        })}
-                                    </time>
+                                    {new Date(post.createdAt).toLocaleDateString(locale === 'en' ? 'en-US' : 'es-ES', {
+                                        year: 'numeric', month: 'long', day: 'numeric',
+                                    })}
                                 </time>
-                                <span>•</span>
-                                <div className="flex items-center gap-x-2">
-                                    <img
-                                        src={post.author?.image || '/images/ivan-avatar.jpg'}
-                                        alt={post.author?.name || 'Ivan Ivanovich'}
-                                        className="h-10 w-10 rounded-full object-cover"
-                                    />
-                                    <span className="font-medium text-gray-900">{post.author?.name || 'Ivan Ivanovich'}</span>
-                                </div>
-                            </div>
+                                <span className="mx-2">•</span>
+                                {minutosLectura} {locale === 'en' ? 'min read' : 'min de lectura'}
+                            </p>
                         </div>
+                    </div>
+                    <ShareArticle slug={post.slug} title={post.title} locale={locale} />
+                </div>
 
-                        {post.image && (
-                            <div className="mt-10 aspect-video w-full overflow-hidden rounded-2xl bg-gray-100">
-                                <img
-                                    src={post.image}
-                                    alt={post.title}
-                                    className="h-full w-full object-cover"
-                                />
-                            </div>
-                        )}
-
-                        <div className="mt-10 max-w-none">
+                <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-3">
+                    {/* Columna del artículo */}
+                    <div className="lg:col-span-2">
+                        <div className="max-w-[800px]">
                             <div
-                                dangerouslySetInnerHTML={{ __html: contentWithBanners }}
-                                className="blog-content"
+                                dangerouslySetInnerHTML={{ __html: aperturaTexto }}
+                                className="blog-content blog-articulo"
+                            />
+                            {/* La franja de puntos clave vive dentro del texto */}
+                            <KeyPoints puntos={puntosClave} titulo={locale === 'en' ? 'Key points' : 'Puntos clave'} />
+                            <div
+                                dangerouslySetInnerHTML={{ __html: restoTexto }}
+                                className="blog-content blog-articulo blog-articulo--continuacion"
                             />
                         </div>
                     </div>

@@ -274,6 +274,7 @@ export const translations = {
         },
         blog: {
             heroLabel: 'ARTÍCULOS Y NOTICIAS',
+            categoryLabel: 'PROTECCIÓN EJECUTIVA',
             heroTitle: 'BLOG',
             noImage: 'No Image',
             backToBlog: '← Volver al blog',
@@ -933,6 +934,7 @@ export const translations = {
         },
         blog: {
             heroLabel: 'ARTICLES AND NEWS',
+            categoryLabel: 'EXECUTIVE PROTECTION',
             heroTitle: 'BLOG',
             noImage: 'No Image',
             backToBlog: '← Back to blog',

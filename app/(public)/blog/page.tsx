@@ -84,46 +84,32 @@ export default async function BlogIndexPage({
     });
 
     return (
-        <div className="bg-white min-h-screen pt-24 blog-page-container">
-            {/* Hero Section */}
-            <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
-                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">
-                    <div className="absolute inset-0 -z-10 opacity-40">
-                        <img
-                            src="/course-hero-bg.png"
-                            alt="Background"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+        <div className="bg-white min-h-screen blog-page-container">
+            {/* Hero: la foto de Iván cubre todo el fondo y un degradado oscuro
+                por la izquierda asienta el título, igual que en los artículos.
+                La banda es alta para que la escena se aprecie completa. */}
+            <div className="relative w-full overflow-hidden bg-[#0B121F]">
+                <img
+                    src="/ivan-hero-blog.webp"
+                    alt="Ivan Ivanovich impartiendo clase"
+                    className="absolute inset-0 h-full w-full object-cover object-[65%_15%]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0B121F] from-5% via-[#0B121F]/70 via-35% to-transparent" />
+                <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0B121F]/80 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent" />
 
-                    <div className="w-full px-6 lg:px-12 relative z-10">
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center">
-                            {/* Left Column: Title */}
-                            <div className="text-center lg:text-left">
-                                <h1 className="text-6xl lg:text-8xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                    {t.blog.heroTitle}
-                                </h1>
-                            </div>
-
-                            {/* Right Column: Image */}
-                            <div className="flex justify-center lg:justify-end w-full mt-2 lg:mt-0">
-                                <div className="relative w-full max-w-md aspect-video rounded-xl overflow-hidden border-4 border-white shadow-2xl lg:h-[28vh] lg:w-auto">
-                                    <img
-                                        src="/ivan-photo.jpg"
-                                        alt="Ivan Ivanovich"
-                                        className="w-full h-full object-cover"
-                                        style={{ objectPosition: '50% 35%' }}
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                <div className="relative mx-auto flex min-h-[440px] max-w-[1440px] items-center px-6 pt-24 pb-10 lg:min-h-[560px] lg:px-8 lg:pt-28 lg:pb-14">
+                    <div>
+                        <h1 className="text-6xl lg:text-8xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
+                            {t.blog.heroTitle}
+                        </h1>
                     </div>
                 </div>
             </div>
 
             {/* Blog Posts Grid */}
             <div className="bg-white py-16 sm:py-24">
-                <div className="mx-auto max-w-[95%] lg:max-w-[90%] px-4 lg:px-8">
+                <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
 
                     {/* Search Bar */}
                     <BlogSearch placeholder={locale === 'es' ? 'Buscar artículos...' : 'Search articles...'} />

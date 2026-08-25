@@ -322,3 +322,88 @@ h6 {
 .blog-content i {
     color: #374151 !important;
 }
+/* ---------- Artículo del blog: tratamiento editorial ---------- */
+
+/* Letra capital en el primer párrafo, como en el diseño de referencia. */
+.blog-articulo:not(.blog-articulo--continuacion) > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-montserrat), serif;
+  font-size: 4.6rem;
+  line-height: 0.82;
+  font-weight: 700;
+  color: #B70126;
+  margin: 0.08em 0.12em 0 0;
+}
+
+/* Cita destacada: siempre una frase literal del artículo. */
+.blog-articulo blockquote {
+  position: relative;
+  margin: 40px 0;
+  padding: 28px 32px 28px 60px;
+  background: #F5F5F6;
+  border: 0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #1f2937 !important;
+}
+.blog-articulo blockquote::before {
+  content: '"';
+  position: absolute;
+  left: 20px;
+  top: 6px;
+  font-family: Georgia, serif;
+  font-size: 64px;
+  line-height: 1;
+  color: #B70126;
+}
+.blog-articulo blockquote p { margin: 0 !important; font-size: 20px; }
+.blog-articulo blockquote p + p { margin-top: 10px !important; }
+.blog-articulo blockquote strong { color: #111827 !important; }
+
+/* Apartados: numeración discreta y filete rojo. */
+.blog-articulo h2 {
+  position: relative;
+  padding-top: 14px;
+  border-top: 1px solid #E5E7EB;
+}
+.blog-articulo h2::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 44px;
+  height: 3px;
+  background: #B70126;
+}
+
+/* Listas con marca de la casa. */
+.blog-articulo ul { list-style: none; padding-left: 0; }
+.blog-articulo ul li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+}
+.blog-articulo ul li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background: #B70126;
+}
+
+/* El hero del artículo lleva la foto de fondo en escritorio: ahí el texto es
+   blanco. Va con !important porque el forzado de colores del blog (arriba)
+   también usa !important y ganaría. La etiqueta conserva el rojo de marca. */
+@media (min-width: 1024px) {
+    .blog-page-container .blog-hero h1 {
+        color: #ffffff !important;
+    }
+    .blog-page-container .blog-hero p {
+        color: #ffffff !important;
+    }
+    .blog-page-container .blog-hero p.blog-hero-etiqueta {
+        color: #B70126 !important;
+    }
+}

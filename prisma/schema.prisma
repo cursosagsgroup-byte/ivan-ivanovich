@@ -190,6 +190,11 @@ model BlogPost {
   title     String
   slug      String   @unique
   excerpt   String?
+  /// Frase del propio artículo que se muestra bajo el título en la portada.
+  subtitle  String?
+  /// Puntos clave de la barra lateral: [{ icon, title, text }]. Todos ellos
+  /// son frases literales del artículo, no resúmenes redactados aparte.
+  keyPoints Json?
   content   String
   image     String?
   published Boolean  @default(false)
