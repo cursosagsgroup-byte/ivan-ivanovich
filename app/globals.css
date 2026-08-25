@@ -271,7 +271,12 @@ h6 {
 .blog-page-container {
     color-scheme: light;
     background-color: #ffffff !important;
-    color: #374151 !important;
+    /* El body lleva -webkit-font-smoothing: antialiased, que en Safari/iOS
+       adelgaza los trazos y lava el texto (Montserrat ya es delgada).
+       Aquí se restaura el render normal y se oscurece el cuerpo. */
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+    color: #1f2937 !important;
 }
 
 .blog-page-container *:not(a):not(.text-white) {
@@ -299,7 +304,7 @@ h6 {
 .blog-page-container b:not(.text-white),
 .blog-page-container em:not(.text-white),
 .blog-page-container i:not(.text-white) {
-    color: #374151 !important;
+    color: #1f2937 !important;
 }
 
 .blog-page-container .text-gray-500,
@@ -320,7 +325,7 @@ h6 {
 .blog-content b,
 .blog-content em,
 .blog-content i {
-    color: #374151 !important;
+    color: #1f2937 !important;
 }
 /* ---------- Artículo del blog: tratamiento editorial ---------- */
 
