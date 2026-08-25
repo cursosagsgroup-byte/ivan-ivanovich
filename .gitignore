@@ -34,6 +34,8 @@ yarn-error.log*
 *.zip
 *.tar.gz
 *.sql
+# las migraciones de Prisma son código, no volcados: siempre al repo
+!prisma/migrations/**/*.sql
 
 # carpeta de origen de materiales: el PDF publicado vive en public/materials/
 /LIBRO
