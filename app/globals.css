@@ -412,3 +412,57 @@ h6 {
         color: #B70126 !important;
     }
 }
+
+/* EXPERIMENTO (móvil): artículos en fondo negro y cuerpo con la letra del
+   sistema, para descartar la tipografía como causa del texto lavado que ve
+   el cliente. Solo aplica bajo 1024px; el escritorio no cambia. Va al final
+   porque debe ganarle al forzado de colores del blog (mismo peso, orden). */
+@media (max-width: 1023px) {
+    .blog-page-container.blog-noche {
+        background-color: #0B0B0D !important;
+        color: #E7E7EA !important;
+    }
+    .blog-page-container.blog-noche h1,
+    .blog-page-container.blog-noche h2,
+    .blog-page-container.blog-noche h3,
+    .blog-page-container.blog-noche h4 {
+        color: #ffffff !important;
+    }
+    .blog-page-container.blog-noche p,
+    .blog-page-container.blog-noche div,
+    .blog-page-container.blog-noche span,
+    .blog-page-container.blog-noche li,
+    .blog-page-container.blog-noche time,
+    .blog-page-container.blog-noche strong,
+    .blog-page-container.blog-noche em,
+    .blog-page-container.blog-noche blockquote {
+        color: #E7E7EA !important;
+    }
+    .blog-noche .blog-hero {
+        background-color: #0B0B0D !important;
+    }
+    .blog-noche .blog-hero p.blog-hero-etiqueta {
+        color: #FF2D55 !important;
+    }
+    /* Tarjetas y citas: de gris claro a gris carbón */
+    .blog-noche .bg-gray-50 {
+        background-color: #151519 !important;
+    }
+    .blog-noche .blog-articulo blockquote {
+        background: #17171B;
+    }
+    .blog-noche .border-gray-200,
+    .blog-noche .border-gray-100 {
+        border-color: #26262B !important;
+    }
+    .blog-noche .blog-articulo h2 {
+        border-top-color: #26262B;
+    }
+    /* La letra del sistema (San Francisco en iPhone): la misma de las webs
+       que el cliente ve bien. Solo el cuerpo de lectura; títulos intactos. */
+    .blog-noche .blog-articulo p,
+    .blog-noche .blog-articulo li,
+    .blog-noche .blog-articulo blockquote {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+}

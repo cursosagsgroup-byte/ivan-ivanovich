@@ -341,7 +341,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
 
     return (
-        <div className="bg-white pb-24 blog-page-container">
+        <div className="bg-white pb-24 blog-page-container blog-noche">
             {/* Datos estructurados: sin ellos las IA no ven autor ni fecha del artículo */}
             <StructuredData data={articleSchema({
                 title: post.title,
