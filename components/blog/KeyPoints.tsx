@@ -31,7 +31,7 @@ export default function KeyPoints({
     if (!puntos?.length) return null;
 
     return (
-        <section className="my-14 border-y border-gray-200 py-10">
+        <section className="puntos-clave my-14 border-y border-gray-200 py-10">
             <div className="mb-8 flex items-center gap-3">
                 <span className="h-[3px] w-8 bg-[#B70126]" />
                 <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-[#B70126]">
@@ -47,7 +47,7 @@ export default function KeyPoints({
                         <div key={i}>
                             <Icono className="mb-4 h-8 w-8 text-[#B70126]" strokeWidth={1.4} />
                             <p className="mb-1.5 font-bold leading-snug text-gray-900">{p.title}</p>
-                            <p className="text-sm leading-relaxed text-gray-600">{p.text}</p>
+                            <p className="text-base leading-relaxed text-gray-700">{p.text}</p>
                         </div>
                     );
                 })}

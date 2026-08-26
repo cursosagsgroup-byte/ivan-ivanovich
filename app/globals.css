@@ -204,8 +204,10 @@ h6 {
   .blog-content p,
   .blog-content ul,
   .blog-content ol {
-    font-size: 16px;
-    line-height: 1.6;
+    /* Antes bajaba a 16px: el cliente lo percibía "reducido". El cuerpo
+       se queda en 18px, igual que en escritorio. */
+    font-size: 18px;
+    line-height: 1.75;
   }
 }
 
@@ -464,5 +466,27 @@ h6 {
     .blog-noche .blog-articulo li,
     .blog-noche .blog-articulo blockquote {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        /* San Francisco aparenta menos cuerpo que Montserrat al mismo px,
+           y el texto claro sobre negro pide algo más de peso (halación). */
+        font-size: 19px !important;
+        font-weight: 450;
+        line-height: 1.75;
+    }
+    /* Los puntos clave (iconos) iban en 14px gris: sobre negro se
+       "transparentan" en OLED. Misma letra del sistema, sólido y legible. */
+    .blog-noche .puntos-clave p {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 17px !important;
+        font-weight: 450;
+        color: #F3F4F6 !important;
+    }
+    .blog-noche .puntos-clave p.font-bold {
+        color: #ffffff !important;
+        font-weight: 700;
+    }
+    /* Los iconos heredaban el gris claro del forzado: rojo de marca en su
+       variante luminosa, que sobre negro sí se ve. */
+    .blog-noche .puntos-clave svg {
+        color: #FF2D55 !important;
     }
 }
