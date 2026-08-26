@@ -469,7 +469,7 @@ h6 {
         /* San Francisco aparenta menos cuerpo que Montserrat al mismo px,
            y el texto claro sobre negro pide algo más de peso (halación). */
         font-size: 19px !important;
-        font-weight: 450;
+        font-weight: 500;
         line-height: 1.75;
     }
     /* Los puntos clave (iconos) iban en 14px gris: sobre negro se
@@ -477,7 +477,7 @@ h6 {
     .blog-noche .puntos-clave p {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         font-size: 17px !important;
-        font-weight: 450;
+        font-weight: 500;
         color: #F3F4F6 !important;
     }
     .blog-noche .puntos-clave p.font-bold {
@@ -488,5 +488,17 @@ h6 {
        variante luminosa, que sobre negro sí se ve. */
     .blog-noche .puntos-clave svg {
         color: #FF2D55 !important;
+    }
+    /* Textos de apoyo (fecha, subtítulo, compartir): en 400 el trazo se
+       afina en paneles OLED recientes; 500 mantiene el margen de peso. */
+    .blog-page-container.blog-noche p,
+    .blog-page-container.blog-noche time,
+    .blog-page-container.blog-noche span {
+        font-weight: 500;
+    }
+    .blog-page-container.blog-noche .font-bold,
+    .blog-page-container.blog-noche h1,
+    .blog-page-container.blog-noche h2 {
+        font-weight: 700;
     }
 }
