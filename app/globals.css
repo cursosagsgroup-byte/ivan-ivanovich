@@ -502,3 +502,43 @@ h6 {
         font-weight: 700;
     }
 }
+
+/* Firma manuscrita al cierre del artículo: roja en ambos modos. Con
+   !important porque el forzado de colores del blog también lo usa. */
+.blog-page-container p.firma-articulo {
+    color: #B70126 !important;
+    font-weight: 400 !important;
+    line-height: 1.1;
+}
+
+@media (max-width: 1023px) {
+    /* Modo noche: la firma en el rojo luminoso y los bloques nuevos
+       (navegación, relacionados, suscripción) sobre carbón. */
+    .blog-page-container.blog-noche p.firma-articulo {
+        color: #FF2D55 !important;
+    }
+    .blog-noche nav a:hover,
+    .blog-noche .caja-boletin {
+        background-color: transparent !important;
+    }
+    .blog-noche .hover\:bg-gray-50:hover {
+        background-color: #151519 !important;
+    }
+    .blog-noche input {
+        background-color: #151519 !important;
+        border-color: #26262B !important;
+        color: #ffffff !important;
+    }
+    .blog-noche input::placeholder {
+        color: #8A8A93;
+    }
+    /* Etiquetas rojas del pie (anterior/siguiente, categorías): el forzado
+       de span las dejaba blancas. */
+    .blog-page-container.blog-noche span.etiqueta-roja {
+        color: #FF2D55 !important;
+    }
+    .blog-noche .caja-boletin svg,
+    .blog-noche .caja-boletin ~ * svg {
+        color: #FF2D55;
+    }
+}

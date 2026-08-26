@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Bebas_Neue } from "next/font/google";
+import { Montserrat, Bebas_Neue, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from "@/components/AuthProvider";
@@ -19,6 +19,14 @@ const montserrat = Montserrat({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
     variable: "--font-montserrat",
     display: 'swap',
+});
+
+// Caligráfica para la firma de Iván al cierre de los artículos.
+const greatVibes = Great_Vibes({
+    subsets: ["latin"],
+    weight: ["400"],
+    variable: "--font-firma",
+    display: "swap",
 });
 
 const bebasNeue = Bebas_Neue({
@@ -158,7 +166,7 @@ export default async function RootLayout({
                     o "Forzar modo oscuro" de Android invierta los colores (texto blanco sobre blanco). */}
                 <meta name="color-scheme" content="light" />
             </head>
-            <body className={`${montserrat.variable} ${bebasNeue.variable} antialiased`}>
+            <body className={`${montserrat.variable} ${bebasNeue.variable} ${greatVibes.variable} antialiased`}>
                 <AuthProvider>
                     <LanguageProvider initialLanguage={locale}>
                         <CartProvider>

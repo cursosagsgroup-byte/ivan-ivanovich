@@ -16,6 +16,8 @@ import { StructuredData } from '@/components/seo/StructuredData';
 import { articleSchema, personSchema } from '@/lib/seo-utils';
 import KeyPoints, { type PuntoClave } from '@/components/blog/KeyPoints';
 import ShareArticle from '@/components/blog/ShareArticle';
+import NewsletterBox from '@/components/blog/NewsletterBox';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export async function generateStaticParams() {
     const posts = await prisma.blogPost.findMany({
@@ -158,15 +160,30 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         }
     }
 
-    // Fetch recent posts for sidebar
+    // Fetch recent posts for sidebar (mismo idioma que el artículo)
     const recentPosts = await prisma.blogPost.findMany({
         where: {
             published: true,
-            slug: { not: slug }
+            slug: { not: slug },
+            language: post.language
         },
         orderBy: { createdAt: 'desc' },
         take: 3
     });
+
+    // Artículo anterior y siguiente por fecha, en el mismo idioma.
+    const [articuloAnterior, articuloSiguiente] = await Promise.all([
+        prisma.blogPost.findFirst({
+            where: { published: true, language: post.language, createdAt: { lt: post.createdAt } },
+            orderBy: { createdAt: 'desc' },
+            select: { slug: true, title: true },
+        }),
+        prisma.blogPost.findFirst({
+            where: { published: true, language: post.language, createdAt: { gt: post.createdAt } },
+            orderBy: { createdAt: 'asc' },
+            select: { slug: true, title: true },
+        }),
+    ]);
 
     // Logic to inject banners
     const banners = [
@@ -445,11 +462,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 dangerouslySetInnerHTML={{ __html: restoTexto }}
                                 className="blog-content blog-articulo blog-articulo--continuacion"
                             />
+
+                            {/* Firma manuscrita de Iván al cierre */}
+                            <p
+                                className="firma-articulo mt-10 text-4xl sm:text-5xl"
+                                style={{ fontFamily: 'var(--font-firma), cursive' }}
+                            >
+                                {post.author?.name || 'Ivan Ivanovich'}
+                            </p>
+
+                            {/* Compartir, repetido al final: quien terminó de leer
+                                es quien más probablemente comparte */}
+                            <div className="mt-10 border-t border-gray-200 pt-6">
+                                <ShareArticle slug={post.slug} title={post.title} locale={locale} />
+                            </div>
                         </div>
                     </div>
 
                     {/* Sidebar Column (1/3 width on large screens) */}
-                    <div className="lg:col-span-1 space-y-8">
+                    <div className="hidden lg:block lg:col-span-1 space-y-8">
                         <div className="bg-gray-50 p-6 rounded-2xl sticky top-24">
                             <h3 className="text-xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
                                 {t.blog.recentArticles}
@@ -495,6 +526,79 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         </div>
                     </div>
                 </div>
+
+                {/* Navegación entre artículos */}
+                {(articuloAnterior || articuloSiguiente) && (
+                    <nav className={`mt-14 grid grid-cols-1 border border-gray-200 ${articuloAnterior && articuloSiguiente ? 'sm:grid-cols-2' : ''}`} aria-label={locale === 'en' ? 'Article navigation' : 'Navegación de artículos'}>
+                        {articuloAnterior && (
+                            <Link
+                                href={`/blog/${articuloAnterior.slug}`}
+                                className="group flex items-center gap-4 border-b border-gray-200 p-6 transition-colors hover:bg-gray-50 sm:border-b-0 sm:border-r"
+                            >
+                                <ChevronLeft className="h-6 w-6 shrink-0 text-gray-400 transition-transform group-hover:-translate-x-1" />
+                                <span>
+                                    <span className="etiqueta-roja mb-1 block text-xs font-bold uppercase tracking-[0.15em] text-[#B70126]">
+                                        {locale === 'en' ? 'Previous article' : 'Artículo anterior'}
+                                    </span>
+                                    <span className="font-semibold leading-snug text-gray-900 line-clamp-2">
+                                        {articuloAnterior.title}
+                                    </span>
+                                </span>
+                            </Link>
+                        )}
+                        {articuloSiguiente && (
+                            <Link
+                                href={`/blog/${articuloSiguiente.slug}`}
+                                className="group flex items-center justify-end gap-4 p-6 text-right transition-colors hover:bg-gray-50"
+                            >
+                                <span>
+                                    <span className="etiqueta-roja mb-1 block text-xs font-bold uppercase tracking-[0.15em] text-[#B70126]">
+                                        {locale === 'en' ? 'Next article' : 'Siguiente artículo'}
+                                    </span>
+                                    <span className="font-semibold leading-snug text-gray-900 line-clamp-2">
+                                        {articuloSiguiente.title}
+                                    </span>
+                                </span>
+                                <ChevronRight className="h-6 w-6 shrink-0 text-gray-400 transition-transform group-hover:translate-x-1" />
+                            </Link>
+                        )}
+                    </nav>
+                )}
+
+                {/* Relacionados: en escritorio ya está el sidebar de recientes */}
+                {recentPosts.length > 0 && (
+                    <section className="mt-14 lg:hidden">
+                        <h2 className="mb-6 text-sm font-bold uppercase tracking-[0.15em] text-gray-900">
+                            {locale === 'en' ? 'Related articles' : 'Artículos relacionados'}
+                        </h2>
+                        <div className="grid grid-cols-3 gap-3">
+                            {recentPosts.map((rel) => {
+                                const minutos = Math.max(1, Math.round(rel.content.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length / 200));
+                                return (
+                                    <Link key={rel.slug} href={`/blog/${rel.slug}`} className="group block border border-gray-200 pb-3">
+                                        <span className="block aspect-[3/2] overflow-hidden bg-gray-200">
+                                            {rel.image && (
+                                                <img src={rel.image} alt={rel.title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                                            )}
+                                        </span>
+                                        <span className="etiqueta-roja mt-3 block px-3 text-[10px] font-bold uppercase tracking-[0.12em] text-[#B70126]">
+                                            {t.blog.categoryLabel}
+                                        </span>
+                                        <span className="mt-1 px-3 text-xs font-semibold leading-snug text-gray-900 line-clamp-2">
+                                            {rel.title}
+                                        </span>
+                                        <span className="mt-1.5 block px-3 text-[10px] text-gray-500">
+                                            {minutos} {locale === 'en' ? 'min read' : 'min de lectura'}
+                                        </span>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </section>
+                )}
+
+                {/* Suscripción */}
+                <NewsletterBox locale={locale} />
             </div>
         </div>
     );
