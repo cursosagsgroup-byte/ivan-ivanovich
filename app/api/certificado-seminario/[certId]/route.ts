@@ -74,6 +74,34 @@ export async function GET(
         // Sin QR el certificado sigue siendo válido; se sirve igual.
     }
 
+    // Barra de descarga: botón flotante que lanza el diálogo de impresión
+    // (Guardar como PDF). Se inyecta tras el desempaquetado de la plantilla
+    // y desaparece en la impresión. El título del documento da el nombre
+    // del archivo PDF.
+    const tituloDoc = `Certificado Seminario - ${nombre}`;
+    html += `
+<script>
+(function () {
+    function montar() {
+        if (document.getElementById('barra-descarga')) return;
+        document.title = ${JSON.stringify('__TITULO__')};
+        var estilo = document.createElement('style');
+        estilo.textContent = '#barra-descarga{position:fixed;top:16px;right:16px;z-index:99999;display:flex;gap:8px;font-family:-apple-system,BlinkMacSystemFont,sans-serif}#barra-descarga button{background:#B70126;color:#fff;border:0;padding:12px 20px;font-size:14px;font-weight:700;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}#barra-descarga button:hover{background:#8f011e}@media print{#barra-descarga{display:none!important}}';
+        document.head.appendChild(estilo);
+        var barra = document.createElement('div');
+        barra.id = 'barra-descarga';
+        var btn = document.createElement('button');
+        btn.textContent = 'Descargar PDF';
+        btn.onclick = function () { window.print(); };
+        barra.appendChild(btn);
+        document.body.appendChild(barra);
+    }
+    if (document.readyState === 'complete') { setTimeout(montar, 600); }
+    else { window.addEventListener('load', function () { setTimeout(montar, 600); }); }
+})();
+</script>`;
+    html = html.replace('"__TITULO__"', JSON.stringify(tituloDoc));
+
     return new NextResponse(html, {
         headers: {
             'Content-Type': 'text/html; charset=utf-8',
