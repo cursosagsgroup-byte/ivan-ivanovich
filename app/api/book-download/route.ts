@@ -152,7 +152,7 @@ async function sendBookEmails({
 
     const adminMail = {
         from,
-        to: 'contacto@ivanivanovich.com',
+        to: 'academia@ivanivanovich.com',
         subject: `Nueva descarga del libro Timeline: ${name}`,
         html: `
             <h1>Nueva descarga del libro Sistema Timeline</h1>

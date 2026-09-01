@@ -143,7 +143,7 @@ export default function ContactoPage() {
                                     </div>
                                     <div>
                                         <h3 className="text-sm font-semibold text-white mb-1">{t('contact.emailLabel')}</h3>
-                                        <p className="text-gray-300">contacto@ivanivanovich.com</p>
+                                        <p className="text-gray-300">academia@ivanivanovich.com</p>
                                         <p className="text-gray-400 text-sm mt-1">{t('contact.centralAmerica')}: b.barrerra@ivanivanovich.com</p>
                                     </div>
                                 </div>

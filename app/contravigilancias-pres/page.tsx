@@ -608,7 +608,7 @@ export default function ContravigilanciasPres() {
     <div className="footer-logo">© 2026 Ivan Ivanovich Executive Protection Academy</div>
     <div className="footer-links">
       <a href="https://ivanivanovich.com" target="_blank">ivanivanovich.com</a>
-      <a href="mailto:contacto@ivanivanovich.com">contacto@ivanivanovich.com</a>
+      <a href="mailto:academia@ivanivanovich.com">academia@ivanivanovich.com</a>
     </div>
   </footer>
 

@@ -17,8 +17,8 @@ export default function PublicFooter() {
                         <ul className="space-y-3 text-sm text-gray-400">
                             <li>CDMX</li>
                             <li>
-                                <a href="mailto:contacto@ivanivanovich.com" className="hover:text-white transition-colors">
-                                    contacto@ivanivanovich.com
+                                <a href="mailto:academia@ivanivanovich.com" className="hover:text-white transition-colors">
+                                    academia@ivanivanovich.com
                                 </a>
                             </li>
                             <li>{t('contact.centralAmerica')}</li>

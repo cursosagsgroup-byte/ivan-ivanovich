@@ -73,7 +73,7 @@ export default function ContactSection() {
                         {/* Email Card */}
                         <div className="bg-white rounded-[30px] p-8 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-6">
                             <div className="flex-grow">
-                                <p className="text-lg font-bold text-black mb-1">contacto@ivanivanovich.com</p>
+                                <p className="text-lg font-bold text-black mb-1">academia@ivanivanovich.com</p>
                                 <p className="text-gray-500 text-sm">{t('contact.sendAction')}</p>
                             </div>
                         </div>

@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
             // 3. Send Email to Admin
             const adminMailOptions = {
                 from: process.env.SMTP_FROM || '"Ivan Ivanovich Academy" <noreply@ivanivanovich.com>',
-                to: 'contacto@ivanivanovich.com',
+                to: 'academia@ivanivanovich.com',
                 subject: `Nuevo Contacto Web: ${subject || 'Sin asunto'}`,
                 html: `
                     <h1>Nuevo mensaje de contacto</h1>

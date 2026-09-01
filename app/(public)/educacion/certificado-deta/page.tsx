@@ -114,10 +114,10 @@ export default function CertificadoDETAPage() {
                                 {t('deta.contactDescription')}
                             </p>
                             <a
-                                href="mailto:contacto@ivanivanovich.com"
+                                href="mailto:academia@ivanivanovich.com"
                                 className="inline-block text-2xl font-bold text-[#B70126] hover:text-[#D9012D] transition-colors"
                             >
-                                contacto@ivanivanovich.com
+                                academia@ivanivanovich.com
                             </a>
                         </div>
 
