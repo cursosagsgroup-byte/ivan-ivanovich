@@ -74,11 +74,11 @@ export async function GET(
         // Sin QR el certificado sigue siendo válido; se sirve igual.
     }
 
-    // Barra de descarga: botón flotante que lanza el diálogo de impresión
-    // (Guardar como PDF). Se inyecta tras el desempaquetado de la plantilla
-    // y desaparece en la impresión. El título del documento da el nombre
-    // del archivo PDF.
+    // Barra de descarga: enlace directo al PDF pregenerado del alumno
+    // (en /public/certificados-seminario). Un clic descarga el archivo,
+    // sin diálogo de impresión. La vista "previa" recurre a imprimir.
     const tituloDoc = `Certificado Seminario - ${nombre}`;
+    const urlPdf = certId === 'previa' ? '' : `/certificados-seminario/${certId}.pdf`;
     html += `
 <script>
 (function () {
@@ -92,7 +92,16 @@ export async function GET(
         barra.id = 'barra-descarga';
         var btn = document.createElement('button');
         btn.textContent = 'Descargar PDF';
-        btn.onclick = function () { window.print(); };
+        var urlPdf = "__URLPDF__";
+        btn.onclick = function () {
+            if (!urlPdf) { window.print(); return; }
+            var a = document.createElement('a');
+            a.href = urlPdf;
+            a.download = ${JSON.stringify('__TITULO__')} + '.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        };
         barra.appendChild(btn);
         document.body.appendChild(barra);
     }
@@ -100,7 +109,8 @@ export async function GET(
     else { window.addEventListener('load', function () { setTimeout(montar, 600); }); }
 })();
 </script>`;
-    html = html.replace('"__TITULO__"', JSON.stringify(tituloDoc));
+    html = html.replace(/"__TITULO__"/g, JSON.stringify(tituloDoc));
+    html = html.replace('"__URLPDF__"', JSON.stringify(urlPdf));
 
     return new NextResponse(html, {
         headers: {
