@@ -56,9 +56,12 @@ export default async function MiCuentaPage() {
             progress: enrollment.progress,
             totalLessons: totalItems,
             completedLessons: Math.round((totalItems * enrollment.progress) / 100),
-            completedAt: enrollment.completedAt?.toISOString() || null,
+            // Los del seminario en vivo no completaron lecciones: la fecha
+            // visible es la de emisión del certificado.
+            completedAt: enrollment.completedAt?.toISOString() || cert?.issuedAt.toISOString() || null,
             certificateAvailable: !!cert,  // Only true if certificate exists
-            certificateId: cert?.id
+            certificateId: cert?.id,
+            certificateUrl: cert?.certificateUrl || null
         };
     });
 
