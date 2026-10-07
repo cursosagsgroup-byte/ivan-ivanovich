@@ -212,3 +212,23 @@ export function articleSchema(post: {
         },
     };
 }
+
+/**
+ * FAQPage: las preguntas deben coincidir con texto que la página muestra de
+ * verdad (no solo en el schema oculto), o Google puede ignorar el rich
+ * result. Úsalo junto al componente FaqSection, que renderiza lo mismo.
+ */
+export function faqSchema(items: { question: string; answer: string }[]) {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: items.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+            },
+        })),
+    };
+}

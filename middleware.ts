@@ -77,11 +77,14 @@ export default withAuth(
         }
 
         // Force non-www
+        // 308 (permanente): sin status explícito Next.js usa 307, que no
+        // transfiere la señal de autoridad a la URL canónica tan bien como
+        // un redirect permanente.
         const hostname = req.headers.get("host") || "";
         if (hostname.startsWith("www.")) {
             const newUrl = new URL(req.url);
             newUrl.hostname = hostname.replace("www.", "");
-            return NextResponse.redirect(newUrl);
+            return NextResponse.redirect(newUrl, 308);
         }
 
         // Rutas por idioma.
@@ -118,7 +121,7 @@ export default withAuth(
             const url = new URL(destino, req.url);
             url.search = req.nextUrl.search;
 
-            const response = NextResponse.redirect(url);
+            const response = NextResponse.redirect(url, 308);
             response.cookies.set('NEXT_LOCALE', 'es', {
                 path: '/',
                 maxAge: 60 * 60 * 24 * 365,
