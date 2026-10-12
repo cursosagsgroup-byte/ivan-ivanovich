@@ -1,0 +1,483 @@
+/* El panel administrativo conserva siempre su diseño claro, también al navegar
+   desde la web pública sin recargar y en menús o modales montados en body. */
+html:has([data-admin-shell]) {
+    color-scheme: only light;
+}
+html:has([data-admin-shell]) body {
+    background: #fff;
+    color: #0f172a;
+}
+
+/* Prueba reversible: blanco → negro, negro → blanco y gris claro conservado.
+   SITE_THEME=dark activa la prueba; la versión oficial blanca no cambia.
+   Las superficies definen sus colores para mantener el contraste al anidar tarjetas. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) {
+    color-scheme: dark;
+    --background: #09090b;
+    --foreground: #f4f4f5;
+    --surface-text: #f4f4f5;
+    --surface-muted: #b8b8c2;
+    --surface-soft: #d4d4dc;
+    --surface-accent: #ff6b87;
+    --surface-border: #414149;
+    --surface-input: #18181c;
+    --surface-input-border: #62626e;
+    --surface-hover: #25252c;
+    --surface-link: #b7b4ff;
+    --surface-logo: invert(1) hue-rotate(180deg);
+    color: var(--surface-text);
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) body {
+    background: #09090b;
+    color: var(--surface-text);
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) ::selection {
+    background: #B70126; color: #fff;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-white"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-white/95"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-white/90"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-white/80"] {
+    --surface-text: #f4f4f5;
+    --surface-muted: #b8b8c2;
+    --surface-soft: #d4d4dc;
+    --surface-accent: #ff6b87;
+    --surface-border: #414149;
+    --surface-input: #18181c;
+    --surface-input-border: #62626e;
+    --surface-hover: #25252c;
+    --surface-link: #b7b4ff;
+    --surface-logo: invert(1) hue-rotate(180deg);
+    color: var(--surface-text);
+    background-color: #09090b;
+    color-scheme: dark;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-black"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0A0A0A]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0B121F]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-900"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0f172a]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-900"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0B0B0D]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#16171a]"] {
+    --surface-text: #16171a;
+    --surface-muted: #4b5563;
+    --surface-soft: #374151;
+    --surface-accent: #B70126;
+    --surface-border: #d1d5db;
+    --surface-input: #ffffff;
+    --surface-input-border: #6b7280;
+    --surface-hover: #e5e7eb;
+    --surface-link: #4338ca;
+    --surface-logo: none;
+    color: var(--surface-text);
+    background-color: #fff;
+    color-scheme: light;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#F4F4F3]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-50/50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-100"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-100"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-200"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-200"] {
+    --surface-text: #16171a;
+    --surface-muted: #4b5563;
+    --surface-soft: #374151;
+    --surface-accent: #B70126;
+    --surface-border: #d1d5db;
+    --surface-input: #ffffff;
+    --surface-input-border: #6b7280;
+    --surface-hover: #e5e7eb;
+    --surface-link: #4338ca;
+    --surface-logo: none;
+    color: var(--surface-text);
+    color-scheme: light;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-50"] {
+    background-color: #f9fafb;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-50"] {
+    background-color: #f8fafc;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#F4F4F3]"] {
+    background-color: #F4F4F3;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-50/50"] {
+    background-color: #f9fafb;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-100"] {
+    background-color: #f3f4f6;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-100"] {
+    background-color: #f1f5f9;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-gray-200"] {
+    background-color: #e5e7eb;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-slate-200"] {
+    background-color: #e2e8f0;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0B121F]"]:has(> img),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0B121F]"]:has(> .hero-editorial-foto),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#0B121F]"].isolate:has(> .absolute img),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-hero:has(img) {
+    --surface-text: #f4f4f5;
+    --surface-muted: #b8b8c2;
+    --surface-soft: #d4d4dc;
+    --surface-accent: #ff6b87;
+    --surface-border: #414149;
+    --surface-input: #18181c;
+    --surface-input-border: #62626e;
+    --surface-hover: #25252c;
+    --surface-link: #b7b4ff;
+    --surface-logo: invert(1) hue-rotate(180deg);
+    color: var(--surface-text);
+    background-color: #09090b;
+    color-scheme: dark;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#B70126]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-primary"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-red-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-red-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#8f011e]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-[#E3032D]"] {
+    --surface-text: #f4f4f5;
+    --surface-muted: #b8b8c2;
+    --surface-soft: #d4d4dc;
+    --surface-accent: #ff6b87;
+    --surface-border: #414149;
+    --surface-input: #18181c;
+    --surface-input-border: #62626e;
+    --surface-hover: #25252c;
+    --surface-link: #b7b4ff;
+    --surface-logo: invert(1) hue-rotate(180deg);
+    color: var(--surface-text);
+}
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-black"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-900"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-900"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-[#16171a]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-[#1f2937]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-[#0f172a]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-700"] { color: var(--surface-text); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-400"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-400"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white/40"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white/50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white/60"] { color: var(--surface-muted); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-300"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-slate-300"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-200"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-gray-100"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white/70"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white/80"] { color: var(--surface-soft); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-[#B70126]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-primary"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-700"] { color: var(--surface-accent); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-gray-100"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-gray-200"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-gray-300"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-slate-100"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-slate-200"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-slate-300"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-slate-900"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-[#16171a]"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-white"] { border-color: var(--surface-border); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="divide-gray-100"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="divide-gray-200"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="divide-slate-200"] { border-color: var(--surface-border); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:bg-gray-50"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:bg-gray-100"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:bg-gray-200"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:bg-slate-50"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:bg-slate-100"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:bg-white"]:hover { background-color: var(--surface-hover); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-gray-900"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-gray-800"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-gray-700"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-black"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-[#16171a]"]:hover { color: var(--surface-text); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-[#B70126]"]:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-primary"]:hover { color: var(--surface-accent); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:bg-gray-50"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:bg-gray-100"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:bg-gray-200"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:bg-slate-50"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:bg-slate-100"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:bg-white"]:focus { background-color: var(--surface-hover); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-gray-900"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-gray-800"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-gray-700"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-black"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-[#16171a]"]:focus { color: var(--surface-text); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-[#B70126]"]:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="focus:text-primary"]:focus { color: var(--surface-accent); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-red-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-red-100"] { background-color: #35121d; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-red-900"] { color: #ff99ae; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-green-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-green-100"] { background-color: #102c20; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-green-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-green-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-green-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-green-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-green-900"] { color: #9de5b3; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-blue-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-blue-100"] { background-color: #112438; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-blue-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-blue-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-blue-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-blue-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-blue-900"] { color: #9dccff; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-amber-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-amber-100"] { background-color: #322410; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-amber-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-amber-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-amber-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-amber-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-amber-900"] { color: #f5d489; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-purple-50"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-purple-100"] { background-color: #271c37; }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-purple-500"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-purple-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-purple-700"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-purple-800"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-purple-900"] { color: #d9b7ff; }
+
+
+/* Logo principal: inversión cromática solo de esta imagen transparente.
+   No se invierten fotografías, portadas ni logotipos de medios. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) img[src*="logo.png"] { filter: var(--surface-logo); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) :is(input, textarea, select),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .checkout-page-container input:not([type="checkbox"]):not([type="radio"]),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .checkout-page-container select,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .checkout-page-container textarea {
+    color-scheme: inherit;
+    color: var(--surface-text) !important;
+    background-color: var(--surface-input);
+    border-color: var(--surface-input-border);
+    caret-color: var(--surface-text);
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) :is(input, textarea)::placeholder {
+    color: var(--surface-muted) !important;
+    opacity: 1;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) :is(input, textarea, select):focus-visible {
+    outline: 2px solid #ff6b87;
+    outline-offset: 3px;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) :is(a, button):focus-visible {
+    outline: 2px solid #ff6b87;
+    outline-offset: 4px;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) input[type="checkbox"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) input[type="radio"] { accent-color: #B70126; }
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .checkout-page-container input:-webkit-autofill,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .checkout-page-container input:-webkit-autofill:hover,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .checkout-page-container input:-webkit-autofill:focus,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) input:-webkit-autofill {
+    -webkit-text-fill-color: var(--surface-text) !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--surface-input) inset !important;
+}
+
+/* El manifiesto conserva la jerarquía sin estados de texto casi invisible. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .home-page .manifesto-word {
+    color: #4b5563 !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .home-page .manifesto-word[data-important="true"] {
+    color: #16171a !important;
+}
+
+/* El blog tenía reglas de color !important para ambos tamaños de pantalla. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-noche .blog-hero {
+    --surface-text: #f4f4f5;
+    --surface-muted: #b8b8c2;
+    --surface-soft: #d4d4dc;
+    --surface-accent: #ff6b87;
+    --surface-border: #414149;
+    --surface-input: #18181c;
+    --surface-input-border: #62626e;
+    --surface-hover: #25252c;
+    --surface-link: #b7b4ff;
+    --surface-logo: invert(1) hue-rotate(180deg);
+    color: var(--surface-text);
+    background-color: #09090b !important;
+    color: var(--surface-text) !important;
+    color-scheme: dark;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container :is(h1,h2,h3,h4,h5,h6),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche :is(h1,h2,h3,h4,h5,h6) {
+    color: var(--surface-text) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container :is(p,div,span,section,li,td,th,time,em,i),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche :is(p,div,span,section,li,td,th,time,em,i) {
+    color: var(--surface-soft) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container :is(strong,b),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche :is(strong,b) {
+    color: var(--surface-text) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container .bg-gray-50 {
+    background-color: #f9fafb !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container :is(.text-gray-500,.text-gray-600) {
+    color: var(--surface-muted) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container .blog-articulo blockquote {
+    background: var(--surface-input);
+    color: var(--surface-soft) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container p.firma-articulo,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche p.firma-articulo,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container span.etiqueta-roja,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche span.etiqueta-roja {
+    color: var(--surface-accent) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container p.subpage-hero-eyebrow,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche p.subpage-hero-eyebrow {
+    color: #fff !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container input { color: var(--surface-text) !important; }
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container input::placeholder { color: var(--surface-muted) !important; }
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container button,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container.blog-noche button,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-page-container a.font-medium {
+    color: var(--surface-text) !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-content a,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-indigo-600"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-indigo-500"] { color: var(--surface-link) !important; }
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .blog-content a:hover { color: var(--surface-link) !important; }
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .ql-toolbar,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .ql-container,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .ql-editor { background: var(--surface-input); color: var(--surface-text); }
+
+/* Landing presencial con su propia hoja de estilos. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page {
+    --surface-text: #16171a;
+    --surface-muted: #4b5563;
+    --surface-soft: #374151;
+    --surface-accent: #B70126;
+    --surface-border: #d1d5db;
+    --surface-input: #ffffff;
+    --surface-input-border: #6b7280;
+    --surface-hover: #e5e7eb;
+    --surface-link: #4338ca;
+    --surface-logo: none;
+    color: var(--surface-text);
+    --black: #fff; --surface: #f9fafb; --surface2: #f3f4f6;
+    --white: #16171a; --muted: #4b5563; --light: #374151;
+    --gold: #806214; --gold-light: #806214; --line: #d1d5db;
+    background: #fff !important; color: #16171a !important;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page :is(h1 em,h2.display em,.prob-n,.ev-case-year,.t-arrow,.transform-big p span,.mod-num,.cta-closing),
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page .mod-list li::before { color: var(--surface-accent); }
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page :is(.time-sep,.announce-bar span) { color: var(--surface-soft); }
+
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="text-white/90"] {
+    color: var(--surface-text);
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-white/10"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-white/15"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="border-white/20"] {
+    border-color: var(--surface-border);
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .subpage-hero-eyebrow {
+    --surface-text: #fff; --surface-muted: #fff; color: #fff;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="hover:text-white"]:hover {
+    color: var(--surface-text);
+}
+
+/* Paneles traslúcidos: conservar la tinta de las etiquetas sobre fotos. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-black/70"][class~="text-white"] {
+    --surface-text: #fff;
+    --surface-muted: #d4d4dc;
+    color: #fff;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) [class~="bg-black/50"]:not(.absolute):not(.fixed) {
+    background-color: #fff;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page :is(.nav,.sticky-cta) {
+    background: rgba(255,255,255,.97);
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page .announce-bar,
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page .announce-bar span {
+    color: #fff;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page .hero {
+    --surface-text: #f4f4f5;
+    --surface-muted: #b8b8c2;
+    --surface-soft: #d4d4dc;
+    --surface-accent: #ff6b87;
+    --white: #f4f4f5;
+    --gold: #D4A93A;
+    --gold-light: #D4A93A;
+    color: #f4f4f5;
+    background: #09090b;
+}
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) .contravigilancia-page :is(.hero-body,p.body,.doctrina-note,.testimony p,.cred p,.t-item p,.mod-title,.mod-list li,.urgency-line) {
+    color: var(--surface-muted);
+}
+
+/* La navegación conserva su fondo blanco, también al abrir los menús. */
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) nav[aria-label="Global"],
+html[data-site-theme="dark"]:not(:has([data-admin-shell])) nav[aria-label="Global"] [class~="bg-white/95"] {
+    --surface-text: #16171a;
+    --surface-muted: #4b5563;
+    --surface-soft: #374151;
+    --surface-accent: #B70126;
+    --surface-border: #d1d5db;
+    --surface-input: #ffffff;
+    --surface-input-border: #6b7280;
+    --surface-hover: #e5e7eb;
+    --surface-link: #4338ca;
+    --surface-logo: none;
+    background-color: #fff;
+    color: var(--surface-text);
+    color-scheme: light;
+}

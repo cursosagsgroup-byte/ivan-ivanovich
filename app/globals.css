@@ -3,19 +3,19 @@
 :root {
   /* El sitio está diseñado 100% en modo claro (no se usa ninguna variante dark:).
      color-scheme: light evita que Android Chrome "Forzar modo oscuro" invierta los colores. */
-  color-scheme: light;
+  color-scheme: only light;
   --background: #f8fafc;
   /* Slate 50 */
   --foreground: #0f172a;
   /* Slate 900 */
-  --font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono);
 
   /* Brand Colors - Keting Media (Blue/White) */
@@ -43,6 +43,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-montserrat), sans-serif;
+  font-weight: 400;
 }
 
 h1,
@@ -70,7 +71,7 @@ h6 {
 
 /* Blog Content Styles - Professional Typography */
 .blog-content {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
   font-size: 18px;
   line-height: 1.8;
   color: #374151;
@@ -82,7 +83,7 @@ h6 {
 .blog-content h4,
 .blog-content h5,
 .blog-content h6 {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: var(--font-montserrat), sans-serif !important;
   font-weight: 700;
   color: #111827;
 }
@@ -111,7 +112,7 @@ h6 {
 }
 
 .blog-content p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
   font-size: 18px;
   line-height: 1.8;
   color: #374151;
@@ -123,7 +124,7 @@ h6 {
 }
 
 .blog-content ul {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
   font-size: 18px;
   line-height: 1.8;
   color: #374151;
@@ -133,7 +134,7 @@ h6 {
 }
 
 .blog-content ol {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
   font-size: 18px;
   line-height: 1.8;
   color: #374151;
@@ -271,7 +272,7 @@ h6 {
 /* color-scheme: light fuerza al navegador a NO aplicar adaptaciones de modo oscuro
    dentro del contenedor, incluyendo elementos con estilos inline del editor */
 .blog-page-container {
-    color-scheme: light;
+    color-scheme: only light;
     background-color: #ffffff !important;
     /* El body lleva -webkit-font-smoothing: antialiased, que en Safari/iOS
        adelgaza los trazos y lava el texto (Montserrat ya es delgada).
@@ -540,5 +541,121 @@ h6 {
     .blog-noche .caja-boletin svg,
     .blog-noche .caja-boletin ~ * svg {
         color: #FF2D55;
+    }
+}
+
+/* Secuencia del hero editorial de la home: 1) la foto de Iván aparece
+   completa, 2) el panel blanco sube, 3) el título se destapa de izquierda
+   a derecha, 4) entra el texto de apoyo. */
+.hero-editorial-foto {
+    animation: heroFotoEntra 0.9s ease-out both;
+}
+.hero-editorial-panel {
+    animation: heroPanelSube 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+.hero-editorial-titulo {
+    animation: heroTituloDestapa 0.9s cubic-bezier(0.65, 0, 0.35, 1) 1.45s both;
+}
+.hero-editorial-texto {
+    animation: heroTextoEntra 0.6s ease-out 1.9s both;
+}
+@keyframes heroFotoEntra {
+    from { opacity: 0; transform: scale(1.04); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes heroPanelSube {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+@keyframes heroTituloDestapa {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+}
+@keyframes heroTextoEntra {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-editorial-foto,
+    .hero-editorial-panel,
+    .hero-editorial-titulo,
+    .hero-editorial-texto {
+        animation: none;
+    }
+}
+
+/* Etiqueta de los heroes interiores: mismo bloque rojo que el inicio. */
+.subpage-hero-eyebrow {
+    display: inline-block;
+    align-self: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0.625rem 1rem;
+    background: #B70126;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    animation: heroTituloDestapa 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+@media (min-width: 640px) {
+    .subpage-hero-eyebrow { font-size: 0.875rem; }
+}
+.blog-page-container p.subpage-hero-eyebrow {
+    color: #fff !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .subpage-hero-eyebrow { animation: none; }
+}
+
+/* Altura común de todos los heroes interiores, independiente del home. */
+.subpage-hero {
+    box-sizing: border-box;
+    height: 600px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 112px 24px 40px;
+}
+.subpage-hero-inset { padding-inline: 24px; }
+.subpage-hero-landing { padding: 96px 0 24px; }
+.subpage-hero-presencial .hero-content { padding: 0; }
+.hero-booking { padding: 32px 24px; }
+@media (min-width: 1024px) {
+    .subpage-hero { height: 720px; padding: 128px 32px 64px; }
+    .subpage-hero-inset { padding-inline: 48px; }
+    .subpage-hero-landing { padding: 96px 0 32px; }
+    .subpage-hero-presencial .hero-content { padding: 0; }
+    .hero-booking { padding: 40px 80px; }
+}
+
+/* La corrección de trazos del blog también se aplica al home móvil.
+   Colores sólidos: los textos de apoyo deben poder leerse desde el primer render. */
+@media (max-width: 1023px) {
+    .home-page {
+        -webkit-font-smoothing: auto;
+        -moz-osx-font-smoothing: auto;
+    }
+    .home-page .text-gray-400 { color: #4b5563; }
+    .home-page .text-white\/40 { color: #b8c1ce; }
+    .home-page .text-white\/60 { color: #cbd5e1; }
+    .home-page input::placeholder,
+    .home-page textarea::placeholder { color: #b8c1ce; opacity: 1; }
+}
+/* El texto del manifiesto no queda casi blanco en móvil ni al reducir movimiento.
+   Estas reglas prevalecen sobre el color por palabra de la animación de escritorio. */
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+    .home-page .manifesto-word {
+        color: #4b5563 !important;
+        transition: none;
+    }
+    .home-page .manifesto-word[data-important="true"] {
+        color: #16171a !important;
     }
 }

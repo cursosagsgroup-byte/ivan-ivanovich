@@ -5,7 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface BlogPost {
@@ -17,6 +17,10 @@ interface BlogPost {
     createdAt: string;
 }
 
+/** Carrusel de artículos del inicio: mismo lenguaje visual que los cursos
+ *  (etiqueta monoespaciada, línea divisoria, ancho completo) pero en
+ *  formato carrusel — las líneas separan las tarjetas visibles en vez de
+ *  filas fijas. */
 export default function BlogCarousel() {
     const { t, language } = useTranslation();
     const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -53,7 +57,7 @@ export default function BlogCarousel() {
     }, [emblaApi]);
 
     if (loading) {
-        return <div className="h-96 flex items-center justify-center">Loading...</div>;
+        return <div className="flex h-96 w-full items-center justify-center bg-white text-sm text-gray-400">…</div>;
     }
 
     if (posts.length === 0) {
@@ -61,79 +65,102 @@ export default function BlogCarousel() {
     }
 
     return (
-        <div className="relative group">
-            <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex -ml-4 sm:-ml-8">
-                    {posts.map((post) => (
-                        <div key={post.id} className="flex-[0_0_100%] min-w-0 pl-4 sm:pl-8 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
-                            <article className="flex flex-col h-full">
-                                <div className="relative w-full overflow-hidden rounded-2xl aspect-video mb-6 group/card">
-                                    {post.image ? (
-                                        <Image
-                                            src={post.image}
-                                            alt={post.title}
-                                            fill
-                                            className="object-cover object-top transition-transform duration-500 group-hover/card:scale-110"
-                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
-                                            {t('blog.noImage')}
+        <div className="bg-white py-16 lg:py-20">
+            <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+                {/* Encabezado con la etiqueta y los controles del carrusel */}
+                <div className="mb-5 flex items-end justify-between gap-4">
+                    <div>
+                        <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-400">
+                            {t('home.blogKicker')}
+                        </p>
+                        <h2
+                            className="text-4xl font-normal uppercase leading-none text-[#16171a] lg:text-6xl"
+                            style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.02em' }}
+                        >
+                            {t('home.blogTitle')}
+                        </h2>
+                    </div>
+                    <div className="flex shrink-0 gap-px">
+                        <button
+                            onClick={scrollPrev}
+                            className="flex h-11 w-11 items-center justify-center bg-[#16171a] text-white transition-colors hover:bg-[#B70126]"
+                            aria-label="Anterior"
+                        >
+                            <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <button
+                            onClick={scrollNext}
+                            className="flex h-11 w-11 items-center justify-center bg-[#16171a] text-white transition-colors hover:bg-[#B70126]"
+                            aria-label="Siguiente"
+                        >
+                            <ChevronRight className="h-5 w-5" />
+                        </button>
+                    </div>
+                </div>
+
+                <div className="border-t border-gray-200">
+                    <div className="overflow-hidden" ref={emblaRef}>
+                        <div className="flex">
+                            {posts.map((post, i) => (
+                                <div
+                                    key={post.id}
+                                    className={`min-w-0 flex-[0_0_86%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] ${i > 0 ? 'border-l border-gray-200' : ''}`}
+                                >
+                                    <article className={`group/card flex h-full flex-col pb-2 pt-8 lg:pt-10 ${i > 0 ? 'pl-6 lg:pl-12' : 'pr-6 lg:pr-12'}`}>
+                                        <div className="mb-5 flex items-baseline justify-between font-mono text-[11px] uppercase tracking-[0.14em]">
+                                            <span className="text-gray-400">{t('home.articleKicker')}</span>
+                                            <time dateTime={post.createdAt} className="text-gray-400">
+                                                {new Date(post.createdAt).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
+                                                    day: '2-digit',
+                                                    month: 'short',
+                                                    year: 'numeric',
+                                                })}
+                                            </time>
                                         </div>
-                                    )}
-                                    <div className="absolute inset-0 bg-black/20 group-hover/card:bg-black/10 transition-colors" />
-                                </div>
 
-                                <div className="flex flex-col flex-grow">
-                                    <div className="flex items-center gap-x-4 text-xs text-gray-500 mb-3">
-                                        <time dateTime={post.createdAt}>
-                                            {new Date(post.createdAt).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            })}
-                                        </time>
-                                    </div>
-
-                                    <h3 className="text-xl font-bold leading-snug text-slate-900 mb-3 line-clamp-2 group-hover:text-[#B70126] transition-colors" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                                        <Link href={`/blog/${post.slug}`}>
-                                            <span className="absolute inset-0" />
-                                            {post.title}
+                                        <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/10] w-full overflow-hidden bg-gray-100">
+                                            {post.image ? (
+                                                <Image
+                                                    src={post.image}
+                                                    alt={post.title}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                                                    sizes="(max-width: 640px) 86vw, (max-width: 1024px) 50vw, 33vw"
+                                                />
+                                            ) : (
+                                                <div className="flex h-full w-full items-center justify-center text-gray-400">
+                                                    {t('blog.noImage')}
+                                                </div>
+                                            )}
                                         </Link>
-                                    </h3>
 
-                                    <p className="text-sm leading-relaxed text-gray-600 line-clamp-3 mb-4 flex-grow">
-                                        {post.excerpt ? post.excerpt.replace(/<[^>]*>/g, '') : ''}
-                                    </p>
+                                        <h3
+                                            className="mb-3 mt-6 text-xl font-bold leading-snug text-[#16171a] line-clamp-2"
+                                            style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
+                                        >
+                                            <Link href={`/blog/${post.slug}`} className="transition-colors group-hover/card:text-[#B70126]">
+                                                {post.title}
+                                            </Link>
+                                        </h3>
 
-                                    <div className="flex items-center gap-2 text-sm font-medium text-[#B70126]">
-                                        {t('home.readArticle')}
-                                        <svg className="w-4 h-4 transition-transform group-hover/card:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </div>
+                                        <p className="mb-6 flex-grow text-base leading-relaxed text-gray-600 line-clamp-3 lg:text-[17px]">
+                                            {post.excerpt ? post.excerpt.replace(/<[^>]*>/g, '') : ''}
+                                        </p>
+
+                                        <Link
+                                            href={`/blog/${post.slug}`}
+                                            className="mt-auto flex w-fit items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[#B70126]"
+                                        >
+                                            {t('home.readArticle')}
+                                            <ArrowRight className="h-4 w-4 transition-transform group-hover/card:translate-x-1" />
+                                        </Link>
+                                    </article>
                                 </div>
-                            </article>
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </div>
             </div>
-
-            {/* Navigation Buttons */}
-            <button
-                onClick={scrollPrev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all hover:bg-[#B70126] hover:text-white disabled:opacity-0 z-10"
-                aria-label="Previous slide"
-            >
-                <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-                onClick={scrollNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all hover:bg-[#B70126] hover:text-white disabled:opacity-0 z-10"
-                aria-label="Next slide"
-            >
-                <ChevronRight className="w-6 h-6" />
-            </button>
         </div>
     );
 }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat, Bebas_Neue, Great_Vibes } from "next/font/google";
+import { Bebas_Neue, Great_Vibes } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import "./site-theme.css";
+import { SiteThemeProvider } from "@/components/providers/SiteThemeProvider";
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from "@/components/AuthProvider";
 import { CartProvider } from '@/lib/cart-context';
@@ -14,11 +17,21 @@ import { prisma } from '@/lib/prisma';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-const montserrat = Montserrat({
-    subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700", "800", "900"],
+// Pesos estáticos reales: evita depender del eje wght de Montserrat Thin
+// al renderizar texto normal y negritas en los distintos motores móviles.
+const montserrat = localFont({
+    src: [
+        { path: '../public/fonts/montserrat/Montserrat-Light.woff2', weight: '300', style: 'normal' },
+        { path: '../public/fonts/montserrat/Montserrat-Regular.woff2', weight: '400', style: 'normal' },
+        { path: '../public/fonts/montserrat/Montserrat-Medium.woff2', weight: '500', style: 'normal' },
+        { path: '../public/fonts/montserrat/Montserrat-SemiBold.woff2', weight: '600', style: 'normal' },
+        { path: '../public/fonts/montserrat/Montserrat-Bold.woff2', weight: '700', style: 'normal' },
+        { path: '../public/fonts/montserrat/Montserrat-ExtraBold.woff2', weight: '800', style: 'normal' },
+        { path: '../public/fonts/montserrat/Montserrat-Black.woff2', weight: '900', style: 'normal' },
+    ],
     variable: "--font-montserrat",
     display: 'swap',
+    preload: false,
 });
 
 // Caligráfica para la firma de Iván al cierre de los artículos.
@@ -158,26 +171,30 @@ export default async function RootLayout({
         }
     }
 
+    const siteTheme = process.env.SITE_THEME === 'dark' ? 'dark' : 'light';
+
     return (
-        <html lang={locale} translate="no" className="notranslate">
+        <html data-site-theme={siteTheme} lang={locale} translate="no" className="notranslate">
             <head>
                 <meta name="google" content="notranslate" />
-                {/* El sitio es solo modo claro: evita que el modo oscuro del sistema
-                    o "Forzar modo oscuro" de Android invierta los colores (texto blanco sobre blanco). */}
-                <meta name="color-scheme" content="light" />
+                {/* La paleta se declara desde el servidor para evitar un destello
+                    del tema opuesto mientras carga la página. */}
+                <meta name="color-scheme" content={siteTheme === 'dark' ? 'dark' : 'only light'} />
             </head>
             <body className={`${montserrat.variable} ${bebasNeue.variable} ${greatVibes.variable} antialiased`}>
-                <AuthProvider>
-                    <LanguageProvider initialLanguage={locale}>
-                        <CartProvider>
-                            {children}
-                            <CartSlidePanel />
-                            <WhatsAppButton />
-                            <SpeedInsights />
-                            <Toaster position="bottom-right" />
-                        </CartProvider>
-                    </LanguageProvider>
-                </AuthProvider>
+                <SiteThemeProvider theme={siteTheme}>
+                    <AuthProvider>
+                        <LanguageProvider initialLanguage={locale}>
+                            <CartProvider>
+                                {children}
+                                <CartSlidePanel />
+                                <WhatsAppButton />
+                                <SpeedInsights />
+                                <Toaster position="bottom-right" />
+                            </CartProvider>
+                        </LanguageProvider>
+                    </AuthProvider>
+                </SiteThemeProvider>
             </body>
         </html>
     );

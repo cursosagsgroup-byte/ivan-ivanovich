@@ -1,10 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MapPin, Mail, Youtube, Facebook, Instagram } from 'lucide-react';
+import { Youtube, Facebook, Instagram, ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 import toast from 'react-hot-toast';
 
+/** Contacto: mismo patrón editorial que el resto del inicio — ancho
+ *  completo, líneas divisorias, esquinas cuadradas y la misma tipografía
+ *  (etiqueta monoespaciada + Bebas). Dos columnas: información a la
+ *  izquierda, formulario a la derecha. */
 export default function ContactSection() {
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
@@ -56,149 +60,158 @@ export default function ContactSection() {
         }
     };
 
+    const inputClass = 'w-full border-b border-white/20 bg-transparent px-0 py-3 text-white placeholder:text-white/40 focus:border-[#B70126] focus:outline-none disabled:opacity-50';
+
     return (
-        <section className="bg-white py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center mb-16 lg:text-left lg:mx-0">
-                    <h2 className="text-4xl font-black tracking-tight text-black sm:text-5xl mb-6 uppercase" style={{
-                        fontFamily: 'Montserrat, sans-serif'
-                    }}>
-                        {t('contact.title')}:
+        <div className="bg-[#0B121F] py-16 lg:py-20">
+            <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+                <div className="mb-10 lg:mb-14">
+                    <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
+                        {t('nav.contact')}
+                    </p>
+                    <h2
+                        className="text-4xl font-normal uppercase leading-none text-white lg:text-6xl"
+                        style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.02em' }}
+                    >
+                        {t('contact.formTitle')}
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-                    {/* Left Column: Contact Info */}
-                    <div className="space-y-8">
-                        {/* Email Card */}
-                        <div className="bg-white rounded-[30px] p-8 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-6">
-                            <div className="flex-grow">
-                                <p className="text-lg font-bold text-black mb-1">academia@ivanivanovich.com</p>
-                                <p className="text-gray-500 text-sm">{t('contact.sendAction')}</p>
-                            </div>
-                        </div>
-
-                        {/* Location Card */}
-                        <div className="bg-white rounded-[30px] p-8 shadow-[0_0_40px_-10px_rgba(0,0,0,0.1)] flex items-center gap-6">
-                            <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
-                                <MapPin className="w-8 h-8 text-black" strokeWidth={2.5} />
-                            </div>
+                <div className="grid grid-cols-1 border-t border-white/10 lg:grid-cols-2">
+                    {/* Columna izquierda: información de contacto */}
+                    <div className="flex flex-col justify-between px-0 pb-10 pt-8 lg:border-r lg:border-white/10 lg:pb-0 lg:pr-12 lg:pt-10">
+                        <div className="space-y-10">
                             <div>
-                                <p className="text-lg font-bold text-black mb-1">CDMX</p>
-                                <p className="text-gray-500 text-sm">{t('contact.addressLabel')}</p>
+                                <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
+                                    {t('contact.emailLabel')}
+                                </p>
+                                <a
+                                    href="mailto:academia@ivanivanovich.com"
+                                    className="break-all text-2xl uppercase leading-tight text-white transition-colors hover:text-[#B70126] sm:text-3xl"
+                                    style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                >
+                                    academia@ivanivanovich.com
+                                </a>
+                            </div>
+
+                            <div>
+                                <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
+                                    {t('contact.locationLabel')}
+                                </p>
+                                <p
+                                    className="text-2xl uppercase leading-tight text-white sm:text-3xl"
+                                    style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                >
+                                    {t('contact.cdmx')}
+                                </p>
                             </div>
                         </div>
 
-                        {/* Social Icons */}
-                        <div className="flex gap-4 justify-center lg:justify-start pt-4">
+                        <div className="mt-10 flex gap-px pb-10 lg:pb-10">
                             <a
                                 href="https://www.youtube.com/c/ivanivanovichproteccionejecutiva"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-12 h-12 bg-[#B70126] rounded-full flex items-center justify-center text-white hover:bg-[#D9012D] transition-colors"
+                                aria-label="YouTube"
+                                className="flex h-11 w-11 items-center justify-center bg-[#B70126] text-white transition-colors hover:bg-[#8f011e]"
                             >
-                                <Youtube className="w-6 h-6" />
+                                <Youtube className="h-5 w-5" />
                             </a>
                             <a
                                 href="https://www.facebook.com/ivan.ivanovich.315"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-12 h-12 bg-[#B70126] rounded-full flex items-center justify-center text-white hover:bg-[#D9012D] transition-colors"
+                                aria-label="Facebook"
+                                className="flex h-11 w-11 items-center justify-center bg-[#B70126] text-white transition-colors hover:bg-[#8f011e]"
                             >
-                                <Facebook className="w-6 h-6" />
+                                <Facebook className="h-5 w-5" />
                             </a>
                             <a
                                 href="https://www.instagram.com/ivan_ivanovich.ms/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-12 h-12 bg-[#B70126] rounded-full flex items-center justify-center text-white hover:bg-[#D9012D] transition-colors"
+                                aria-label="Instagram"
+                                className="flex h-11 w-11 items-center justify-center bg-[#B70126] text-white transition-colors hover:bg-[#8f011e]"
                             >
-                                <Instagram className="w-6 h-6" />
+                                <Instagram className="h-5 w-5" />
                             </a>
                         </div>
                     </div>
 
-                    {/* Right Column: Form */}
-                    <div className="bg-white">
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        placeholder={t('contact.formName')}
-                                        required
-                                        disabled={loading}
-                                        className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none disabled:opacity-50"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        placeholder={t('contact.formEmail')}
-                                        required
-                                        disabled={loading}
-                                        className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none disabled:opacity-50"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        placeholder={t('contact.formPhone')}
-                                        disabled={loading}
-                                        className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none disabled:opacity-50"
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
-                                        placeholder={t('contact.subject')}
-                                        disabled={loading}
-                                        className="w-full rounded-full bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none disabled:opacity-50"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <textarea
-                                    rows={4}
-                                    name="message"
-                                    value={formData.message}
+                    {/* Columna derecha: formulario */}
+                    <div className="px-0 pb-10 pt-8 lg:pb-12 lg:pl-12 lg:pt-10">
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleChange}
-                                    placeholder={t('contact.message')}
+                                    placeholder={t('contact.formName')}
                                     required
                                     disabled={loading}
-                                    className="w-full rounded-3xl bg-gray-100 px-6 py-4 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-[#B70126] focus:outline-none border-none resize-none disabled:opacity-50"
+                                    className={inputClass}
+                                />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder={t('contact.formEmail')}
+                                    required
+                                    disabled={loading}
+                                    className={inputClass}
                                 />
                             </div>
 
-                            <div>
-                                <button
-                                    type="submit"
+                            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    placeholder={t('contact.formPhone')}
                                     disabled={loading}
-                                    className="w-full rounded-full bg-[#B70126] px-8 py-4 text-center text-base font-bold text-white shadow-sm hover:bg-[#D9012D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B70126] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
-                                >
-                                    {loading ? t('common.loading') : t('contact.formButton')}
-                                </button>
+                                    className={inputClass}
+                                />
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    placeholder={t('contact.subject')}
+                                    disabled={loading}
+                                    className={inputClass}
+                                />
                             </div>
+
+                            <textarea
+                                rows={4}
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                placeholder={t('contact.message')}
+                                required
+                                disabled={loading}
+                                className={`${inputClass} resize-none`}
+                            />
+
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="group mt-2 flex w-fit items-stretch disabled:opacity-60"
+                            >
+                                <span className="bg-[#B70126] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-[#8f011e]">
+                                    {loading ? t('common.loading') : t('contact.formButton')}
+                                </span>
+                                <span className="ml-px flex items-center bg-[#B70126] px-4 text-white transition-colors group-hover:bg-[#8f011e]">
+                                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                                </span>
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 }

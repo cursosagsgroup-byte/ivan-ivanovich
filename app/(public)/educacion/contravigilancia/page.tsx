@@ -1,12 +1,77 @@
 'use client';
 
 import Image from 'next/image';
-import { Check, ChevronDown, Play, Clock, List, CheckCircle, UploadCloud, GraduationCap } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import PublicNavbar from '@/components/public/PublicNavbar';
 import AddToCartButton from '@/components/cart/AddToCartButton';
+import RecognitionsSection from '@/components/public/RecognitionsSection';
+import FaqSection from '@/components/public/FaqSection';
 import { useTranslation } from '@/hooks/useTranslation';
 import ShareLanguageLink from '@/components/ShareLanguageLink';
+import { StructuredData } from '@/components/seo/StructuredData';
+import { courseSchema } from '@/lib/seo-utils';
+
+// Mismos datos que ya se muestran en la barra de compra (precio, acceso,
+// certificado): el schema Course no debe inventar nada que no esté en la
+// página.
+const COURSE_SCHEMA = {
+    es: courseSchema({
+        name: 'Contravigilancia Para Protección Ejecutiva',
+        description: 'Técnicas profesionales de contravigilancia para detectar vigilancia hostil antes de que se convierta en una amenaza, impartidas por Ivan Ivanovich.',
+        image: 'https://ivanivanovich.com/curso-contravigilancia.jpg',
+        price: 2500,
+        currency: 'MXN',
+    }),
+    en: courseSchema({
+        name: 'Counter Surveillance for Executive Protection',
+        description: 'Professional counter-surveillance techniques to detect hostile surveillance before it becomes a threat, taught by Ivan Ivanovich.',
+        image: 'https://ivanivanovich.com/curso-contravigilancia.jpg',
+        price: 2500,
+        currency: 'MXN',
+    }),
+} as const;
+
+// Preguntas frecuentes: mismos hechos que ya aparecen en la barra de compra
+// (online, acceso de por vida, certificado) — nada inventado.
+const FAQS = {
+    es: [
+        {
+            question: '¿EL CURSO ES PRESENCIAL O EN LÍNEA?',
+            answer: 'Es 100% en línea. Accedes a las clases cuando quieras y desde donde quieras, a tu propio ritmo.',
+        },
+        {
+            question: '¿EL ACCESO AL CURSO TIENE VENCIMIENTO?',
+            answer: 'No. Es un pago único con acceso de por vida a todo el contenido del curso.',
+        },
+        {
+            question: '¿CÓMO OBTENGO EL CERTIFICADO DEL CURSO?',
+            answer: 'Debes ver cada clase y aprobar el módulo de examen correspondiente. Al completar todos los módulos, tu certificado se habilita para descarga.',
+        },
+        {
+            question: '¿PARA QUIÉN ES ESTE CURSO?',
+            answer: 'Está diseñado para profesionales de la protección ejecutiva que quieren aprender a detectar vigilancia hostil antes de que se convierta en una amenaza.',
+        },
+    ],
+    en: [
+        {
+            question: 'IS THE COURSE IN PERSON OR ONLINE?',
+            answer: 'It is 100% online. You access the classes whenever and wherever you want, at your own pace.',
+        },
+        {
+            question: 'DOES COURSE ACCESS EXPIRE?',
+            answer: 'No. It is a one-time payment with lifetime access to all the course content.',
+        },
+        {
+            question: 'HOW DO I GET THE COURSE CERTIFICATE?',
+            answer: 'You must watch each class and pass the corresponding exam module. Once you complete every module, your certificate is enabled for download.',
+        },
+        {
+            question: 'WHO IS THIS COURSE FOR?',
+            answer: 'It is designed for executive protection professionals who want to learn how to detect hostile surveillance before it becomes a threat.',
+        },
+    ],
+} as const;
 
 // Página única del curso de contravigilancia. El vídeo, el curso a la venta y
 // las etiquetas fijas cambian según el idioma; los textos largos ya salen de
@@ -27,319 +92,222 @@ export default function ContravigilanciaPage() {
     const idioma = en ? 'en' : 'es';
 
     return (
-        <div className="min-h-screen bg-white pt-24">
+        <div className="bg-white min-h-screen">
+            <StructuredData data={COURSE_SCHEMA[idioma]} />
+            {/* Hero a sangre, mismo patrón que el resto de /educacion. */}
+            <div className="relative w-full overflow-hidden bg-[#0B121F]">
+                <Image
+                    src="/ivan-hero-blog.webp"
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    className="object-cover object-[65%_15%]"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="subpage-hero relative z-10 mx-auto max-w-[1440px]">
+                    <p className="subpage-hero-eyebrow">
+                        {t('counterSurveillance.heroSubtitle')}
+                    </p>
+                    <h1 className="max-w-4xl text-5xl font-normal uppercase leading-[0.95] text-white lg:text-7xl" style={{ fontFamily: 'var(--font-bebas)' }}>
+                        {t('counterSurveillance.heroTitle')}
+                    </h1>
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg">{t('counterSurveillance.heroDescription')}</p>
+                </div>
+            </div>
 
-            {/* Hero Section */}
-            <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
-                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">
-                    <div className="absolute inset-0 -z-10 opacity-40">
-                        <Image
-                            src="/course-hero-bg.png"
-                            alt="Background"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+            {/* Contenido + sidebar de compra: ancho completo, líneas divisorias. */}
+            <div className="border-t border-gray-200">
+                <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
+                        <div className="flex flex-col gap-14 lg:col-span-2">
 
-                    <div className="w-full px-6 lg:px-12 relative z-10">
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center">
-                            {/* Left Column: Title */}
-                            <div className="text-center lg:text-left">
-                                <div className="inline-block bg-[#B70126] rounded-full px-6 py-2 mb-4">
-                                    <span className="text-white font-bold text-sm lg:text-base uppercase tracking-wide" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                        {t('counterSurveillance.heroSubtitle')}
-                                    </span>
+                            {/* Intro */}
+                            <div>
+                                <h2
+                                    className="mb-5 max-w-2xl text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-5xl"
+                                    style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                >
+                                    {t('counterSurveillance.introTitle')}
+                                </h2>
+                                <div className="max-w-2xl space-y-4 text-base leading-relaxed text-gray-600 lg:text-[17px]">
+                                    <p>{t('counterSurveillance.introDescription1')}</p>
+                                    <p>{t('counterSurveillance.introDescription2')}</p>
+                                    <p>{t('counterSurveillance.introDescription3')}</p>
                                 </div>
-                                <h1 className="text-4xl lg:text-6xl xl:text-7xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                    {t('counterSurveillance.heroTitle')}
-                                </h1>
                             </div>
 
-                            {/* Right Column: Image */}
-                            <div className="flex justify-center lg:justify-end w-full mt-2 lg:mt-0">
-                                <div className="relative w-full max-w-md aspect-video rounded-xl overflow-hidden border-4 border-white shadow-2xl lg:h-[28vh] lg:w-auto">
+                            {/* Video */}
+                            <div>
+                                <div className="relative w-full overflow-hidden bg-gray-100" style={{ paddingTop: '56.25%' }}>
+                                    <iframe
+                                        key={VIDEO_INTRO[idioma]}
+                                        src={`https://player.vimeo.com/video/${VIDEO_INTRO[idioma]}`}
+                                        frameBorder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                        title={en ? 'Course Introduction' : 'Introducción al Curso'}
+                                    />
+                                </div>
+                                <div className="mt-4 flex justify-center">
+                                    <ShareLanguageLink />
+                                </div>
+                            </div>
+
+                            {/* Instructor */}
+                            <div>
+                                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-400">
+                                    {t('home.aboutKicker')}
+                                </p>
+                                <h3
+                                    className="mb-5 text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-4xl"
+                                    style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                >
+                                    {t('home.ivanTitle')}
+                                </h3>
+                                <div className="max-w-2xl space-y-4 text-base leading-relaxed text-gray-600 lg:text-[17px]">
+                                    <p className="font-semibold text-[#16171a]">{t('home.ivanSubtitle')}</p>
+                                    <p>{t('home.ivanDescription1')}</p>
+                                    <p>{t('home.ivanDescription2')} {t('home.ivanDescription3')}</p>
+                                    <p>{t('home.ivanDescription4')}</p>
+                                    <p>{t('home.ivanDescription5')}</p>
+                                </div>
+                                <Link href="/nuestro-equipo" className="group mt-6 flex w-fit items-stretch">
+                                    <span className="bg-[#B70126] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-[#8f011e]">
+                                        {t('home.readMore')}
+                                    </span>
+                                    <span className="ml-px flex items-center bg-[#B70126] px-4 text-white transition-colors group-hover:bg-[#8f011e]">
+                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                                    </span>
+                                </Link>
+                            </div>
+
+                            {/* Lo que aprenderás */}
+                            <div>
+                                <h2
+                                    className="mb-6 text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-4xl"
+                                    style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                >
+                                    {t('counterSurveillance.whatYouWillLearnTitle')}
+                                </h2>
+                                <ul className="space-y-3">
+                                    {(t('counterSurveillance.whatYouWillLearnItems') as unknown as string[]).map((item, index) => (
+                                        <li key={index} className="flex items-start gap-3 text-base leading-relaxed text-gray-600 lg:text-[17px]">
+                                            <span className="mt-1 text-[#B70126]">—</span>
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Módulos */}
+                            <div>
+                                <h2
+                                    className="mb-2 text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-4xl"
+                                    style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                >
+                                    {t('counterSurveillance.modulesTitle')}
+                                </h2>
+                                <div className="border-t border-gray-200">
+                                    {(t('counterSurveillance.modules') as unknown as string[]).map((module, index) => (
+                                        <ModuleItem key={index} index={index} title={module} />
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Preguntas frecuentes */}
+                            <FaqSection
+                                title={en ? 'Frequently Asked Questions' : 'Preguntas Frecuentes'}
+                                items={[...FAQS[idioma]]}
+                            />
+                        </div>
+
+                        {/* Sidebar de compra */}
+                        <div className="lg:col-span-1">
+                            <div className="border border-gray-200 lg:sticky lg:top-32">
+                                <div className="relative aspect-video w-full overflow-hidden bg-gray-100">
                                     <Image
                                         src="/curso-contravigilancia.jpg"
-                                        alt="Ivan Ivanovich"
+                                        alt={en ? 'Counter Surveillance Course' : 'Curso de Contravigilancia'}
                                         fill
                                         className="object-cover"
                                     />
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                <div className="p-6">
+                                    <p className="mb-1 font-mono text-xs uppercase tracking-[0.1em] text-gray-400 line-through">
+                                        {t('counterSurveillance.originalPrice')}
+                                    </p>
+                                    <p
+                                        className="mb-1 text-4xl uppercase leading-none text-[#16171a]"
+                                        style={{ fontFamily: 'var(--font-bebas), sans-serif' }}
+                                    >
+                                        {t('counterSurveillance.currentPrice')}
+                                    </p>
+                                    <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-gray-400">
+                                        {t('counterSurveillance.priceLabel')}
+                                    </p>
 
-            {/* Main Content Grid */}
-            <div className="mx-auto max-w-[95%] lg:max-w-[90%] px-4 lg:px-8 py-8 lg:py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                                    <AddToCartButton
+                                        course={{
+                                            id: CURSO[idioma].id,
+                                            title: CURSO[idioma].title,
+                                            price: 2500,
+                                            image: '/curso-contravigilancia.jpg'
+                                        }}
+                                        label={t('counterSurveillance.buyButton')}
+                                        className="w-full px-6 py-3 font-mono text-[11px] uppercase tracking-[0.12em] hover:bg-[#8f011e]"
+                                    />
 
-                    {/* Left Column: Content */}
-                    <div className="lg:col-span-2 space-y-12">
-
-                        {/* Intro Text */}
-                        <div className="space-y-4">
-                            <h2 className="text-[35px] font-bold text-black uppercase leading-tight" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('counterSurveillance.introTitle')}
-                            </h2>
-                            <p className="text-lg text-gray-700">
-                                {t('counterSurveillance.introDescription1')}
-                            </p>
-                            <p className="text-lg text-gray-700">
-                                {t('counterSurveillance.introDescription2')}
-                            </p>
-                            <p className="text-lg text-gray-700">
-                                {t('counterSurveillance.introDescription3')}
-                            </p>
-                        </div>
-
-                        {/* Video Section */}
-                        <div className="relative w-full rounded-2xl overflow-hidden shadow-lg" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-                            <iframe
-                                key={VIDEO_INTRO[idioma]}
-                                src={`https://player.vimeo.com/video/${VIDEO_INTRO[idioma]}`}
-                                frameBorder="0"
-                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                                title={en ? "Course Introduction" : "Introducción al Curso"}
-                            />
-                        </div>
-
-                        {/* Copia el enlace conservando el idioma actual */}
-                        <div className="mt-4 flex justify-center">
-                            <ShareLanguageLink />
-                        </div>
-
-                        {/* Instructor Bio */}
-                        <div className="prose max-w-none text-gray-700">
-                            <h3 className="text-[35px] font-bold text-black uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('home.ivanTitle')}
-                            </h3>
-                            <p>
-                                {t('home.ivanSubtitle')}
-                            </p>
-                            <p>
-                                {t('home.ivanDescription1')}
-                            </p>
-                            <p>
-                                {t('home.ivanDescription2')} {t('home.ivanDescription3')}
-                            </p>
-                            <p>
-                                {t('home.ivanDescription4')}
-                            </p>
-                            <p>
-                                {t('home.ivanDescription5')}
-                            </p>
-                        </div>
-
-                        {/* Armada Section */}
-                        <section className="bg-gray-100 py-16 rounded-[30px] mb-8">
-                            <div className="mx-auto max-w-7xl px-4 lg:px-12">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                                    <div>
-                                        <p className="text-[#B70126] font-bold text-sm uppercase mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                            {t('home.armadaLabel')}
-                                        </p>
-                                        <h2 className="text-5xl font-bold text-black uppercase mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                            {t('home.armadaTitle')}
-                                        </h2>
-                                        <p className="text-gray-600 text-lg mb-6">
-                                            {t('home.armadaDescription')}
-                                        </p>
-                                        <div className="flex gap-6">
-                                            <img src="/escudo-armada-1.png" alt="Escudo Armada 1" className="h-24 w-auto" />
-                                            <img src="/escudo-armada-2.png" alt="Escudo Armada 2" className="h-24 w-auto" />
+                                    <div className="mt-8 border-t border-gray-200">
+                                        <div className="flex items-center justify-between border-b border-gray-200 py-3 font-mono text-[11px] uppercase tracking-[0.12em]">
+                                            <span className="text-gray-400">{en ? 'Duration' : 'Duración'}</span>
+                                            <span className="text-[#16171a]">Online</span>
+                                        </div>
+                                        <div className="flex items-center justify-between border-b border-gray-200 py-3 font-mono text-[11px] uppercase tracking-[0.12em]">
+                                            <span className="text-gray-400">{en ? 'Access' : 'Acceso'}</span>
+                                            <span className="text-[#16171a]">{en ? 'Lifetime' : 'De por vida'}</span>
+                                        </div>
+                                        <div className="flex items-center justify-between py-3 font-mono text-[11px] uppercase tracking-[0.12em]">
+                                            <span className="text-gray-400">{en ? 'Certificate' : 'Certificado'}</span>
+                                            <span className="text-[#16171a]">{en ? 'Yes' : 'Sí'}</span>
                                         </div>
                                     </div>
-                                    <div className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-2xl">
-                                        <img src="/photo-armada-square.jpg" alt="Armada Española Training" className="w-full h-full object-cover" />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Costa Rica Section */}
-                        <section className="bg-gray-100 py-16 rounded-[30px] mb-8">
-                            <div className="mx-auto max-w-7xl px-4 lg:px-12">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                                    <div>
-                                        <p className="text-[#B70126] font-bold text-sm uppercase mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                            {t('home.costaRicaLabel')}
-                                        </p>
-                                        <h2 className="text-3xl lg:text-4xl font-bold text-black uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                            {t('home.costaRicaTitle')}
-                                        </h2>
-
-                                        <p className="text-gray-600 text-base">
-                                            {t('home.costaRicaDescription')}
-                                        </p>
-                                    </div>
-                                    <div className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-2xl">
-                                        <img src="/photo-costarica-square.jpg" alt="Costa Rica Training" className="w-full h-full object-cover" />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* TOP 9 GLOBAL */}
-                        <section className="bg-gray-100 py-16 rounded-[30px] mb-16">
-                            <div className="mx-auto max-w-7xl px-4 lg:px-12">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                                    <div>
-                                        <p className="text-[#B70126] font-bold text-sm uppercase mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                            {t('home.top9Label')}
-                                        </p>
-                                        <h2 className="text-6xl font-bold text-black uppercase mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                            {t('home.top9Title')}
-                                        </h2>
-                                        <p className="text-gray-600 text-lg">
-                                            {t('home.top9Description')}
-                                        </p>
-                                    </div>
-                                    <div className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-2xl">
-                                        <img src="/photo-top9-square.png" alt="TOP 9 Mundial" className="w-full h-full object-cover" />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-
-
-
-                        {/* ISJ Influencer 2025 Section */}
-                        <section className="bg-gray-100 py-16 rounded-[30px] mb-16">
-                            <div className="mx-auto max-w-7xl px-4 lg:px-12">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                                    {/* Left: Content */}
-                                    <div>
-                                        <p className="text-[#B70126] font-bold text-sm uppercase mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                            {t('home.isjLabel')}
-                                        </p>
-                                        <h2 className="text-5xl font-bold text-black uppercase mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                            {t('home.isjTitle')}
-                                        </h2>
-                                        <p className="text-gray-600 text-lg">
-                                            {t('home.isjDescription')}
-                                        </p>
-                                    </div>
-                                    {/* Right: Image */}
-                                    <div className="relative aspect-square w-[80%] mx-auto overflow-hidden rounded-2xl">
-                                        <img src="/images/isj-ivan.png" alt="ISJ Influencer 2025" className="w-full h-full object-cover" />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* What you will learn */}
-                        <section>
-                            <h2 className="text-[35px] font-bold text-black mb-8 uppercase" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('counterSurveillance.whatYouWillLearnTitle')}
-                            </h2>
-                            <div className="grid grid-cols-1 gap-4">
-                                {(t('counterSurveillance.whatYouWillLearnItems') as unknown as string[]).map((item, index) => (
-                                    <div key={index} className="flex items-start gap-3">
-                                        <Check className="w-5 h-5 text-[#B70126] mt-1 flex-shrink-0" />
-                                        <p className="text-gray-700">{item}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-
-                        {/* Course Content / Modules */}
-                        <section>
-                            <h2 className="text-[35px] font-bold text-black mb-8 uppercase" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('counterSurveillance.modulesTitle')}
-                            </h2>
-                            <div className="space-y-4">
-                                {(t('counterSurveillance.modules') as unknown as string[]).map((module, index) => (
-                                    <ModuleItem key={index} title={module} duration="" />
-                                ))}
-                            </div>
-                        </section>
-
-                    </div>
-
-                    {/* Right Column: Sticky Sidebar */}
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-32 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
-                            <div className="relative w-full aspect-video mb-6 rounded-lg overflow-hidden">
-                                <Image
-                                    src="/curso-contravigilancia.jpg"
-                                    alt={en ? "Counter Surveillance Course" : "Curso de Contravigilancia"}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div className="text-3xl font-bold text-[#B70126] mb-2 text-center">
-                                {t('counterSurveillance.currentPrice')}
-                            </div>
-                            <div className="text-gray-500 line-through text-center mb-6">
-                                {t('counterSurveillance.originalPrice')}
-                            </div>
-
-                            <AddToCartButton
-                                course={{
-                                    id: CURSO[idioma].id,
-                                    title: CURSO[idioma].title,
-                                    price: 2500,
-                                    image: '/curso-contravigilancia.jpg'
-                                }}
-                                label={t('counterSurveillance.buyButton')}
-                                className="w-full py-4 rounded-lg text-base shadow-lg"
-                            />
-
-                            <div className="space-y-4 text-sm text-gray-600 mt-6">
-                                <div className="flex justify-between border-b pb-2">
-                                    <span>{en ? 'Duration:' : 'Duración:'}</span>
-                                    <span className="font-bold">Online</span>
-                                </div>
-                                <div className="flex justify-between border-b pb-2">
-                                    <span>{en ? 'Access:' : 'Acceso:'}</span>
-                                    <span className="font-bold">{en ? 'Lifetime' : 'De por vida'}</span>
-                                </div>
-                                <div className="flex justify-between border-b pb-2">
-                                    <span>{en ? 'Certificate:' : 'Certificado:'}</span>
-                                    <span className="font-bold">{en ? 'Yes' : 'Sí'}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            {/* End of content */}
+            {/* Reconocimientos: mismo bloque editorial que el resto del sitio. */}
+            <RecognitionsSection contained />
         </div>
     );
 }
 
-function ModuleItem({ title, duration }: { title: string, duration?: string }) {
+function ModuleItem({ index, title }: { index: number; title: string }) {
     const { language } = useTranslation();
     const en = language === 'en';
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="border border-gray-200 rounded-lg overflow-hidden">
+        <div className="border-b border-gray-200 py-5">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left"
+                className="flex w-full items-center justify-between gap-4 text-left"
+                aria-expanded={isOpen}
             >
-                <div className="flex items-center gap-3">
-                    <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                    <span className="font-medium text-gray-900">{title}</span>
-                </div>
-                {duration && <span className="text-sm text-gray-500">{duration}</span>}
+                <span className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-gray-400">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="text-base font-medium text-[#16171a] sm:text-lg">{title}</span>
+                </span>
+                <ChevronDown className={`h-4 w-4 shrink-0 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </button>
             {isOpen && (
-                <div className="p-4 bg-white border-t border-gray-200">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <Play className="w-4 h-4" />
-                        <span>{en ? 'Module content...' : 'Contenido del módulo...'}</span>
-                    </div>
-                </div>
+                <p className="mt-3 pl-9 font-mono text-xs uppercase tracking-[0.1em] text-gray-400">
+                    {en ? 'Module content...' : 'Contenido del módulo...'}
+                </p>
             )}
         </div>
     );
