@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // /admin solo nunca tuvo página propia (solo /admin/dashboard,
+        // /admin/courses, etc.) — quien entra directo a /admin se topaba
+        // con un 404 en vez de llegar al panel.
+        source: '/admin',
+        destination: '/admin/dashboard',
+        permanent: false,
+      },
+      {
         source: '/courses/:slug(contravigilancia|counter-surveillance|team-leader|cursos-online|cursos-presenciales|libro|certificado-deta)',
         destination: '/educacion/:slug',
         permanent: true,
