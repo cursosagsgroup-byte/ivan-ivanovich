@@ -192,6 +192,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         '/images/banners/banner3.jpg?v=2',
         '/images/banners/banner4.jpg?v=2'
     ];
+    const bannerLinks = [
+        { href: 'https://ivanivanovich.com/educacion/team-leader', label: 'Curso Team Leader en Protección Ejecutiva' },
+        { href: 'https://wso-security.com/', label: 'WSO — Worldwide Security Options' },
+        { href: 'https://ivanivanovich.com/educacion/libro', label: 'Adquiere el libro Protección Ejecutiva en el Siglo XXI: La Nueva Doctrina' },
+    ];
 
     // Helper to decode HTML entities if needed (though JSON import usually handles standard escapes)
     const decodeHtmlEntities = (str: string) => {
@@ -284,7 +289,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             if (index === 1 && bannersInjected < 1) {
                 newContentParts.push(`
                     <div class="my-8 w-full flex justify-center">
-                        <img src="${banners[0]}" alt="Banner Publicidad 1" class="w-full h-auto shadow-md object-cover" />
+                        <a href="${bannerLinks[0].href}" class="block w-full">
+                            <img src="${banners[0]}" alt="${bannerLinks[0].label}" class="w-full h-auto shadow-md object-cover" />
+                        </a>
                     </div>
                 `);
                 bannersInjected++;
@@ -298,7 +305,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 if (relativeIndex % interval === 0) {
                     newContentParts.push(`
                         <div class="my-8 w-full flex justify-center">
-                            <img src="${banners[bannersInjected]}" alt="Banner Publicidad ${bannersInjected + 1}" class="w-full h-auto shadow-md object-cover" />
+                            <a href="${bannerLinks[bannersInjected].href}" class="block w-full">
+                                <img src="${banners[bannersInjected]}" alt="${bannerLinks[bannersInjected].label}" class="w-full h-auto shadow-md object-cover" />
+                            </a>
                         </div>
                     `);
                     bannersInjected++;
@@ -388,20 +397,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <div className="absolute inset-0 hidden bg-black/55 lg:block" />
                     </>
                 )}
-                <div className="relative mx-auto flex max-w-[1440px] flex-col justify-center px-6 pb-8 pt-28 sm:pb-10 lg:min-h-[720px] lg:px-8 lg:pb-20 lg:pt-36">
+                <div className="subpage-hero relative z-10 mx-auto max-w-[1440px]">
                     <div className="max-w-3xl">
-                        <p className="blog-hero-etiqueta mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#B70126]">
+                        <p className="subpage-hero-eyebrow text-white">
                             {t.blog.categoryLabel}
                         </p>
-                        <div className="mb-6 h-[3px] w-12 bg-[#B70126]" />
-                        <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-[56px] lg:text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
+                        <h1 className="text-2xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-[56px] lg:text-white" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
                             {post.title}
                         </h1>
-                        {post.subtitle && (
-                            <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg lg:text-white">
-                                {post.subtitle}
-                            </p>
-                        )}
+                        <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg lg:text-white">
+                            {post.subtitle || t.blog.heroDescription}
+                        </p>
                     </div>
                 </div>
             </header>

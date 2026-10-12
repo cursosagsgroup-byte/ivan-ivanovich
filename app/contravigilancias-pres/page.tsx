@@ -120,15 +120,22 @@ export default function ContravigilanciasPres() {
   </nav>
 
   {/*  ── HERO ──  */}
-  <section className="hero">
+  <section className="hero subpage-hero subpage-hero-presencial">
     <div className="hero-bg"></div>
     <div className="hero-overlay"></div>
     <div className="hero-content reveal">
 
-      <p className="hero-tagline">Ellos ya te están observando. Tú aún no lo sabes.</p>
+      <p className="subpage-hero-eyebrow">Ellos ya te están observando. Tú aún no lo sabes.</p>
 
       <h1>Curso de<br />Contravigilancia en<br /><em>Protección Ejecutiva</em></h1>
 
+      <p className="hero-body">
+        El conocimiento que estás a punto de adquirir no está en ningún manual público. No se enseña en academias convencionales. Viene de tres décadas de operaciones reales en los escenarios más hostiles del mundo. Y por primera vez, está disponible para ti.
+      </p>
+
+    </div>
+  </section>
+  <section className="hero-booking">
       <div className="hero-info-row">
         <div className="info-item">
           <span className="info-label">Fecha</span>
@@ -148,10 +155,6 @@ export default function ContravigilanciasPres() {
         </div>
       </div>
 
-      <p className="hero-body">
-        El conocimiento que estás a punto de adquirir no está en ningún manual público. No se enseña en academias convencionales. Viene de tres décadas de operaciones reales en los escenarios más hostiles del mundo. Y por primera vez, está disponible para ti.
-      </p>
-
       <div className="hero-actions">
         <button onClick={handleCheckout} className="btn-main border-none cursor-pointer text-base">Asegurar mi lugar ahora &rarr;</button>
         <a href="#temario" className="btn-ghost">Ver el temario completo</a>
@@ -167,8 +170,6 @@ export default function ContravigilanciasPres() {
         </div>
         <p className="cupos-foot"><strong>12 lugares disponibles.</strong> El grupo cierra cuando se llena.</p>
       </div>
-
-    </div>
   </section>
 
   {/*  ── GALLERY STRIP ──  */}

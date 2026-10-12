@@ -20,7 +20,7 @@ export default function BlogSection({ limit }: BlogSectionProps) {
             <div className="mx-auto max-w-7xl">
                 <div className="mx-auto max-w-2xl text-center mb-16">
                     <h2 className="text-4xl font-black tracking-tight text-black sm:text-5xl mb-6 uppercase" style={{
-                        fontFamily: 'Montserrat, sans-serif'
+                        fontFamily: 'var(--font-montserrat), sans-serif'
                     }}>
                         {t('home.blogTitle')}
                     </h2>

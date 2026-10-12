@@ -67,18 +67,17 @@ export default async function CourseDetailPage({ params }: PageProps) {
                             {/* Placeholder for background image if needed later */}
                         </div>
 
-                        <div className="mx-auto max-w-full px-6 py-16 lg:px-12 lg:py-24 relative z-10">
+                        <div className="subpage-hero relative z-10 mx-auto w-full">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                                 {/* Left Column: Title */}
                                 <div className="text-left">
-                                    <div className="inline-block bg-[#B70126] rounded-full px-8 py-3 mb-6">
-                                        <span className="text-white font-bold text-xl lg:text-2xl uppercase tracking-wide" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                                            {locale === 'es' ? 'CURSO ONLINE' : 'ONLINE COURSE'}
-                                        </span>
-                                    </div>
+                                    <p className="subpage-hero-eyebrow">
+                                        {locale === 'es' ? 'CURSO ONLINE' : 'ONLINE COURSE'}
+                                    </p>
                                     <h1 className="text-5xl lg:text-7xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
                                         {course.title}
                                     </h1>
+                                    <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg">{t.courses.subtitle}</p>
                                 </div>
 
                                 {/* Right Column: Image */}

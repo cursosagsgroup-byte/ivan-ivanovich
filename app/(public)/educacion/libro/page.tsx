@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, Loader2, ArrowUpRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function LibroPage() {
@@ -50,234 +50,227 @@ export default function LibroPage() {
         }
     };
 
+    const inputClass = 'w-full border-b border-gray-300 bg-transparent px-0 py-3 text-[#16171a] placeholder:text-gray-400 focus:border-[#B70126] focus:outline-none disabled:opacity-50';
+    const kickerClass = 'mb-2 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-400';
+
     return (
-        <div className="bg-white min-h-screen pt-24">
-            {/* Hero Section */}
-            <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
-                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">
-                    <div className="absolute inset-0 -z-10 opacity-40">
-                        <Image
-                            src="/course-hero-bg.png"
-                            alt="Background"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
+        <div className="bg-white min-h-screen">
+            {/* Hero a sangre, mismo patrón que el resto de /educacion. */}
+            <div className="relative w-full overflow-hidden bg-[#0B121F]">
+                <Image
+                    src="/course-hero-image.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="subpage-hero relative z-10 mx-auto max-w-[1440px]">
+                    <p className="subpage-hero-eyebrow">{t('courses.heroEyebrow')}</p>
+                    <h1 className="text-6xl font-normal uppercase leading-none text-white lg:text-8xl" style={{ fontFamily: 'var(--font-bebas)' }}>
+                        {t('book.heroTitle')}
+                    </h1>
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg">{t('book.heroDescription')}</p>
+                </div>
+            </div>
+
+            {/* La Nueva Doctrina: fondo blanco, portada + texto + CTA a Amazon. */}
+            <div className="border-t border-gray-200 bg-white">
+                <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+                    <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.14em]">
+                        <span className="flex gap-6">
+                            <span className="text-gray-400">{t('home.bookBestsellerKicker')}</span>
+                            <span className="text-[#16171a]">{t('home.book2Short')}</span>
+                        </span>
+                        <span className="text-gray-400">001</span>
                     </div>
 
-                    <div className="w-full px-6 lg:px-12 relative z-10">
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center">
-                            {/* Left Column: Title */}
-                            <div className="text-center lg:text-left">
-                                <h1 className="text-6xl lg:text-8xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                    {t('book.heroTitle')}
-                                </h1>
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="pb-10 lg:border-r lg:border-gray-200 lg:pb-0 lg:pr-12">
+                            <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden bg-gray-100 lg:ml-auto">
+                                <Image
+                                    src="/libro-portada.jpg"
+                                    alt={t('book.doctrinaTitle')}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 80vw, 30vw"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="pt-10 lg:pl-12 lg:pt-0">
+                            <h2
+                                className="mb-6 max-w-xl text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-5xl"
+                                style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                            >
+                                {t('book.doctrinaTitle')}
+                            </h2>
+
+                            <div className="max-w-lg space-y-4 text-base leading-relaxed text-gray-600 lg:text-[17px]">
+                                <p>{t('book.doctrinaDescription1')}</p>
+                                <p>{t('book.doctrinaDescription2')}</p>
                             </div>
 
-                            {/* Right Column: Both Books Side by Side */}
-                            <div className="flex justify-center items-center gap-4 lg:gap-6 mt-6 lg:mt-0 w-full">
-                                {/* Libro Doctrina */}
-                                <div className="relative w-[45%] lg:w-auto lg:h-[28vh] aspect-[3/4] rounded-lg overflow-hidden shadow-2xl">
-                                    <img
-                                        src="/libro-doctrina-hero.jpg"
-                                        alt="Protección Ejecutiva en el Siglo XXI"
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                {/* Libro Timeline */}
-                                <div className="relative w-[45%] lg:w-auto lg:h-[28vh] aspect-[3/4] rounded-lg overflow-hidden shadow-2xl">
-                                    <img
-                                        src="/libro-timeline-hero.png"
-                                        alt="Sistema Timeline"
-                                        className="w-full h-full object-cover bg-white"
-                                    />
-                                </div>
-                            </div>
+                            <Link
+                                href="https://www.amazon.com.mx/Protecci%C3%B3n-ejecutiva-siglo-XXI-doctrina-ebook/dp/B09MZ8BC9Q"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group mt-8 flex w-fit items-stretch"
+                            >
+                                <span className="bg-[#B70126] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-[#8f011e]">
+                                    {t('book.getBook')}
+                                </span>
+                                <span className="ml-px flex items-center bg-[#B70126] px-4 text-white transition-colors group-hover:bg-[#8f011e]">
+                                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                </span>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Content Container - 80% width */}
-            <div className="mx-auto w-[95%] lg:w-[80%]">
-                {/* Main Content Section */}
-                <section className="py-16">
-                    <div className="mx-auto max-w-7xl">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            {/* Left: Book Cover */}
-                            <div className="relative w-full max-w-md mx-auto">
-                                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-2xl">
-                                    <img
-                                        src="/libro-portada.jpg"
-                                        alt="Protección Ejecutiva en el Siglo XXI: La Nueva Doctrina"
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            </div>
+            {/* Sistema Timeline: fondo gris muy claro, portada + texto + formulario. */}
+            <div className="border-t border-gray-200 bg-[#F4F4F3]">
+                <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+                    <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.14em]">
+                        <span className="flex gap-6">
+                            <span className="text-gray-400">{t('home.bookKicker')}</span>
+                            <span className="text-[#16171a]">{t('home.course3Subtitle')}</span>
+                        </span>
+                        <span className="text-gray-400">002</span>
+                    </div>
 
-                            {/* Right: Content */}
-                            <div className="space-y-8">
-                                <div>
-                                    <h1 className="text-5xl font-bold text-black uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                        {t('book.doctrinaTitle')}
-                                    </h1>
-
-                                    <div className="space-y-4 text-gray-700 text-base leading-relaxed">
-                                        <p>
-                                            {t('book.doctrinaDescription1')}
-                                        </p>
-                                        <p>
-                                            {t('book.doctrinaDescription2')}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* CTA Button */}
-                                <div>
-                                    <Link
-                                        href="https://www.amazon.com.mx/Protecci%C3%B3n-ejecutiva-siglo-XXI-doctrina-ebook/dp/B09MZ8BC9Q"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-block rounded-full bg-[#B70126] px-10 py-4 text-base font-bold uppercase text-white hover:bg-[#D9012D] transition-colors shadow-lg"
-                                    >
-                                        {t('book.getBook')}
-                                    </Link>
-                                </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="pb-10 lg:border-r lg:border-gray-300 lg:pb-0 lg:pr-12">
+                            <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden bg-white lg:ml-auto">
+                                <Image
+                                    src="/libro-timeline.png"
+                                    alt={t('book.timelineTitle')}
+                                    fill
+                                    className="object-contain"
+                                    sizes="(max-width: 1024px) 80vw, 30vw"
+                                />
                             </div>
                         </div>
-                    </div>
-                </section>
 
-                {/* Sistema Timeline Book Section */}
-                <section className="py-16 border-t border-gray-200">
-                    <div className="mx-auto max-w-7xl">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            {/* Left: Book Cover */}
-                            <div className="relative w-full max-w-md mx-auto">
-                                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-2xl">
-                                    <img
-                                        src="/libro-timeline.png"
-                                        alt="Protección Ejecutiva Sistema Timeline"
-                                        className="w-full h-full object-contain bg-white"
-                                    />
-                                </div>
+                        <div className="pt-10 lg:pl-12 lg:pt-0">
+                            <h2
+                                className="mb-6 max-w-xl text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-5xl"
+                                style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                            >
+                                {t('book.timelineTitle')}
+                            </h2>
+
+                            <div className="mb-8 max-w-lg space-y-4 text-base leading-relaxed text-gray-600 lg:text-[17px]">
+                                <p>{t('book.timelineDescription1')}</p>
+                                <p>{t('book.timelineDescription2')}</p>
+                                <p>{t('book.timelineDescription3')}</p>
                             </div>
 
-                            {/* Right: Content */}
-                            <div className="space-y-8">
-                                <div>
-                                    <h2 className="text-5xl font-bold text-black uppercase mb-6 leading-tight" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                        {t('book.timelineTitle')}
-                                    </h2>
-
-                                    <div className="space-y-4 text-gray-700 text-base leading-relaxed">
-                                        <p>
-                                            {t('book.timelineDescription1')}
-                                        </p>
-                                        <p>
-                                            {t('book.timelineDescription2')}
-                                        </p>
-                                        <p>
-                                            {t('book.timelineDescription3')}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Lead Capture Form */}
-                                <div>
-                                    {status === 'success' ? (
-                                        <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-center">
-                                            <CheckCircle className="mx-auto mb-3 h-10 w-10 text-green-600" />
-                                            <p className="text-lg font-bold text-green-900">
-                                                {t('book.formSuccessTitle')}
-                                            </p>
-                                            <p className="mt-1 text-sm text-green-800">
-                                                {t('book.formSuccessBody')}
-                                            </p>
-                                            <a
-                                                href="/materials/proteccion-ejecutiva-sistema-timeline.pdf"
-                                                download="Proteccion-Ejecutiva-Sistema-Timeline.pdf"
-                                                className="mt-4 inline-block text-sm font-bold uppercase text-[#B70126] underline hover:text-[#D9012D]"
-                                            >
-                                                {t('book.formSuccessRetry')}
-                                            </a>
+                            {/* Lead Capture Form */}
+                            <div className="max-w-md">
+                                {status === 'success' ? (
+                                    <div className="border-t border-gray-300 pt-6">
+                                        <div className="flex items-start gap-3">
+                                            <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[#16171a]" />
+                                            <div>
+                                                <p className="text-base font-semibold text-[#16171a]">
+                                                    {t('book.formSuccessTitle')}
+                                                </p>
+                                                <p className="mt-1 text-sm text-gray-600">
+                                                    {t('book.formSuccessBody')}
+                                                </p>
+                                                <a
+                                                    href="/materials/proteccion-ejecutiva-sistema-timeline.pdf"
+                                                    download="Proteccion-Ejecutiva-Sistema-Timeline.pdf"
+                                                    className="mt-3 inline-block font-mono text-[11px] uppercase tracking-[0.12em] text-[#B70126] hover:text-[#8f011e]"
+                                                >
+                                                    {t('book.formSuccessRetry')}
+                                                </a>
+                                            </div>
                                         </div>
-                                    ) : (
-                                        <form className="space-y-4" onSubmit={handleSubmit} noValidate={false}>
-                                            <div>
-                                                <label htmlFor="timeline-name" className="block text-sm font-medium text-gray-700 mb-2">
-                                                    {t('book.formName')} {t('book.required')}
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="timeline-name"
-                                                    name="name"
-                                                    required
-                                                    value={form.name}
-                                                    onChange={handleChange}
-                                                    disabled={status === 'loading'}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#B70126] focus:border-transparent disabled:bg-gray-100"
-                                                    placeholder={t('book.formNamePlaceholder')}
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <label htmlFor="timeline-email" className="block text-sm font-medium text-gray-700 mb-2">
-                                                    {t('book.formEmail')} {t('book.required')}
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    id="timeline-email"
-                                                    name="email"
-                                                    required
-                                                    value={form.email}
-                                                    onChange={handleChange}
-                                                    disabled={status === 'loading'}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#B70126] focus:border-transparent disabled:bg-gray-100"
-                                                    placeholder={t('book.formEmailPlaceholder')}
-                                                />
-                                            </div>
-
-                                            <div>
-                                                <label htmlFor="timeline-country" className="block text-sm font-medium text-gray-700 mb-2">
-                                                    {t('book.formCountry')} {t('book.required')}
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    id="timeline-country"
-                                                    name="country"
-                                                    required
-                                                    value={form.country}
-                                                    onChange={handleChange}
-                                                    disabled={status === 'loading'}
-                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#B70126] focus:border-transparent disabled:bg-gray-100"
-                                                    placeholder={t('book.formCountryPlaceholder')}
-                                                />
-                                            </div>
-
-                                            {error && (
-                                                <p className="text-sm font-medium text-[#B70126]">{error}</p>
-                                            )}
-
-                                            <button
-                                                type="submit"
+                                    </div>
+                                ) : (
+                                    <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate={false}>
+                                        <div>
+                                            <label htmlFor="timeline-name" className={kickerClass}>
+                                                {t('book.formName')} {t('book.required')}
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="timeline-name"
+                                                name="name"
+                                                required
+                                                value={form.name}
+                                                onChange={handleChange}
                                                 disabled={status === 'loading'}
-                                                className="w-full flex items-center justify-center gap-2 rounded-full bg-[#B70126] px-10 py-4 text-base font-bold uppercase text-white hover:bg-[#D9012D] transition-colors shadow-lg disabled:opacity-70"
-                                            >
-                                                {status === 'loading' && <Loader2 className="h-5 w-5 animate-spin" />}
-                                                {status === 'loading' ? t('book.formSending') : t('book.downloadFree')}
-                                            </button>
+                                                className={inputClass}
+                                                placeholder={t('book.formNamePlaceholder')}
+                                            />
+                                        </div>
 
-                                            <p className="text-xs text-gray-500 text-center">
-                                                {t('book.formPrivacy')}
-                                            </p>
-                                        </form>
-                                    )}
-                                </div>
+                                        <div>
+                                            <label htmlFor="timeline-email" className={kickerClass}>
+                                                {t('book.formEmail')} {t('book.required')}
+                                            </label>
+                                            <input
+                                                type="email"
+                                                id="timeline-email"
+                                                name="email"
+                                                required
+                                                value={form.email}
+                                                onChange={handleChange}
+                                                disabled={status === 'loading'}
+                                                className={inputClass}
+                                                placeholder={t('book.formEmailPlaceholder')}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="timeline-country" className={kickerClass}>
+                                                {t('book.formCountry')} {t('book.required')}
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="timeline-country"
+                                                name="country"
+                                                required
+                                                value={form.country}
+                                                onChange={handleChange}
+                                                disabled={status === 'loading'}
+                                                className={inputClass}
+                                                placeholder={t('book.formCountryPlaceholder')}
+                                            />
+                                        </div>
+
+                                        {error && (
+                                            <p className="font-mono text-xs uppercase tracking-[0.12em] text-[#B70126]">{error}</p>
+                                        )}
+
+                                        <button
+                                            type="submit"
+                                            disabled={status === 'loading'}
+                                            className="group mt-2 flex w-fit items-stretch disabled:opacity-60"
+                                        >
+                                            <span className="flex items-center gap-2 bg-[#B70126] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-[#8f011e]">
+                                                {status === 'loading' && <Loader2 className="h-4 w-4 animate-spin" />}
+                                                {status === 'loading' ? t('book.formSending') : t('book.downloadFree')}
+                                            </span>
+                                            <span className="ml-px flex items-center bg-[#B70126] px-4 text-white transition-colors group-hover:bg-[#8f011e]">
+                                                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                            </span>
+                                        </button>
+
+                                        <p className="font-mono text-[11px] leading-relaxed text-gray-400">
+                                            {t('book.formPrivacy')}
+                                        </p>
+                                    </form>
+                                )}
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className="bg-white min-h-screen font-sans">
             {/* HERO SECTION */}
             {/* HERO SECTION */}
-            <div data-theme="dark" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+            <div data-theme="dark" className="subpage-hero subpage-hero-landing relative w-full flex items-center justify-center overflow-hidden bg-black">
                 {/* Background Pattern (Optional for texture) */}
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
 
@@ -20,12 +20,13 @@ export default function LandingPage() {
                 </div>
 
                 {/* Hero Content */}
-                <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-white pt-10 md:pt-20">
+                <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-white">
                     <div className="animate-fade-in-up">
 
                         <h2 className="text-white font-bold text-lg md:text-2xl uppercase tracking-wider mb-2">
                             Ciudad de México | 4 y 5 de Agosto
                         </h2>
+                        <p className="subpage-hero-eyebrow">Curso presencial</p>
                         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-none mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
                             Protección <span className="text-[#B70126]">Ejecutiva</span>,<br />
                             Operatividad <span className="text-gray-300">General</span><br />

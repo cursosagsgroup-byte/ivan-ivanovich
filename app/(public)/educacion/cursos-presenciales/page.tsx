@@ -1,184 +1,128 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
+
+const COURSES = ['inPersonCourses.course1', 'inPersonCourses.course2'];
 
 export default function CursosPresencialesPage() {
     const { t } = useTranslation();
 
     return (
-        <div className="bg-white min-h-screen pt-24">
-            {/* Hero Section */}
-            <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
-                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">
-                    <div className="absolute inset-0 -z-10 opacity-40">
-                        <Image
-                            src="/course-hero-bg.png"
-                            alt="Background"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+        <div className="bg-white min-h-screen">
+            {/* Hero a sangre, mismo patrón que cursos-online: la foto cubre
+                todo el fondo y una capa negra la oscurece lo justo. */}
+            <div className="relative w-full overflow-hidden bg-[#0B121F]">
+                <Image
+                    src="/course-hero-image.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="subpage-hero relative z-10 mx-auto max-w-[1440px]">
+                    <p className="subpage-hero-eyebrow">{t('courses.heroEyebrow')}</p>
+                    <h1 className="text-6xl font-normal uppercase leading-none text-white lg:text-8xl" style={{ fontFamily: 'var(--font-bebas)' }}>
+                        {t('inPersonCourses.heroTitle')}
+                    </h1>
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg">{t('inPersonCourses.heroDescription')}</p>
+                </div>
+            </div>
 
-                    <div className="w-full px-6 lg:px-12 relative z-10">
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center">
-                            {/* Left Column: Title */}
-                            <div className="text-center lg:text-left">
-                                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                    {t('inPersonCourses.heroTitle')}
-                                </h1>
+            {/* Cursos presenciales: mismo patrón editorial que el resto del
+                sitio — ancho completo, etiqueta monoespaciada, líneas
+                divisorias, teoría/práctica/costos en columnas. El segundo
+                curso lleva un fondo gris muy claro para diferenciarlo. */}
+            <div>
+                {COURSES.map((key, i) => (
+                    <div key={key} className={`border-t border-gray-200 ${i === 1 ? 'bg-[#F4F4F3]' : 'bg-white'}`}>
+                        <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+                            <div className="mb-6 flex flex-wrap items-baseline justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.14em]">
+                                <span className="flex gap-6">
+                                    <span className="text-gray-400">{t('home.courseKicker')}</span>
+                                    <span className="text-[#16171a]">{t(`${key}.subtitle`)}</span>
+                                </span>
+                                <span className="text-gray-400">{String(i + 1).padStart(3, '0')}</span>
                             </div>
 
-                            {/* Right Column: Image */}
-                            <div className="flex justify-center lg:justify-end w-full mt-2 lg:mt-0">
-                                <div className="relative w-full max-w-md aspect-video rounded-xl overflow-hidden border-4 border-white shadow-2xl lg:h-[28vh] lg:w-auto">
-                                    <Image
-                                        src="/course-hero-image.jpg"
-                                        alt="Cursos Presenciales"
-                                        fill
-                                        className="object-cover"
-                                    />
+                            <h2
+                                className="mb-10 max-w-3xl text-4xl font-normal uppercase leading-none text-[#16171a] lg:text-6xl"
+                                style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                            >
+                                {t(`${key}.title`)}
+                            </h2>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2">
+                                <div className="pb-10 lg:pb-0 lg:pr-12">
+                                    <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-400">
+                                        {t(`${key}.theoryTitle`)}
+                                    </p>
+                                    <ul className="space-y-3">
+                                        {(t(`${key}.theoryItems`) as unknown as string[]).map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3 text-sm leading-relaxed text-gray-600">
+                                                <span className="mt-1 text-[#B70126]">—</span>
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="bg-[#0B121F] p-6 sm:p-8 lg:p-12">
+                                    <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-white/40">
+                                        {t(`${key}.practiceTitle`)}
+                                    </p>
+                                    <ul className="space-y-3">
+                                        {(t(`${key}.practiceItems`) as unknown as string[]).map((item, index) => (
+                                            <li key={index} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
+                                                <span className="mt-1 text-[#B70126]">—</span>
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <div className="mt-10 border-t border-white/15 pt-6">
+                                        <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-white/40">
+                                            {t(`${key}.costTitle`)}
+                                        </p>
+                                        <p
+                                            className="text-3xl font-normal uppercase leading-none text-white lg:text-4xl"
+                                            style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                                        >
+                                            {t(`${key}.cost`)}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                ))}
             </div>
 
-            {/* Content Container */}
-            <div className="mx-auto max-w-[95%] lg:max-w-7xl px-4 lg:px-8 py-16">
-
-                {/* Course 1 */}
-                <div className="mb-24">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-black uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
-                            {t('inPersonCourses.course1.title')}
-                        </h2>
-                        <p className="text-xl text-[#B70126] font-semibold">
-                            {t('inPersonCourses.course1.subtitle')}
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        {/* Theory */}
-                        <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-                            <h3 className="text-xl font-bold text-black mb-6 uppercase tracking-wide">
-                                {t('inPersonCourses.course1.theoryTitle')}
-                            </h3>
-                            <ul className="space-y-3">
-                                {(t('inPersonCourses.course1.theoryItems') as unknown as string[]).map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <span className="text-[#B70126] font-bold">•</span>
-                                        <span className="text-gray-700">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Practice & Cost */}
-                        <div className="space-y-8">
-                            <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-black mb-6 uppercase tracking-wide">
-                                    {t('inPersonCourses.course1.practiceTitle')}
-                                </h3>
-                                <ul className="space-y-3">
-                                    {(t('inPersonCourses.course1.practiceItems') as unknown as string[]).map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#B70126] font-bold">•</span>
-                                            <span className="text-gray-700">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <div className="bg-[#0B121F] rounded-2xl p-8 shadow-md text-white text-center">
-                                <h3 className="text-xl font-bold mb-4 uppercase tracking-wide text-[#B70126]">
-                                    {t('inPersonCourses.course1.costTitle')}
-                                </h3>
-                                <p className="text-2xl font-bold">
-                                    {t('inPersonCourses.course1.cost')}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Divider */}
-                <div className="w-full h-px bg-gray-200 my-16" />
-
-                {/* Course 2 */}
-                <div className="mb-16">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-black uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
-                            {t('inPersonCourses.course2.title')}
-                        </h2>
-                        <p className="text-xl text-[#B70126] font-semibold">
-                            {t('inPersonCourses.course2.subtitle')}
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        {/* Theory */}
-                        <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-                            <h3 className="text-xl font-bold text-black mb-6 uppercase tracking-wide">
-                                {t('inPersonCourses.course2.theoryTitle')}
-                            </h3>
-                            <ul className="space-y-3">
-                                {(t('inPersonCourses.course2.theoryItems') as unknown as string[]).map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3">
-                                        <span className="text-[#B70126] font-bold">•</span>
-                                        <span className="text-gray-700">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Practice & Cost */}
-                        <div className="space-y-8">
-                            <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-                                <h3 className="text-xl font-bold text-black mb-6 uppercase tracking-wide">
-                                    {t('inPersonCourses.course2.practiceTitle')}
-                                </h3>
-                                <ul className="space-y-3">
-                                    {(t('inPersonCourses.course2.practiceItems') as unknown as string[]).map((item, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <span className="text-[#B70126] font-bold">•</span>
-                                            <span className="text-gray-700">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <div className="bg-[#0B121F] rounded-2xl p-8 shadow-md text-white text-center">
-                                <h3 className="text-xl font-bold mb-4 uppercase tracking-wide text-[#B70126]">
-                                    {t('inPersonCourses.course2.costTitle')}
-                                </h3>
-                                <p className="text-2xl font-bold">
-                                    {t('inPersonCourses.course2.cost')}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Contact Section */}
-                <div className="bg-gray-50 rounded-2xl p-8 text-center mt-12">
-                    <h3 className="text-3xl font-bold text-black uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
+            {/* Contacto: mismo patrón que el resto del sitio, fondo negro. */}
+            <div className="bg-[#0B121F] py-16 lg:py-20">
+                <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+                    <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
+                        {t('nav.contact')}
+                    </p>
+                    <h2
+                        className="mb-4 text-4xl font-normal uppercase leading-none text-white lg:text-6xl"
+                        style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.02em' }}
+                    >
                         {t('contact.title')}
-                    </h3>
-                    <p className="text-lg text-gray-700 mb-6">
+                    </h2>
+                    <p className="mb-8 max-w-xl text-base leading-relaxed text-white/60 lg:text-[17px]">
                         {t('contact.subtitle')}
                     </p>
                     <a
                         href="mailto:academia@ivanivanovich.com"
-                        className="inline-block text-2xl font-bold text-[#B70126] hover:text-[#D9012D] transition-colors"
+                        className="inline-block text-2xl uppercase leading-tight text-white transition-colors hover:text-[#B70126] sm:text-3xl"
+                        style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
                     >
                         academia@ivanivanovich.com
                     </a>
                 </div>
-
             </div>
         </div>
     );

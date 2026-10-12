@@ -2,144 +2,136 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/useTranslation';
 
+// Resalta en negrita las frases clave de un párrafo sin tocar el resto del texto.
+function withBold(text: string, phrases: string[]) {
+    if (phrases.length === 0) return text;
+    const pattern = new RegExp(`(${phrases.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+    return text.split(pattern).map((part, i) =>
+        phrases.includes(part) ? <strong key={i} className="font-semibold text-[#16171a]">{part}</strong> : part
+    );
+}
+
+const INTRO_BOLD_PHRASES: Record<string, string[]> = {
+    es: ['sistema de protección discreto y eficaz', 'desactivación temprana de las amenazas', 'operación mucho más segura'],
+    en: ['discreet and effective protection system', 'early threat deactivation', 'much safer operation'],
+};
+
 export default function CertificadoDETAPage() {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
+
+    const benefits = [
+        t('deta.benefit1'), t('deta.benefit2'), t('deta.benefit3'),
+        t('deta.benefit4'), t('deta.benefit5'), t('deta.benefit6'),
+        t('deta.benefit7'), t('deta.benefit8'), t('deta.benefit9'),
+    ];
 
     return (
-        <div className="bg-white min-h-screen pt-24">
-            {/* Hero Section */}
-            <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
-                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">
-                    <div className="absolute inset-0 -z-10 opacity-40">
-                        <Image
-                            src="/course-hero-bg.png"
-                            alt="Background"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+        <div className="bg-white min-h-screen">
+            {/* Hero a sangre, mismo patrón que el resto de /educacion. */}
+            <div className="relative w-full overflow-hidden bg-[#0B121F]">
+                <Image
+                    src="/certificado-deta.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    fill
+                    className="object-cover object-[center_20%]"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="subpage-hero relative z-10 mx-auto max-w-[1440px]">
+                    <p className="subpage-hero-eyebrow">{t('courses.heroEyebrow')}</p>
+                    <h1 className="max-w-4xl text-5xl font-normal uppercase leading-[0.95] text-white lg:text-7xl" style={{ fontFamily: 'var(--font-bebas)' }}>
+                        {t('deta.heroTitle')}
+                    </h1>
+                    <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg">{t('deta.heroDescription')}</p>
+                </div>
+            </div>
 
-                    <div className="w-full px-6 lg:px-12 relative z-10">
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center">
-                            {/* Left Column: Title */}
-                            <div className="text-center lg:text-left">
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                    {t('deta.heroTitle')}
-                                </h1>
-                            </div>
+            {/* Introducción + qué incluye la licencia: ancho completo,
+                etiqueta monoespaciada, líneas divisorias. */}
+            <div className="border-t border-gray-200 bg-white">
+                <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10 lg:py-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="pb-10 lg:border-r lg:border-gray-200 lg:pb-0 lg:pr-12">
+                            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-400">
+                                {t('deta.kicker')}
+                            </p>
+                            <p className="max-w-lg text-lg leading-relaxed text-gray-600 lg:text-xl">
+                                {withBold(t('deta.intro'), INTRO_BOLD_PHRASES[language] || [])}
+                            </p>
+                        </div>
 
-                            {/* Right Column: Image */}
-                            <div className="flex justify-center lg:justify-end w-full mt-2 lg:mt-0">
-                                <div className="relative w-full max-w-md aspect-video rounded-xl overflow-hidden border-4 border-white shadow-2xl lg:h-[28vh] lg:w-auto">
-                                    <Image
-                                        src="/certificado-deta.jpg"
-                                        alt="Certificación DETA"
-                                        fill
-                                        className="object-cover object-top"
-                                    />
-                                </div>
-                            </div>
+                        <div className="pt-10 lg:pl-12 lg:pt-0">
+                            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-400">
+                                {t('deta.licenseTitle')}
+                            </p>
+                            <ul className="space-y-3">
+                                {benefits.map((benefit, index) => (
+                                    <li key={index} className="flex items-start gap-3 text-sm leading-relaxed text-gray-600">
+                                        <span className="mt-1 text-[#B70126]">—</span>
+                                        <span>{benefit}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Content Container - 80% width */}
-            <div className="mx-auto w-[95%] lg:w-[80%]">
-                {/* Main Content Section */}
-                <section className="py-16">
-                    <div className="mx-auto max-w-5xl">
-                        {/* Introduction */}
-                        <div className="mb-12">
-                            <p className="text-lg text-gray-700 leading-relaxed">
-                                {t('deta.intro')}
-                            </p>
-                        </div>
+            {/* Contacto: mismo patrón que el resto del sitio, fondo negro, centrado. */}
+            <div className="bg-[#0B121F] py-16 lg:py-20">
+                <div className="mx-auto max-w-[1440px] px-4 text-center sm:px-6 lg:px-10">
+                    <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/40">
+                        {t('nav.contact')}
+                    </p>
+                    <h2
+                        className="mb-4 text-4xl font-normal uppercase leading-none text-white lg:text-6xl"
+                        style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.02em' }}
+                    >
+                        {t('deta.contactTitle')}
+                    </h2>
+                    <p className="mx-auto mb-8 max-w-xl text-base leading-relaxed text-white/60 lg:text-[17px]">
+                        {t('deta.contactDescription')}
+                    </p>
+                    <a
+                        href="mailto:academia@ivanivanovich.com"
+                        className="inline-block text-2xl uppercase leading-tight text-white transition-colors hover:text-[#B70126] sm:text-3xl"
+                        style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                    >
+                        academia@ivanivanovich.com
+                    </a>
+                </div>
+            </div>
 
-                        {/* La Licencia Incluye */}
-                        <div className="mb-12">
-                            <h2 className="text-4xl font-bold text-black uppercase mb-8" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('deta.licenseTitle')}
-                            </h2>
-
-                            <ul className="space-y-4 text-gray-700">
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit1')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit2')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit3')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit4')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit5')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit6')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit7')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit8')}</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="text-[#B70126] font-bold text-xl mt-1">•</span>
-                                    <span className="text-base leading-relaxed">{t('deta.benefit9')}</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Contact Section */}
-                        <div className="bg-gray-50 rounded-2xl p-8 text-center">
-                            <h3 className="text-3xl font-bold text-black uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('deta.contactTitle')}
-                            </h3>
-                            <p className="text-lg text-gray-700 mb-6">
-                                {t('deta.contactDescription')}
-                            </p>
-                            <a
-                                href="mailto:academia@ivanivanovich.com"
-                                className="inline-block text-2xl font-bold text-[#B70126] hover:text-[#D9012D] transition-colors"
-                            >
-                                academia@ivanivanovich.com
-                            </a>
-                        </div>
-
-                        {/* Book Promo Section */}
-                        <div className="mt-12 bg-gray-900 rounded-2xl p-8 text-center text-white relative overflow-hidden isolate">
-                            {/* Background decoration */}
-                            <div className="absolute inset-0 -z-10 bg-[#B70126] opacity-10"></div>
-
-                            <h3 className="text-3xl font-bold uppercase mb-4" style={{ fontFamily: 'var(--font-bebas)' }}>
-                                {t('book.timelineTitle')}
-                            </h3>
-                            <div className="flex justify-center">
-                                <Link
-                                    href="/educacion/libro"
-                                    className="inline-block rounded-md bg-[#B70126] px-8 py-3 text-white font-bold uppercase hover:bg-[#D9012D] transition-colors"
-                                >
-                                    {t('book.getBook')}
-                                </Link>
-                            </div>
-                        </div>
+            {/* Mis libros: mismo bloque conector que el resto del sitio, centrado. */}
+            <div className="bg-white py-16 lg:py-20">
+                <div className="mx-auto max-w-[1440px] px-4 text-center sm:px-6 lg:px-10">
+                    <div className="mx-auto max-w-2xl">
+                        <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-gray-400">
+                            {t('home.bookKicker')}
+                        </p>
+                        <h2
+                            className="mb-4 text-3xl font-normal uppercase leading-none text-[#16171a] lg:text-5xl"
+                            style={{ fontFamily: 'var(--font-bebas), sans-serif', letterSpacing: '0.01em' }}
+                        >
+                            {t('book.timelineTitle')}
+                        </h2>
+                        <p className="mx-auto mb-6 max-w-lg text-base leading-relaxed text-gray-600 lg:text-[17px]">
+                            {t('home.bookStatement')}
+                        </p>
+                        <Link href="/educacion/libro" className="group mx-auto flex w-fit items-stretch">
+                            <span className="bg-[#B70126] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-[#8f011e]">
+                                {t('home.downloadButton')}
+                            </span>
+                            <span className="ml-px flex items-center bg-[#B70126] px-4 text-white transition-colors group-hover:bg-[#8f011e]">
+                                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                            </span>
+                        </Link>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     );

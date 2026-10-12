@@ -98,11 +98,13 @@ export default async function BlogIndexPage({
                 <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0B121F]/80 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent" />
 
-                <div className="relative mx-auto flex min-h-[440px] max-w-[1440px] items-center px-6 pt-24 pb-10 lg:min-h-[560px] lg:px-8 lg:pt-28 lg:pb-14">
+                <div className="subpage-hero relative z-10 mx-auto max-w-[1440px]">
                     <div>
+                        <p className="subpage-hero-eyebrow text-white">{t.blog.heroLabel}</p>
                         <h1 className="text-6xl lg:text-8xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
                             {t.blog.heroTitle}
                         </h1>
+                        <p className="mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg">{t.blog.heroDescription}</p>
                     </div>
                 </div>
             </div>

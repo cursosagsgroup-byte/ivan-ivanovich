@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   compress: true, // Enable Gzip/Brotli compression
   images: {
     formats: ['image/avif', 'image/webp'], // Modern formats
+    qualities: [75, 90], // 90 para la foto del hero del inicio
     remotePatterns: [
       {
         protocol: 'https',

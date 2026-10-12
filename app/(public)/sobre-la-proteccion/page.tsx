@@ -11,7 +11,7 @@ export default function SobreLaProteccionPage() {
         <div className="bg-white min-h-screen pt-24">
             {/* Hero Section */}
             <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 mx-auto max-w-[95%]">
-                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl min-h-[500px] lg:h-[38vh] lg:min-h-[350px] flex items-center py-8 lg:py-0">
+                <div className="relative rounded-[30px] overflow-hidden bg-[#0B121F] isolate shadow-2xl subpage-hero subpage-hero-inset">
                     <div className="absolute inset-0 -z-10 opacity-40">
                         <Image
                             src="/course-hero-bg.png"
@@ -22,13 +22,15 @@ export default function SobreLaProteccionPage() {
                         />
                     </div>
 
-                    <div className="w-full px-6 lg:px-12 relative z-10">
+                    <div className="w-full relative z-10">
                         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 items-center">
                             {/* Left Column: Title */}
                             <div className="text-center lg:text-left">
+                                <p className="subpage-hero-eyebrow">{t('nav.aboutProtection')}</p>
                                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white uppercase leading-none" style={{ fontFamily: 'var(--font-bebas)' }}>
                                     {t('aboutProtection.heroTitle')}
                                 </h1>
+                                <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg">{t('aboutProtection.heroDescription')}</p>
                             </div>
 
                             {/* Right Column: Image */}

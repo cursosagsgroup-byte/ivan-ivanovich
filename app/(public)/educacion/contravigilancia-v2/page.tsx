@@ -15,7 +15,7 @@ export default function ContravigilanciaV2Page() {
     return (
         <div className="bg-white min-h-screen font-sans">
             {/* HERO SECTION */}
-            <div data-theme="dark" className="relative min-h-[90vh] md:min-h-screen w-full flex items-center justify-center overflow-hidden bg-black pt-20">
+            <div data-theme="dark" className="subpage-hero subpage-hero-landing relative w-full flex items-center justify-center overflow-hidden bg-black">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
 
@@ -25,11 +25,11 @@ export default function ContravigilanciaV2Page() {
                 </div>
 
                 {/* Hero Content */}
-                <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-white pt-10 pb-20">
+                <div className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-white">
                     <div className="animate-fade-in-up">
-                        <h2 className="text-white font-bold text-lg md:text-2xl uppercase tracking-wider mb-2" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                        <p className="subpage-hero-eyebrow">
                             CURSO EN LÍNEA
-                        </h2>
+                        </p>
                         
                         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-none mb-6" style={{ fontFamily: 'var(--font-bebas)' }}>
                             <span className="text-white">Contravigilancia para</span><br />
