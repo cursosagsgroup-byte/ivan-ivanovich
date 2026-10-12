@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { construirFiltroPedidos } from '@/lib/order-filters';
+import { estadoVisible, ETIQUETAS_ESTADO } from '@/lib/order-status';
 
 export const dynamic = 'force-dynamic';
 
@@ -33,17 +34,10 @@ export async function GET(req: NextRequest) {
         include: {
             user: { select: { name: true, email: true, phone: true } },
             items: { include: { course: { select: { title: true } } } },
-            payment: { select: { gateway: true, transactionId: true } },
+            payment: { select: { gateway: true, transactionId: true, status: true } },
         },
         orderBy: { createdAt: 'desc' },
     });
-
-    const ESTADOS: Record<string, string> = {
-        completed: 'Completado',
-        pending: 'Pendiente',
-        failed: 'Fallido',
-        cancelled: 'Cancelado',
-    };
 
     const cabeceras = [
         'Pedido', 'Fecha', 'Hora', 'Cliente', 'Email', 'Teléfono',
@@ -62,7 +56,7 @@ export async function GET(req: NextRequest) {
             // Respaldo en la cuenta: los pedidos previos no guardaban teléfono.
             o.billingPhone || o.user.phone || '',
             o.items.map((i) => i.course.title).join(' | '),
-            ESTADOS[o.status.toLowerCase()] || o.status,
+            ETIQUETAS_ESTADO[estadoVisible(o)],
             o.paymentMethod || '',
             o.payment?.transactionId || '',
             // Números sin separador de miles: así Excel los reconoce como cifras.

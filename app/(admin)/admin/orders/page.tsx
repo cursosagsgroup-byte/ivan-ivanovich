@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ShoppingBag, ArrowLeft } from 'lucide-react';
 import OrdersFilters from '@/components/admin/OrdersFilters';
 import { construirFiltroPedidos, hayFiltrosActivos } from '@/lib/order-filters';
+import { estadoVisible, ETIQUETAS_ESTADO, ESTILOS_ESTADO } from '@/lib/order-status';
 
 export const metadata: Metadata = {
     title: 'Pedidos (Orders) | Keting Media Admin',
@@ -51,6 +52,11 @@ export default async function OrdersPage({
                             title: true,
                         },
                     },
+                },
+            },
+            payment: {
+                select: {
+                    status: true,
                 },
             },
         },
@@ -168,7 +174,7 @@ export default async function OrdersPage({
                                             })}
                                         </td>
                                         <td className="px-6 py-4">
-                                            <StatusBadge status={order.status} />
+                                            <StatusBadge order={order} />
                                         </td>
                                         <td className="px-6 py-4 text-right font-medium text-gray-900">
                                             ${order.total.toFixed(2)} {order.currency}
@@ -184,28 +190,11 @@ export default async function OrdersPage({
     );
 }
 
-function StatusBadge({ status }: { status: string }) {
-    const styles: Record<string, string> = {
-        pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-        completed: 'bg-green-100 text-green-800 border-green-200',
-        failed: 'bg-red-100 text-red-800 border-red-200',
-        refunded: 'bg-gray-100 text-gray-800 border-gray-200',
-    };
-
-    const labels: Record<string, string> = {
-        pending: 'Pendiente',
-        completed: 'Completado',
-        failed: 'Fallido',
-        refunded: 'Reembolsado',
-    };
-
-    const normalizedStatus = status.toLowerCase();
-    const className = styles[normalizedStatus] || 'bg-gray-100 text-gray-800 border-gray-200';
-    const label = labels[normalizedStatus] || status;
-
+function StatusBadge({ order }: { order: { status: string; createdAt: Date; payment: { status: string } | null } }) {
+    const estado = estadoVisible(order);
     return (
-        <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${className}`}>
-            {label}
+        <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${ESTILOS_ESTADO[estado]}`}>
+            {ETIQUETAS_ESTADO[estado]}
         </span>
     );
 }

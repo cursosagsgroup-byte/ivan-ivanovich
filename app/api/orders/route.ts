@@ -146,6 +146,46 @@ export async function POST(req: Request) {
             userId = user.id;
         }
 
+        // Si el mismo usuario ya tiene una orden pendiente para exactamente el
+        // mismo carrito, muy reciente y sin ningún intento de pago todavía, se
+        // reutiliza en vez de crear otra: evita que cada reintento (tarjeta
+        // rechazada, se cerró la pestaña, etc.) deje una fila "pendiente" más.
+        // Se omite por completo si hay cupón de por medio, para no complicar
+        // su lógica de usos — ese caso simplemente crea una orden nueva.
+        if (userId && !couponCode) {
+            const dosHorasAtras = new Date(Date.now() - 2 * 60 * 60 * 1000);
+            const candidatas = await prisma.order.findMany({
+                where: {
+                    userId,
+                    status: 'pending',
+                    couponId: null,
+                    payment: { is: null },
+                    createdAt: { gte: dosHorasAtras },
+                },
+                include: { items: true },
+                orderBy: { createdAt: 'desc' },
+            });
+
+            const idsCarrito = items.map((i: any) => i.courseId).slice().sort();
+            const reutilizable = candidatas.find((o) => {
+                const idsOrden = o.items.map((it) => it.courseId).sort();
+                return (
+                    idsOrden.length === idsCarrito.length &&
+                    idsOrden.every((id, i) => id === idsCarrito[i])
+                );
+            });
+
+            if (reutilizable) {
+                return NextResponse.json({
+                    orderId: reutilizable.id,
+                    orderNumber: reutilizable.orderNumber,
+                    freeOrder: false,
+                    total: reutilizable.total,
+                    currency: reutilizable.currency,
+                });
+            }
+        }
+
         // Calculate total and validate items
         let total = 0;
         const orderItemsData = [];

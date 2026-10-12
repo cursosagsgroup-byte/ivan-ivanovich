@@ -9,6 +9,7 @@ type Curso = { id: string; title: string };
 const ESTADOS = [
     { valor: 'completed', etiqueta: 'Completado' },
     { valor: 'pending', etiqueta: 'Pendiente' },
+    { valor: 'abandonado', etiqueta: 'Carrito abandonado' },
     { valor: 'failed', etiqueta: 'Fallido' },
     { valor: 'cancelled', etiqueta: 'Cancelado' },
 ];
